@@ -14,16 +14,15 @@ const mainHeader = async function () {
   load({
     ID: "mainHeader",
     fn: () => {
-      if (Variable.Static.HeaderShow) {
-        return (
-          <section class="ftco-section">
-            <div class="container">
+      return (
+        <div class="wrapper">
+          <div class="header-inner">
+            <div class="header-logo">
+              <a href="https://duma.network" src={images[logo]}></a>
             </div>
-          </section>
-        );
-      } else {
-        return <div></div>;
-      }
+          </div>
+        </div>
+      );
     },
   });
   return;
