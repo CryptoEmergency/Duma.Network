@@ -1,0 +1,23 @@
+{
+  "name": "Partner-Duma",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "@betarost/cemserver": "^1.0.32",
+    "bootstrap": "^5.2.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "http": "^0.0.1-security",
+    "mongoose": "^6.10.0",
+    "node-fetch": "^3.3.0",
+    "path": "^0.12.7",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
+    "uuid": "^9.0.0",
+    "validator": "^13.9.0"
+  }
+}
