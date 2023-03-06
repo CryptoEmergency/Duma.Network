@@ -1,4 +1,122 @@
+#app{
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  position: relative;
+}
 .wrapper{
   max-width: 1300px;
   margin: 0 auto;
+}
+.c-main{
+  background-color: $back-primary;
+  color: $white;
+  position: relative;
+  background-image: url(../svg/backMain.svg);
+  background-repeat: no-repeat;
+  background-position: center top;
+  // width: 100%;
+  background-size: 100% 875px;
+}
+.intro{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+// .intro-desc{
+//   max-width: 510px;
+// }
+.intro-title{
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: .05em;
+  line-height: 140%;
+  font-family: $conthrax, sans-serif;
+  border-bottom: 1px solid $white;
+}
+.intro-title_second{
+  font-family: $conthrax;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 41px;
+  letter-spacing: .05em;
+}
+.intro-info{
+  font-family: $raleway, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  max-width: 510px;
+  margin-top: 40px;
+}
+.ecosystem{
+  font-family: $raleway, sans-serif;
+}
+.grid-3{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+// .eco-item{
+//   padding: 20px;
+// }
+.ecosystem-box{
+  padding-bottom: 50px;
+}
+.ecosystem-title{
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+}
+.eco-title{
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  font-family: $conthrax, sans-serif;
+}
+// .eco-text{
+//   border-right: 1px solid $white;
+//   padding-right: 35px;
+// }
+.ecosystem-box .eco-item:nth-child(2) .eco-text{
+  border-right: 1px solid $white;
+  border-left: 1px solid $white;
+  padding: 0 20px;
+}
+.ecosystem-box .eco-item:nth-child(2) .eco-title{
+  padding: 0 20px;
+}
+.ecosystem-text{
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  padding-top: 15px;
+}
+.ecosystem-text1{
+  max-width: 880px;
+}
+.ecosystem-text2{
+  max-width: 700px;
+}
+// section investing
+.general-title{
+  font-weight: 600;
+  font-family: $conthrax, sans-serif;
+  font-size: 36px;
+  line-height: 44px;
+}
+.invest-box{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 25px;
+}
+.invest-item{
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  background-blend-mode: overlay;
+  box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
+  border-radius: 18px;
 }
