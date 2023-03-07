@@ -83,7 +83,6 @@ const start = function (data, ID) {
     fn: () => {
       return (
         <div class="wrapper">
-          {/* <img class="main-img" src={svg["backMain"]} /> */}
           <div class="main-inner">
             <section class="intro">
               <div class="intro-inner">
