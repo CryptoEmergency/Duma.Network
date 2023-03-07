@@ -24,11 +24,68 @@ const mainHeader = async function () {
             </div>
             <nav class="header-nav">
               <ul class="header-list">
-                <li class="header-list_item">PROJECTS</li>
-                <li class="header-list_item">Products</li>
-                <li class="header-list_item">Academy</li>
-                <li class="header-list_item">About</li>
-                <li class="header-list_item">Documents</li>
+                <li>
+                  <a href="#" class="header-list_item">
+                    PROJECTS
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="header-list_item">
+                    Products
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="header-list_item">
+                    Academy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="header-list_item">
+                    About
+                  </a>
+                  {/* <ul class="menu-sublist">
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        About Project
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        Advantages
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        Partners
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        Tokenomics
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        Roadmap
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        Team
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="menu-sublist_item">
+                        Social network
+                      </a>
+                    </li>
+                  </ul> */}
+                </li>
+                <li class="header-list_item">
+                  <a href="#" class="header-list_item">
+                    Documents
+                  </a>
+                </li>
               </ul>
             </nav>
             <div class="header-btns">

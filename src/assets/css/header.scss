@@ -2,6 +2,12 @@
   background: $back-primary;
   color: $white;
   font-family: $raleway, sans-serif;
+  position: fixed;
+  transition: .2s linear;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 .header-inner{
   display: flex;
@@ -22,7 +28,26 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
+  position: relative;
+  text-decoration: none;
+  color: $white;
 }
+.menu-sublist{
+  // display: none;
+  background: #f1f1f1;
+  position: absolute;
+  top: 100%;
+  color: $back-primary;
+}
+.menu-sublist_item{
+  text-decoration: none;
+}
+// .header-list_item:hover .menu-sublist{
+//   position: absolute;
+//   top: 20px;
+//   display: flex;
+//   flex-direction: column;
+// }
 .header-btns{
   display: grid;
   grid-template-columns: repeat(3, 1fr);

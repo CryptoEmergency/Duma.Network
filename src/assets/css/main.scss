@@ -5,24 +5,40 @@
   min-height: 100vh;
   position: relative;
 }
-.wrapper{
-  max-width: 1300px;
-  margin: 0 auto;
+body{
+  font-family: $raleway;
 }
+h1, h1, h3, h4, h5, h6{
+  font-family: $conthrax;
+}
+
 .c-main{
+  margin-top: 72px;
   background-color: $back-primary;
   color: $white;
   position: relative;
   background-image: url(../svg/backMain.svg);
   background-repeat: no-repeat;
-  background-position: center top;
-  // width: 100%;
-  background-size: 100% 875px;
+  background-position: center -480px;
+  width: 100%;
 }
-.intro{
+.wrapper{
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.invest-inner, 
+.advantages-inner,
+.parthers-inner,
+.roadmap-inner,
+.team-inner,
+.info-social{
+  padding-top: 50px;
+}
+.intro-inner{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 60px 0;
 }
 // .intro-desc{
 //   max-width: 510px;
@@ -33,26 +49,34 @@
   font-size: 40px;
   letter-spacing: .05em;
   line-height: 140%;
-  font-family: $conthrax, sans-serif;
+  position: relative;
+
+  // border-bottom: 1px solid $white;
+}
+.intro-title::before{
+  content: '';
+  display: block;
+  width: 93%;
+  bottom: 0;
+  position: absolute;
   border-bottom: 1px solid $white;
+  border-bottom-width: 100%;
 }
 .intro-title_second{
-  font-family: $conthrax;
   font-weight: 400;
   font-size: 30px;
   line-height: 41px;
   letter-spacing: .05em;
+  font-family: $conthrax;
+  padding-top: 15px;
 }
 .intro-info{
-  font-family: $raleway, sans-serif;
   font-weight: 400;
   font-size: 20px;
   max-width: 510px;
   margin-top: 40px;
 }
-.ecosystem{
-  font-family: $raleway, sans-serif;
-}
+
 .grid-3{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -62,18 +86,20 @@
 //   padding: 20px;
 // }
 .ecosystem-box{
+  padding-top: 25px;
   padding-bottom: 50px;
 }
 .ecosystem-title{
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
+  font-family: $raleway;
 }
 .eco-title{
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
-  font-family: $conthrax, sans-serif;
+  margin-bottom: 10px;
 }
 // .eco-text{
 //   border-right: 1px solid $white;
@@ -102,21 +128,235 @@
 // section investing
 .general-title{
   font-weight: 600;
-  font-family: $conthrax, sans-serif;
+  font-family: $conthrax;
   font-size: 36px;
   line-height: 44px;
+  text-align: center;
+  margin-top: 100px;
 }
-.invest-box{
+.invest-inner{
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 25px;
+  align-items: center;
+  justify-content: center;
 }
 .invest-item{
   padding: 30px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  background: $back-secondary;
+  // background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
   background-blend-mode: overlay;
-  box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
+  // box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
   border-radius: 18px;
+  transition: .5s ease;
 }
+.invest-item:hover{
+  // box-shadow: 15px 5px 10px rgb(153 205 65 / 10%);
+  scale: 1.1;
+}
+.invest-item img{
+  width: 50px;
+  height: 50px;
+  margin-bottom: 30px;
+  filter: drop-shadow(0px 0px 10px rgba(155,211,60,0.4));
+}
+.invest-item p{
+  text-align: center;
+}
+// section investing
+
+// section contract
+.contract{
+  padding: 35px;
+  background: $back-secondary;
+  border-radius: 12px;
+  margin: 50px 0;
+  transition: .5s ease;
+}
+.contract:hover{
+  // box-shadow: -15px 5px 10px rgb(153 205 65 / 10%);
+  scale: 1.01;
+}
+.contract-inner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contract-desc{
+  display: flex;
+  align-items: center;
+}
+.contract-img{
+  margin-right: 15px;
+  filter: drop-shadow(0px 0px 10px rgba(155,211,60,0.4));
+}
+// section contract
+
+// section advantages
+.advantages{
+  // background-image: url(../svg/bg-gradient.svg);
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: contain;
+  // background-clip: padding-box;
+  position: relative;
+}
+.advantages .circle1,
+.advantages .circle2{
+  position: absolute;
+  bottom: 30%;
+  left: 25%;
+  border-radius: 50%;
+  box-shadow: 0 0 200px 125px #1E6978;
+}
+.advantages .circle2{
+  top: 30%;
+  right: 25%;
+  bottom: auto;
+  left: auto;
+  box-shadow: 0px 0px 180px 100px #1e6978;
+}
+.advantages-inner{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+}
+.advance{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 18px;
+}
+.advance-item{
+  padding: 20px;
+  backdrop-filter: blur(0px);
+  border-radius: 18px;
+  // background: $back-secondary;
+  background: rgba(255, 255, 255, 0.11);
+  transition: .5s ease;
+}
+.advance-item:hover{
+  scale: 1.04;
+}
+.advance-title{
+  font-size: 16px;
+  line-height: 24px;
+  padding-bottom: 13px;
+}
+.advance-text{
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+}
+// section advantages
+
+// section partners
+// .parthers{
+//   background-image: url('../svg/particles.svg');
+// }
+.parthers-inner{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  grid-gap: 25px;
+}
+.parther-img{
+  transition: .5s ease;
+  min-height: 120px;
+}
+.parther-img:hover{
+  scale: 1.1;
+}
+// section partners
+
+// section roadmap
+.roadmap-inner{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+}
+.roadmap-item{
+  padding: 15px 30px;
+  background: $white;
+  border-radius: 18px;
+  transition: .5s ease;
+}
+.roadmap-item:hover{
+  scale: 1.01;
+}
+.roadmap-title{
+  color: #0D3E36;
+  font-size: 24px;
+  line-height: 44px;
+  text-decoration: underline #92d919;
+}
+.roadmap-desc{
+  color: #595656;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 125%;
+}
+// section roadmap
+
+// section team
+.team-inner{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+}
+.team-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+.team-name{
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.team-img{
+  margin-bottom: 10px;
+}
+.team-job{
+  text-transform: uppercase;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  margin-bottom: 15px;
+}
+.team-job img{
+  margin-left: 10px;
+}
+.team-text{
+  text-align: center;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 400;
+}
+// section team
+
+// section info-social
+.info-social{
+  display: flex;
+  justify-content: space-around;
+}
+.info{
+  display: flex;
+  flex-direction: column;
+}
+.social-inner{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+// section info-social
+
+// media
