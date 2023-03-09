@@ -1,6 +1,6 @@
 body{
   font-family: $raleway;
-  height: 100%;
+  height: 100vh;
 }
 #app{
   overflow: hidden;
@@ -11,7 +11,7 @@ body{
   position: relative;
 }
 
-h1, h1, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6{
   font-family: $conthrax;
 }
 
@@ -202,11 +202,6 @@ h1, h1, h3, h4, h5, h6{
 
 // section advantages
 .advantages{
-  // background-image: url(../svg/bg-gradient.svg);
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // background-size: contain;
-  // background-clip: padding-box;
   position: relative;
 }
 .advantages .circle1,
@@ -258,18 +253,16 @@ h1, h1, h3, h4, h5, h6{
 // section advantages
 
 // section partners
-// .parthers{
-//   background-image: url('../svg/particles.svg');
-// }
 .parthers-inner{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   grid-gap: 25px;
+  align-items: center;
 }
 .parther-img{
   transition: .5s ease;
-  min-height: 120px;
+  // min-height: 120px;
 }
 .parther-img:hover{
   scale: 1.1;
@@ -365,26 +358,76 @@ h1, h1, h3, h4, h5, h6{
 
 // media
 @media(max-width: 767px) {
+  // main block
+  .main-inner{
+    margin: 0 15px;
+  }
+  .general-title{
+    margin-top: 55px;
+  }
   .intro-inner{
-    flex-direction: column;
     padding: 25px 0;
+  }
+  .intro-inner img{
+    display: none;
+  }
+  .ecosystem-box .eco-item:nth-child(2) .eco-title{
+    padding: 0;
+  }
+  .ecosystem-box .eco-item:nth-child(2) .eco-text{
+    padding: 0;
+    border-right: none;
+    border-left: none;
+  }
+  .ecosystem-box{
+    padding-bottom: 25px;
   }
   .grid-3{
     grid-template-columns: 1fr;
   }
+
+  .ecosystem-text{
+    background-color: $white;
+    color: $back-primary;
+    padding: 15px;
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+  }
+  .ecosystem-text1{
+    margin-bottom: 10px;
+  }
+  // main block
+
+  // investing
   .invest-inner{
     grid-template-columns: repeat(3, 1fr);
   }
+  .invest-item{
+    padding: 15px;
+  }
+  .invest-item:hover{
+    scale: 1;
+  }
+  // investing
+
+  // advantages 
   .advantages-inner{
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
   }
+  // advantages 
+  
+  // roadmap 
   .roadmap-inner{
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
   }
+  // roadmap 
+
+  // team 
   .team-inner{
     grid-template-columns: repeat(2, 1fr);
   }
+  // team 
 }
 

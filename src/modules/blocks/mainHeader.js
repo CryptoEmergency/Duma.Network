@@ -57,7 +57,6 @@ const mainHeader = async function () {
                 class={["menu-icon", burger ? "active" : null]}
                 onclick={function () {
                   burger = !burger;
-                  console.log(burger);
                   initReload();
                 }}
               >

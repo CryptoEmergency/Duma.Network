@@ -4,6 +4,7 @@ import {
   setStorage,
   Variable,
   load,
+  initReload,
   Data,
 } from "@betarost/cemserver/cem.js";
 import Swiper from "swiper";
@@ -14,6 +15,7 @@ import images from "@assets/images/index.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  Static.activeTab = "Active"
 
   load({
     ID,
@@ -28,7 +30,7 @@ const start = function (data, ID) {
               <img class="arrow-path" alt="path" src={svg["arrowPath"]} />
               <span>Seed Round</span>
             </div>
-            <h2 class="general-title">Seed Round</h2>
+            <h2 class="general-title mt-25">Seed Round</h2>
             <div class="tabs">
               <div class="tabs-controller">
                 <input
@@ -38,7 +40,15 @@ const start = function (data, ID) {
                   checked="checked"
                   name="tab"
                 />
-                <label for="tab-1" class="tab tab-primary">
+                <label
+                  for="tab-1"
+                  class="tab tab-primary"
+                  onclick={() => {
+                    Static.activeTab = "Active";
+                    console.log(Static.activeTab);
+                    initReload();
+                  }}
+                >
                   Active
                 </label>
                 <input
@@ -47,7 +57,15 @@ const start = function (data, ID) {
                   class="tab tab-selector"
                   name="tab"
                 />
-                <label for="tab-2" class="tab tab-success">
+                <label
+                  for="tab-2"
+                  class="tab tab-success"
+                  onclick={() => {
+                    Static.activeTab = "Upcoming";
+                    console.log(Static.activeTab);
+                    initReload();
+                  }}
+                >
                   Upcoming
                 </label>
                 <input
@@ -56,12 +74,20 @@ const start = function (data, ID) {
                   class="tab tab-selector"
                   name="tab"
                 />
-                <label for="tab-3" class="tab tab-default">
+                <label
+                  for="tab-3"
+                  class="tab tab-default"
+                  onclick={() => {
+                    Static.activeTab = "Past";
+                    console.log(Static.activeTab);
+                    initReload();
+                  }}
+                >
                   Past
                 </label>
                 <div class="glider"></div>
               </div>
-              <div class="tabs-content">
+              <div class="tabs-content" hidden={Static.activeTab == "Active" ? false : true}>
                 <div class="cards">
                   <div class="card-item">
                     <img class="card-item_img" src={images["card/1"]} />
@@ -116,6 +142,12 @@ const start = function (data, ID) {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="tabs-content" hidden={Static.activeTab == "Upcoming" ? false : true}>
+                123
+              </div>
+              <div class="tabs-content" hidden={Static.activeTab == "Past" ? false : true}> 
+                5687
               </div>
             </div>
           </div>
