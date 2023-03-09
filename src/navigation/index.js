@@ -186,7 +186,7 @@ const start = function (data, ID) {
             <section class="advantages">
               <div class="circle1"></div>
               <div class="circle2"></div>
-              <h2 class="general-title">Advantages</h2>
+              <h2 class="general-title">Opportunities</h2>
               <div class="advantages-inner">
                 <div class="advance">
                   <div class="advance-item">
@@ -211,12 +211,6 @@ const start = function (data, ID) {
                       ecosystem tokens, will form a constant demand for token.
                     </p>
                   </div>
-                  <div class="advance-item">
-                    <h6 class="advance-title">DEFI capabilities</h6>
-                    <p class="advance-text">
-                      DAO, Staking, Liquid Pool, Cross-chain, Swap and DEX
-                    </p>
-                  </div>
                 </div>
                 <div class="advance">
                   <div class="advance-item">
@@ -236,14 +230,6 @@ const start = function (data, ID) {
                       an opportunity for KOLs to become the project's
                       Ambassador, offers for Influencers and integration of
                       experts on the platform
-                    </p>
-                  </div>
-                  <div class="advance-item">
-                    <h6 class="advance-title">
-                      Crypto-wallet with the fiat payments integration
-                    </h6>
-                    <p class="advance-text">
-                      for quick financial tasks solution
                     </p>
                   </div>
                 </div>
@@ -268,13 +254,6 @@ const start = function (data, ID) {
                       for leaders and Influencers with an audience
                     </p>
                   </div>
-                  <div class="advance-item">
-                    <h6 class="advance-title">NFT Marketplace and INO</h6>
-                    <p class="advance-text">
-                      for buying and selling any NFT assets and launching NFT
-                      collections
-                    </p>
-                  </div>
                 </div>
                 <div class="advance">
                   <div class="advance-item">
@@ -295,15 +274,6 @@ const start = function (data, ID) {
                     <p class="advance-text">
                       learning while using the platform, as well as a section
                       with complete teaching on currencies
-                    </p>
-                  </div>
-                  <div class="advance-item">
-                    <h6 class="advance-title">
-                      AP2P exchanger and trading platform
-                    </h6>
-                    <p class="advance-text">
-                      automatic person-to-person exchanger and ability to buy
-                      cryptocurrency quickly
                     </p>
                   </div>
                 </div>

@@ -29,10 +29,16 @@ const isMobile = {
   },
   any: function () {
     return (
-      isMobile.Android() || isMobile.BlackBerry() || isMobile.IOS() ||
-      isMobile.Opera() || isMobile.Windows());
-  }
-}
+      isMobile.Android() ||
+      isMobile.BlackBerry() ||
+      isMobile.IOS() ||
+      isMobile.Opera() ||
+      isMobile.Windows()
+    );
+  },
+};
+
+let burger = false;
 
 const mainHeader = async function () {
   load({
@@ -47,24 +53,48 @@ const mainHeader = async function () {
               </a>
             </div>
             <div class="header-menu menu">
-              <div 
-                class="menu-icon"
-                onclick={
-                  function(){
-                    let menuBody = document
-                    this.classList.toggle('active');
-                  }
-                }  
+              <div
+                class={["menu-icon", burger ? "active" : null]}
+                onclick={function () {
+                  burger = !burger;
+                  console.log(burger);
+                  initReload();
+                }}
               >
                 <span></span>
               </div>
               <nav class="header-nav">
-                <div class="menu-body">
+                <div class={["menu-body", burger ? "active" : null]}>
                   <ul class="header-list">
-                    <li>
+                    <li
+                      onclick={function () {
+                        if (isMobile.any()) {
+                          this.classList.toggle("active");
+                        }
+                        initReload();
+                      }}
+                    >
                       <a href="#" class="header-list_item">
                         PROJECTS
                       </a>
+                      <span class="menu-arrow"></span>
+                      <ul class="menu-sublist">
+                        <li>
+                          <a href="/seed" class="menu-sublist_item">
+                            Seed
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/private" class="menu-sublist_item">
+                            Private
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/public" class="menu-sublist_item">
+                            Public
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                     <li>
                       <a href="#" class="header-list_item">
@@ -77,14 +107,12 @@ const mainHeader = async function () {
                       </a>
                     </li>
                     <li
-                      onclick={
-                        function () {
-                          if (isMobile.any()) {
-                            this.classList.toggle("active");
-                          }
-                          initReload()
+                      onclick={function () {
+                        if (isMobile.any()) {
+                          this.classList.toggle("active");
                         }
-                      }
+                        initReload();
+                      }}
                     >
                       <a href="#" class="header-list_item">
                         About

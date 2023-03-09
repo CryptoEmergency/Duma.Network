@@ -1,13 +1,16 @@
-#app{
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
-  position: relative;
-}
 body{
   font-family: $raleway;
+  height: 100%;
 }
+#app{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  position: relative;
+}
+
 h1, h1, h3, h4, h5, h6{
   font-family: $conthrax;
 }
@@ -21,6 +24,7 @@ h1, h1, h3, h4, h5, h6{
   background-repeat: no-repeat;
   background-position: center -480px;
   width: 100%;
+  flex: 1 1 auto;
 }
 .wrapper{
   max-width: 1300px;
@@ -360,3 +364,27 @@ h1, h1, h3, h4, h5, h6{
 // section info-social
 
 // media
+@media(max-width: 767px) {
+  .intro-inner{
+    flex-direction: column;
+    padding: 25px 0;
+  }
+  .grid-3{
+    grid-template-columns: 1fr;
+  }
+  .invest-inner{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .advantages-inner{
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+  }
+  .roadmap-inner{
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+  }
+  .team-inner{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

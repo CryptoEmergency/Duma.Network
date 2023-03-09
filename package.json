@@ -17,6 +17,7 @@
     "path": "^0.12.7",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
+    "swiper": "^9.1.0",
     "uuid": "^9.0.0",
     "validator": "^13.9.0"
   }
