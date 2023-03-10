@@ -149,6 +149,7 @@ const forExport = function (data, ID) {
                       params: {
                         email: Static.email.trim(),
                         pass: Static.pass.trim(),
+                        firstName: Static.firstName.trim()
                       },
                     });
 
