@@ -35,7 +35,10 @@ forExport.schema = new mongoose.Schema({
     price: { type: Number },
     targetPrice: { type: Number },
     icon: { type: String },
-    galery: []
+    galery: [],
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'duma_users' },
+    showDate: { type: Date, default: Date.now },
+    active: { type: Boolean, default: true }
 }, standartDate);
 
 const model = mongoose.model(forExport.collection, forExport.schema)
@@ -58,9 +61,37 @@ forExport.get.full = async function ({ filter = {} }, { _id = null, action, user
 
 forExport.set.full = async function ({ insert = {} }, { _id = null, action, userInfo }) {
     if (action == "insert") {
+        insert.author = userInfo._id
         let record = new model();
         Object.assign(record, insert)
         const result = await record.save()
+        return result
+    }
+}
+
+forExport.set.auth = async function ({ insert = {}, update = {}, filter = {} }, { _id = null, action, userInfo }) {
+    filter.user = userInfo._id
+    if (_id) {
+        action = "findOneAndUpdate"
+        filter._id = _id
+    }
+
+    if (action == "insert") {
+        insert.author = userInfo._id
+        let record = new model();
+        Object.assign(record, insert)
+        const result = await record.save()
+        return result
+    }
+    if (action == "updateMany") {
+        const query = model.updateMany(filter, update)
+        const result = await query.exec()
+        return result
+    }
+
+    if (action == "findOneAndUpdate") {
+        const query = model.findOneAndUpdate(filter, update, { new: true })
+        const result = await query.exec()
         return result
     }
 }

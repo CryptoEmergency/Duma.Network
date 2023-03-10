@@ -77,8 +77,41 @@ forExport.get = async function (data, callback) {
     });
 }
 
-forExport.set = function () {
-    console.log("dgdfgfgd3")
+forExport.set = async function (data, callback) {
+    if (!socket.connected) {
+        console.log('=b91e2c=', "Socket not connected!!!", data)
+        return []
+    }
+    let timerLink = null
+    data.method = "set" + data.method
+    return new Promise((resolve, reject) => {
+        if (!callback) {
+            socket.emit("Crypto", data, function ({ method, params, result, _id = null, error = null }) {
+                clearTimeout(timerLink)
+                if (error) {
+                    resolve({ error });
+                    return
+                }
+                resolve(result);
+            });
+        } else {
+            socket.emit("Crypto", data, function ({ method, params, result, _id = null, error = null }) {
+                if (callback) {
+                    callback(result)
+                }
+                clearTimeout(timerLink)
+                if (error) {
+                    resolve({ error });
+                    return
+                }
+                resolve(result);
+            });
+        }
+        timerLink = setTimeout(() => {
+            console.log('=b8e375= setTimeout Socket', data)
+            resolve("result setTimeout");
+        }, 5000);
+    });
 }
 
 export default forExport
