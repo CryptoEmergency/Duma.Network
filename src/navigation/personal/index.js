@@ -1,4 +1,4 @@
-import { jsx, jsxFrag, load, Variable } from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag, load, Variable, setStorage } from "@betarost/cemserver/cem.js";
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
@@ -101,7 +101,13 @@ const start = function (data, ID) {
                   </li>
                 </ul>
               </nav>
-              <span class="sidebar-out">
+              <span class="sidebar-out"
+                onclick={() => {
+                  setStorage("auth", false);
+                  setStorage("myInfo", {});
+                  setStorage("uuid", 0);
+                  window.location = "/";
+                }}>
                 LOGOUT<img src={svg["personal/icons/logout"]}></img>
               </span>
               <div class="sidebar-btns">
