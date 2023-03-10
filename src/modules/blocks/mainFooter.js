@@ -10,7 +10,7 @@ const mainFooter = async function () {
         <div class="wrapper">
           <div class="footer-inner">
             <div class="footer-logo">
-              <a href="https://duma.network">
+              <a href="/">
                 <img src={images["logo"]}></img>
               </a>
             </div>

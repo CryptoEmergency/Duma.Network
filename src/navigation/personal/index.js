@@ -119,7 +119,9 @@ const start = function (data, ID) {
                   <button class="btn btn-bordo">ВЫВЕСТИ</button>
                 </div>
               </div>
-              <div class="personal-content">...</div>
+              <div class="personal-content">
+                <form class="personal-form"></form>
+              </div>
             </div>
           </div>
         </div>

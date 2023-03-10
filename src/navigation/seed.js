@@ -32,6 +32,8 @@ const start = function (data, ID) {
             </div>
             <h2 class="general-title mt-25">Seed Round</h2>
             <div class="tabs">
+              <div class="circle-effect circle-effect1"></div>
+              <div class="circle-effect circle-effect2"></div>
               <div class="tabs-controller">
                 <input
                   id="tab-1"

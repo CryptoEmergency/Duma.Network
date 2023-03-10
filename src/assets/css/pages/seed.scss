@@ -8,6 +8,23 @@
   }
 }
 // tabs
+.tabs{
+  position: sticky;
+  .circle-effect{
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 200px 125px #1e6978;
+    z-index: -5;
+  }
+  .circle-effect1{
+    bottom: 30%;
+    left: 25%;
+  }
+  .circle-effect2{
+    top: 30%;
+    right: 25%;
+  }
+}
 .tabs-controller{
   position: relative;
   border-bottom: 1px solid $grey-dark;

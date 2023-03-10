@@ -348,10 +348,17 @@ h1, h2, h3, h4, h5, h6{
   display: flex;
   justify-content: space-around;
 }
-.info{
-  display: flex;
-  flex-direction: column;
+.info, .social{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 15px;
 }
+.info-social .btn{
+  width: 250px;
+}
+// .social{
+
+// }
 .social-inner{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -394,6 +401,7 @@ h1, h2, h3, h4, h5, h6{
     padding: 15px;
     backdrop-filter: blur(2px);
     border-radius: 10px;
+    font-size: 14px;
   }
   .ecosystem-text1{
     margin-bottom: 10px;
@@ -403,9 +411,18 @@ h1, h2, h3, h4, h5, h6{
   // investing
   .invest-inner{
     grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
   }
   .invest-item{
     padding: 15px;
+  }
+  .invest-item img{
+    width: 35px;
+    height: 35px;
+    margin-bottom: 20px;
+  }
+  .invest-item p{
+    font-size: 12px;
   }
   .invest-item:hover{
     scale: 1;
@@ -431,5 +448,56 @@ h1, h2, h3, h4, h5, h6{
     grid-template-columns: repeat(2, 1fr);
   }
   // team 
+}
+@media(max-width: 464px) {
+  .general-title{
+    margin-top: 25px;
+    font-size: 24px;
+  }
+  .invest-inner, .advantages-inner, .parthers-inner, .roadmap-inner, .team-inner, .info-social{
+    padding-top: 25px;
+  }
+  .invest-inner{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .invest-item{
+    height: fill;
+    height: -webkit-fill-available;
+  }
+  .advantages-inner{
+    grid-template-columns: 1fr;
+  }
+  .advance{
+    grid-gap: 15px;
+  }
+  .advance-item{
+    padding: 15px;
+  }
+  .advance-item:hover{
+    scale: 1;
+  }
+  .parther-img{
+    max-height: 40px;
+  }
+  .parther-img:hover{
+    scale: 1;
+  }
+  .roadmap-inner,.team-inner{
+    grid-template-columns: 1fr;
+  }
+  .roadmap-item:hover{
+    scale: 1;
+  }
+  .info-social{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+  .info, .social{
+    justify-items: center;
+  }
+  .social-inner{
+    grid-gap: 10px;
+  }
 }
 
