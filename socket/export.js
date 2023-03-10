@@ -122,11 +122,8 @@ io.on("connection", async function (socket) {
                 path: 'user',
                 select: {
                     _id: 1,
-                    nickname: 1,
-                    online: 1,
-                    email: 1,
-                    status: 1,
-                    accounts: 1
+                    firstName: 1,
+                    email: 1
                 },
             }
         }, { action: "findOne" })
