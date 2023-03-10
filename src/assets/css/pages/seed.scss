@@ -186,7 +186,39 @@
 // content cards
 
 @media (max-width: 767px){
+  .tabs-controller input + label{
+    width: 32%;
+    font-size: 18px;
+  }
+  .tabs-controller .glider{
+    width: 170px;
+  }
+  .tabs-controller #tab-1:checked ~ .glider{
+    left: 30px;
+  }
+  .tabs-controller #tab-2:checked ~ .glider{
+    left: 240px;
+  }
+  .tabs-controller #tab-3:checked ~ .glider{
+    left: 455px;
+  }
   .cards{
     grid-template-columns: repeat(2, 1fr);
+  }
+  .card-item .company .company-title{
+    font-size: 20px;
+  }
+  .card-item .info{
+    padding: 20px;
+  }
+  .card-item .info-bell{
+    top: 20px;
+    right: 20px;
+  }
+  .card-item .statuses .status, .card-item .statuses .ecosystem{
+    font-size: 14px;
+  }
+  .card-item .summ {
+    margin: 10px 0;
   }
 }

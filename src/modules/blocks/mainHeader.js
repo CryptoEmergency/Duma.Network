@@ -162,9 +162,23 @@ const mainHeader = async function () {
                     </li>
                   </ul>
                   <div class="header-btns">
-                    <button class="btn">INVEST IN PROJECT</button>
-                    <button class="btn">MY ACCOUNT</button>
-                    <button class="btn">CONNECT WALLET</button>
+                    {/* <button class="btn">INVEST IN PROJECT</button> */}
+                    <button
+                      class="btn"
+                      onclick={() => {
+                        fn.modals.Registration({});
+                      }}
+                    >
+                      Registration
+                    </button>
+                    <button
+                      class="btn"
+                      onclick={() => {
+                        fn.modals.Login({});
+                      }}
+                    >
+                      Login
+                    </button>
                   </div>
                   <span>EN</span>
                 </div>
