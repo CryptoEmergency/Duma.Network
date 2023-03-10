@@ -4,12 +4,18 @@ $back-primary: #191E21;
 $back-secondary: #272C31;
 $white: #FFFFFF;
 $olive: #73993B;
+$filterOlive: invert(59%) sepia(22%) saturate(1079%) hue-rotate(42deg) brightness(92%) contrast(81%);
 $green-light: #99CD41;
+$bordo: #993B5D;
+$pink: #C95688;
 $grey-dark: #97999B;
 $grey: #C0C0C0;
+$dashboard: #303437;
+// fonts
 $raleway: 'Raleway', sans-serif;
 $conthrax: 'Conthrax', sans-serif;
 $roboto: 'Roboto', sans-serif;
+$inter: 'Inter', sans-serif;
 
 $indents:(
   0: 0px,

@@ -48,7 +48,7 @@ const mainHeader = async function () {
         <div class="wrapper">
           <div class={["header-inner", isMobile.any() ? "__touch" : "__pc"]}>
             <div class="header-logo">
-              <a href="https://duma.network">
+              <a href="/">
                 <img src={images["logo"]}></img>
               </a>
             </div>
