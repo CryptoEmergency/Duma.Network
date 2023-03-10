@@ -3,7 +3,7 @@ import {
   jsxFrag,
   load,
   Data,
-  initReload,
+  setStorage,
   Variable,
 } from "@betarost/cemserver/cem.js";
 
@@ -18,12 +18,24 @@ const showError = function (text) {
   }, 5000);
 };
 
+const formCheck = function () {
+  if (!fn.validator.isEmail(Data.Static.email)) {
+    showError("Enter the correct Email address");
+    return false;
+  }
+
+  if (!Data.Static.pass.length) {
+    showError("Enter the password");
+    return false;
+  }
+
+  return true;
+};
+
 const forExport = function (data, ID) {
-  let [Static] = fn.GetParams({ data, ID });
-  Static.elError;
+  let [Static] = fn.GetParams({ data, ID, initData: "login" });
   load({
     ID,
-    fnLoad: () => {},
     fn: () => {
       return (
         <div class="wrap">
@@ -48,7 +60,6 @@ const forExport = function (data, ID) {
                   style="display:none;"
                   class="error-text"
                 >
-                  error
                 </div>
                 <form class="form-modal">
                   <div class="form-item">
@@ -56,10 +67,12 @@ const forExport = function (data, ID) {
                       Email :
                     </label>
                     <input
-                      id="email"
                       class="form-input"
                       type="email"
                       placeholder="email@xyz.com"
+                      onchange={function () {
+                        Static.email = this.value;
+                      }}
                     ></input>
                   </div>
                   <div class="form-item">
@@ -67,20 +80,53 @@ const forExport = function (data, ID) {
                       Password :
                     </label>
                     <input
-                      id="password"
                       class="form-input"
                       type="password"
                       placeholder="xxxxxxxxxx"
+                      onchange={function () {
+                        Static.pass = this.value;
+                      }}
                     ></input>
                   </div>
                 </form>
               </main>
               <footer class="footer-modal">
-                <button class="btn btn-modal">SIGN UP</button>
+                <button
+                  class="btn btn-modal"
+                  onclick={async function () {
+                    this.disabled = true;
+
+                    if (!formCheck()) {
+                      this.disabled = false;
+                      return;
+                    }
+
+                    let response = await fn.socket.send({
+                      method: "Login",
+                      params: {
+                        email: Static.email.trim(),
+                        pass: Static.pass.trim(),
+                      },
+                    });
+
+                    if (response.error) {
+                      showError(response.error[1]);
+                      this.disabled = false;
+                      return;
+                    }
+
+                    setStorage("myInfo", response);
+                    setStorage("auth", true);
+                    Variable.myInfo = response;
+                    Variable.auth = true;
+                    fn.modals.close(ID);
+                    fn.siteLink("/personal/");
+
+                  }}
+                >SIGN UP</button>
                 <span>
                   Don't have an account yet?
                   <a
-                    href="#"
                     class="link-modal"
                     onclick={() => {
                       fn.modals.close(ID);

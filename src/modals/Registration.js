@@ -18,18 +18,40 @@ const showError = function (text) {
   }, 5000);
 };
 
+const formCheck = function () {
+
+  if (!Data.Static.firstName.length) {
+    showError("Enter the First Name");
+    return false;
+  }
+
+  if (!fn.validator.isEmail(Data.Static.email)) {
+    showError("Enter the correct Email address");
+    return false;
+  }
+
+  if (!Data.Static.pass.length) {
+    showError("Enter the password");
+    return false;
+  }
+
+  if (!Data.Static.repass.length) {
+    showError("Enter the password repeat");
+    return false;
+  }
+
+  if (Data.Static.pass != Data.Static.repass) {
+    showError("Passwords don't match");
+    return false;
+  }
+
+  return true;
+};
+
 const forExport = function (data, ID) {
-  let [Static] = fn.GetParams({ data, ID });
-  Static.email = "";
-  Static.password = "";
-  Static.elError;
+  let [Static] = fn.GetParams({ data, ID, initData: "registration" });
   load({
     ID,
-    fnLoad: () => {
-      // setTimeout(() => {
-      //   fn.modals.close(ID);
-      // }, 2500);
-    },
     fn: () => {
       return (
         <div class="wrap">
@@ -54,7 +76,7 @@ const forExport = function (data, ID) {
                   style="display:none;"
                   class="error-text"
                 >
-                  error
+
                 </div>
                 <form action class="form-modal">
                   <div class="form-item">
@@ -62,10 +84,12 @@ const forExport = function (data, ID) {
                       First Name :
                     </label>
                     <input
-                      id="name"
                       class="form-input"
                       type="text"
                       placeholder="Enter your name..."
+                      onchange={function () {
+                        Static.firstName = this.value;
+                      }}
                     ></input>
                   </div>
                   <div class="form-item">
@@ -73,10 +97,12 @@ const forExport = function (data, ID) {
                       Email :
                     </label>
                     <input
-                      id="email"
                       class="form-input"
                       type="email"
                       placeholder="email@xyz.com"
+                      onchange={function () {
+                        Static.email = this.value;
+                      }}
                     ></input>
                   </div>
                   <div class="form-item">
@@ -84,10 +110,12 @@ const forExport = function (data, ID) {
                       Password :
                     </label>
                     <input
-                      id="password"
                       class="form-input"
                       type="password"
                       placeholder="xxxxxxxxxx"
+                      onchange={function () {
+                        Static.pass = this.value;
+                      }}
                     ></input>
                   </div>
                   <div class="form-item">
@@ -95,20 +123,48 @@ const forExport = function (data, ID) {
                       Confirm Password :
                     </label>
                     <input
-                      id="confirm"
                       class="form-input"
                       type="password"
                       placeholder="xxxxxxxxxx"
+                      onchange={function () {
+                        Static.repass = this.value;
+                      }}
                     ></input>
                   </div>
                 </form>
               </main>
               <footer class="footer-modal">
-                <button class="btn btn-modal">SIGN UP</button>
+                <button
+                  class="btn btn-modal"
+                  onclick={async function () {
+                    this.disabled = true;
+
+                    if (!formCheck()) {
+                      this.disabled = false;
+                      return;
+                    }
+
+                    let response = await fn.socket.send({
+                      method: "Registration",
+                      params: {
+                        email: Static.email.trim(),
+                        pass: Static.pass.trim(),
+                      },
+                    });
+
+                    if (response.error) {
+                      showError(response.error[1]);
+                      this.disabled = false;
+                      return;
+                    }
+
+                    fn.modals.close(ID);
+                    fn.modals.Login({});
+
+                  }}>SIGN UP</button>
                 <span>
                   If you already have an account, just
                   <a
-                    href="#"
                     class="link-modal"
                     onclick={() => {
                       fn.modals.close(ID);

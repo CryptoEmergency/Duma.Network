@@ -1,11 +1,21 @@
-import { jsx, jsxFrag, load } from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag, load, Variable } from "@betarost/cemserver/cem.js";
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 const start = function (data, ID) {
   load({
     ID,
+    fnLoad: () => {
+      if (!Variable.auth) {
+        fn.siteLink("/");
+        return;
+      }
+    },
     fn: () => {
+      if (!Variable.auth) {
+        fn.siteLink("/");
+        return <div></div>;
+      }
       return (
         <div class="wrapper">
           <div class="personal-inner">
