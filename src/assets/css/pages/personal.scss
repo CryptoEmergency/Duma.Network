@@ -4,6 +4,9 @@
   grid-gap: 25px;
   height: 100vh;
   margin: 0 15px;
+  position: relative;
+  z-index: 1000;
+  margin-top: -72px;
 }
 // sidebar
 .sidebar{
@@ -84,9 +87,16 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
+  cursor: pointer;
   img{
     margin-left: 10px;
   }
+}
+.sidebar-out:hover{
+  color: $olive;
+}
+.sidebar-out:hover img{
+  filter: $filterOlive;
 }
 .sidebar-btns{
   display: grid;
@@ -175,6 +185,14 @@
     top: 30%;
     right: 25%;
   }
+}
+.form-item{
+  display: flex;
+  flex-direction: column;
+}
+.personal-input{
+  border:none;
+  outline: none;
 }
 // content
 

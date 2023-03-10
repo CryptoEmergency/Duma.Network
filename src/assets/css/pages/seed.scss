@@ -87,7 +87,9 @@
 }
 .card-item{
   border-radius: 20px;
-  background: $white;
+  // background: $white;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  backdrop-filter: blur(7px);
   color: $back-primary;
   .card-item_img{
     width: 100%;
