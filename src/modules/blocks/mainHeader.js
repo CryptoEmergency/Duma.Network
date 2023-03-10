@@ -45,9 +45,7 @@ const mainHeader = async function () {
     ID: "mainHeader",
     fn: () => {
       if (!Variable.Static.HeaderShow) {
-        return (
-          <div></div>
-        )
+        return <div></div>;
       }
       return (
         <div class="wrapper">
@@ -110,12 +108,12 @@ const mainHeader = async function () {
                       </ul>
                     </li>
                     <li>
-                      <a href="#" class="header-list_item">
+                      <a href="#" class="header-list_item passive-text">
                         Products
                       </a>
                     </li>
                     <li>
-                      <a href="#" class="header-list_item">
+                      <a href="#" class="header-list_item passive-text">
                         Academy
                       </a>
                     </li>
@@ -170,49 +168,43 @@ const mainHeader = async function () {
                       </ul>
                     </li>
                     <li class="header-list_item">
-                      <a href="#" class="header-list_item">
+                      <a href="#" class="header-list_item passive-text">
                         Documents
                       </a>
                     </li>
                   </ul>
-                  {
-                    !Variable.auth
-                      ?
-                      <div class="header-btns">
-                        <button
-                          class="btn"
-                          onclick={() => {
-                            fn.modals.Registration({});
-                          }}
-                        >
-                          Registration
-                        </button>
-                        <button
-                          class="btn"
-                          onclick={() => {
-                            fn.modals.Login({});
-                          }}
-                        >
-                          Login
-                        </button>
-                      </div>
-                      :
-                      <div class="header-btns">
-                        <button
-                          class="btn"
-                          onclick={() => {
-                            fn.siteLink("/personal/");
-                          }}
-                        >
-                          My Account
-                        </button>
-                        <button
-                          class="btn"
-                        >
-                          Connect wallet
-                        </button>
-                      </div>
-                  }
+                  {!Variable.auth ? (
+                    <div class="header-btns">
+                      <button
+                        class="btn"
+                        onclick={() => {
+                          fn.modals.Registration({});
+                        }}
+                      >
+                        Registration
+                      </button>
+                      <button
+                        class="btn"
+                        onclick={() => {
+                          fn.modals.Login({});
+                        }}
+                      >
+                        Login
+                      </button>
+                    </div>
+                  ) : (
+                    <div class="header-btns">
+                      <button
+                        class="btn"
+                        onclick={() => {
+                          fn.siteLink("/personal/");
+                        }}
+                      >
+                        My Account
+                      </button>
+                      <button class="btn btn-passive">Connect wallet</button>
+                    </div>
+                  )}
 
                   <span>EN</span>
                 </div>

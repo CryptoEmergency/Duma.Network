@@ -142,7 +142,21 @@ const start = function (data, ID) {
                 </div>
               </div>
               <div class="personal-content">
-                <form class="personal-form"></form>
+                <form class="personal-form">
+                  <div class="form-item">
+                    <label for="text">Text: </label>
+                    <input
+                      type="text"
+                      id="text"
+                      class="personal-input"
+                      placeholder="Enter text..."
+                    ></input>
+                  </div>
+                  <div class="form-item">
+                    <label></label>
+                    <inpu></inpu>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
