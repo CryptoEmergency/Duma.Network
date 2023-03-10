@@ -44,6 +44,11 @@ const mainHeader = async function () {
   load({
     ID: "mainHeader",
     fn: () => {
+      if (!Variable.Static.HeaderShow) {
+        return (
+          <div></div>
+        )
+      }
       return (
         <div class="wrapper">
           <div class={["header-inner", isMobile.any() ? "__touch" : "__pc"]}>
@@ -161,25 +166,45 @@ const mainHeader = async function () {
                       </a>
                     </li>
                   </ul>
-                  <div class="header-btns">
-                    {/* <button class="btn">INVEST IN PROJECT</button> */}
-                    <button
-                      class="btn"
-                      onclick={() => {
-                        fn.modals.Registration({});
-                      }}
-                    >
-                      Registration
-                    </button>
-                    <button
-                      class="btn"
-                      onclick={() => {
-                        fn.modals.Login({});
-                      }}
-                    >
-                      Login
-                    </button>
-                  </div>
+                  {
+                    !Variable.auth
+                      ?
+                      <div class="header-btns">
+                        <button
+                          class="btn"
+                          onclick={() => {
+                            fn.modals.Registration({});
+                          }}
+                        >
+                          Registration
+                        </button>
+                        <button
+                          class="btn"
+                          onclick={() => {
+                            fn.modals.Login({});
+                          }}
+                        >
+                          Login
+                        </button>
+                      </div>
+                      :
+                      <div class="header-btns">
+                        <button
+                          class="btn"
+                          onclick={() => {
+                            fn.siteLink("/personal/");
+                          }}
+                        >
+                          My Account
+                        </button>
+                        <button
+                          class="btn"
+                        >
+                          Connect wallet
+                        </button>
+                      </div>
+                  }
+
                   <span>EN</span>
                 </div>
               </nav>
