@@ -10,6 +10,15 @@ const start = function (data, ID) {
         <div class="wrapper">
           <div class="personal-inner">
             <div class="sidebar">
+              {/* <div
+                class={["menu-icon", burger ? "active" : null]}
+                onclick={function () {
+                  burger = !burger;
+                  initReload();
+                }}
+              >
+                <span></span>
+              </div> */}
               <div class="nums">
                 <span class="num_big">17,805</span>
                 <span class="num_small">+1,500$</span>
@@ -23,7 +32,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/main"]}
                         class="sidebar-icon"
                       ></img>
-                      Главная
+                      <span>Главная</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -32,7 +41,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/wallet"]}
                         class="sidebar-icon"
                       ></img>
-                      Кошелек
+                      <span>Кошелек</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -41,7 +50,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/briefcase"]}
                         class="sidebar-icon"
                       ></img>
-                      Портфель
+                      <span>Портфель</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -50,7 +59,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/structure"]}
                         class="sidebar-icon"
                       ></img>
-                      Структура
+                      <span>Структура</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -59,7 +68,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/message"]}
                         class="sidebar-icon"
                       ></img>
-                      Сообщения
+                      <span>Сообщения</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -68,7 +77,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/profile"]}
                         class="sidebar-icon"
                       ></img>
-                      Профиль
+                      <span>Профиль</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -77,7 +86,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/setting"]}
                         class="sidebar-icon"
                       ></img>
-                      Настройки
+                      <span>Настройки</span>
                     </a>
                   </li>
                 </ul>
