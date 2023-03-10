@@ -153,7 +153,7 @@ const start = function (data, ID) {
                 </div>
               </div>
               <div class="personal-content">
-                <form class="personal-form">
+                {/* <form class="personal-form">
                   <div class="form-item">
                     <label for="text">Text: </label>
                     <input
@@ -167,7 +167,7 @@ const start = function (data, ID) {
                     <label></label>
                     <inpu></inpu>
                   </div>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>
