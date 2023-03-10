@@ -37,7 +37,10 @@ const start = function (data, ID) {
               <nav>
                 <ul class="sidebar-list">
                   <li class="sidebar-item">
-                    <a>
+                    <a
+                      onclick={() => {
+                        fn.siteLink("/");
+                      }}>
                       <img
                         src={svg["personal/icons/main"]}
                         class="sidebar-icon"
