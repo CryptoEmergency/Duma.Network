@@ -1,4 +1,10 @@
-import { jsx, jsxFrag, load, Variable, setStorage } from "@betarost/cemserver/cem.js";
+import {
+  jsx,
+  jsxFrag,
+  load,
+  Variable,
+  setStorage,
+} from "@betarost/cemserver/cem.js";
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
@@ -10,7 +16,7 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
-
+      console.log(Variable.myInfo);
       // let tmp = await fn.socket.set({ method: "Projects", action: "insert", params: { insert: { name: "Crypto Emergency", rang: 100, status: "Active", category: "Best", title: "Mega super=))", description: "Is an investment ecosystem that combines a Launchpad, an information resource and an academy.", price: 0.64, targetPrice: 10000 } } })
       // console.log('=f5b4ba=', tmp)
     },
@@ -43,7 +49,8 @@ const start = function (data, ID) {
                     <a
                       onclick={() => {
                         fn.siteLink("/");
-                      }}>
+                      }}
+                    >
                       <img
                         src={svg["personal/icons/main"]}
                         class="sidebar-icon"
@@ -57,7 +64,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/wallet"]}
                         class="sidebar-icon"
                       ></img>
-                      <span>Кошелек</span>
+                      <span class="passive-text">Кошелек</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -66,7 +73,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/briefcase"]}
                         class="sidebar-icon"
                       ></img>
-                      <span>Портфель</span>
+                      <span class="passive-text">Портфель</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -75,7 +82,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/structure"]}
                         class="sidebar-icon"
                       ></img>
-                      <span>Структура</span>
+                      <span class="passive-text">Структура</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -84,7 +91,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/message"]}
                         class="sidebar-icon"
                       ></img>
-                      <span>Сообщения</span>
+                      <span class="passive-text">Сообщения</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -93,7 +100,7 @@ const start = function (data, ID) {
                         src={svg["personal/icons/profile"]}
                         class="sidebar-icon"
                       ></img>
-                      <span>Профиль</span>
+                      <span class="passive-text">Профиль</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
@@ -102,18 +109,20 @@ const start = function (data, ID) {
                         src={svg["personal/icons/setting"]}
                         class="sidebar-icon"
                       ></img>
-                      <span>Настройки</span>
+                      <span class="passive-text">Настройки</span>
                     </a>
                   </li>
                 </ul>
               </nav>
-              <span class="sidebar-out"
+              <span
+                class="sidebar-out"
                 onclick={() => {
                   setStorage("auth", false);
                   setStorage("myInfo", {});
                   setStorage("uuid", 0);
                   window.location = "/";
-                }}>
+                }}
+              >
                 LOGOUT<img src={svg["personal/icons/logout"]}></img>
               </span>
               <div class="sidebar-btns">
@@ -131,14 +140,16 @@ const start = function (data, ID) {
                     <img src={images["personal/user"]}></img>
                     <div class="user-name">
                       <span class="user-name_wel">Welcome</span>
-                      <span class="user-name_name">USER</span>
+                      <span class="user-name_name">
+                        {Variable.myInfo.firstName}
+                      </span>
                     </div>
                   </div>
                   <span class="upgrade">АПГРЕЙД</span>
                 </div>
                 <div class="header-btns">
-                  <button class="btn">ПОПОЛНИТЬ</button>
-                  <button class="btn btn-bordo">ВЫВЕСТИ</button>
+                  <button class="btn btn-passive">ПОПОЛНИТЬ</button>
+                  <button class="btn btn-bordo btn-passive">ВЫВЕСТИ</button>
                 </div>
               </div>
               <div class="personal-content">

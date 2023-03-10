@@ -82,14 +82,17 @@ const mainHeader = async function () {
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
                         <li>
-                          <a href="/seed" class="menu-sublist_item"
+                          <a
+                            href="/seed"
+                            class="menu-sublist_item"
                             onclick={(e) => {
-                              fn.siteLink(e)
-                            }}>
+                              fn.siteLink(e);
+                            }}
+                          >
                             Seed
                           </a>
                         </li>
-                        <li>
+                        {/* <li>
                           <a href="/private" class="menu-sublist_item"
                             onclick={(e) => {
                               fn.siteLink(e)
@@ -104,7 +107,7 @@ const mainHeader = async function () {
                             }}>
                             Public
                           </a>
-                        </li>
+                        </li> */}
                       </ul>
                     </li>
                     <li>
