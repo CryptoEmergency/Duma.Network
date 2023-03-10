@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const port = 80;
-const portApi = 10001;
+const portApi = 9092;
 let hotReload = true;
 const target = "cryptodev.store";
 const mode = "development";
