@@ -18,5 +18,5 @@ const start = async function ({ _id = null, method, params, result, error }) {
     Variable.myInfo = params[1]
     Variable.uuid = params[0]
 }
-
+//{ _id = null, method, params, result, error }
 export default start;
