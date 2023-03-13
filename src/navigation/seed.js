@@ -252,7 +252,7 @@ const start = function (data, ID) {
                           </div>
                           <div class="socials">
                             {item.social.map((element) => {
-                              console.log(element.name);
+                              // console.log(element.name, svg[`iconsGreen/${element.name}`]);
                               return (
                                 <a target="_blank" href={element.link}>
                                   {element.link ? (
@@ -279,8 +279,7 @@ const start = function (data, ID) {
                           <div class="progressBlock">
                             <div
                               style={[
-                                `width: calc(100% / 100 * ${
-                                  (item.price * 100) / item.targetPrice
+                                `width: calc(100% / 100 * ${(item.price * 100) / item.targetPrice
                                 })`,
                               ]}
                               class="progressBlock-column"
