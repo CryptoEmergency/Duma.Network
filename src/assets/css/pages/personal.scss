@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 2fr 8fr;
   grid-gap: 25px;
-  height: 100vh;
+  // height: 100vh;
   margin: 0 15px;
   position: relative;
   z-index: 1000;
@@ -163,6 +163,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 }
 // header
 
@@ -186,13 +187,113 @@
     right: 25%;
   }
 }
+.personal-content{
+  padding: 15px;
+}
+// forma
+.personal-form{
+  background-blend-mode: overlay;
+  border-radius: 20px;
+  position: relative;
+  padding: 35px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(7px);
+  color: #FFFFFF;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
 .form-item{
   display: flex;
   flex-direction: column;
 }
+.pictures{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 15px;
+}
+.picture{
+  cursor: pointer;
+  border-radius: 8px;
+  img{
+    border-radius: 8px;
+  }
+}
+.picture input{
+  display: none;
+}
+.picture label{
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // width: 2.8rem;
+  // height: 2.8rem;
+}
+.picture input:checked ~ label{
+  border: 2px solid $green-light;
+  border-radius: 8px;
+}
+// .picture:hover{
+//   border: 2px solid $green-light;
+// }
+
+.wrap-logo{
+  display: flex;
+  flex-direction: row;
+  .picture{
+    margin-right: 15px;
+  }
+}
+
+
+.form-item textarea{
+  resize: none;
+}
 .personal-input{
-  border:none;
-  outline: none;
+  width: 100%;
+}
+// checkbox
+.social-checkbox{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+.checkbox input{
+  display: none;
+}
+.checkbox label{
+  box-shadow: 0.1rem 0.1rem 0.2rem #c8d0e7, -0.1rem -0.1rem 0.5em $white;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
+}
+.checkbox input:checked ~ label{
+  box-shadow: inset 0.1rem 0.1rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem $white;
+}
+.social-wrap{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 25px;
+}
+.social-item{
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.icon{
+  width: 20px;
+  // filter: invert(44%) sepia(82%) saturate(2%) hue-rotate(337deg) brightness(96%) contrast(82%);
 }
 // content
 

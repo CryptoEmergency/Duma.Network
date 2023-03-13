@@ -61,3 +61,8 @@ select {
   font: inherit;
 }
 
+[type=checkbox], [type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+

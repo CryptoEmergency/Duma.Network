@@ -4,10 +4,55 @@ import {
   load,
   Variable,
   setStorage,
+  initReload,
 } from "@betarost/cemserver/cem.js";
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
+
+const pictures = [
+  {
+    main: images["card/1"],
+    logo: images["card/logo/cookie"],
+  },
+  {
+    main: images["card/2"],
+    logo: images["card/logo/takerProtokol"],
+  },
+  {
+    main: images["card/cookie"],
+    logo: images["card/logo/veax"],
+  },
+  {
+    main: images["card/takerProtokol"],
+    logo: images["card/logo/cookie"],
+  },
+  {
+    main: images["card/veax"],
+    logo: images.logo,
+  },
+];
+
+const socials = [
+  {
+    name: "Telegram",
+    src: svg["icons/telegram"],
+  },
+  {
+    name: "Discord",
+    src: svg["icons/discord"],
+  },
+  {
+    name: "Twitter",
+    src: svg["icons/twitter"],
+  },
+  {
+    name: "Youtube",
+    src: svg["icons/youtube"],
+  },
+];
+let mainCard,
+  logoCard = false;
 const start = function (data, ID) {
   load({
     ID,
@@ -145,7 +190,7 @@ const start = function (data, ID) {
                       </span>
                     </div>
                   </div>
-                  <span class="upgrade">АПГРЕЙД</span>
+                  <span class="upgrade">upgrade</span>
                 </div>
                 <div class="header-btns">
                   <button class="btn btn-passive">ПОПОЛНИТЬ</button>
@@ -153,21 +198,159 @@ const start = function (data, ID) {
                 </div>
               </div>
               <div class="personal-content">
-                {/* <form class="personal-form">
+                <form class="personal-form">
+                  <h4>Choosing a main picture</h4>
+                  <div class="form-item pictures">
+                    {pictures.map((item, index) => {
+                      return (
+                        <div class="picture">
+                          <input id={`pic-${index}`} type="checkbox"></input>
+                          <label for={`pic-${index}`}>
+                            <img src={item.main}></img>
+                          </label>
+                        </div>
+                        // <div
+                        //   class={[
+                        //     "picture",
+                        //     item.hidden ? "picture_active" : null,
+                        //   ]}
+                        //   onclick={() => {
+                        //     pictures.forEach((el, i) => {
+                        //       index === i ? (item.hidden = !item.hidden) : null;
+                        //     });
+                        //     initReload();
+                        //   }}
+                        // >
+                        //   <img src={item.main}></img>
+                        // </div>
+                      );
+                    })}
+                  </div>
                   <div class="form-item">
-                    <label for="text">Text: </label>
+                    <label for="title" class="form-label">
+                      Title:
+                    </label>
                     <input
+                      id="title"
                       type="text"
-                      id="text"
-                      class="personal-input"
-                      placeholder="Enter text..."
+                      class="form-input"
+                      placeholder="Enter title..."
+                    ></input>
+                  </div>
+                  <h4>Choosing logo</h4>
+                  <div class="form-item wrap-logo">
+                    {pictures.map((item, index) => {
+                      return (
+                        <div class="picture">
+                          <input id={`logo-${index}`} type="checkbox"></input>
+                          <label for={`logo-${index}`}>
+                            <img src={item.logo}></img>
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {/* <div class="form-item wrap-logo">
+                    {pictures.map((item) => {
+                      return (
+                        <div
+                          class={[
+                            "picture",
+                            item.hidden ? "picture_active" : null,
+                          ]}
+                          onclick={() => {
+                            pictures.forEach((el, i) => {
+                              index === i ? (item.hidden = !item.hidden) : null;
+                            });
+                            initReload();
+                          }}
+                        >
+                          <img src={item.logo}></img>
+                        </div>
+                      );
+                    })}
+                  </div> */}
+                  <div class="form-item">
+                    <label for="rang" class="form-label">
+                      Enter rang
+                    </label>
+                    <input
+                      id="rang"
+                      type="text"
+                      class="form-input"
+                      placeholder="Enter rang..."
                     ></input>
                   </div>
                   <div class="form-item">
-                    <label></label>
-                    <inpu></inpu>
+                    <label for="text" class="form-label">
+                      Text:
+                    </label>
+                    <textarea
+                      rows="5"
+                      id="text"
+                      class="personal-input form-input"
+                      placeholder="Enter text..."
+                    ></textarea>
                   </div>
-                </form> */}
+                  <div class="social-wrap">
+                    {socials.map((item, index) => {
+                      return (
+                        <div class="form-item social-item">
+                          <label for={`social-${index}`}>
+                            <img alt={item.alt} src={item.src}></img>
+                          </label>
+                          <input
+                            id={`social-${index}`}
+                            type="text"
+                            class="form-input personal-input"
+                            placeholder="Enter link..."
+                          ></input>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div class="form-item">
+                    <label for="procent" class="form-label">
+                      Procent %
+                    </label>
+                    <input
+                      id="procent"
+                      type="text"
+                      class="form-input"
+                      placeholder="Enter procent..."
+                    ></input>
+                  </div>
+                  <div class="form-item">
+                    <label for="price" class="form-label">
+                      Price
+                    </label>
+                    <input
+                      id="price"
+                      type="text"
+                      class="form-input"
+                      placeholder="Enter price..."
+                    ></input>
+                  </div>
+                  {/* <div class="form-item social-checkbox">
+                    {socials.map((item, index) => {
+                      return (
+                        <div class="checkbox">
+                          <input
+                            id={`checkbox-${index}`}
+                            type="checkbox"
+                          ></input>
+                          <label for={`checkbox-${index}`}>
+                            <img
+                              class="icon"
+                              alt={item.alt}
+                              src={item.src}
+                            ></img>
+                          </label>
+                        </div>
+                      );
+                    })}
+                  </div> */}
+                </form>
               </div>
             </div>
           </div>
