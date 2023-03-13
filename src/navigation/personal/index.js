@@ -10,50 +10,19 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
-const pictures = [
-  {
-    main: images["card/1"],
-    logo: images["card/logo/cookie"],
-  },
-  {
-    main: images["card/2"],
-    logo: images["card/logo/takerProtokol"],
-  },
-  {
-    main: images["card/cookie"],
-    logo: images["card/logo/veax"],
-  },
-  {
-    main: images["card/takerProtokol"],
-    logo: images["card/logo/cookie"],
-  },
-  {
-    main: images["card/veax"],
-    logo: images.logo,
-  },
-];
+const showError = function (text) {
+  Data.Static.elError.style.display = "block";
+  Data.Static.elError.innerHTML = text;
+  setTimeout(() => {
+    Data.Static.elError.style.display = "none";
+  }, 5000);
+};
 
-const socials = [
-  {
-    name: "Telegram",
-    src: svg["icons/telegram"],
-  },
-  {
-    name: "Discord",
-    src: svg["icons/discord"],
-  },
-  {
-    name: "Twitter",
-    src: svg["icons/twitter"],
-  },
-  {
-    name: "Youtube",
-    src: svg["icons/youtube"],
-  },
-];
-let mainCard,
-  logoCard = false;
 const start = function (data, ID) {
+  let [Static] = fn.GetParams({ data, ID });
+  Static.logoCheck = images["card/logo/cookie"];
+  Static.picCheck = images["card/1"];
+  Static.arrPicture = [];
   load({
     ID,
     fnLoad: async () => {
@@ -201,86 +170,166 @@ const start = function (data, ID) {
                 <form class="personal-form">
                   <h4>Choosing a main picture</h4>
                   <div class="form-item pictures">
-                    {pictures.map((item, index) => {
-                      return (
-                        <div class="picture">
-                          <input id={`pic-${index}`} type="checkbox"></input>
-                          <label for={`pic-${index}`}>
-                            <img src={item.main}></img>
-                          </label>
-                        </div>
-                        // <div
-                        //   class={[
-                        //     "picture",
-                        //     item.hidden ? "picture_active" : null,
-                        //   ]}
-                        //   onclick={() => {
-                        //     pictures.forEach((el, i) => {
-                        //       index === i ? (item.hidden = !item.hidden) : null;
-                        //     });
-                        //     initReload();
-                        //   }}
-                        // >
-                        //   <img src={item.main}></img>
-                        // </div>
-                      );
-                    })}
-                  </div>
-                  <div class="form-item">
-                    <label for="title" class="form-label">
-                      Title:
-                    </label>
-                    <input
-                      id="title"
-                      type="text"
-                      class="form-input"
-                      placeholder="Enter title..."
-                    ></input>
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.picCheck = images["card/1"];
+                        initReload();
+                      }}
+                    >
+                      <input id="pic-1" type="radio" name="picture"></input>
+                      <label for="pic-1">
+                        <img src={images["card/1"]}></img>
+                      </label>
+                    </div>
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.picCheck = images["card/2"];
+                        initReload();
+                      }}
+                    >
+                      <input id="pic-2" type="radio" name="picture"></input>
+                      <label for="pic-2">
+                        <img src={images["card/2"]}></img>
+                      </label>
+                    </div>
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.picCheck = images["card/cookie"];
+                        initReload();
+                      }}
+                    >
+                      <input id="pic-3" type="radio" name="picture"></input>
+                      <label for="pic-3">
+                        <img src={images["card/cookie"]}></img>
+                      </label>
+                    </div>
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.picCheck = images["card/takerProtokol"];
+                        initReload();
+                      }}
+                    >
+                      <input id="pic-4" type="radio" name="picture"></input>
+                      <label for="pic-4">
+                        <img src={images["card/takerProtokol"]}></img>
+                      </label>
+                    </div>
                   </div>
                   <h4>Choosing logo</h4>
                   <div class="form-item wrap-logo">
-                    {pictures.map((item, index) => {
-                      return (
-                        <div class="picture">
-                          <input id={`logo-${index}`} type="checkbox"></input>
-                          <label for={`logo-${index}`}>
-                            <img src={item.logo}></img>
-                          </label>
-                        </div>
-                      );
-                    })}
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.logoCheck = images["card/logo/cookie"];
+                        initReload();
+                      }}
+                    >
+                      <input id="logo-1" type="radio" name="logo" />
+                      <label for="logo-1">
+                        <img src={images["card/logo/cookie"]}></img>
+                      </label>
+                    </div>
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.logoCheck = images["card/logo/takerProtokol"];
+                        initReload();
+                      }}
+                    >
+                      <input id="logo-2" type="radio" name="logo" />
+                      <label for="logo-2">
+                        <img src={images["card/logo/takerProtokol"]}></img>
+                      </label>
+                    </div>
+                    <div
+                      class="picture"
+                      onclick={() => {
+                        Static.logoCheck = images["card/logo/takerProtokol"];
+                        initReload();
+                      }}
+                    >
+                      <input id="logo-3" type="radio" name="logo" />
+                      <label for="logo-3">
+                        <img src={images["card/logo/veax"]}></img>
+                      </label>
+                    </div>
                   </div>
-                  {/* <div class="form-item wrap-logo">
-                    {pictures.map((item) => {
-                      return (
-                        <div
-                          class={[
-                            "picture",
-                            item.hidden ? "picture_active" : null,
-                          ]}
-                          onclick={() => {
-                            pictures.forEach((el, i) => {
-                              index === i ? (item.hidden = !item.hidden) : null;
-                            });
-                            initReload();
-                          }}
-                        >
-                          <img src={item.logo}></img>
-                        </div>
-                      );
-                    })}
-                  </div> */}
-                  <div class="form-item">
-                    <label for="rang" class="form-label">
-                      Enter rang
-                    </label>
-                    <input
-                      id="rang"
-                      type="text"
-                      class="form-input"
-                      placeholder="Enter rang..."
-                    ></input>
+                  <div class="grid-2">
+                    <div class="form-item">
+                      <label class="form-label" id="name">
+                        Name:
+                      </label>
+                      <input
+                        class="form-input personal-input"
+                        for="name"
+                        placeholder="Enter name..."
+                        onchange={function () {
+                          Static.name = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item">
+                      <label for="rang" class="form-label">
+                        Enter rang
+                      </label>
+                      <input
+                        id="rang"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter rang..."
+                        onchange={function () {
+                          Static.rang = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item">
+                      <label for="status" class="form-label">
+                        Enter status
+                      </label>
+                      <input
+                        id="status"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter status..."
+                        onchange={function () {
+                          Static.status = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item">
+                      <label for="category" class="form-label">
+                        Enter category
+                      </label>
+                      <input
+                        id="category"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter category..."
+                        onchange={function () {
+                          Static.category = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item">
+                      <label for="title" class="form-label">
+                        Title:
+                      </label>
+                      <input
+                        id="title"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter title..."
+                        onchange={function () {
+                          Static.title = this.value;
+                        }}
+                      ></input>
+                    </div>
                   </div>
+
                   <div class="form-item">
                     <label for="text" class="form-label">
                       Text:
@@ -290,66 +339,162 @@ const start = function (data, ID) {
                       id="text"
                       class="personal-input form-input"
                       placeholder="Enter text..."
+                      onchange={function () {
+                        Static.text = this.value;
+                      }}
                     ></textarea>
                   </div>
                   <div class="social-wrap">
-                    {socials.map((item, index) => {
-                      return (
-                        <div class="form-item social-item">
-                          <label for={`social-${index}`}>
-                            <img alt={item.alt} src={item.src}></img>
-                          </label>
-                          <input
-                            id={`social-${index}`}
-                            type="text"
-                            class="form-input personal-input"
-                            placeholder="Enter link..."
-                          ></input>
-                        </div>
-                      );
-                    })}
+                    <div class="form-item social-item">
+                      <label for="social-1">
+                        <img alt="Telegram" src={svg["icons/telegram"]}></img>
+                      </label>
+                      <input
+                        id="social-1"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter link..."
+                        onchange={function () {
+                          Static.telegram = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item social-item">
+                      <label for="social-2">
+                        <img alt="Discord" src={svg["icons/discord"]}></img>
+                      </label>
+                      <input
+                        id="social-2"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter link..."
+                        onchange={function () {
+                          Static.discord = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item social-item">
+                      <label for="social-3">
+                        <img alt="Twitter" src={svg["icons/twitter"]}></img>
+                      </label>
+                      <input
+                        id="social-3"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter link..."
+                        onchange={function () {
+                          Static.twitter = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item social-item">
+                      <label for="social-4">
+                        <img alt="Youtube" src={svg["icons/youtube"]}></img>
+                      </label>
+                      <input
+                        id="social-4"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter link..."
+                        onchange={function () {
+                          Static.youtube = this.value;
+                        }}
+                      ></input>
+                    </div>
                   </div>
-                  <div class="form-item">
-                    <label for="procent" class="form-label">
-                      Procent %
-                    </label>
-                    <input
-                      id="procent"
-                      type="text"
-                      class="form-input"
-                      placeholder="Enter procent..."
-                    ></input>
+                  <div class="grid-2">
+                    <div class="form-item">
+                      <label for="price" class="form-label">
+                        Unit price
+                      </label>
+                      <input
+                        id="price"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter unit price..."
+                        onchange={function () {
+                          Static.price = this.value;
+                        }}
+                      ></input>
+                    </div>
+                    <div class="form-item">
+                      <label for="targetPrice" class="form-label">
+                        Total amount
+                      </label>
+                      <input
+                        id="targetPrice"
+                        type="text"
+                        class="form-input personal-input"
+                        placeholder="Enter total amount..."
+                        onchange={function () {
+                          Static.targetPrice = this.value;
+                        }}
+                      ></input>
+                    </div>
                   </div>
-                  <div class="form-item">
-                    <label for="price" class="form-label">
-                      Price
-                    </label>
-                    <input
-                      id="price"
-                      type="text"
-                      class="form-input"
-                      placeholder="Enter price..."
-                    ></input>
-                  </div>
-                  {/* <div class="form-item social-checkbox">
-                    {socials.map((item, index) => {
-                      return (
-                        <div class="checkbox">
-                          <input
-                            id={`checkbox-${index}`}
-                            type="checkbox"
-                          ></input>
-                          <label for={`checkbox-${index}`}>
-                            <img
-                              class="icon"
-                              alt={item.alt}
-                              src={item.src}
-                            ></img>
-                          </label>
-                        </div>
-                      );
-                    })}
-                  </div> */}
+
+                  <button
+                    class="btn"
+                    type="submit"
+                    onclick={async function () {
+                      let socials = [];
+                      if (Static.telegram) {
+                        let tmpObj = {
+                          name: "telegram",
+                          link: Static.telegram,
+                        };
+                        socials.push(tmpObj);
+                      }
+
+                      if (Static.twitter) {
+                        let tmpObj = {
+                          name: "twitter",
+                          link: Static.twitter,
+                        };
+                        socials.push(tmpObj);
+                      }
+
+                      if (Static.discord) {
+                        let tmpObj = {
+                          name: "discord",
+                          link: Static.discord,
+                        };
+                        socials.push(tmpObj);
+                      }
+
+                      if (Static.youtube) {
+                        let tmpObj = {
+                          name: "youtube",
+                          link: Static.youtube,
+                        };
+                        socials.push(tmpObj);
+                      }
+
+                      await fn.socket.set({
+                        method: "Projects",
+                        action: "insert",
+                        params: {
+                          insert: {
+                            name: Static.name,
+                            rang: Static.rang,
+                            status: Static.status,
+                            category: Static.category,
+                            title: Static.title,
+                            description: Static.text,
+                            social: socials,
+                            price: Static.price,
+                            targetPrice: Static.targetPrice,
+                            galery: Static.picCheck,
+                            icon: Static.logoCheck,
+                          },
+                        },
+                      });
+
+                      initReload();
+                    }}
+                  >
+                    Save change
+                  </button>
                 </form>
               </div>
             </div>

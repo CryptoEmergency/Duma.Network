@@ -38,3 +38,12 @@
   font-size: 16px;
   line-height: 24px;
 }
+@media(max-width: 550px){
+  .footer-inner{
+    flex-direction: column;
+    padding: 10px 0;
+  }
+  .social-icons{
+    padding-top: 10px;
+  }
+}

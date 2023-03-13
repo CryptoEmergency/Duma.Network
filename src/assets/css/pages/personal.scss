@@ -229,18 +229,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  // width: 2.8rem;
-  // height: 2.8rem;
 }
-.picture input:checked ~ label{
+.picture input[name="picture"]:checked + label{
   border: 2px solid $green-light;
   border-radius: 8px;
 }
-// .picture:hover{
-//   border: 2px solid $green-light;
-// }
-
+.picture input[name="logo"]:checked + label{
+  border: 2px solid $green-light;
+  border-radius: 8px;
+}
 .wrap-logo{
   display: flex;
   flex-direction: row;
@@ -248,7 +245,11 @@
     margin-right: 15px;
   }
 }
-
+.grid-2{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px; 
+}
 
 .form-item textarea{
   resize: none;
@@ -298,7 +299,16 @@
 // content
 
 @media(max-width: 992px) {
+// card
+  .card-item{
+    .info{
+      padding: 15px;
+      grid-gap: 0;
 
+    }
+  }
+  // .info{
+  // }
 }
 
 @media(max-width: 767px) {

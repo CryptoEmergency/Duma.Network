@@ -21,6 +21,9 @@ h1, h2, h3, h4, h5, h6{
   color: $white;
   flex: 1 1 auto;
 }
+.main-inner{
+  margin: 0 15px;
+}
 .main-back{
   position: relative;
   background-image: url(../svg/backMain.svg);
@@ -368,9 +371,7 @@ h1, h2, h3, h4, h5, h6{
 // media
 @media(max-width: 767px) {
   // main block
-  .main-inner{
-    margin: 0 15px;
-  }
+  
   .general-title{
     margin-top: 55px;
   }

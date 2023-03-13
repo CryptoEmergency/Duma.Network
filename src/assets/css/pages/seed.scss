@@ -140,6 +140,10 @@
   .statuses{
     display: flex;
     padding: 15px 0;
+    .icon{
+      height: 100%;
+      width: auto;
+    }
     div{
       margin-right: 5px;
     }
@@ -203,7 +207,11 @@
   }
 }
 // content cards
-
+@media (max-width: 992px){
+  .cards{
+    grid-gap: 10px;
+  }
+}
 @media (max-width: 767px){
   .tabs-controller input + label{
     width: 32%;
@@ -225,19 +233,46 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .card-item .company .company-title{
-    font-size: 20px;
+    font-size: 16px;
   }
   .card-item .info{
     padding: 20px;
   }
+  .card-item{
+    .desc{
+      font-size: 12px;
+    }
+    .company{
+      width: 70%;
+    }
+  }
   .card-item .info-bell{
     top: 20px;
     right: 20px;
+    .circle{
+      font-size: 12px;
+    }
   }
   .card-item .statuses .status, .card-item .statuses .ecosystem{
     font-size: 14px;
   }
   .card-item .summ {
     margin: 10px 0;
+  }
+}
+@media (max-width: 560px){
+  .cards{
+    grid-template-columns: 1fr;
+  }
+  .card-item{
+    .company, .btn, .statuses{
+      width: 100%;
+    }
+    .socials{
+      padding: 10px 0 0 0;
+    }
+    .summ{
+      margin: 0 0 5px 0;
+    }
   }
 }

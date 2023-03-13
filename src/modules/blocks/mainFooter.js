@@ -7,9 +7,7 @@ const mainFooter = async function () {
     ID: "mainFooter",
     fn: () => {
       if (!Variable.Static.FooterShow) {
-        return (
-          <div></div>
-        )
+        return <div></div>;
       }
       return (
         <div class="wrapper">

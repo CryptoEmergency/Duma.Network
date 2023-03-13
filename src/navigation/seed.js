@@ -13,12 +13,26 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
+const showMainImg = function (galery) {
+  galery.map((item) => {
+    <img scr={item}></img>;
+  });
+  // <img scr={item}></img>
+};
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTab = "Active";
 
   load({
     ID,
+    fnLoad: async () => {
+      Static.projects = await fn.socket.get({
+        method: "Projects",
+        params: { filter: {} },
+      });
+      console.log(Static.projects);
+    },
     fn: () => {
       return (
         <div class="wrapper">
@@ -197,6 +211,87 @@ const start = function (data, ID) {
                       <button class="btn">InvesT</button>
                     </div>
                   </div>
+                  {Static.projects.map((item) => {
+                    return (
+                      <div class="card-item">
+                        {/* {showMainImg(Static.projects.galery)} */}
+                        {/* {Static.projects.galery.map((element) => {
+                          return <img class="card-item_img" src={element} />;
+                        })} */}
+                        <img class="card-item_img" src={item.galery[0]} />
+                        <div class="info">
+                          <div class="info-bell">
+                            {item.rang ? (
+                              <div class="circle">{item.rang}</div>
+                            ) : null}
+                            <img
+                              src={svg["iconsGreen/bell"]}
+                              class="bell"
+                            ></img>
+                          </div>
+                          <div class="company">
+                            <img src={item.icon}></img>
+                            <div class="company-title">
+                              <span>{item.name}</span>
+                            </div>
+                          </div>
+                          <div class="statuses">
+                            <div class="icon">
+                              <img src={svg.binance}></img>
+                            </div>
+                            {item.status ? (
+                              <div class="status">{item.status}</div>
+                            ) : null}
+                            {item.category ? (
+                              <div class="ecosystem">{item.category}</div>
+                            ) : null}
+                          </div>
+                          <div class="desc">
+                            <span class="desc-title">{item.title}</span>
+                            <p class="desc-text">{item.description}</p>
+                          </div>
+                          <div class="socials">
+                            {item.social.map((element) => {
+                              console.log(element.name);
+                              return (
+                                <a target="_blank" href={element.link}>
+                                  {element.link ? (
+                                    <img
+                                      scr={svg[`iconsGreen/${element.name}`]}
+                                    ></img>
+                                  ) : null}
+                                </a>
+                              );
+                            })}
+                            {/* <a target="_blank" href="#">
+                              <img src={svg["iconsGreen/instagram"]}></img>
+                            </a>
+                            <a target="_blank" href="#">
+                              <img src={svg["iconsGreen/facebook"]}></img>
+                            </a>
+                            <a target="_blank" href="#">
+                              <img src={svg["iconsGreen/twitter"]}></img>
+                            </a>
+                            <a target="_blank" href="#">
+                              <img src={svg["iconsGreen/youtube"]}></img>
+                            </a> */}
+                          </div>
+                          <div class="progressBlock">
+                            <div
+                              style={[
+                                `width: calc(100% / 100 * ${
+                                  (item.price * 100) / item.targetPrice
+                                })`,
+                              ]}
+                              class="progressBlock-column"
+                            ></div>
+                          </div>
+                          <span class="summ">{item.targetPrice}</span>
+                          <button class="btn">InvesT</button>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div
