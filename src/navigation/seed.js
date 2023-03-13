@@ -257,7 +257,7 @@ const start = function (data, ID) {
                               return (
                                 <a target="_blank" href={element.link}>
 
-                                  <img alt="Telegram" src={svg[`icons/${element.name}`]}></img>
+                                  <img alt="Telegram" src={svg[`iconsGreen/${element.name}`]}></img>
                                 </a>
                               );
                             })}
