@@ -253,13 +253,11 @@ const start = function (data, ID) {
                           <div class="socials">
                             {item.social.map((element) => {
                               // console.log(element.name, svg[`iconsGreen/${element.name}`]);
+
                               return (
                                 <a target="_blank" href={element.link}>
-                                  {element.link ? (
-                                    <label for="social-1">
-                                      <img alt="Telegram" src={svg[`icons/${element.name}`]}></img>
-                                    </label>
-                                  ) : null}
+
+                                  <img alt="Telegram" src={svg[`icons/${element.name}`]}></img>
                                 </a>
                               );
                             })}
