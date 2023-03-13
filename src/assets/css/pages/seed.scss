@@ -189,6 +189,10 @@
       margin-right: 15px;
     }
   }
+  .icon-green{
+    filter: invert(65%) sepia(94%) saturate(293%) hue-rotate(39deg) brightness(95%) contrast(94%);
+    max-height: 18px;
+  }
   .progressBlock{
     background: $grey;
     border-radius: 4px;

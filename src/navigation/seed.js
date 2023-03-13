@@ -256,8 +256,11 @@ const start = function (data, ID) {
 
                               return (
                                 <a target="_blank" href={element.link}>
-
-                                  <img alt="Telegram" src={svg[`iconsGreen/${element.name}`]}></img>
+                                  <img
+                                    alt="Telegram"
+                                    src={svg[`icons/${element.name}`]}
+                                    class="icon-green"
+                                  ></img>
                                 </a>
                               );
                             })}
@@ -277,7 +280,8 @@ const start = function (data, ID) {
                           <div class="progressBlock">
                             <div
                               style={[
-                                `width: calc(100% / 100 * ${(item.price * 100) / item.targetPrice
+                                `width: calc(100% / 100 * ${
+                                  (item.price * 100) / item.targetPrice
                                 })`,
                               ]}
                               class="progressBlock-column"
