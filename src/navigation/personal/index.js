@@ -410,6 +410,11 @@ const start = function (data, ID) {
                           max="3"
                           class="form-input personal-input"
                           placeholder="Example 123"
+                          oninput={function () {
+                            if (this.value.length > 3 && !isNaN(this.value)) {
+                              this.value = this.value.slice(0, 3);
+                            }
+                          }}
                           onchange={function () {
                             Static.rang = this.value;
                           }}
