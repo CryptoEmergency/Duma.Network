@@ -1,9 +1,11 @@
 :root {
-  --text-color: white;
+  --text-main: white;
+
+  --btn-standart: #0B78B5;
 }
 
 :root[theme='test'] {
-  --text-color: black;
+  --text-main: black;
 }
 
 $white: #FFFFFF;

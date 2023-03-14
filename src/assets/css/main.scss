@@ -46,7 +46,7 @@ $back in $backAdvance {
 .c-main {
   margin-top: 72px;
   background-color: $back-primary;
-  color: $white;
+  color: var(--text-main);
   flex: 1 1 auto;
 }
 
@@ -93,8 +93,8 @@ $back in $backAdvance {
   letter-spacing: .05em;
   line-height: 140%;
   position: relative;
-  color: var(--text-color);
-  // border-bottom: 1px solid $white;
+  color: var(--text-main);
+  // border-bottom: 1px solid var(--text-main);
 }
 
 .intro-title::before {
@@ -103,7 +103,7 @@ $back in $backAdvance {
   width: 93%;
   bottom: 0;
   position: absolute;
-  border-bottom: 1px solid $white;
+  border-bottom: 1px solid var(--text-main);
   border-bottom-width: 100%;
 }
 
@@ -152,12 +152,12 @@ $back in $backAdvance {
 }
 
 // .eco-text{
-//   border-right: 1px solid $white;
+//   border-right: 1px solid var(--text-main);
 //   padding-right: 35px;
 // }
 .ecosystem-box .eco-item:nth-child(2) .eco-text {
-  border-right: 1px solid $white;
-  border-left: 1px solid $white;
+  border-right: 1px solid var(--text-main);
+  border-left: 1px solid var(--text-main);
   padding: 0 20px;
 }
 
@@ -354,7 +354,7 @@ $back in $backAdvance {
 
 .roadmap-item {
   padding: 15px 30px;
-  background: $white;
+  background: var(--text-main);
   border-radius: 18px;
   transition: .5s ease;
 }
@@ -499,7 +499,7 @@ $back in $backAdvance {
   }
 
   .ecosystem-text {
-    background-color: $white;
+    background-color: var(--text-main);
     color: $back-primary;
     padding: 15px;
     backdrop-filter: blur(2px);

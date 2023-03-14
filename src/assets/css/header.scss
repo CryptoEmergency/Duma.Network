@@ -1,6 +1,6 @@
 .c-header{
   background: $back-primary;
-  color: $white;
+  color: var(--text-main);
   font-family: $raleway, sans-serif;
   position: fixed;
   transition: .2s linear;
@@ -20,19 +20,19 @@
   justify-content: center;
   position: relative;
   text-decoration: none;
-  color: $white;
+  color: var(--text-main);
 }
-.passive-text{
-  color: $grey-dark;
-  cursor: default;
-}
+// .passive-text{
+//   color: $grey-dark;
+//   cursor: default;
+// }
 .header-inner.__touch .header-list > li{
   display: flex;
   align-items: center;
 }
 .menu-sublist_item{
   text-decoration: none;
-  color: $white;
+  color: var(--text-main);
 }
 .btn{
   text-transform: uppercase;
@@ -42,10 +42,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ADCC59;
   outline: none;
-  color: $white;
-  background: $olive;
+  border: none;
+  color: var(--text-main);
+  background: var(--btn-standart);
   border-radius: 10px;
   padding: 8px 10px;
   cursor: pointer;
@@ -66,7 +66,7 @@
   display: block;
   width: 0;
   height: 0;
-  border-top: 10px solid $white;
+  border-top: 10px solid var(--text-main);
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   transition: transform .3s ease 0s;
@@ -148,7 +148,7 @@
   
   // =========
   .menu-sublist li:not(:last-child){
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid var(--text-main);
   }
   .menu-sublist li:hover{
     opacity: .7;
@@ -199,7 +199,7 @@
     height: 10%;
     width: 100%;
     transition: all .3s ease 0s;
-    background-color: $white;
+    background-color: var(--text-main);
   }
   .menu-icon::before,
   .menu-icon::after{
