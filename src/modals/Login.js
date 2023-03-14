@@ -59,8 +59,7 @@ const forExport = function (data, ID) {
                   }}
                   style="display:none;"
                   class="error-text"
-                >
-                </div>
+                ></div>
                 <form class="form-modal">
                   <div class="form-item">
                     <label for="email" class="form-label">
@@ -121,9 +120,10 @@ const forExport = function (data, ID) {
                     Variable.auth = true;
                     fn.modals.close(ID);
                     fn.siteLink("/personal/");
-
                   }}
-                >SIGN UP</button>
+                >
+                  LOG IN
+                </button>
                 <span>
                   Don't have an account yet?
                   <a

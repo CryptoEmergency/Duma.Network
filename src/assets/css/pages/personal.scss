@@ -297,7 +297,22 @@
   // filter: invert(44%) sepia(82%) saturate(2%) hue-rotate(337deg) brightness(96%) contrast(82%);
 }
 // content
-
+// error modal
+.wrap-err{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 35px;
+  background-color: rgba(255, 0, 0, 0.5);
+  color: $back-secondary;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  border: 1px solid rgba(128, 0, 0, 1);
+  max-width: 600px;
+  border-radius: 10px;
+  font-family: $conthrax;
+}
 @media(max-width: 992px) {
 // card
   .card-item{
@@ -307,8 +322,7 @@
 
     }
   }
-  // .info{
-  // }
+
 }
 
 @media(max-width: 767px) {
