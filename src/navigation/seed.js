@@ -264,29 +264,20 @@ const start = function (data, ID) {
                                 </a>
                               );
                             })}
-                            {/* <a target="_blank" href="#">
-                              <img src={svg["iconsGreen/instagram"]}></img>
-                            </a>
-                            <a target="_blank" href="#">
-                              <img src={svg["iconsGreen/facebook"]}></img>
-                            </a>
-                            <a target="_blank" href="#">
-                              <img src={svg["iconsGreen/twitter"]}></img>
-                            </a>
-                            <a target="_blank" href="#">
-                              <img src={svg["iconsGreen/youtube"]}></img>
-                            </a> */}
                           </div>
-                          <div class="progressBlock">
-                            <div
-                              style={[
-                                `width: calc(100% / 100 * ${
-                                  (item.price * 100) / item.targetPrice
-                                })`,
-                              ]}
-                              class="progressBlock-column"
-                            ></div>
-                          </div>
+                          {item.price && item.targetPrice ? (
+                            <div class="progressBlock">
+                              <div
+                                style={[
+                                  `width: calc(100% / 100 * ${
+                                    (item.price * 100) / item.targetPrice
+                                  })`,
+                                ]}
+                                class="progressBlock-column"
+                              ></div>
+                            </div>
+                          ) : null}
+
                           <span class="summ">{item.targetPrice}</span>
                           <button class="btn">InvesT</button>
                         </div>

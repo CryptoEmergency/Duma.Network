@@ -2,6 +2,7 @@ import {
   jsx,
   jsxFrag,
   load,
+  Data,
   Variable,
   setStorage,
   initReload,
@@ -18,11 +19,80 @@ const showError = function (text) {
   }, 5000);
 };
 
+const formCheck = function () {
+  if (!Data.Static.name.length) {
+    showError("Enter the Name!");
+    return false;
+  }
+
+  if (!Data.Static.rang.length) {
+    showError("Enter the Rang!");
+    return false;
+  }
+
+  if (!Data.Static.status.length) {
+    showError("Enter the Status!");
+    return false;
+  }
+
+  if (!Data.Static.category.length) {
+    showError("Enter the Category!");
+  }
+
+  if (!Data.Static.title.length) {
+    showError("Enter the Title!");
+  }
+
+  if (!Data.Static.text.length) {
+    showError("Enter the Text!");
+  }
+
+  if (!Data.Static.telegram.length) {
+    showError("Enter the link Telegram!");
+  }
+
+  if (!Data.Static.twitter.length) {
+    showError("Enter the link Twitter!");
+  }
+
+  if (!Data.Static.discord.length) {
+    showError("Enter the link Discord!");
+  }
+
+  if (!Data.Static.youtube.length) {
+    showError("Enter the link Youtube!");
+  }
+
+  if (!Data.Static.price.length) {
+    showError("Enter the Unit price!");
+  }
+
+  if (!Data.Static.targetPrice.length) {
+    showError("Enter the Total amount!");
+  }
+
+  return true;
+};
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.logoCheck = images["card/logo/cookie"];
   Static.picCheck = images["card/1"];
   Static.arrPicture = [];
+  Static.name = "";
+  Static.rang = "";
+  Static.status = "";
+  Static.category = "";
+  Static.title = "";
+  Static.text = "";
+  Static.telegram = "";
+  Static.twitter = "";
+  Static.discord = "";
+  Static.telegram = "";
+  Static.youtube = "";
+  Static.price = "";
+  Static.targetPrice = "";
+
   load({
     ID,
     fnLoad: async () => {
@@ -167,7 +237,7 @@ const start = function (data, ID) {
                 </div>
               </div>
               <div class="personal-content">
-                <form class="personal-form">
+                <div class="personal-form">
                   <h4>Choosing a main picture</h4>
                   <div class="form-item pictures">
                     <div
@@ -435,7 +505,6 @@ const start = function (data, ID) {
 
                   <button
                     class="btn"
-                    type="submit"
                     onclick={async function () {
                       let socials = [];
                       if (Static.telegram) {
@@ -475,27 +544,26 @@ const start = function (data, ID) {
                         action: "insert",
                         params: {
                           insert: {
-                            name: Static.name,
-                            rang: Static.rang,
-                            status: Static.status,
-                            category: Static.category,
-                            title: Static.title,
-                            description: Static.text,
+                            name: Static.name.trim(),
+                            rang: Static.rang.trim(),
+                            status: Static.status.trim(),
+                            category: Static.category.trim(),
+                            title: Static.title.trim(),
+                            description: Static.text.trim(),
                             social: socials,
-                            price: Static.price,
-                            targetPrice: Static.targetPrice,
+                            price: Static.price.trim(),
+                            targetPrice: Static.targetPrice.trim(),
                             galery: Static.picCheck,
                             icon: Static.logoCheck,
                           },
                         },
                       });
-
                       initReload();
                     }}
                   >
                     Save change
                   </button>
-                </form>
+                </div>
               </div>
             </div>
           </div>

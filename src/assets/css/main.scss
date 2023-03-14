@@ -14,6 +14,26 @@ body{
 h1, h2, h3, h4, h5, h6{
   font-family: $conthrax;
 }
+$backAdvance:(
+  0: $back0,
+  1: $back1,
+  2: $back2,
+  3: $back3,
+  4: $back4,
+  5: $back5,
+  6: $back6,
+  7: $back7,
+  8: $back8,
+  9: $back9,
+  10: $back10,
+  11: $back11,
+);
+
+@each $index, $back in $backAdvance{
+  .advance-item_back--#{$index}{
+    background: $back;
+  }
+}
 
 .c-main{
   margin-top: 72px;
@@ -59,7 +79,7 @@ h1, h2, h3, h4, h5, h6{
   letter-spacing: .05em;
   line-height: 140%;
   position: relative;
-
+  color: $white;
   // border-bottom: 1px solid $white;
 }
 .intro-title::before{
@@ -238,9 +258,11 @@ h1, h2, h3, h4, h5, h6{
   padding: 20px;
   backdrop-filter: blur(0px);
   border-radius: 18px;
-  // background: $back-secondary;
-  background: rgba(255, 255, 255, 0.11);
+  background-blend-mode: normal, overlay;
+  box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
   transition: .5s ease;
+  // background: $back-secondary;
+  // background: rgba(255, 255, 255, 0.11);
 }
 .advance-item:hover{
   scale: 1.04;
@@ -250,7 +272,7 @@ h1, h2, h3, h4, h5, h6{
   line-height: 24px;
   padding-bottom: 13px;
 }
-.advance-text{
+.duma-text{
   font-size: 16px;
   line-height: 22px;
   font-weight: 400;
@@ -260,7 +282,7 @@ h1, h2, h3, h4, h5, h6{
 // section partners
 .parthers-inner{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   grid-gap: 25px;
   align-items: center;
@@ -369,6 +391,12 @@ h1, h2, h3, h4, h5, h6{
 // section info-social
 
 // media
+@media(max-width: 992px){
+  // investing
+  .invest-item{
+    padding: 15px;
+  }
+}
 @media(max-width: 767px) {
   // main block
   
@@ -414,15 +442,13 @@ h1, h2, h3, h4, h5, h6{
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
   }
-  .invest-item{
-    padding: 15px;
-  }
+
   .invest-item img{
     width: 35px;
     height: 35px;
     margin-bottom: 20px;
   }
-  .invest-item p{
+  .duma-text{
     font-size: 12px;
   }
   .invest-item:hover{
@@ -499,6 +525,19 @@ h1, h2, h3, h4, h5, h6{
   }
   .social-inner{
     grid-gap: 10px;
+  }
+  // team
+  .team-inner{
+    grid-template-columns: 1fr;
+  }
+  .team-name{
+    font-size: 20px;
+  }
+  .team-job{
+    font-size: 20px;
+  }
+  .team-text{
+    font-size: 14px;
   }
 }
 

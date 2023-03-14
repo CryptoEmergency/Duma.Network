@@ -210,6 +210,7 @@ const mainHeader = async function () {
                   )}
 
                   <span>EN</span>
+                  <span style="margin-left: 20px;">2</span>
                 </div>
               </nav>
             </div>
