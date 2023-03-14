@@ -1,8 +1,9 @@
-body{
+body {
   font-family: $raleway;
   height: 100vh;
 }
-#app{
+
+#app {
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -11,10 +12,16 @@ body{
   position: relative;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $conthrax;
 }
-$backAdvance:(
+
+$backAdvance: (
   0: $back0,
   1: $back1,
   2: $back2,
@@ -29,60 +36,68 @@ $backAdvance:(
   11: $back11,
 );
 
-@each $index, $back in $backAdvance{
-  .advance-item_back--#{$index}{
+@each $index,
+$back in $backAdvance {
+  .advance-item_back--#{$index} {
     background: $back;
   }
 }
 
-.c-main{
+.c-main {
   margin-top: 72px;
   background-color: $back-primary;
   color: $white;
   flex: 1 1 auto;
 }
-.main-inner{
+
+.main-inner {
   margin: 0 15px;
 }
-.main-back{
+
+.main-back {
   position: relative;
   background-image: url(../svg/backMain.svg);
   background-repeat: no-repeat;
   background-position: center -480px;
   width: 100%;
 }
-.wrapper{
+
+.wrapper {
   max-width: 1300px;
   margin: 0 auto;
 }
-.invest-inner, 
+
+.invest-inner,
 .advantages-inner,
 .parthers-inner,
 .roadmap-inner,
 .team-inner,
-.info-social{
+.info-social {
   padding-top: 50px;
 }
-.intro-inner{
+
+.intro-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 60px 0;
 }
+
 // .intro-desc{
 //   max-width: 510px;
 // }
-.intro-title{
+.intro-title {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 40px;
   letter-spacing: .05em;
   line-height: 140%;
   position: relative;
-  color: $white;
+  color: var(--text-color);
   // border-bottom: 1px solid $white;
 }
-.intro-title::before{
+
+.intro-title::before {
   content: '';
   display: block;
   width: 93%;
@@ -91,7 +106,8 @@ $backAdvance:(
   border-bottom: 1px solid $white;
   border-bottom-width: 100%;
 }
-.intro-title_second{
+
+.intro-title_second {
   font-weight: 400;
   font-size: 30px;
   line-height: 41px;
@@ -99,63 +115,73 @@ $backAdvance:(
   font-family: $conthrax;
   padding-top: 15px;
 }
-.intro-info{
+
+.intro-info {
   font-weight: 400;
   font-size: 20px;
   max-width: 510px;
   margin-top: 40px;
 }
 
-.grid-3{
+.grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;
 }
+
 // .eco-item{
 //   padding: 20px;
 // }
-.ecosystem-box{
+.ecosystem-box {
   padding-top: 25px;
   padding-bottom: 50px;
 }
-.ecosystem-title{
+
+.ecosystem-title {
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
   font-family: $raleway;
 }
-.eco-title{
+
+.eco-title {
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
   margin-bottom: 10px;
 }
+
 // .eco-text{
 //   border-right: 1px solid $white;
 //   padding-right: 35px;
 // }
-.ecosystem-box .eco-item:nth-child(2) .eco-text{
+.ecosystem-box .eco-item:nth-child(2) .eco-text {
   border-right: 1px solid $white;
   border-left: 1px solid $white;
   padding: 0 20px;
 }
-.ecosystem-box .eco-item:nth-child(2) .eco-title{
+
+.ecosystem-box .eco-item:nth-child(2) .eco-title {
   padding: 0 20px;
 }
-.ecosystem-text{
+
+.ecosystem-text {
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
   padding-top: 15px;
 }
-.ecosystem-text1{
+
+.ecosystem-text1 {
   max-width: 880px;
 }
-.ecosystem-text2{
+
+.ecosystem-text2 {
   max-width: 700px;
 }
+
 // section investing
-.general-title{
+.general-title {
   font-weight: 600;
   font-family: $conthrax;
   font-size: 36px;
@@ -163,14 +189,16 @@ $backAdvance:(
   text-align: center;
   margin-top: 100px;
 }
-.invest-inner{
+
+.invest-inner {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 25px;
   align-items: center;
   justify-content: center;
 }
-.invest-item{
+
+.invest-item {
   padding: 30px;
   display: flex;
   align-items: center;
@@ -183,78 +211,92 @@ $backAdvance:(
   border-radius: 18px;
   transition: .5s ease;
 }
-.invest-item:hover{
+
+.invest-item:hover {
   // box-shadow: 15px 5px 10px rgb(153 205 65 / 10%);
   scale: 1.1;
 }
-.invest-item img{
+
+.invest-item img {
   width: 50px;
   height: 50px;
   margin-bottom: 30px;
-  filter: drop-shadow(0px 0px 10px rgba(155,211,60,0.4));
+  filter: drop-shadow(0px 0px 10px rgba(155, 211, 60, 0.4));
 }
-.invest-item p{
+
+.invest-item p {
   text-align: center;
 }
+
 // section investing
 
 // section contract
-.contract{
+.contract {
   padding: 35px;
   background: $back-secondary;
   border-radius: 12px;
   margin: 50px 0;
   transition: .5s ease;
 }
-.contract:hover{
+
+.contract:hover {
   // box-shadow: -15px 5px 10px rgb(153 205 65 / 10%);
   scale: 1.01;
 }
-.contract-inner{
+
+.contract-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.contract-desc{
+
+.contract-desc {
   display: flex;
   align-items: center;
 }
-.contract-img{
+
+.contract-img {
   margin-right: 15px;
-  filter: drop-shadow(0px 0px 10px rgba(155,211,60,0.4));
+  filter: drop-shadow(0px 0px 10px rgba(155, 211, 60, 0.4));
 }
+
 // section contract
 
 // section advantages
-.advantages{
+.advantages {
   position: relative;
 }
+
 .advantages .circle1,
-.advantages .circle2{
+.advantages .circle2 {
   position: absolute;
   bottom: 30%;
   left: 25%;
   border-radius: 50%;
   box-shadow: 0 0 200px 125px #1E6978;
 }
-.advantages .circle2{
+
+.advantages .circle2 {
   top: 30%;
   right: 25%;
   bottom: auto;
   left: auto;
   box-shadow: 0px 0px 180px 100px #1e6978;
 }
-.advantages-inner{
+
+.advantages-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px;
 }
-.advance{
+
+.advance {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 18px;
 }
-.advance-item{
+
+.advance-item {
   padding: 20px;
   backdrop-filter: blur(0px);
   border-radius: 18px;
@@ -264,80 +306,94 @@ $backAdvance:(
   // background: $back-secondary;
   // background: rgba(255, 255, 255, 0.11);
 }
-.advance-item:hover{
+
+.advance-item:hover {
   scale: 1.04;
 }
-.advance-title{
+
+.advance-title {
   font-size: 16px;
   line-height: 24px;
   padding-bottom: 13px;
 }
-.duma-text{
+
+.duma-text {
   font-size: 16px;
   line-height: 22px;
   font-weight: 400;
 }
+
 // section advantages
 
 // section partners
-.parthers-inner{
+.parthers-inner {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   grid-gap: 25px;
   align-items: center;
 }
-.parther-img{
+
+.parther-img {
   transition: .5s ease;
   // min-height: 120px;
 }
-.parther-img:hover{
+
+.parther-img:hover {
   scale: 1.1;
 }
+
 // section partners
 
 // section roadmap
-.roadmap-inner{
+.roadmap-inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
 }
-.roadmap-item{
+
+.roadmap-item {
   padding: 15px 30px;
   background: $white;
   border-radius: 18px;
   transition: .5s ease;
 }
-.roadmap-item:hover{
+
+.roadmap-item:hover {
   scale: 1.01;
 }
-.roadmap-title{
+
+.roadmap-title {
   color: #0D3E36;
   font-size: 24px;
   line-height: 44px;
   text-decoration: underline #92d919;
 }
-.roadmap-desc{
+
+.roadmap-desc {
   color: #595656;
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
 }
+
 // section roadmap
 
 // section team
-.team-inner{
+.team-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px;
 }
-.team-item{
+
+.team-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
 }
-.team-name{
+
+.team-name {
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
@@ -345,10 +401,12 @@ $backAdvance:(
   text-transform: uppercase;
   margin-bottom: 15px;
 }
-.team-img{
+
+.team-img {
   margin-bottom: 10px;
 }
-.team-job{
+
+.team-job {
   text-transform: uppercase;
   font-size: 24px;
   line-height: 24px;
@@ -357,74 +415,90 @@ $backAdvance:(
   display: flex;
   margin-bottom: 15px;
 }
-.team-job img{
+
+.team-job img {
   margin-left: 10px;
 }
-.team-text{
+
+.team-text {
   text-align: center;
   font-size: 16px;
   line-height: 19px;
   font-weight: 400;
 }
+
 // section team
 
 // section info-social
-.info-social{
+.info-social {
   display: flex;
   justify-content: space-around;
 }
-.info, .social{
+
+.info,
+.social {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 15px;
 }
-.info-social .btn{
+
+.info-social .btn {
   width: 250px;
 }
+
 // .social{
 
 // }
-.social-inner{
+.social-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
 // section info-social
 
 // media
-@media(max-width: 992px){
+@media(max-width: 992px) {
+
   // investing
-  .invest-item{
+  .invest-item {
     padding: 15px;
   }
 }
+
 @media(max-width: 767px) {
   // main block
-  
-  .general-title{
+
+  .general-title {
     margin-top: 55px;
   }
-  .intro-inner{
+
+  .intro-inner {
     padding: 25px 0;
   }
-  .intro-inner img{
+
+  .intro-inner img {
     display: none;
   }
-  .ecosystem-box .eco-item:nth-child(2) .eco-title{
+
+  .ecosystem-box .eco-item:nth-child(2) .eco-title {
     padding: 0;
   }
-  .ecosystem-box .eco-item:nth-child(2) .eco-text{
+
+  .ecosystem-box .eco-item:nth-child(2) .eco-text {
     padding: 0;
     border-right: none;
     border-left: none;
   }
-  .ecosystem-box{
+
+  .ecosystem-box {
     padding-bottom: 25px;
   }
-  .grid-3{
+
+  .grid-3 {
     grid-template-columns: 1fr;
   }
 
-  .ecosystem-text{
+  .ecosystem-text {
     background-color: $white;
     color: $back-primary;
     padding: 15px;
@@ -432,112 +506,145 @@ $backAdvance:(
     border-radius: 10px;
     font-size: 14px;
   }
-  .ecosystem-text1{
+
+  .ecosystem-text1 {
     margin-bottom: 10px;
   }
+
   // main block
 
   // investing
-  .invest-inner{
+  .invest-inner {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
   }
 
-  .invest-item img{
+  .invest-item img {
     width: 35px;
     height: 35px;
     margin-bottom: 20px;
   }
-  .duma-text{
+
+  .duma-text {
     font-size: 12px;
   }
-  .invest-item:hover{
+
+  .invest-item:hover {
     scale: 1;
   }
+
   // investing
 
   // advantages 
-  .advantages-inner{
+  .advantages-inner {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
   }
+
   // advantages 
-  
+
   // roadmap 
-  .roadmap-inner{
+  .roadmap-inner {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 15px;
   }
+
   // roadmap 
 
   // team 
-  .team-inner{
+  .team-inner {
     grid-template-columns: repeat(2, 1fr);
   }
+
   // team 
 }
+
 @media(max-width: 464px) {
-  .general-title{
+  .general-title {
     margin-top: 25px;
     font-size: 24px;
   }
-  .invest-inner, .advantages-inner, .parthers-inner, .roadmap-inner, .team-inner, .info-social{
+
+  .invest-inner,
+  .advantages-inner,
+  .parthers-inner,
+  .roadmap-inner,
+  .team-inner,
+  .info-social {
     padding-top: 25px;
   }
-  .invest-inner{
+
+  .invest-inner {
     grid-template-columns: repeat(2, 1fr);
   }
-  .invest-item{
+
+  .invest-item {
     height: fill;
     height: -webkit-fill-available;
   }
-  .advantages-inner{
+
+  .advantages-inner {
     grid-template-columns: 1fr;
   }
-  .advance{
+
+  .advance {
     grid-gap: 15px;
   }
-  .advance-item{
+
+  .advance-item {
     padding: 15px;
   }
-  .advance-item:hover{
+
+  .advance-item:hover {
     scale: 1;
   }
-  .parther-img{
+
+  .parther-img {
     max-height: 40px;
   }
-  .parther-img:hover{
+
+  .parther-img:hover {
     scale: 1;
   }
-  .roadmap-inner,.team-inner{
+
+  .roadmap-inner,
+  .team-inner {
     grid-template-columns: 1fr;
   }
-  .roadmap-item:hover{
+
+  .roadmap-item:hover {
     scale: 1;
   }
-  .info-social{
+
+  .info-social {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 20px;
   }
-  .info, .social{
+
+  .info,
+  .social {
     justify-items: center;
   }
-  .social-inner{
+
+  .social-inner {
     grid-gap: 10px;
   }
+
   // team
-  .team-inner{
+  .team-inner {
     grid-template-columns: 1fr;
   }
-  .team-name{
+
+  .team-name {
     font-size: 20px;
   }
-  .team-job{
+
+  .team-job {
     font-size: 20px;
   }
-  .team-text{
+
+  .team-text {
     font-size: 14px;
   }
 }
-

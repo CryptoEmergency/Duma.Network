@@ -210,7 +210,15 @@ const mainHeader = async function () {
                   )}
 
                   <span>EN</span>
-                  <span style="margin-left: 20px;">2</span>
+                  <span style="margin-left: 20px;"
+                    onclick={() => {
+                      if (document.documentElement.hasAttribute('theme')) {
+                        document.documentElement.removeAttribute('theme');
+                      }
+                      else {
+                        document.documentElement.setAttribute('theme', 'test');
+                      }
+                    }}>2</span>
                 </div>
               </nav>
             </div>

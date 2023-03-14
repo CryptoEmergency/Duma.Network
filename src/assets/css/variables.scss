@@ -1,8 +1,17 @@
-$black:#000000;
-$blue:#1872DB;
+:root {
+  --text-color: white;
+}
+
+:root[theme='test'] {
+  --text-color: black;
+}
+
+$white: #FFFFFF;
+$black: #000000;
+$blue: #1872DB;
 $back-primary: #191E21;
 $back-secondary: #272C31;
-$white: #FFFFFF;
+
 $olive: #73993B;
 $filterOlive: invert(59%) sepia(22%) saturate(1079%) hue-rotate(42deg) brightness(92%) contrast(81%);
 $green-light: #99CD41;
@@ -13,10 +22,10 @@ $grey: #C0C0C0;
 $dashboard: #303437;
 // background
 $back0: linear-gradient(180deg, rgba(23, 74, 255, 0.5) -55.8%, rgba(112, 0, 255, 0) 130.07%), linear-gradient(180deg, rgba(255, 255, 255, 0.5) 12.55%, rgba(255, 255, 255, 0.3) 78.66%);
-$back1:linear-gradient(180deg, rgba(115, 255, 5, 0.07) 0%, rgba(154, 210, 57, 0.12) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+$back1: linear-gradient(180deg, rgba(115, 255, 5, 0.07) 0%, rgba(154, 210, 57, 0.12) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
 $back2: linear-gradient(180deg, rgba(158, 66, 247, 0.168) 0%, rgba(255, 119, 0, 0.3) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back3:linear-gradient(180deg, rgba(4, 141, 255, 0.376) 0%, rgba(255, 0, 0, 0.12) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.376) 12.55%, rgba(255, 255, 255, 0.4375) 42.51%, rgba(255, 255, 255, 0.312) 78.66%);
-$back4:linear-gradient(0deg, rgba(157, 57, 57, 0.2), rgba(157, 57, 57, 0.2)), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+$back3: linear-gradient(180deg, rgba(4, 141, 255, 0.376) 0%, rgba(255, 0, 0, 0.12) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.376) 12.55%, rgba(255, 255, 255, 0.4375) 42.51%, rgba(255, 255, 255, 0.312) 78.66%);
+$back4: linear-gradient(0deg, rgba(157, 57, 57, 0.2), rgba(157, 57, 57, 0.2)), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
 $back5: linear-gradient(180.22deg, rgba(4, 255, 165, 0.2) -4.72%, rgba(44, 208, 149, 0.082) -4.71%, rgba(0, 255, 255, 0.2) 125.43%), linear-gradient(180deg, rgba(255, 255, 255, 0.376) 12.55%, rgba(255, 255, 255, 0.4375) 42.51%, rgba(255, 255, 255, 0.312) 78.66%);
 $back6: linear-gradient(180deg, rgba(255, 153, 0, 0.1776) -68.21%, rgba(255, 204, 0, 0) 155.63%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
 $back7: linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), linear-gradient(180.65deg, rgba(81, 253, 0, 0.405) -44.18%, rgba(0, 56, 253, 0.265) 145.5%);
@@ -30,41 +39,45 @@ $conthrax: 'Conthrax', sans-serif;
 $roboto: 'Roboto', sans-serif;
 $inter: 'Inter', sans-serif;
 
-$indents:(
+$indents: (
   0: 0px,
   5: 5px,
-  10: 10px, 
-  15: 15px, 
-  20: 20px, 
-  25: 25px, 
-  30: 30px, 
-  35: 35px, 
-  40: 40px, 
-  45: 45px, 
-  50: 50px, 
-  55: 55px, 
+  10: 10px,
+  15: 15px,
+  20: 20px,
+  25: 25px,
+  30: 30px,
+  35: 35px,
+  40: 40px,
+  45: 45px,
+  50: 50px,
+  55: 55px,
   60: 60px,
-  65: 65px, 
-  70: 70px, 
-  75: 75px, 
+  65: 65px,
+  70: 70px,
+  75: 75px,
 );
 
-@each $index,$indent in $indents{
-  .mt-#{$index}{
-    margin-top: $indent!important;
+@each $index,
+$indent in $indents {
+  .mt-#{$index} {
+    margin-top: $indent !important;
   }
 }
 
-.bold{
+.bold {
   font-weight: 700;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
   width: 5px;
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
   background: $back-primary;
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
   background: $green-light;
   border-radius: 8px;
   border: 1px solid $back-primary;
