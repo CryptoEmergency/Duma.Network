@@ -22,12 +22,12 @@
   width: 5px;
 }
 .sidebar::-webkit-scrollbar-track{
-  background: $back-primary;
+  background: var(--back-primary);
 }
 .sidebar::-webkit-scrollbar-thumb{
   background: $green-light;
   border-radius: 8px;
-  border: 1px solid $back-primary;
+  border: 1px solid var(--back-primary);
 }
 
 .nums{

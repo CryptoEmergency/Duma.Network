@@ -88,58 +88,78 @@ const start = function (data, ID) {
               <section class="intro">
                 <div class="intro-inner">
                   <div class="intro-desc">
-                    <h1 class="intro-title">DÜMA NETWORK</h1>
-                    <h2 class="intro-title_second">Unite To Earn</h2>
+                    <h1 class="intro-title">DÜMA.NETWORK</h1>
                     <p class="intro-info">
-                      Is an investment ecosystem that combines a Launchpad, an
-                      information resource and an academy.
+                      A tool for investors. Research, analytics, secure
+                      contribution with any amount, split SAFT and sell through
+                      the platform.
                     </p>
                   </div>
-                  <img src={images["device"]}></img>
+                  <div class="device">
+                    <img src={images["device"]}></img>
+                  </div>
                 </div>
 
                 <div class="ecosystem">
-                  <h4 class="ecosystem-title">The ecosystem includes:</h4>
+                  <h2 class="ecosystem-title">
+                    ALL IN ONE - <br />
+                    CHOOSE, RESEARCH, STUDY, INVEST, SELL, EARN.
+                  </h2>
                   <div class="grid-3 ecosystem-box">
                     <div class="eco-item">
-                      <h6 class="eco-title">LAUNCHPAD</h6>
-                      <p class="eco-text">
-                        Our crowdfunding ecosystem helps startups to raise
-                        investments in any round, with support from a large
-                        community of private investors. This allows each user to
-                        invest in any round, while the startup builds a
-                        community.
-                      </p>
+                      <h6 class="eco-title">RESEARCH HUB</h6>
+                      <div class="eco-item_desc">
+                        <p class="general-text eco-text">
+                          We perform startup screening and research from our
+                          analysts and create a rating evaluation so that users
+                          don't waste time searching for this information on
+                          other resources.
+                        </p>
+                        <p class="general-text eco-text">
+                          The analytical section contains an alternative
+                          evaluation of startups from third-party experts using
+                          the SAAS model.
+                        </p>
+                      </div>
                     </div>
                     <div class="eco-item">
-                      <h6 class="eco-title">INFORMATION RESOURCE</h6>
-                      <p class="eco-text">
-                        Integration of the information resource allows you to
-                        collect all the information about the startup in one
-                        place, assigning points to each section of information
-                        and forming a final rating of trustworthiness for the
-                        project. This allows the investor to research the
-                        project without having to go to third-party resources.
-                      </p>
+                      <h6 class="eco-title">protocol</h6>
+                      <div class="eco-item_desc">
+                        <p class="general-text eco-text">
+                          An Escrow smart contract is designed to secure an
+                          investor's funds and allow for staged financing of a
+                          startup based on pre-agreed conditions.
+                        </p>
+                        <p class="general-text eco-text">
+                          The SAFT can be divided into NFTs with metadata
+                          indicating the final beneficiary, and tokens can be
+                          further distributed through a protocol.
+                        </p>
+                      </div>
                     </div>
                     <div class="eco-item">
-                      <h6 class="eco-title">ACADEMY</h6>
-                      <p class="eco-text">
-                        Crypto Academy and Information Assistant will allow you
-                        to get information about any element or item on the
-                        platform, providing text and video hints, natively
-                        educating the user when he needs this information.
-                      </p>
+                      <h6 class="eco-title">SAFT MARKETPLACE</h6>
+                      <div class="eco-item_desc">
+                        <p class="general-text eco-text">
+                          P2P transactions between funds, investors and users.{" "}
+                        </p>
+                        <p class="general-text eco-text">
+                          Buy SAFT assets from early venture investors who are
+                          selling their vested assets.
+                        </p>
+                        <p class="general-text eco-text">
+                          Invest in early rounds, sell SAFT and increase the
+                          token value before TGE.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <p class="ecosystem-text ecosystem-text1">
-                    So the ecosystem user doesn't have to go to other resources
-                    to find answers to their questions. We focus their attention
-                    on the ecosystem projects, increasing conversion rates.
+                  <p class="ecosystem-text">
+                    All information and opportunities for funds, investors,
+                    startups, and communities on one platform.
                   </p>
-                  <p class="ecosystem-text ecosystem-text2">
-                    We simplify and automate processes, provide quality service
-                    and comprehensive solutions for all market participants.
+                  <p class="ecosystem-text">
+                    No more need for third-party resources
                   </p>
                 </div>
               </section>
@@ -395,6 +415,7 @@ const start = function (data, ID) {
                 </div>
               </section>
               <section class="team">
+                <a name="team"></a>
                 <center>
                   <h2 class="general-title">Multinational team</h2>
                   <span>from different countries</span>

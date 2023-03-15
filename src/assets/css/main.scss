@@ -45,7 +45,7 @@ $back in $backAdvance {
 
 .c-main {
   margin-top: 72px;
-  background-color: $back-primary;
+  background-color: var(--back-primary);
   color: var(--text-main);
   flex: 1 1 auto;
 }
@@ -58,7 +58,7 @@ $back in $backAdvance {
   position: relative;
   background-image: url(../svg/backMain.svg);
   background-repeat: no-repeat;
-  background-position: center -480px;
+  background-position: center -460px;
   width: 100%;
 }
 
@@ -80,12 +80,13 @@ $back in $backAdvance {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 60px 0;
+  padding-top: 60px;
+  position: relative;
 }
-
-// .intro-desc{
-//   max-width: 510px;
-// }
+.intro-desc{
+  align-self: flex-start;
+}
+.title-wrap
 .intro-title {
   text-transform: uppercase;
   font-weight: 900;
@@ -94,71 +95,51 @@ $back in $backAdvance {
   line-height: 140%;
   position: relative;
   color: var(--text-main);
-  // border-bottom: 1px solid var(--text-main);
-}
-
-.intro-title::before {
-  content: '';
-  display: block;
-  width: 93%;
-  bottom: 0;
-  position: absolute;
-  border-bottom: 1px solid var(--text-main);
-  border-bottom-width: 100%;
-}
-
-.intro-title_second {
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 41px;
-  letter-spacing: .05em;
-  font-family: $conthrax;
-  padding-top: 15px;
 }
 
 .intro-info {
   font-weight: 400;
   font-size: 20px;
   max-width: 510px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
+  grid-gap: 25px;
 }
-
-// .eco-item{
-//   padding: 20px;
-// }
-.ecosystem-box {
-  padding-top: 25px;
-  padding-bottom: 50px;
-}
-
 .ecosystem-title {
   font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
-  font-family: $raleway;
+  font-size: 30px;
+  line-height: 36px;
+  position: relative;
+  top: -60px;
 }
-
+.ecosystem-box {
+  padding-bottom: 50px;
+}
 .eco-title {
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
-
-// .eco-text{
-//   border-right: 1px solid var(--text-main);
-//   padding-right: 35px;
-// }
-.ecosystem-box .eco-item:nth-child(2) .eco-text {
+.eco-item .eco-text:not(:last-child){
+  padding-bottom: 20px;
+}
+.eco-item_desc{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // height: 100%;
+}
+.ecosystem-box .eco-item:nth-child(2) .eco-text{
   border-right: 1px solid var(--text-main);
   border-left: 1px solid var(--text-main);
-  padding: 0 20px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .ecosystem-box .eco-item:nth-child(2) .eco-title {
@@ -168,27 +149,13 @@ $back in $backAdvance {
 .ecosystem-text {
   font-weight: 500;
   font-size: 20px;
-  line-height: 23px;
+  line-height: 24px;
   padding-top: 15px;
-}
-
-.ecosystem-text1 {
-  max-width: 880px;
-}
-
-.ecosystem-text2 {
-  max-width: 700px;
+  max-width: 610px;
 }
 
 // section investing
-.general-title {
-  font-weight: 600;
-  font-family: $conthrax;
-  font-size: 36px;
-  line-height: 44px;
-  text-align: center;
-  margin-top: 100px;
-}
+
 
 .invest-inner {
   display: grid;
@@ -489,7 +456,9 @@ $back in $backAdvance {
     border-right: none;
     border-left: none;
   }
-
+  .ecosystem-title{
+    top: 0;
+  }
   .ecosystem-box {
     padding-bottom: 25px;
   }
@@ -500,7 +469,7 @@ $back in $backAdvance {
 
   .ecosystem-text {
     background-color: var(--text-main);
-    color: $back-primary;
+    color: var(--back-primary);
     padding: 15px;
     backdrop-filter: blur(2px);
     border-radius: 10px;

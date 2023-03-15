@@ -44,7 +44,9 @@ ol {
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
-
+a{
+  text-decoration: none;
+}
 img {
   max-width: 100%;
   display: block;

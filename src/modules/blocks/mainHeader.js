@@ -67,6 +67,13 @@ const mainHeader = async function () {
               </div>
               <nav class="header-nav">
                 <div class={["menu-body", burger ? "active" : null]}>
+                  <a
+                    target="_blank"
+                    href="https://t.me/magdanov_bot"
+                    class="btn btn-gradient mr-5"
+                  >
+                    become our partner
+                  </a>
                   <ul class="header-list">
                     <li
                       onclick={function () {
@@ -77,7 +84,7 @@ const mainHeader = async function () {
                       }}
                     >
                       <a href="#" class="header-list_item">
-                        PROJECTS
+                        MARKETPLACE
                       </a>
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
@@ -87,27 +94,34 @@ const mainHeader = async function () {
                             class="menu-sublist_item"
                             onclick={(e) => {
                               fn.siteLink(e);
+                              burger = !burger;
                             }}
                           >
                             Seed
                           </a>
                         </li>
-                        {/* <li>
-                          <a href="/private" class="menu-sublist_item"
+                        <li>
+                          <a
+                            href="/private"
+                            class="menu-sublist_item"
                             onclick={(e) => {
-                              fn.siteLink(e)
-                            }}>
+                              fn.siteLink(e);
+                            }}
+                          >
                             Private
                           </a>
                         </li>
                         <li>
-                          <a href="/public" class="menu-sublist_item"
+                          <a
+                            href="/public"
+                            class="menu-sublist_item"
                             onclick={(e) => {
-                              fn.siteLink(e)
-                            }}>
+                              fn.siteLink(e);
+                            }}
+                          >
                             Public
                           </a>
-                        </li> */}
+                        </li>
                       </ul>
                     </li>
                     <li>
@@ -134,44 +148,92 @@ const mainHeader = async function () {
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             About Project
                           </a>
                         </li>
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             Advantages
                           </a>
                         </li>
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             Partners
                           </a>
                         </li>
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             Tokenomics
                           </a>
                         </li>
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             Roadmap
                           </a>
                         </li>
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#team"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             Team
                           </a>
                         </li>
                         <li>
-                          <a href="#" class="menu-sublist_item">
+                          <a
+                            href="#"
+                            class="menu-sublist_item"
+                            onclick={function () {
+                              burger = !burger;
+                            }}
+                          >
                             Social network
                           </a>
                         </li>
                       </ul>
                     </li>
                     <li class="header-list_item">
-                      <a href="#" class="header-list_item passive-text">
+                      <a
+                        href="#"
+                        class="header-list_item passive-text"
+                        onclick={function () {
+                          burger = !burger;
+                        }}
+                      >
                         Documents
                       </a>
                     </li>
@@ -209,7 +271,7 @@ const mainHeader = async function () {
                     </div>
                   )}
 
-                  <span>EN</span>
+                  <span onclick={function () {}}>ENG</span>
                   <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"
                     onclick={() => {

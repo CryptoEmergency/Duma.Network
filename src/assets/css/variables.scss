@@ -1,10 +1,13 @@
 :root {
   --text-main: white;
   --btn-standart: #0B78B5;
+  --btn-gradient: linear-gradient(268.2deg, #0056D8 -24.95%, rgba(170, 255, 98, 0) 162.48%), #6CAC10;
+  --back-primary:#191E21;
 }
 
 :root[theme='test'] {
   --text-main: black;
+  --back-primary: #C0C0C0;
 }
 
 $white: #FFFFFF;
@@ -64,12 +67,29 @@ $indent in $indents {
   .mt-#{$index} {
     margin-top: $indent !important;
   }
+  .mr-#{$index}{
+    margin-right: $indent !important;
+  }
+}
+// style general
+.general-title {
+  font-weight: 600;
+  font-family: $conthrax;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  margin-top: 100px;
+}
+.general-text{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .bold {
   font-weight: 700;
 }
-
+// style general
 ::-webkit-scrollbar {
   width: 5px;
 }
