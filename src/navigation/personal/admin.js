@@ -130,67 +130,8 @@ const start = function (data, ID) {
                                 {/* main page */}
                                 <section class="main mb-25  ">
                                     <h2 class="general-title mt-25">Add Project</h2>
-                                    <div class="main-blocks mt-20">
-                                        <div class="blocks-item user-profile">
-                                            <div class="user-icon">
-                                                <img src={svg["iconsGreen/user"]}></img>
-                                            </div>
-                                            <div class="user">
-                                                <div class="user-card">
-                                                    <img src={images["personal/user"]}></img>
-                                                    <div class="user-name">
-                                                        <span class="user-name_name">
-                                                            {Variable.myInfo.firstName}
-                                                        </span>
-                                                        <span class="user-name_wel">Верифицировать</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="user-images pt-10">
-                                                <img src={images["personal/1"]}></img>
-                                                <img src={images["personal/2"]}></img>
-                                                <img src={images["personal/3"]}></img>
-                                                <img src={images["personal/4"]}></img>
-                                            </div>
-                                            <button class="btn mt-10">ежедневное задание</button>
-                                        </div>
-                                        <div class="blocks-item interesting">
-                                            <span class="text-category text">
-                                                Вам будет интересно
-                                            </span>
-                                            <span class="soon-text">coming soon</span>
-                                        </div>
-                                        <div class="blocks-item bag">
-                                            <div class="user-icon">
-                                                <img src={svg["iconsGreen/bag"]}></img>
-                                            </div>
-                                            <div class="nums">
-                                                <span class="num_big">17,805</span>
-                                                <span class="num_small">+1,500$</span>
-                                                <span class="num_small"> +4,17%</span>
-                                            </div>
-                                        </div>
-                                        <div class="blocks-item graph">
-                                            <div class="blur">
-                                                <h2>coming soon</h2>
-                                            </div>
-                                            {/* <img src={images["personal/grafik"]}></img> */}
-                                        </div>
-                                        <div class="blocks-item circle-graph">
-                                            <div class="blur">
-                                                <h2>coming soon</h2>
-                                            </div>
-                                            {/* <img src={images["personal/circleGraph"]}></img> */}
-                                        </div>
-                                        <div class="blocks-item news">
-                                            <span class="text-category text">
-                                                Вам будет интересно
-                                            </span>
-                                            <span class="soon-text">coming soon</span>
-                                        </div>
-                                    </div>
                                 </section>
-                                {/* main page */}
+
                                 {Static.submitRecords ? (
                                     <div>Success saved</div>
                                 ) : (
