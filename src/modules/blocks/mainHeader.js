@@ -51,11 +51,13 @@ const mainHeader = async function () {
         <div class="wrapper">
           <div class={["header-inner", isMobile.any() ? "__touch" : "__pc"]}>
             <div class="header-logo">
-              <a href="/"
+              <a
+                href="/"
                 onclick={(e) => {
                   fn.siteLink(e);
                   burger = !burger;
-                }}>
+                }}
+              >
                 <img src={images["logo"]}></img>
               </a>
             </div>
@@ -78,6 +80,7 @@ const mainHeader = async function () {
                   >
                     become our partner
                   </a>
+
                   <ul class="header-list">
                     <li
                       onclick={function () {
@@ -219,10 +222,10 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              let timeGo = 10
+                              let timeGo = 10;
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
-                                timeGo = 100
+                                timeGo = 100;
                               }
                               setTimeout(() => {
                                 window.scrollTo({
@@ -231,7 +234,6 @@ const mainHeader = async function () {
                                     72,
                                   behavior: "smooth",
                                 });
-
                               }, timeGo);
                               burger = !burger;
                             }}
@@ -243,10 +245,10 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              let timeGo = 10
+                              let timeGo = 10;
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
-                                timeGo = 100
+                                timeGo = 100;
                               }
                               setTimeout(() => {
                                 window.scrollTo({
@@ -266,10 +268,10 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              let timeGo = 10
+                              let timeGo = 10;
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
-                                timeGo = 100
+                                timeGo = 100;
                               }
                               setTimeout(() => {
                                 window.scrollTo({
@@ -289,16 +291,16 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              let timeGo = 10
+                              let timeGo = 10;
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
-                                timeGo = 100
+                                timeGo = 100;
                               }
                               setTimeout(() => {
                                 window.scrollTo({
                                   top:
-                                    document.querySelector("#roadmap").offsetTop -
-                                    72,
+                                    document.querySelector("#roadmap")
+                                      .offsetTop - 72,
                                   behavior: "smooth",
                                 });
                               }, timeGo);
@@ -312,10 +314,10 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              let timeGo = 10
+                              let timeGo = 10;
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
-                                timeGo = 100
+                                timeGo = 100;
                               }
                               setTimeout(() => {
                                 window.scrollTo({
@@ -335,16 +337,16 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              let timeGo = 10
+                              let timeGo = 10;
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
-                                timeGo = 100
+                                timeGo = 100;
                               }
                               setTimeout(() => {
                                 window.scrollTo({
                                   top:
-                                    document.querySelector("#social").offsetTop -
-                                    72,
+                                    document.querySelector("#social")
+                                      .offsetTop - 72,
                                   behavior: "smooth",
                                 });
                               }, timeGo);
@@ -455,20 +457,17 @@ const mainHeader = async function () {
                       </button>
                     </div>
                   ) : (
-                    <div class="header-btns">
-                      <button
-                        class="btn"
-                        onclick={() => {
-                          fn.siteLink("/personal/");
-                        }}
-                      >
-                        My Account
-                      </button>
-                      {/* <button class="btn btn-passive">Connect wallet</button> */}
-                    </div>
+                    <button
+                      class="btn mr-10 ml-10"
+                      onclick={() => {
+                        fn.siteLink("/personal/");
+                      }}
+                    >
+                      My Account
+                    </button>
                   )}
+                  <span onclick={function () {}}>ENG</span>
 
-                  <span onclick={function () { }}>ENG</span>
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"
                     onclick={() => {

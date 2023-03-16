@@ -439,8 +439,8 @@ const start = function (data, ID) {
               <section class="info-social" id="social">
                 <div class="info">
                   <h3>MORE INFO</h3>
-                  <button class="btn">PITCHDECK</button>
-                  <button class="btn">LITEPAPER</button>
+                  <button class="btn btn-green">PITCHDECK</button>
+                  <button class="btn btn-green">LITEPAPER</button>
                 </div>
                 <div class="social">
                   <h3>SOCIAL</h3>
