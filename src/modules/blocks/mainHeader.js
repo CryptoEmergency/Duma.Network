@@ -219,9 +219,10 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              console.log('=49a7a1=', Variable.dataUrl)
+                              let timeGo = 10
                               if (Variable.dataUrl.adress != "index") {
                                 fn.siteLink("/");
+                                timeGo = 100
                               }
                               setTimeout(() => {
                                 window.scrollTo({
@@ -231,7 +232,7 @@ const mainHeader = async function () {
                                   behavior: "smooth",
                                 });
 
-                              }, 100);
+                              }, timeGo);
                               burger = !burger;
                             }}
                           >
@@ -242,12 +243,19 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector("#advantages")
-                                    .offsetTop - 72,
-                                behavior: "smooth",
-                              });
+                              let timeGo = 10
+                              if (Variable.dataUrl.adress != "index") {
+                                fn.siteLink("/");
+                                timeGo = 100
+                              }
+                              setTimeout(() => {
+                                window.scrollTo({
+                                  top:
+                                    document.querySelector("#advantages")
+                                      .offsetTop - 72,
+                                  behavior: "smooth",
+                                });
+                              }, timeGo);
                               burger = !burger;
                             }}
                           >
@@ -258,12 +266,19 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector("#partners")
-                                    .offsetTop - 72,
-                                behavior: "smooth",
-                              });
+                              let timeGo = 10
+                              if (Variable.dataUrl.adress != "index") {
+                                fn.siteLink("/");
+                                timeGo = 100
+                              }
+                              setTimeout(() => {
+                                window.scrollTo({
+                                  top:
+                                    document.querySelector("#partners")
+                                      .offsetTop - 72,
+                                  behavior: "smooth",
+                                });
+                              }, timeGo);
                               burger = !burger;
                             }}
                           >
@@ -274,12 +289,19 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector("#roadmap").offsetTop -
-                                  72,
-                                behavior: "smooth",
-                              });
+                              let timeGo = 10
+                              if (Variable.dataUrl.adress != "index") {
+                                fn.siteLink("/");
+                                timeGo = 100
+                              }
+                              setTimeout(() => {
+                                window.scrollTo({
+                                  top:
+                                    document.querySelector("#roadmap").offsetTop -
+                                    72,
+                                  behavior: "smooth",
+                                });
+                              }, timeGo);
                               burger = !burger;
                             }}
                           >
@@ -290,12 +312,19 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector("#team").offsetTop -
-                                  72,
-                                behavior: "smooth",
-                              });
+                              let timeGo = 10
+                              if (Variable.dataUrl.adress != "index") {
+                                fn.siteLink("/");
+                                timeGo = 100
+                              }
+                              setTimeout(() => {
+                                window.scrollTo({
+                                  top:
+                                    document.querySelector("#team").offsetTop -
+                                    72,
+                                  behavior: "smooth",
+                                });
+                              }, timeGo);
                               burger = !burger;
                             }}
                           >
@@ -306,12 +335,19 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector("#social").offsetTop -
-                                  72,
-                                behavior: "smooth",
-                              });
+                              let timeGo = 10
+                              if (Variable.dataUrl.adress != "index") {
+                                fn.siteLink("/");
+                                timeGo = 100
+                              }
+                              setTimeout(() => {
+                                window.scrollTo({
+                                  top:
+                                    document.querySelector("#social").offsetTop -
+                                    72,
+                                  behavior: "smooth",
+                                });
+                              }, timeGo);
                               burger = !burger;
                             }}
                           >
@@ -432,7 +468,7 @@ const mainHeader = async function () {
                     </div>
                   )}
 
-                  <span onclick={function () {}}>ENG</span>
+                  <span onclick={function () { }}>ENG</span>
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"
                     onclick={() => {
