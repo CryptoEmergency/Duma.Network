@@ -20,9 +20,9 @@ const forExport = function ({ Static, onclick, className }) {
                         <span></span>
                       </div> */}
 			<div class="nums">
-				<span class="num_big">17,805</span>
-				<span class="num_small">+1,500$</span>
-				<span class="num_small"> +4,17%</span>
+				<span class="num_big">0,00</span>
+				<span class="num_small">+0$</span>
+				<span class="num_small"> +0,00%</span>
 			</div>
 			<nav>
 				<ul class="sidebar-list">
@@ -98,6 +98,15 @@ const forExport = function ({ Static, onclick, className }) {
 							<span class="passive-text">Profile</span>
 						</a>
 					</li>
+					{/* <li class="sidebar-item">
+						<a>
+							<img
+								src={svg["personal/icons/setting"]}
+								class="sidebar-icon"
+							></img>
+							<span class="passive-text">Admin</span>
+						</a>
+					</li> */}
 				</ul>
 			</nav>
 			<span
