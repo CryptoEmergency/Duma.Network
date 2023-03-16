@@ -54,12 +54,12 @@ const start = function (data, ID) {
                         <span class="num_small">+1,500$</span>
                         <span class="num_small"> +4,17%</span>
                       </div>
-                      <button class="btn">ИНВЕСТИРОВАТЬ</button>
-                      <button>КУПИТЬ</button>
-                      <button>ПРОДАТЬ</button>
-                      <button>ВВОД</button>
-                      <button>ВЫВОД</button>
-                      <button>ОБМЕН</button>
+                      <button class="btn btn-white">ИНВЕСТИРОВАТЬ</button>
+                      <button class="btn btn-white">КУПИТЬ</button>
+                      <button class="btn btn-white">ПРОДАТЬ</button>
+                      <button class="btn btn-white">ВВОД</button>
+                      <button class="btn btn-white">ВЫВОД</button>
+                      <button class="btn btn-white">ОБМЕН</button>
                     </div>
                     <div class="blocks-item"></div>
                     <div class="blocks-item news">

@@ -437,12 +437,14 @@ const start = function (data, ID) {
                 <div class="info">
                   <h3>MORE INFO</h3>
                   <a
+                    target="_blank"
                     href="https://linktr.ee/duma_network"
                     class="btn btn-green"
                   >
                     MORE INFO
                   </a>
                   <a
+                    target="_blank"
                     href="https://duma-network.gitbook.io/duma.network-eng/"
                     class="btn btn-green"
                   >
