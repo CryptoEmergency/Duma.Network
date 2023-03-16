@@ -1,7 +1,7 @@
 import { jsx, jsxFrag, load, Variable } from "@betarost/cemserver/cem.js";
 import images from "@assets/images/index.js";
 import svg from "@assets/svg/index.js";
-
+import { fn } from "@src/functions/export.js";
 const mainFooter = async function () {
   load({
     ID: "mainFooter",
@@ -13,7 +13,11 @@ const mainFooter = async function () {
         <div class="wrapper">
           <div class="footer-inner">
             <div class="footer-logo">
-              <a href="/">
+              <a href="/"
+                onclick={(e) => {
+                  fn.siteLink(e);
+                  burger = !burger;
+                }}>
                 <img src={images["logo"]}></img>
               </a>
             </div>
