@@ -30,7 +30,7 @@ const start = async function () {
     },
     port,
     mode,
-    allowedHosts: ["duma.cryptodev.store", target],
+    allowedHosts: ["duma.cryptodev.store", "duma.network", target],
     proxy: {
       "/api/v2": {
         target: "http://127.0.0.1:" + portApi,
