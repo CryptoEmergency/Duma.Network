@@ -39,37 +39,9 @@ const start = function (data, ID) {
                                 <section class="main mb-25  ">
                                     <h2 class="general-title mt-25">Bookmarks</h2>
                                     <div class="main-blocks mt-20">
-                                        <div class="blocks-item interesting">
-                                            <span class="text-category text">
-                                                Вам будет интересно
-                                            </span>
-                                            <span class="soon-text">coming soon</span>
-                                        </div>
-                                        <div class="blocks-item bag">
-                                            <div class="user-icon">
-                                                <img src={svg["iconsGreen/bag"]}></img>
-                                            </div>
-                                            <div class="nums">
-                                                <span class="num_big">17,805</span>
-                                                <span class="num_small">+1,500$</span>
-                                                <span class="num_small"> +4,17%</span>
-                                            </div>
-                                        </div>
-                                        <div class="blocks-item graph">
-                                            <div class="blur">
-                                                <h2>coming soon</h2>
-                                            </div>
-                                            {/* <img src={images["personal/grafik"]}></img> */}
-                                        </div>
-                                        <div class="blocks-item circle-graph">
-                                            <div class="blur">
-                                                <h2>coming soon</h2>
-                                            </div>
-                                            {/* <img src={images["personal/circleGraph"]}></img> */}
-                                        </div>
                                         <div class="blocks-item news">
                                             <span class="text-category text">
-                                                Вам будет интересно
+                                                You will be interested
                                             </span>
                                             <span class="soon-text">coming soon</span>
                                         </div>
