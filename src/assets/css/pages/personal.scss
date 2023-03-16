@@ -294,10 +294,44 @@
 
 // wallet
 .blocks-item{
-  .wallet{
+  &.wallet{
     grid-row: 1 / span 2;
     grid-column: 1;
   }
+  &.reward{
+    grid-row: 1;
+    grid-column: 2 / span 3;
+    display: grid;
+    grid-template-columns: 7fr 2fr;
+    grid-gap: 10px;
+    .reward-col{
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+  &.lock{
+    grid-row: 2;
+    grid-column: 2 / span 3;
+    display: grid;
+    grid-template-columns: 7fr 2fr;
+    .lock-col{
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+.wallet-btns{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+.btn-white{
+  background: var(--text-main);
+  color: #696969;
+  
+}
+.text-red{
+  color: #DB375E;
 }
 // wallet
 
