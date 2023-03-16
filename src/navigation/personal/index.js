@@ -241,10 +241,10 @@ const start = function (data, ID) {
                   </div>
                   <span class="upgrade">upgrade</span>
                 </div>
-                <div class="header-btns">
+                {/* <div class="header-btns">
                   <button class="btn btn-passive">ПОПОЛНИТЬ</button>
                   <button class="btn btn-bordo btn-passive">ВЫВЕСТИ</button>
-                </div>
+                </div> */}
               </div>
               <div class="personal-content">
                 {/* main page */}

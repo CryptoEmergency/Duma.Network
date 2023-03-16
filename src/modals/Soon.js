@@ -10,54 +10,31 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
-const showError = function (text) {
-  Data.Static.elError.style.display = "block";
-  Data.Static.elError.innerHTML = text;
-  setTimeout(() => {
-    Data.Static.elError.style.display = "none";
-  }, 5000);
-};
-
-const formCheck = function () {
-  if (!Data.Static.firstName.length) {
-    showError("Enter the First Name");
-    return false;
-  }
-
-  if (!fn.validator.isEmail(Data.Static.email)) {
-    showError("Enter the correct Email address");
-    return false;
-  }
-
-  if (!Data.Static.pass.length) {
-    showError("Enter the password");
-    return false;
-  }
-
-  if (!Data.Static.repass.length) {
-    showError("Enter the password repeat");
-    return false;
-  }
-
-  if (Data.Static.pass != Data.Static.repass) {
-    showError("Passwords don't match");
-    return false;
-  }
-
-  return true;
-};
-
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID, initData: "registration" });
   load({
     ID,
+    fnLoad() {
+      setTimeout(() => {
+        fn.modals.close(ID);
+      }, 1000);
+    },
     fn: () => {
       return (
         <div class="wrap">
           <div class="wrap-body">
-            <div class="wrap-content" id="settingsPage">
+            <div
+              class="wrap-content"
+              id="settingsPage"
+              style="background: #e0e0e0"
+            >
+              <div class="blur">
+                <h2 class="general-title mt-0" style="color: black;">
+                  Coming soon
+                </h2>
+              </div>
               <header class="header-modal">
-                <h2 class="general-title mt-0">Registration</h2>
+                <h2 class="general-title mt-0">Log in to your account</h2>
                 <button
                   class="button-close button-modal"
                   onclick={() => {
@@ -67,114 +44,38 @@ const forExport = function (data, ID) {
                   X
                 </button>
               </header>
+              {/* <div class="blur">
+                <h2>Coming soon</h2> */}
               <main class="main-modal">
-                <div
-                  Element={($el) => {
-                    Static.elError = $el;
-                  }}
-                  style="display:none;"
-                  class="error-text"
-                ></div>
-                <form action class="form-modal">
-                  <div class="form-item">
-                    <label for="name" class="form-label">
-                      First Name :
-                    </label>
-                    <input
-                      class="form-input"
-                      type="text"
-                      placeholder="Enter your name..."
-                      onchange={function () {
-                        Static.firstName = this.value;
-                      }}
-                    ></input>
-                  </div>
-                  <div class="form-item">
-                    <label for="email" class="form-label">
-                      Email :
-                    </label>
-                    <input
-                      class="form-input"
-                      type="email"
-                      placeholder="email@xyz.com"
-                      onchange={function () {
-                        Static.email = this.value;
-                      }}
-                    ></input>
-                  </div>
-                  <div class="form-item">
-                    <label for="password" class="form-label">
-                      Password :
-                    </label>
-                    <input
-                      class="form-input"
-                      type="password"
-                      placeholder="xxxxxxxxxx"
-                      onchange={function () {
-                        Static.pass = this.value;
-                      }}
-                    ></input>
-                  </div>
-                  <div class="form-item">
-                    <label for="confirm" class="form-label">
-                      Confirm Password :
-                    </label>
-                    <input
-                      class="form-input"
-                      type="password"
-                      placeholder="xxxxxxxxxx"
-                      onchange={function () {
-                        Static.repass = this.value;
-                      }}
-                    ></input>
-                  </div>
-                </form>
+                <div class="form-item">
+                  <label for="email" class="form-label">
+                    Email :
+                  </label>
+                  <input
+                    class="form-input"
+                    type="email"
+                    placeholder="email@xyz.com"
+                  ></input>
+                </div>
+                <div class="form-item">
+                  <label for="password" class="form-label">
+                    Password :
+                  </label>
+                  <input
+                    class="form-input"
+                    type="password"
+                    placeholder="xxxxxxxxxx"
+                  ></input>
+                </div>
               </main>
               <footer class="footer-modal">
-                <button
-                  class="btn btn-modal"
-                  onclick={async function () {
-                    this.disabled = true;
-
-                    if (!formCheck()) {
-                      this.disabled = false;
-                      return;
-                    }
-
-                    let response = await fn.socket.send({
-                      method: "Registration",
-                      params: {
-                        email: Static.email.trim(),
-                        pass: Static.pass.trim(),
-                        firstName: Static.firstName.trim(),
-                      },
-                    });
-
-                    if (response.error) {
-                      showError(response.error[1]);
-                      this.disabled = false;
-                      return;
-                    }
-
-                    fn.modals.close(ID);
-                    fn.modals.Login({});
-                  }}
-                >
-                  SIGN UP
-                </button>
+                <button class="btn btn-modal">LOG IN</button>
                 <span>
-                  If you already have an account, just
-                  <a
-                    class="link-modal"
-                    onclick={() => {
-                      fn.modals.close(ID);
-                      fn.modals.Login({});
-                    }}
-                  >
-                    login.
-                  </a>
+                  Don't have an account yet?
+                  <a class="link-modal">Sign up.</a>
                 </span>
               </footer>
+              {/* </div> */}
             </div>
           </div>
         </div>
