@@ -88,7 +88,7 @@ const start = function (data, ID) {
               <section class="intro" id="about">
                 <div class="intro-inner">
                   <div class="intro-desc">
-                    <h1 class="intro-title">DÜMA.NETWORK</h1>
+                    <h1 class="intro-title">DUMA.NETWORK</h1>
                     <p class="intro-info">
                       A tool for investors. Research, analytics, secure
                       contribution with any amount, split SAFT and sell through

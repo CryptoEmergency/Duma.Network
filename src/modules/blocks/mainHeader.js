@@ -398,7 +398,7 @@ const mainHeader = async function () {
                   )}
 
                   <span onclick={function () {}}>ENG</span>
-                  <span
+                  {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"
                     onclick={() => {
                       if (document.documentElement.hasAttribute("theme")) {
@@ -407,7 +407,7 @@ const mainHeader = async function () {
                         document.documentElement.setAttribute("theme", "test");
                       }
                     }}
-                  ></span>
+                  ></span> */}
                 </div>
               </nav>
             </div>
