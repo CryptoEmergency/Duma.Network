@@ -29,23 +29,25 @@ const forExport = function ({ Static, onclick, className }) {
 					<li class="sidebar-item">
 						<a
 							onclick={() => {
-								fn.siteLink("/");
-							}}
-						>
+								fn.siteLink("/personal/");
+							}}>
 							<img
 								src={svg["personal/icons/main"]}
 								class="sidebar-icon"
 							></img>
-							<span>Главная</span>
+							<span>Dashboard</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
-						<a>
+						<a
+							onclick={() => {
+								fn.siteLink("/personal/wallet/");
+							}}>
 							<img
 								src={svg["personal/icons/wallet"]}
 								class="sidebar-icon"
 							></img>
-							<span class="passive-text">Кошелек</span>
+							<span class="passive-text">Wallet</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
