@@ -16,32 +16,29 @@ const team = [
     name: "DEN MAGDANOV",
     img: images["team/den"],
     job: "ceo",
-    flag: images["flags/tr"],
     about:
-      "The creator of DÜMA NETWORK, 11 years in business, blogger, investor and crypto enthusiast.Investing in crypto since 2015.",
+      "Entrepreneur with 11 years of experience in offline & online retail. An Crypto influencer with more than 20 thousand suscribers",
   },
   {
     name: "ROMAN SIDE",
     img: images["team/roman"],
-    job: "ceo",
-    flag: images["flags/country"],
-    about: "President of the Blockchain Developers Association.",
+    job: "cto",
+    about:
+      "President of the Blockchain Developers Association. CEO & founder of Timeus Lab, ZYX Network, Atomic Green",
   },
   {
     name: "MAXIM SINKEVICH",
     img: images["team/maxim"],
-    job: "ceo",
-    flag: images["flags/country"],
+    job: "cvo",
     about:
-      "Head of development department at MST Company with more than 7 years of experience (Sberbank, Sberdrug, VTB, Dom.ru, Kinopoisk, Yandex).",
+      "CBDM & founder of Timeus Lab & ZYX Network. Experienced entrepreneur in the blockchain industry.",
   },
   {
-    name: "EUGENE KARR",
-    img: images["team/roman"],
-    job: "HDD",
-    flag: images["flags/ru"],
+    name: "ALEXANDER PRAVOSUDOV",
+    img: images["team/aleksandr"],
+    job: "CIO",
     about:
-      "Senior analyst and partnership development specialist. Experienced investor and crypto-enthusiast.",
+      "Head of development department at MST Company with more than 7 years of experience (Sberbank, Sberdrug,VTB, Dom.ru, Kinopoisk, Yandex).",
   },
   // {
   //   name: "OGANNES OSIPYAN",
@@ -439,8 +436,18 @@ const start = function (data, ID) {
               <section class="info-social" id="social">
                 <div class="info">
                   <h3>MORE INFO</h3>
-                  <button class="btn btn-green">PITCHDECK</button>
-                  <button class="btn btn-green">LITEPAPER</button>
+                  <a
+                    href="https://linktr.ee/duma_network"
+                    class="btn btn-green"
+                  >
+                    MORE INFO
+                  </a>
+                  <a
+                    href="https://duma-network.gitbook.io/duma.network-eng/"
+                    class="btn btn-green"
+                  >
+                    Dataroom
+                  </a>
                 </div>
                 <div class="social">
                   <h3>SOCIAL</h3>

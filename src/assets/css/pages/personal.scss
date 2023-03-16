@@ -291,6 +291,17 @@
   font-family: $conthrax;
 }
 // main page
+
+// wallet
+.blocks-item{
+  .wallet{
+    grid-row: 1 / span 2;
+    grid-column: 1;
+  }
+}
+// wallet
+
+
 // forma
 .personal-form{
   background-blend-mode: overlay;
