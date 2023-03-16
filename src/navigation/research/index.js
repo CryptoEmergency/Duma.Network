@@ -116,7 +116,10 @@ const start = function (data, ID) {
                 class="tabs-content"
                 hidden={Static.activeTab == "seed" ? false : true}
               >
-                <div class="cards">
+                <div class="cards"
+                  onclick={() => {
+                    fn.siteLink("/project/show/");
+                  }}>
                   <div class="card-item">
                     <img class="card-item_img" src={images["card/1"]} />
                     <div class="info">
@@ -281,8 +284,7 @@ const start = function (data, ID) {
                             <div class="progressBlock">
                               <div
                                 style={[
-                                  `width: calc(100% / 100 * ${
-                                    (item.price * 100) / item.targetPrice
+                                  `width: calc(100% / 100 * ${(item.price * 100) / item.targetPrice
                                   })`,
                                 ]}
                                 class="progressBlock-column"
@@ -302,7 +304,10 @@ const start = function (data, ID) {
                 class="tabs-content"
                 hidden={Static.activeTab == "private" ? false : true}
               >
-                <div class="cards">
+                <div class="cards"
+                  onclick={() => {
+                    fn.siteLink("/project/show/");
+                  }}>
                   <div class="card-item">
                     <img class="card-item_img" src={images["card/1"]} />
                     <div class="info">
@@ -415,7 +420,10 @@ const start = function (data, ID) {
                 class="tabs-content"
                 hidden={Static.activeTab == "public" ? false : true}
               >
-                <div class="cards">
+                <div class="cards"
+                  onclick={() => {
+                    fn.siteLink("/project/show/");
+                  }}>
                   <div class="card-item">
                     <img class="card-item_img" src={images["card/1"]} />
                     <div class="info">
