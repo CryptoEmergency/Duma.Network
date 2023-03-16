@@ -98,15 +98,24 @@ const forExport = function ({ Static, onclick, className }) {
 							<span class="passive-text">Profile</span>
 						</a>
 					</li>
-					{/* <li class="sidebar-item">
-						<a>
-							<img
-								src={svg["personal/icons/setting"]}
-								class="sidebar-icon"
-							></img>
-							<span class="passive-text">Admin</span>
-						</a>
-					</li> */}
+					{
+						Variable.myInfo.role
+							?
+							<li class="sidebar-item">
+								<a
+									onclick={() => {
+										fn.siteLink("/personal/admin/");
+									}}>
+									<img
+										src={svg["personal/icons/setting"]}
+										class="sidebar-icon"
+									></img>
+									<span class="passive-text">Admin</span>
+								</a>
+							</li>
+							:
+							null
+					}
 				</ul>
 			</nav>
 			<span

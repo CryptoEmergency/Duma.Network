@@ -35,7 +35,8 @@ onCrypto.standart = async function ({ _id = null, method, params = {}, result, e
                 select: {
                     _id: 1,
                     firstName: 1,
-                    email: 1
+                    email: 1,
+                    role: 1
                 },
             }
         }, { action: "findOne" })
@@ -97,7 +98,8 @@ io.on("connection", async function (socket) {
             select: {
                 _id: 1,
                 firstName: 1,
-                email: 1
+                email: 1,
+                role: 1
             },
         }
     }, { action: "findOne" })
@@ -123,7 +125,8 @@ io.on("connection", async function (socket) {
                 select: {
                     _id: 1,
                     firstName: 1,
-                    email: 1
+                    email: 1,
+                    role: 1
                 },
             }
         }, { action: "findOne" })
