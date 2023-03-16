@@ -43,6 +43,7 @@ const forExport = function (data, ID) {
                     class="form-input"
                     type="email"
                     placeholder="email@xyz.com"
+                    readonly
                   ></input>
                 </div>
                 <div class="form-item">
@@ -53,6 +54,7 @@ const forExport = function (data, ID) {
                     class="form-input"
                     type="password"
                     placeholder="xxxxxxxxxx"
+                    readonly
                   ></input>
                 </div>
               </main>

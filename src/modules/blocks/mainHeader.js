@@ -445,7 +445,7 @@ const mainHeader = async function () {
                           fn.modals.Soon({});
                         }}
                       >
-                        ПОПОЛНИТЬ
+                        DEPOSIT
                       </button>
                       <button
                         class="btn btn-bordo"
@@ -453,7 +453,7 @@ const mainHeader = async function () {
                           fn.modals.Soon({});
                         }}
                       >
-                        ВЫВЕСТИ
+                        WITHDRAW
                       </button>
                     </div>
                   ) : (
@@ -466,7 +466,7 @@ const mainHeader = async function () {
                       My Account
                     </button>
                   )}
-                  <span onclick={function () {}}>ENG</span>
+                  <span onclick={function () { }}>ENG</span>
 
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"

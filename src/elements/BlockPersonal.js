@@ -25,7 +25,10 @@ const forExport = function ({ Static, onclick, className }) {
 							</span>
 						</div>
 					</div>
-					<span class="upgrade">upgrade</span>
+					<span class="upgrade"
+						onclick={() => {
+							fn.modals.Soon({});
+						}}>upgrade</span>
 				</div>
 				{/* <div class="header-btns">
                           <button class="btn btn-passive">ПОПОЛНИТЬ</button>
