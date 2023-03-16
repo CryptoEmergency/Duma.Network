@@ -11,17 +11,18 @@ const mainBlock = async function () {
     fn: async ({ reload, ID, url, data }) => {
       timersClear();
       // console.log('=16853b=', Variable.listRouter)
-      if (
-        Variable.dataUrl.adress == "personal" ||
-        Variable.dataUrl.category == "personal"
-      ) {
-        Variable.Static.HeaderShow = false;
-        Variable.Static.FooterShow = false;
-      } else {
-        Variable.Static.HeaderShow = true;
-        Variable.Static.FooterShow = true;
-      }
-
+      // if (
+      //   Variable.dataUrl.adress == "personal" ||
+      //   Variable.dataUrl.category == "personal"
+      // ) {
+      //   Variable.Static.HeaderShow = false;
+      //   Variable.Static.FooterShow = false;
+      // } else {
+      //   Variable.Static.HeaderShow = true;
+      //   Variable.Static.FooterShow = true;
+      // }
+      Variable.Static.HeaderShow = true;
+      Variable.Static.FooterShow = true;
       try {
         let dataUrl = Variable.dataUrl;
         if (url) {
