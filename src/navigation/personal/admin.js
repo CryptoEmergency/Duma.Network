@@ -107,7 +107,7 @@ const start = function (data, ID) {
     load({
         ID,
         fnLoad: async () => {
-            if (!Variable.auth) {
+            if (!Variable.auth || !Variable.myInfo.role) {
                 fn.siteLink("/");
                 return;
             }
@@ -116,7 +116,7 @@ const start = function (data, ID) {
             // console.log('=f5b4ba=', tmp)
         },
         fn: () => {
-            if (!Variable.auth) {
+            if (!Variable.auth || !Variable.myInfo.role) {
                 fn.siteLink("/");
                 return <div></div>;
             }
@@ -129,7 +129,7 @@ const start = function (data, ID) {
                             <div class="personal-content">
                                 {/* main page */}
                                 <section class="main mb-25  ">
-                                    <h2 class="general-title mt-25">Dashboard</h2>
+                                    <h2 class="general-title mt-25">Add Project</h2>
                                     <div class="main-blocks mt-20">
                                         <div class="blocks-item user-profile">
                                             <div class="user-icon">

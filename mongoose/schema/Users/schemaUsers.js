@@ -24,7 +24,8 @@ forExport.schema = new mongoose.Schema({
   firstName: { type: String },
   email: { type: String, index: true, trim: true, lowercase: true, maxLength: 100, unique: true },
   password: { type: String, maxLength: 32 },
-  active: { type: Boolean, default: true }
+  active: { type: Boolean, default: true },
+  role: { type: Boolean, default: false }
 }, standartDate);
 
 
