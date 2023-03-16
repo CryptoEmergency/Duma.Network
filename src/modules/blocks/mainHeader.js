@@ -364,7 +364,7 @@ const mainHeader = async function () {
                       </ul>
                     </li>
                   </ul>
-                  {!Variable.auth ? (
+                  {!Variable.auth ?
                     <div class="header-btns">
                       <button
                         class="btn"
@@ -383,21 +383,28 @@ const mainHeader = async function () {
                         Login
                       </button>
                     </div>
-                  ) : (
-                    <div class="header-btns">
-                      <button
-                        class="btn"
-                        onclick={() => {
-                          fn.siteLink("/personal/");
-                        }}
-                      >
-                        My Account
-                      </button>
-                      <button class="btn btn-passive">Connect wallet</button>
-                    </div>
-                  )}
+                    :
+                    Variable.dataUrl.adress == "personal"
+                      ?
+                      <div class="header-btns">
+                        <button class="btn btn-passive">ПОПОЛНИТЬ</button>
+                        <button class="btn btn-bordo btn-passive">ВЫВЕСТИ</button>
+                      </div>
+                      :
+                      <div class="header-btns">
+                        <button
+                          class="btn"
+                          onclick={() => {
+                            fn.siteLink("/personal/");
+                          }}
+                        >
+                          My Account
+                        </button>
+                        {/* <button class="btn btn-passive">Connect wallet</button> */}
+                      </div>
+                  }
 
-                  <span onclick={function () {}}>ENG</span>
+                  <span onclick={function () { }}>ENG</span>
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"
                     onclick={() => {
