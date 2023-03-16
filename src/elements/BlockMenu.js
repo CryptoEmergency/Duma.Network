@@ -51,48 +51,51 @@ const forExport = function ({ Static, onclick, className }) {
 						</a>
 					</li>
 					<li class="sidebar-item">
-						<a>
+						<a
+							onclick={() => {
+								fn.siteLink("/personal/portfolio/");
+							}}>
 							<img
 								src={svg["personal/icons/briefcase"]}
 								class="sidebar-icon"
 							></img>
-							<span class="passive-text">Портфель</span>
+							<span class="passive-text">Portfolio</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
-						<a>
+						<a
+							onclick={() => {
+								fn.siteLink("/personal/referral/");
+							}}>
 							<img
 								src={svg["personal/icons/structure"]}
 								class="sidebar-icon"
 							></img>
-							<span class="passive-text">Структура</span>
+							<span class="passive-text">Referral</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
-						<a>
+						<a
+							onclick={() => {
+								fn.siteLink("/personal/bookmarks/");
+							}}>
 							<img
 								src={svg["personal/icons/message"]}
 								class="sidebar-icon"
 							></img>
-							<span class="passive-text">Сообщения</span>
+							<span class="passive-text">Bookmarks</span>
 						</a>
 					</li>
 					<li class="sidebar-item">
-						<a>
+						<a
+							onclick={() => {
+								fn.siteLink("/personal/profile/");
+							}}>
 							<img
 								src={svg["personal/icons/profile"]}
 								class="sidebar-icon"
 							></img>
-							<span class="passive-text">Профиль</span>
-						</a>
-					</li>
-					<li class="sidebar-item">
-						<a>
-							<img
-								src={svg["personal/icons/setting"]}
-								class="sidebar-icon"
-							></img>
-							<span class="passive-text">Настройки</span>
+							<span class="passive-text">Profile</span>
 						</a>
 					</li>
 				</ul>
@@ -109,9 +112,9 @@ const forExport = function ({ Static, onclick, className }) {
 				LOGOUT<img src={svg["personal/icons/logout"]}></img>
 			</span>
 			<div class="sidebar-btns">
-				<button class="btn-empty">ПРЕДЛОЖИТЬ ИДЕЮ</button>
+				<button class="btn-empty">Suggest an idea</button>
 				<button class="btn-empty">Bug report</button>
-				<button class="btn-empty">ХОЧУ В КОМАНДУ</button>
+				<button class="btn-empty">I want team</button>
 			</div>
 		</div>
 	)

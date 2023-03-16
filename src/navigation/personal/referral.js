@@ -37,7 +37,7 @@ const start = function (data, ID) {
                             <div class="personal-content">
                                 {/* main page */}
                                 <section class="main mb-25  ">
-                                    <h2 class="general-title mt-25">Wallet</h2>
+                                    <h2 class="general-title mt-25">Referral</h2>
                                     <div class="main-blocks mt-20">
                                         <div class="blocks-item interesting">
                                             <span class="text-category text">
