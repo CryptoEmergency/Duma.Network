@@ -56,7 +56,14 @@ const mainFooter = async function () {
             </div>
             <div class="footer-info">
               <p class="footer-info_text">All rights reserved</p>
-              <a class="arrow-up">
+              <a
+                onclick={() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }}
+                class="arrow-up">
                 <img src={svg["arrowUp"]} />
               </a>
             </div>
