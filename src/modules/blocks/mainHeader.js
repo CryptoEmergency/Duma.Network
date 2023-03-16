@@ -158,37 +158,24 @@ const mainHeader = async function () {
                       </a>
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
-                        <li>
-                          <a
-                            href="/research/seed"
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              fn.siteLink(e);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          fn.siteLink("/research/seed");
+                        }}>
+                          <a class="menu-sublist_item">
                             Seed
                           </a>
                         </li>
-                        <li>
-                          <a
-                            href="/research/private"
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              fn.siteLink(e);
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          fn.siteLink("/research/private");
+                        }}>
+                          <a class="menu-sublist_item">
                             Private
                           </a>
                         </li>
-                        <li>
-                          <a
-                            href="/research/public"
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              fn.siteLink(e);
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          fn.siteLink("/research/public");
+                        }}>
+                          <a class="menu-sublist_item">
                             Public
                           </a>
                         </li>
@@ -218,141 +205,123 @@ const mainHeader = async function () {
                       </a>
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
-                        <li>
-                          <a
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              let timeGo = 10;
-                              if (Variable.dataUrl.adress != "index") {
-                                fn.siteLink("/");
-                                timeGo = 100;
-                              }
-                              setTimeout(() => {
-                                window.scrollTo({
-                                  top:
-                                    document.querySelector("#about").offsetTop -
-                                    72,
-                                  behavior: "smooth",
-                                });
-                              }, timeGo);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          let timeGo = 10;
+                          if (Variable.dataUrl.adress != "index") {
+                            fn.siteLink("/");
+                            timeGo = 100;
+                          }
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector("#about").offsetTop -
+                                72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                          burger = !burger;
+                        }}>
+                          <a class="menu-sublist_item">
                             About Project
                           </a>
                         </li>
-                        <li>
-                          <a
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              let timeGo = 10;
-                              if (Variable.dataUrl.adress != "index") {
-                                fn.siteLink("/");
-                                timeGo = 100;
-                              }
-                              setTimeout(() => {
-                                window.scrollTo({
-                                  top:
-                                    document.querySelector("#advantages")
-                                      .offsetTop - 72,
-                                  behavior: "smooth",
-                                });
-                              }, timeGo);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          let timeGo = 10;
+                          if (Variable.dataUrl.adress != "index") {
+                            fn.siteLink("/");
+                            timeGo = 100;
+                          }
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector("#advantages")
+                                  .offsetTop - 72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                          burger = !burger;
+                        }}>
+                          <a class="menu-sublist_item">
                             Advantages
                           </a>
                         </li>
-                        <li>
-                          <a
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              let timeGo = 10;
-                              if (Variable.dataUrl.adress != "index") {
-                                fn.siteLink("/");
-                                timeGo = 100;
-                              }
-                              setTimeout(() => {
-                                window.scrollTo({
-                                  top:
-                                    document.querySelector("#partners")
-                                      .offsetTop - 72,
-                                  behavior: "smooth",
-                                });
-                              }, timeGo);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          let timeGo = 10;
+                          if (Variable.dataUrl.adress != "index") {
+                            fn.siteLink("/");
+                            timeGo = 100;
+                          }
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector("#partners")
+                                  .offsetTop - 72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                          burger = !burger;
+                        }}>
+                          <a class="menu-sublist_item">
                             Partners
                           </a>
                         </li>
-                        <li>
-                          <a
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              let timeGo = 10;
-                              if (Variable.dataUrl.adress != "index") {
-                                fn.siteLink("/");
-                                timeGo = 100;
-                              }
-                              setTimeout(() => {
-                                window.scrollTo({
-                                  top:
-                                    document.querySelector("#roadmap")
-                                      .offsetTop - 72,
-                                  behavior: "smooth",
-                                });
-                              }, timeGo);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          let timeGo = 10;
+                          if (Variable.dataUrl.adress != "index") {
+                            fn.siteLink("/");
+                            timeGo = 100;
+                          }
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector("#roadmap")
+                                  .offsetTop - 72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                          burger = !burger;
+                        }}>
+                          <a class="menu-sublist_item">
                             Roadmap
                           </a>
                         </li>
-                        <li>
-                          <a
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              let timeGo = 10;
-                              if (Variable.dataUrl.adress != "index") {
-                                fn.siteLink("/");
-                                timeGo = 100;
-                              }
-                              setTimeout(() => {
-                                window.scrollTo({
-                                  top:
-                                    document.querySelector("#team").offsetTop -
-                                    72,
-                                  behavior: "smooth",
-                                });
-                              }, timeGo);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          let timeGo = 10;
+                          if (Variable.dataUrl.adress != "index") {
+                            fn.siteLink("/");
+                            timeGo = 100;
+                          }
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector("#team").offsetTop -
+                                72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                          burger = !burger;
+                        }}>
+                          <a class="menu-sublist_item">
                             Team
                           </a>
                         </li>
-                        <li>
-                          <a
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              let timeGo = 10;
-                              if (Variable.dataUrl.adress != "index") {
-                                fn.siteLink("/");
-                                timeGo = 100;
-                              }
-                              setTimeout(() => {
-                                window.scrollTo({
-                                  top:
-                                    document.querySelector("#social")
-                                      .offsetTop - 72,
-                                  behavior: "smooth",
-                                });
-                              }, timeGo);
-                              burger = !burger;
-                            }}
-                          >
+                        <li onclick={(e) => {
+                          let timeGo = 10;
+                          if (Variable.dataUrl.adress != "index") {
+                            fn.siteLink("/");
+                            timeGo = 100;
+                          }
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector("#social")
+                                  .offsetTop - 72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                          burger = !burger;
+                        }}>
+                          <a class="menu-sublist_item">
                             Social network
                           </a>
                         </li>
