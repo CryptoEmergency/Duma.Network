@@ -51,7 +51,7 @@
   padding: 8px 10px;
   cursor: pointer;
   height: 2.5rem;
-  width: 14rem;
+  // width: 14rem;
 }
 .btn-gradient{
   background: var(--btn-gradient);
@@ -127,8 +127,9 @@
   .header-list{
     // display: grid;
     // grid-template-columns: repeat(5, 1fr);
-    display: flex;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    // width: 100%;
     justify-content: space-between;
     // grid-gap: 10px;
   }

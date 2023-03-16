@@ -95,6 +95,12 @@ $indent in $indents {
   .pl-#{$index}{
     padding-left: $indent !important;
   }
+  .pY-#{$index}{
+    padding: $indent 0!important;
+  }
+  .pX-#{$index}{
+    padding: 0 $indent!important;
+  }
 }
 // style general
 .general-title {

@@ -458,7 +458,7 @@ const mainHeader = async function () {
                     </div>
                   ) : (
                     <button
-                      class="btn mr-10 ml-10"
+                      class="btn mr-10 ml-10 pX-20"
                       onclick={() => {
                         fn.siteLink("/personal/");
                       }}
