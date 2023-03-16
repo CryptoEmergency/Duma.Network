@@ -51,7 +51,11 @@ const mainHeader = async function () {
         <div class="wrapper">
           <div class={["header-inner", isMobile.any() ? "__touch" : "__pc"]}>
             <div class="header-logo">
-              <a href="/">
+              <a href="/"
+                onclick={(e) => {
+                  fn.siteLink(e);
+                  burger = !burger;
+                }}>
                 <img src={images["logo"]}></img>
               </a>
             </div>
@@ -215,12 +219,19 @@ const mainHeader = async function () {
                           <a
                             class="menu-sublist_item"
                             onclick={(e) => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector("#about").offsetTop -
-                                  72,
-                                behavior: "smooth",
-                              });
+                              console.log('=49a7a1=', Variable.dataUrl)
+                              if (Variable.dataUrl.adress != "index") {
+                                fn.siteLink("/");
+                              }
+                              setTimeout(() => {
+                                window.scrollTo({
+                                  top:
+                                    document.querySelector("#about").offsetTop -
+                                    72,
+                                  behavior: "smooth",
+                                });
+
+                              }, 100);
                               burger = !burger;
                             }}
                           >
