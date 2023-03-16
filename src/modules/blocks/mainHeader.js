@@ -83,14 +83,21 @@ const mainHeader = async function () {
                         initReload();
                       }}
                     >
-                      <a href="#" class="header-list_item">
+                      <a
+                        href="/marketplace"
+                        class="header-list_item"
+                        onclick={(e) => {
+                          fn.siteLink(e);
+                          burger = !burger;
+                        }}
+                      >
                         MARKETPLACE
                       </a>
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
                         <li>
                           <a
-                            href="/seed"
+                            href="/marketplace/seed"
                             class="menu-sublist_item"
                             onclick={(e) => {
                               fn.siteLink(e);
@@ -102,7 +109,7 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="/private"
+                            href="/marketplace/private"
                             class="menu-sublist_item"
                             onclick={(e) => {
                               fn.siteLink(e);
@@ -113,7 +120,63 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="/public"
+                            href="/marketplace/public"
+                            class="menu-sublist_item"
+                            onclick={(e) => {
+                              fn.siteLink(e);
+                            }}
+                          >
+                            Public
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li
+                      onclick={function () {
+                        if (isMobile.any()) {
+                          this.classList.toggle("active");
+                        }
+                        initReload();
+                      }}
+                    >
+                      <a
+                        href="/research"
+                        class="header-list_item"
+                        onclick={(e) => {
+                          fn.siteLink(e);
+                          burger = !burger;
+                        }}
+                      >
+                        research
+                      </a>
+                      <span class="menu-arrow"></span>
+                      <ul class="menu-sublist">
+                        <li>
+                          <a
+                            href="/research/seed"
+                            class="menu-sublist_item"
+                            onclick={(e) => {
+                              fn.siteLink(e);
+                              burger = !burger;
+                            }}
+                          >
+                            Seed
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/research/private"
+                            class="menu-sublist_item"
+                            onclick={(e) => {
+                              fn.siteLink(e);
+                            }}
+                          >
+                            Private
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/research/public"
                             class="menu-sublist_item"
                             onclick={(e) => {
                               fn.siteLink(e);
@@ -125,12 +188,13 @@ const mainHeader = async function () {
                       </ul>
                     </li>
                     <li>
-                      <a href="#" class="header-list_item passive-text">
-                        Products
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" class="header-list_item passive-text">
+                      <a
+                        href="/academy"
+                        class="header-list_item"
+                        onclick={(e) => {
+                          fn.siteLink(e);
+                        }}
+                      >
                         Academy
                       </a>
                     </li>
@@ -142,16 +206,21 @@ const mainHeader = async function () {
                         initReload();
                       }}
                     >
-                      <a href="#" class="header-list_item">
+                      <a href="" class="header-list_item">
                         About
                       </a>
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
                         <li>
                           <a
-                            href="#"
                             class="menu-sublist_item"
-                            onclick={function () {
+                            onclick={(e) => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector("#about").offsetTop -
+                                  72,
+                                behavior: "smooth",
+                              });
                               burger = !burger;
                             }}
                           >
@@ -160,9 +229,14 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="#"
                             class="menu-sublist_item"
-                            onclick={function () {
+                            onclick={(e) => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector("#advantages")
+                                    .offsetTop - 72,
+                                behavior: "smooth",
+                              });
                               burger = !burger;
                             }}
                           >
@@ -171,9 +245,14 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="#"
                             class="menu-sublist_item"
-                            onclick={function () {
+                            onclick={(e) => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector("#partners")
+                                    .offsetTop - 72,
+                                behavior: "smooth",
+                              });
                               burger = !burger;
                             }}
                           >
@@ -182,20 +261,14 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="#"
                             class="menu-sublist_item"
-                            onclick={function () {
-                              burger = !burger;
-                            }}
-                          >
-                            Tokenomics
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#"
-                            class="menu-sublist_item"
-                            onclick={function () {
+                            onclick={(e) => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector("#roadmap").offsetTop -
+                                  72,
+                                behavior: "smooth",
+                              });
                               burger = !burger;
                             }}
                           >
@@ -204,9 +277,14 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="#team"
                             class="menu-sublist_item"
-                            onclick={function () {
+                            onclick={(e) => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector("#team").offsetTop -
+                                  72,
+                                behavior: "smooth",
+                              });
                               burger = !burger;
                             }}
                           >
@@ -215,9 +293,14 @@ const mainHeader = async function () {
                         </li>
                         <li>
                           <a
-                            href="#"
                             class="menu-sublist_item"
-                            onclick={function () {
+                            onclick={(e) => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector("#social").offsetTop -
+                                  72,
+                                behavior: "smooth",
+                              });
                               burger = !burger;
                             }}
                           >
@@ -226,16 +309,59 @@ const mainHeader = async function () {
                         </li>
                       </ul>
                     </li>
-                    <li class="header-list_item">
+                    <li
+                      onclick={function () {
+                        if (isMobile.any()) {
+                          this.classList.toggle("active");
+                        }
+                        initReload();
+                      }}
+                    >
                       <a
-                        href="#"
-                        class="header-list_item passive-text"
-                        onclick={function () {
+                        href=""
+                        class="header-list_item"
+                        onclick={(e) => {
+                          fn.siteLink(e);
                           burger = !burger;
                         }}
                       >
-                        Documents
+                        documents
                       </a>
+                      <span class="menu-arrow"></span>
+                      <ul class="menu-sublist">
+                        <li>
+                          <a
+                            target="_blank"
+                            href="https://docsend.com/view/28ucnckiqwus6du4"
+                            class="menu-sublist_item"
+                          >
+                            PitchDeck
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" class="menu-sublist_item">
+                            LitePaper
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            target="_blank"
+                            href="https://duma-network.gitbook.io/duma.network-eng/"
+                            class="menu-sublist_item"
+                          >
+                            DataRoom
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            target="_blank"
+                            href="https://docs.google.com/spreadsheets/d/1nqkFs_Fj4k20tnVwkx_hUfPAsPY8KVC4ZnwR2kvaug8/edit#gid=0"
+                            class="menu-sublist_item"
+                          >
+                            Tokenomics
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                   </ul>
                   {!Variable.auth ? (

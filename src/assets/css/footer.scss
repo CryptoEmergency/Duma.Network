@@ -2,6 +2,7 @@
   background: var(--back-primary);
   color: $white;
   font-family: $roboto, sans-serif;
+  z-index: 2;
 }
 .footer-inner{
   display: flex;

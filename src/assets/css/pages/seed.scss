@@ -46,9 +46,10 @@
     opacity: 0;
     padding: 0;
   }
-  input:checked + label{
+  input:checked + label, .checked-label{
     color: $white;
   }
+
   input + label{
     margin: 12px -8px;
     width: 15%;
@@ -76,14 +77,14 @@
     z-index: 2;
     top: 99%;
   }
-  #tab-1:checked ~ .glider {
+  .checked-input#tab-1 ~ .glider {
     left: 0px;
   }
-  #tab-2:checked ~ .glider {
-    left: 210px;
+  .checked-input#tab-2 ~ .glider {
+    left: 200px;
   }
-  #tab-3:checked ~ .glider {
-    left: 426px;
+  .checked-input#tab-3 ~ .glider {
+    left: 415px;
     width: 165px;
   }
 }
@@ -114,78 +115,6 @@
     padding: 25px;
     position: relative;
   }
-  .info-bell{
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    display: flex;
-    .circle{
-      width: 30px;
-      height: 30px;
-      color: $white;
-      background: $blue;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      font-size: 14px;
-      line-height: 32px;
-      font-weight: 700;
-    }
-  }
-  .company{
-    display: flex;
-    align-items: flex-start;
-    img{
-      max-height: 52px;
-      margin-right: 5px;
-    }
-    .company-title{
-      text-transform: uppercase;
-      font-family: $conthrax;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 29px;
-      display: flex;
-      flex-direction: column;
-      width: 65%;
-    }
-  }
-  .statuses{
-    display: flex;
-    padding: 15px 0;
-    .icon{
-      height: 100%;
-      width: auto;
-    }
-    div{
-      margin-right: 5px;
-    }
-    // .icon{
-    //   background: $black;
-    //   border-radius: 50%;
-    //   width: 25px;
-    //   height: 25px;
-    //   display: flex;
-    //   justify-content: center;
-    //   align-items: center;
-    // }
-    .status, .ecosystem{
-      background: $green-light;
-      color: $white;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 10px;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 32px;
-    }
-    .ecosystem{
-      background: $black;
-    }
-  }
 
   .desc{
     font-size: 16px;
@@ -196,33 +125,100 @@
   .desc-text{
     font-weight: 400;
   }
-  .socials{
+}
+.info-bell{
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: flex;
+  .circle{
+    width: 30px;
+    height: 30px;
+    color: $white;
+    background: $blue;
     display: flex;
-    padding: 15px 0;
-    a{
-      margin-right: 15px;
-    }
-  }
-  .icon-green{
-    filter: invert(65%) sepia(94%) saturate(293%) hue-rotate(39deg) brightness(95%) contrast(94%);
-    max-height: 18px;
-  }
-  .progressBlock{
-    background: $grey;
-    border-radius: 4px;
-  }
-  .progressBlock-column{
-    height: 10px;
-    background: $green-light;
-    border-radius: 4px;
-  }
-  .summ{
-    font-weight: 600;
-    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 14px;
     line-height: 32px;
-    margin: 15px 0;
-    text-align: center;
+    font-weight: 700;
   }
+}
+.bell{
+  max-height: 40px;
+}
+.company{
+  display: flex;
+  align-items: flex-start;
+  img{
+    max-height: 52px;
+    margin-right: 5px;
+  }
+  .company-title{
+    text-transform: uppercase;
+    font-family: $conthrax;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+  }
+}
+.statuses{
+  display: flex;
+  padding: 15px 0;
+  .icon{
+    height: 100%;
+    width: auto;
+  }
+  div{
+    margin-right: 5px;
+  }
+  .status, .ecosystem{
+    background: $green-light;
+    color: $white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 32px;
+  }
+  .ecosystem{
+    background: var(--text-main);
+    color: var(--black);
+  }
+}
+.socials{
+  display: flex;
+  padding: 15px 0;
+  a{
+    margin-right: 15px;
+  }
+}
+.icon-green{
+  filter: invert(65%) sepia(94%) saturate(293%) hue-rotate(39deg) brightness(95%) contrast(94%);
+  max-height: 18px;
+}
+.progressBlock{
+  background: $grey;
+  border-radius: 4px;
+}
+.progressBlock-column{
+  height: 10px;
+  background: $green-light;
+  border-radius: 4px;
+}
+.summ{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 32px;
+  margin: 15px 0;
+  text-align: center;
 }
 // content cards
 @media (max-width: 992px){

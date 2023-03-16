@@ -190,13 +190,86 @@
 .personal-content{
   padding: 15px;
 }
+// main page
+.main{
+  .general-title{
+    text-align: left;
+  }
+}
+.main-blocks{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // grid-template-rows: 270px;
+  grid-gap: 15px;
+}
+.blocks-item{
+  background: var(--back-blur);
+  -webkit-backdrop-filter: blur(10px);
+  background-blend-mode: overlay;
+  backdrop-filter: blur(7px);
+  border-radius: 20px;
+  padding: 15px;
+  .user-profile{
+    position: relative;
+  }
+  &.interesting{
+    grid-row: 1;
+    grid-column: 2 / span 3;
+    position: relative;
+  }
+  &.news{
+    grid-row: 3;
+    grid-column: 1 / span 3;
+  }
+  &.bag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .nums{
+      padding-bottom: 0;
+    }
+  }
+  .user-images{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+  }
+  .btn{
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.user-icon{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.text-category{
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.soon-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 24px;
+  line-height: 29px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-family: $conthrax;
+}
+// main page
 // forma
 .personal-form{
   background-blend-mode: overlay;
   border-radius: 20px;
   position: relative;
   padding: 35px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  background: var(--back-blur);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(7px);
   color: #FFFFFF;

@@ -85,7 +85,7 @@ const start = function (data, ID) {
         <div class="main-back">
           <div class="wrapper">
             <div class="main-inner">
-              <section class="intro">
+              <section class="intro" id="about">
                 <div class="intro-inner">
                   <div class="intro-desc">
                     <h1 class="intro-title">DÜMA.NETWORK</h1>
@@ -213,7 +213,7 @@ const start = function (data, ID) {
                   <button class="btn">INVEST IN PROJECT</button>
                 </div>
               </section>
-              <section class="advantages">
+              <section class="advantages" id="advantages">
                 <div class="circle1"></div>
                 <div class="circle2"></div>
                 <h2 class="general-title">Opportunities</h2>
@@ -311,7 +311,7 @@ const start = function (data, ID) {
                   </div>
                 </div>
               </section>
-              <section class="parthers">
+              <section class="parthers" id="partners">
                 <h2 class="general-title">Partners & Bakers</h2>
                 <div class="parthers-inner">
                   <a target="_blank" href="https://zyx.network/">
@@ -331,7 +331,7 @@ const start = function (data, ID) {
                   </a>
                 </div>
               </section>
-              <section class="roadmap">
+              <section class="roadmap" id="roadmap">
                 <h2 class="general-title">Roadmap</h2>
                 <div class="roadmap-inner">
                   <div class="roadmap-item">
@@ -414,7 +414,7 @@ const start = function (data, ID) {
                   </div>
                 </div>
               </section>
-              <section class="team">
+              <section class="team" id="team">
                 <a name="team"></a>
                 <center>
                   <h2 class="general-title">Multinational team</h2>
@@ -436,7 +436,7 @@ const start = function (data, ID) {
                   })}
                 </div>
               </section>
-              <section class="info-social">
+              <section class="info-social" id="social">
                 <div class="info">
                   <h3>MORE INFO</h3>
                   <button class="btn">PITCHDECK</button>

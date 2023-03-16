@@ -1,4 +1,10 @@
-import { jsx, jsxFrag, load, initReload } from "@betarost/cemserver/cem.js";
+import {
+  jsx,
+  jsxFrag,
+  load,
+  initReload,
+  Variable,
+} from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
@@ -6,15 +12,20 @@ import images from "@assets/images/index.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.activeTab = "Seed";
+  Static.activeTab = "seed";
   load({
     ID,
+    fnLoad() {
+      if (Variable.dataUrl.params) {
+        Static.activeTab = Variable.dataUrl.params;
+      }
+    },
     fn: () => {
       return (
         <div class="wrapper">
-          <div class="blur">
+          {/* <div class="blur">
             <h2>COMING SOON</h2>
-          </div>
+          </div> */}
           <div class="main-inner">
             <div class="crumbs" style="z-index:2; position:relative;">
               <a href="/">
@@ -33,19 +44,23 @@ const start = function (data, ID) {
             <div class="tabs">
               <div class="circle-effect circle-effect1"></div>
               <div class="circle-effect circle-effect2"></div>
-              <div class="tabs-controller">
+              <div
+                class="tabs-controller"
+                style="z-index:5; position:relative;"
+              >
                 <input
                   id="tab-1"
                   type="radio"
-                  class="tab tab-selector"
-                  checked="checked"
+                  checked
+                  class={[Static.activeTab == "seed" ? "checked-input" : null]}
                   name="tab"
                 />
                 <label
                   for="tab-1"
-                  class="tab tab-primary"
+                  class={[Static.activeTab == "seed" ? "checked-label" : null]}
+                  style="z-index:5; position:relative;"
                   onclick={() => {
-                    Static.activeTab = "Active";
+                    Static.activeTab = "seed";
                     initReload();
                   }}
                 >
@@ -54,14 +69,19 @@ const start = function (data, ID) {
                 <input
                   id="tab-2"
                   type="radio"
-                  class="tab tab-selector"
+                  class={[
+                    Static.activeTab == "private" ? "checked-input" : null,
+                  ]}
                   name="tab"
                 />
                 <label
                   for="tab-2"
-                  class="tab tab-success"
+                  class={[
+                    Static.activeTab == "private" ? "checked-label" : null,
+                  ]}
+                  style="z-index:5; position:relative;"
                   onclick={() => {
-                    Static.activeTab = "Upcoming";
+                    Static.activeTab = "private";
                     initReload();
                   }}
                 >
@@ -70,14 +90,19 @@ const start = function (data, ID) {
                 <input
                   id="tab-3"
                   type="radio"
-                  class="tab tab-selector"
+                  class={[
+                    Static.activeTab == "public" ? "checked-input" : null,
+                  ]}
                   name="tab"
                 />
                 <label
                   for="tab-3"
-                  class="tab tab-default"
+                  class={[
+                    Static.activeTab == "public" ? "checked-label" : null,
+                  ]}
+                  style="z-index:5; position:relative;"
                   onclick={() => {
-                    Static.activeTab = "Past";
+                    Static.activeTab = "public";
                     initReload();
                   }}
                 >
@@ -85,184 +110,349 @@ const start = function (data, ID) {
                 </label>
                 <div class="glider"></div>
               </div>
-              <div
-                class="tabs-content"
-                hidden={Static.activeTab == "Seed" ? false : true}
-              >
-                <div class="cards">
-                  <div class="card-item">
-                    <img class="card-item_img" src={images["card/1"]} />
-                    <div class="info">
-                      <div class="info-bell">
-                        <div class="circle">123</div>
-                        <img src={svg["iconsGreen/bell"]} class="bell"></img>
-                      </div>
-                      <div class="company">
-                        <img src={images.logo} alt="Duma Network"></img>
-                        <div class="company-title">
-                          <span>DUMA</span>
-                          <span>Network</span>
+              <div>
+                <div class="blur">
+                  <h2>COMING SOON</h2>
+                </div>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "seed" ? false : true}
+                >
+                  <div class="cards">
+                    <div class="card-item">
+                      <img class="card-item_img" src={images["card/1"]} />
+                      <div class="info">
+                        <div class="info-bell">
+                          <div class="circle">123</div>
+                          <img src={svg["iconsGreen/bell"]} class="bell"></img>
                         </div>
-                      </div>
-                      <div class="statuses">
-                        <div class="icon">
-                          <img src={svg.binance}></img>
+                        <div class="company">
+                          <img src={images.logo} alt="Duma Network"></img>
+                          <div class="company-title">
+                            <span>DUMA</span>
+                            <span>Network</span>
+                          </div>
                         </div>
-                        <div class="status">Active</div>
-                        <div class="ecosystem">Ecosystem</div>
+                        <div class="statuses">
+                          <div class="icon">
+                            <img src={svg.binance}></img>
+                          </div>
+                          <div class="status">Active</div>
+                          <div class="ecosystem">Ecosystem</div>
+                        </div>
+                        <div class="desc">
+                          <span class="desc-title">Unite To Earn</span>
+                          <p class="desc-text">
+                            Is an investment ecosystem that combines a
+                            Launchpad, an information resource and an academy.
+                          </p>
+                        </div>
+                        <div class="socials">
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/instagram"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/facebook"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/twitter"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/youtube"]}></img>
+                          </a>
+                        </div>
+                        <div class="progressBlock">
+                          <div
+                            style={[`width: calc(100% / 100 * 25)`]}
+                            class="progressBlock-column"
+                          ></div>
+                        </div>
+                        <span class="summ">80 000$</span>
+                        <button class="btn">InvesT</button>
                       </div>
-                      <div class="desc">
-                        <span class="desc-title">Unite To Earn</span>
-                        <p class="desc-text">
-                          Is an investment ecosystem that combines a Launchpad,
-                          an information resource and an academy.
-                        </p>
-                      </div>
-                      <div class="socials">
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/instagram"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/facebook"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/twitter"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/youtube"]}></img>
-                        </a>
-                      </div>
-                      <div class="progressBlock">
-                        <div
-                          style={[`width: calc(100% / 100 * 25)`]}
-                          class="progressBlock-column"
-                        ></div>
-                      </div>
-                      <span class="summ">80 000$</span>
-                      <button class="btn">InvesT</button>
                     </div>
-                  </div>
-                  <div class="card-item">
-                    <img class="card-item_img" src={images["card/1"]} />
-                    <div class="info">
-                      <div class="info-bell">
-                        <div class="circle">123</div>
-                        <img src={svg["iconsGreen/bell"]} class="bell"></img>
-                      </div>
-                      <div class="company">
-                        <img
-                          src={images["card/logo/cookie"]}
-                          alt="Cookie 3"
-                        ></img>
-                        <div class="company-title">
-                          <span>Cookie 3</span>
+                    <div class="card-item">
+                      <img class="card-item_img" src={images["card/1"]} />
+                      <div class="info">
+                        <div class="info-bell">
+                          <div class="circle">123</div>
+                          <img src={svg["iconsGreen/bell"]} class="bell"></img>
                         </div>
-                      </div>
-                      <div class="statuses">
-                        <div class="icon">
-                          <img src={svg.binance}></img>
+                        <div class="company">
+                          <img
+                            src={images["card/logo/cookie"]}
+                            alt="Cookie 3"
+                          ></img>
+                          <div class="company-title">
+                            <span>Cookie 3</span>
+                          </div>
                         </div>
-                        <div class="status">Active</div>
-                        <div class="ecosystem">Ecosystem</div>
+                        <div class="statuses">
+                          <div class="icon">
+                            <img src={svg.binance}></img>
+                          </div>
+                          <div class="status">Active</div>
+                          <div class="ecosystem">Ecosystem</div>
+                        </div>
+                        <div class="desc">
+                          <span class="desc-title">Unite To Earn</span>
+                          <p class="desc-text">
+                            Is an investment ecosystem that combines a
+                            Launchpad, an information resource and an academy.
+                          </p>
+                        </div>
+                        <div class="socials">
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/instagram"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/facebook"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/twitter"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/youtube"]}></img>
+                          </a>
+                        </div>
+                        <div class="progressBlock">
+                          <div
+                            style={[`width: calc(100% / 100 * 75)`]}
+                            class="progressBlock-column"
+                          ></div>
+                        </div>
+                        <span class="summ">2.500.000$</span>
+                        <button class="btn">InvesT</button>
                       </div>
-                      <div class="desc">
-                        <span class="desc-title">Unite To Earn</span>
-                        <p class="desc-text">
-                          Is an investment ecosystem that combines a Launchpad,
-                          an information resource and an academy.
-                        </p>
-                      </div>
-                      <div class="socials">
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/instagram"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/facebook"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/twitter"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/youtube"]}></img>
-                        </a>
-                      </div>
-                      <div class="progressBlock">
-                        <div
-                          style={[`width: calc(100% / 100 * 75)`]}
-                          class="progressBlock-column"
-                        ></div>
-                      </div>
-                      <span class="summ">2.500.000$</span>
-                      <button class="btn">InvesT</button>
                     </div>
-                  </div>
-                  <div class="card-item">
-                    <img class="card-item_img" src={images["card/1"]} />
-                    <div class="info">
-                      <div class="info-bell">
-                        <div class="circle">123</div>
-                        <img src={svg["iconsGreen/bell"]} class="bell"></img>
-                      </div>
-                      <div class="company">
-                        <img
-                          src={images["card/logo/cookie"]}
-                          alt="Cookie 3"
-                        ></img>
-                        <div class="company-title">
-                          <span>Cookie 3</span>
+                    <div class="card-item">
+                      <img class="card-item_img" src={images["card/1"]} />
+                      <div class="info">
+                        <div class="info-bell">
+                          <div class="circle">123</div>
+                          <img src={svg["iconsGreen/bell"]} class="bell"></img>
                         </div>
-                      </div>
-                      <div class="statuses">
-                        <div class="icon">
-                          <img src={svg.binance}></img>
+                        <div class="company">
+                          <img
+                            src={images["card/logo/cookie"]}
+                            alt="Cookie 3"
+                          ></img>
+                          <div class="company-title">
+                            <span>Cookie 3</span>
+                          </div>
                         </div>
-                        <div class="status">Active</div>
-                        <div class="ecosystem">Ecosystem</div>
+                        <div class="statuses">
+                          <div class="icon">
+                            <img src={svg.binance}></img>
+                          </div>
+                          <div class="status">Active</div>
+                          <div class="ecosystem">Ecosystem</div>
+                        </div>
+                        <div class="desc">
+                          <span class="desc-title">Unite To Earn</span>
+                          <p class="desc-text">
+                            Is an investment ecosystem that combines a
+                            Launchpad, an information resource and an academy.
+                          </p>
+                        </div>
+                        <div class="socials">
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/instagram"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/facebook"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/twitter"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/youtube"]}></img>
+                          </a>
+                        </div>
+                        <div class="progressBlock">
+                          <div
+                            style={[`width: calc(100% / 100 * 75)`]}
+                            class="progressBlock-column"
+                          ></div>
+                        </div>
+                        <span class="summ">2.500.000$</span>
+                        <button class="btn">InvesT</button>
                       </div>
-                      <div class="desc">
-                        <span class="desc-title">Unite To Earn</span>
-                        <p class="desc-text">
-                          Is an investment ecosystem that combines a Launchpad,
-                          an information resource and an academy.
-                        </p>
-                      </div>
-                      <div class="socials">
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/instagram"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/facebook"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/twitter"]}></img>
-                        </a>
-                        <a target="_blank" href="#">
-                          <img src={svg["iconsGreen/youtube"]}></img>
-                        </a>
-                      </div>
-                      <div class="progressBlock">
-                        <div
-                          style={[`width: calc(100% / 100 * 75)`]}
-                          class="progressBlock-column"
-                        ></div>
-                      </div>
-                      <span class="summ">2.500.000$</span>
-                      <button class="btn">InvesT</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div
-                class="tabs-content"
-                hidden={Static.activeTab == "Private" ? false : true}
-              >
-                123
-              </div>
-              <div
-                class="tabs-content"
-                hidden={Static.activeTab == "Public" ? false : true}
-              >
-                5687
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "private" ? false : true}
+                >
+                  <div class="cards">
+                    <div class="card-item">
+                      <img class="card-item_img" src={images["card/1"]} />
+                      <div class="info">
+                        <div class="info-bell">
+                          <div class="circle">123</div>
+                          <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                        </div>
+                        <div class="company">
+                          <img src={images.logo} alt="Duma Network"></img>
+                          <div class="company-title">
+                            <span>DUMA</span>
+                            <span>Network</span>
+                          </div>
+                        </div>
+                        <div class="statuses">
+                          <div class="icon">
+                            <img src={svg.binance}></img>
+                          </div>
+                          <div class="status">Active</div>
+                          <div class="ecosystem">Ecosystem</div>
+                        </div>
+                        <div class="desc">
+                          <span class="desc-title">Unite To Earn</span>
+                          <p class="desc-text">
+                            Is an investment ecosystem that combines a
+                            Launchpad, an information resource and an academy.
+                          </p>
+                        </div>
+                        <div class="socials">
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/instagram"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/facebook"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/twitter"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/youtube"]}></img>
+                          </a>
+                        </div>
+                        <div class="progressBlock">
+                          <div
+                            style={[`width: calc(100% / 100 * 25)`]}
+                            class="progressBlock-column"
+                          ></div>
+                        </div>
+                        <span class="summ">80 000$</span>
+                        <button class="btn">InvesT</button>
+                      </div>
+                    </div>
+                    <div class="card-item">
+                      <img class="card-item_img" src={images["card/1"]} />
+                      <div class="info">
+                        <div class="info-bell">
+                          <div class="circle">123</div>
+                          <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                        </div>
+                        <div class="company">
+                          <img
+                            src={images["card/logo/cookie"]}
+                            alt="Cookie 3"
+                          ></img>
+                          <div class="company-title">
+                            <span>Cookie 3</span>
+                          </div>
+                        </div>
+                        <div class="statuses">
+                          <div class="icon">
+                            <img src={svg.binance}></img>
+                          </div>
+                          <div class="status">Active</div>
+                          <div class="ecosystem">Ecosystem</div>
+                        </div>
+                        <div class="desc">
+                          <span class="desc-title">Unite To Earn</span>
+                          <p class="desc-text">
+                            Is an investment ecosystem that combines a
+                            Launchpad, an information resource and an academy.
+                          </p>
+                        </div>
+                        <div class="socials">
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/instagram"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/facebook"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/twitter"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/youtube"]}></img>
+                          </a>
+                        </div>
+                        <div class="progressBlock">
+                          <div
+                            style={[`width: calc(100% / 100 * 75)`]}
+                            class="progressBlock-column"
+                          ></div>
+                        </div>
+                        <span class="summ">2.500.000$</span>
+                        <button class="btn">InvesT</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "public" ? false : true}
+                >
+                  <div class="cards">
+                    <div class="card-item">
+                      <img class="card-item_img" src={images["card/1"]} />
+                      <div class="info">
+                        <div class="info-bell">
+                          <div class="circle">123</div>
+                          <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                        </div>
+                        <div class="company">
+                          <img src={images.logo} alt="Duma Network"></img>
+                          <div class="company-title">
+                            <span>DUMA</span>
+                            <span>Network</span>
+                          </div>
+                        </div>
+                        <div class="statuses">
+                          <div class="icon">
+                            <img src={svg.binance}></img>
+                          </div>
+                          <div class="status">Active</div>
+                          <div class="ecosystem">Ecosystem</div>
+                        </div>
+                        <div class="desc">
+                          <span class="desc-title">Unite To Earn</span>
+                          <p class="desc-text">
+                            Is an investment ecosystem that combines a
+                            Launchpad, an information resource and an academy.
+                          </p>
+                        </div>
+                        <div class="socials">
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/instagram"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/facebook"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/twitter"]}></img>
+                          </a>
+                          <a target="_blank" href="#">
+                            <img src={svg["iconsGreen/youtube"]}></img>
+                          </a>
+                        </div>
+                        <div class="progressBlock">
+                          <div
+                            style={[`width: calc(100% / 100 * 25)`]}
+                            class="progressBlock-column"
+                          ></div>
+                        </div>
+                        <span class="summ">80 000$</span>
+                        <button class="btn">InvesT</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

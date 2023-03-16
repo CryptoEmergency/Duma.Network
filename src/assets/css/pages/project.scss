@@ -1,0 +1,101 @@
+// card
+.card-project{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 45px;
+}
+.project-name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-project{
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  background-blend-mode: overlay;
+  // opacity: 0.25;
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(7px);
+  padding: 20px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .btn{
+    width: 100%;
+    height: 3.5rem;
+  }
+}
+.card-btns{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+
+
+}
+
+.btn-black{
+  background-color: var(--btn-black);
+}
+// card
+// project-scheme
+.project-scheme{
+  padding-top: 90px;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-gap: 50px;
+}
+.scheme-sidebar, .scheme-sidebar_item{
+  display: flex;
+  flex-direction: column;
+}
+.scheme-sidebar_item{
+  padding-bottom: 15px;
+}
+.text-green{
+  color: var(--green);
+}
+.scheme-cards{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  height: fit-content;
+}
+.scheme-card{
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  background-blend-mode: overlay;
+  box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
+  border-radius: 20px;
+  height: fit-content;
+}
+.scheme-card_desc{
+  .company{
+    align-items: center;
+    img{
+      margin-right: 15px;
+    }
+  }
+}
+.list-standart{
+  list-style: disc;
+  > li:not(:last-child){
+    padding-bottom: 15px;
+  }
+}
+.scheme-team{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 10px;
+}
+.scheme-team_item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span{
+    text-align: center;
+  }
+}
+// project-scheme

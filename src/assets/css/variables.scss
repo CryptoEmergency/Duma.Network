@@ -2,12 +2,18 @@
   --text-main: white;
   --btn-standart: #0B78B5;
   --btn-gradient: linear-gradient(268.2deg, #0056D8 -24.95%, rgba(170, 255, 98, 0) 162.48%), #6CAC10;
+  --btn-black:#191E21;
   --back-primary:#191E21;
+  --back-secondary: #303437;
+  --green: #99CD41;
+  --black: #000000;
+  --back-blur:linear-gradient(180deg, rgba(255, 255, 255, 0.25) 12.55%, rgba(255, 255, 255, 0.2) 33.51%, rgba(255, 255, 255, 0.2) 59.66%);
 }
 
 :root[theme='test'] {
   --text-main: black;
   --back-primary: #C0C0C0;
+  --back-secondary: #8d8d8d;
 }
 
 $white: #FFFFFF;
@@ -67,8 +73,26 @@ $indent in $indents {
   .mt-#{$index} {
     margin-top: $indent !important;
   }
+  .mb-#{$index}{
+    margin-bottom: $indent !important;
+  }
   .mr-#{$index}{
     margin-right: $indent !important;
+  }
+  .ml-#{$index}{
+    margin-left: $indent !important;
+  }
+  .pt-#{$index} {
+    padding-top: $indent !important;
+  }
+  .pb-#{$index}{
+    padding-bottom: $indent !important;
+  }
+  .pr-#{$index}{
+    padding-right: $indent !important;
+  }
+  .pl-#{$index}{
+    padding-left: $indent !important;
   }
 }
 // style general
