@@ -290,9 +290,24 @@ const start = function (data, ID) {
                         <span class="num_small"> +4,17%</span>
                       </div>
                     </div>
-                    <div class="blocks-item"></div>
-                    <div class="blocks-item"></div>
-                    <div class="blocks-item news"></div>
+                    <div class="blocks-item graph">
+                      <div class="blur">
+                        <h2>coming soon</h2>
+                      </div>
+                      {/* <img src={images["personal/grafik"]}></img> */}
+                    </div>
+                    <div class="blocks-item circle-graph">
+                      <div class="blur">
+                        <h2>coming soon</h2>
+                      </div>
+                      {/* <img src={images["personal/circleGraph"]}></img> */}
+                    </div>
+                    <div class="blocks-item news">
+                      <span class="text-category text">
+                        Вам будет интересно
+                      </span>
+                      <span class="soon-text">coming soon</span>
+                    </div>
                   </div>
                 </section>
                 {/* main page */}

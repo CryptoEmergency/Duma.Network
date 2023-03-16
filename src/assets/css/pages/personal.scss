@@ -229,6 +229,33 @@
       padding-bottom: 0;
     }
   }
+  &.graph{
+    padding: 0;
+    height: 270px;
+    background: url('/src/assets/images/personal/grafik.png') no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    .blur{
+      height: 100%;
+      border-radius: 20px;
+    }
+  }
+  &.circle-graph{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/src/assets/images/personal/circleGraph.png') no-repeat;
+    background-position: center center;
+    .blur{
+      height: 100%;
+      border-radius: 20px;
+    }
+  }
+  &.news{
+    height: 410px;
+    position: relative;
+  }
   .user-images{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
