@@ -10,6 +10,7 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
+import Elements from '@src/elements/export.js';
 
 const showError = function (text) {
   Data.Static.elError.style.display = "block";
@@ -122,134 +123,13 @@ const start = function (data, ID) {
       return (
         <div class="wrapper">
           <div class="personal-inner">
-            <div class="sidebar">
-              {/* <div
-                class={["menu-icon", burger ? "active" : null]}
-                onclick={function () {
-                  burger = !burger;
-                  initReload();
-                }}
-              >
-                <span></span>
-              </div> */}
-              <div class="nums">
-                <span class="num_big">17,805</span>
-                <span class="num_small">+1,500$</span>
-                <span class="num_small"> +4,17%</span>
-              </div>
-              <nav>
-                <ul class="sidebar-list">
-                  <li class="sidebar-item">
-                    <a
-                      onclick={() => {
-                        fn.siteLink("/");
-                      }}
-                    >
-                      <img
-                        src={svg["personal/icons/main"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span>Главная</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a>
-                      <img
-                        src={svg["personal/icons/wallet"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span class="passive-text">Кошелек</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a>
-                      <img
-                        src={svg["personal/icons/briefcase"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span class="passive-text">Портфель</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a>
-                      <img
-                        src={svg["personal/icons/structure"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span class="passive-text">Структура</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a>
-                      <img
-                        src={svg["personal/icons/message"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span class="passive-text">Сообщения</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a>
-                      <img
-                        src={svg["personal/icons/profile"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span class="passive-text">Профиль</span>
-                    </a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a>
-                      <img
-                        src={svg["personal/icons/setting"]}
-                        class="sidebar-icon"
-                      ></img>
-                      <span class="passive-text">Настройки</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <span
-                class="sidebar-out"
-                onclick={() => {
-                  setStorage("auth", false);
-                  setStorage("myInfo", {});
-                  setStorage("uuid", 0);
-                  window.location = "/";
-                }}
-              >
-                LOGOUT<img src={svg["personal/icons/logout"]}></img>
-              </span>
-              <div class="sidebar-btns">
-                <button class="btn-empty">ПРЕДЛОЖИТЬ ИДЕЮ</button>
-                <button class="btn-empty">Bug report</button>
-                <button class="btn-empty">ХОЧУ В КОМАНДУ</button>
-              </div>
-            </div>
+            <Elements.BlockMenu />
             <div class="personal-main">
-              <div class="circle-effect circle-effect1"></div>
-              <div class="circle-effect circle-effect2"></div>
-              <div class="personal-header">
-                <div class="user">
-                  <div class="user-card">
-                    <img src={images["personal/user"]}></img>
-                    <div class="user-name">
-                      <span class="user-name_wel">Welcome</span>
-                      <span class="user-name_name">
-                        {Variable.myInfo.firstName}
-                      </span>
-                    </div>
-                  </div>
-                  <span class="upgrade">upgrade</span>
-                </div>
-                {/* <div class="header-btns">
-                  <button class="btn btn-passive">ПОПОЛНИТЬ</button>
-                  <button class="btn btn-bordo btn-passive">ВЫВЕСТИ</button>
-                </div> */}
-              </div>
+              <Elements.BlockPersonal />
               <div class="personal-content">
                 {/* main page */}
                 <section class="main mb-25  ">
-                  <h2 class="general-title mt-25">Главная</h2>
+                  <h2 class="general-title mt-25">Dashboard</h2>
                   <div class="main-blocks mt-20">
                     <div class="blocks-item user-profile">
                       <div class="user-icon">
