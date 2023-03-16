@@ -13,13 +13,16 @@ const mainFooter = async function () {
         <div class="wrapper">
           <div class="footer-inner">
             <div class="footer-logo">
-              <a href="/"
+              <a
+                href="/"
                 onclick={(e) => {
                   fn.siteLink(e);
                   burger = !burger;
-                }}>
+                }}
+              >
                 <img src={images["logo"]}></img>
               </a>
+              <span class="text ml-10">DUMA NETWORK LTD</span>
             </div>
             <div class="social-icons">
               <a
@@ -52,9 +55,7 @@ const mainFooter = async function () {
               </a>
             </div>
             <div class="footer-info">
-              <p class="footer-info_text">
-                2022 <span class="bold">DÜMA</span>. All rights reserved
-              </p>
+              <p class="footer-info_text">All rights reserved</p>
               <a class="arrow-up">
                 <img src={svg["arrowUp"]} />
               </a>
