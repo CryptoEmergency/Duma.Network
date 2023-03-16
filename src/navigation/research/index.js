@@ -227,13 +227,14 @@ const start = function (data, ID) {
                     </div>
                   </div>
                   {Static.projects.map((item) => {
+                    console.log('=2d986d=', item)
                     return (
                       <div class="card-item">
                         {/* {showMainImg(Static.projects.galery)} */}
                         {/* {Static.projects.galery.map((element) => {
                           return <img class="card-item_img" src={element} />;
                         })} */}
-                        <img class="card-item_img" src={item.galery[0]} />
+                        <img class="card-item_img" src={images[`card/${item.galery[0]}`]} />
                         <div class="info">
                           <div class="info-bell">
                             {item.rang ? (
@@ -245,7 +246,7 @@ const start = function (data, ID) {
                             ></img>
                           </div>
                           <div class="company">
-                            <img src={item.icon}></img>
+                            <img src={images[`card/logo/${item.icon}`]}></img>
                             <div class="company-title">
                               <span>{item.name}</span>
                             </div>
