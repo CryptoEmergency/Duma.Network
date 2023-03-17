@@ -46,8 +46,8 @@ const start = function (data, ID) {
                         <span class="num_small"> +4,17%</span>
                       </div>
                       <div class="wallet-btns">
-                        <button class="btn btn-white">ИНВЕСТИРОВАТЬ</button>
-                        <button class="btn btn-white">КУПИТЬ</button>
+                        <button class="btn btn-white">Invest</button>
+                        <button class="btn btn-white">Buy</button>
                         <button class="btn btn-white">ПРОДАТЬ</button>
                         <button class="btn btn-white">ВВОД</button>
                         <button class="btn btn-white">ВЫВОД</button>
@@ -55,7 +55,7 @@ const start = function (data, ID) {
                       </div>
                     </div>
                     <div class="blocks-item reward">
-                      <div class="reward-col">
+                      <div class="col">
                         <span>Reward</span>
                         <span>рефки</span>
                         <span>токены которые приходят дистрибьюцией</span>
@@ -63,7 +63,7 @@ const start = function (data, ID) {
                         <span>начисления стейкинга</span>
                         <span>ЛП начисления</span>
                       </div>
-                      <div class="reward-col">
+                      <div class="col">
                         <span
                           class="text-green"
                           style="justify-content:flex-end;display:flex;"
@@ -103,7 +103,7 @@ const start = function (data, ID) {
                       </div>
                     </div>
                     <div class="blocks-item lock">
-                      <div class="lock-col">
+                      <div class="col">
                         <span>Reward</span>
                         <span>рефки</span>
                         <span>токены которые приходят дистрибьюцией</span>
@@ -111,7 +111,7 @@ const start = function (data, ID) {
                         <span>начисления стейкинга</span>
                         <span>ЛП начисления</span>
                       </div>
-                      <div class="lock-col">
+                      <div class="col">
                         <span
                           class="text-red"
                           style="justify-content:flex-end;display:flex;"

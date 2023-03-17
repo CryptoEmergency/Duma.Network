@@ -22,10 +22,15 @@
   position: relative;
   padding: 35px;
   // background: rgba(255, 255, 255, .7);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+  background: var(--back-blur);
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(7px);
   color: $white;
+  &.bug{
+    .btn{
+      width: 13rem;
+    }
+  }
   .blur{
     border-radius: 20px;
     background: rgba( 255, 255, 255, 0.25 );
@@ -34,6 +39,7 @@
     -webkit-backdrop-filter: blur( 4px );
   }
 }
+
 .button-close{
   position: absolute;
   top: 15px;
@@ -68,6 +74,14 @@
 .footer-modal span{
   padding-top: 25px;
 }
+
+// suggestions
+.attach{
+  display: flex;
+  align-items: center;
+}
+// suggestion
+
 // registration
 .main-modal{
   position: relative;
