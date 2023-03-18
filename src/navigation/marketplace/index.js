@@ -9,6 +9,7 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
+import Elements from '@src/elements/export.js';
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
@@ -27,13 +28,7 @@ const start = function (data, ID) {
             <h2>COMING SOON</h2>
           </div> */}
           <div class="main-inner">
-            <div class="crumbs" style="z-index:2; position:relative;">
-              <a href="/">
-                <img alt="Home" src={svg["home"]} />
-              </a>
-              <img class="arrow-path" alt="path" src={svg["arrowPath"]} />
-              <span>Marketplace</span>
-            </div>
+            <Elements.Bredcrumbs items={["Marketplace"]} />
             <h2
               class="general-title mt-25"
               style="z-index:2; position:relative;"
