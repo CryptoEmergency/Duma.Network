@@ -1,18 +1,12 @@
 import {
   jsx,
-  jsxFrag,
-  load,
-  Data,
-  Variable,
-  setStorage,
-  initReload,
+  jsxFrag
 } from "@betarost/cemserver/cem.js";
 
-import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
-const forExport = function ({ Static, onclick, className }) {
+const forExport = function ({ className }) {
   return (
     <section class="parthers" id="partners">
       <h2 class="general-title">Partners + Bakers</h2>
