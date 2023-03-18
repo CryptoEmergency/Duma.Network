@@ -39,6 +39,7 @@ forExport.schema = new mongoose.Schema(
       },
     ],
     price: { type: Number },
+    havePrice: { type: Number },
     targetPrice: { type: Number },
     icon: { type: String },
     galery: [],
