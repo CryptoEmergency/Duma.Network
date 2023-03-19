@@ -433,7 +433,7 @@ const mainHeader = async function () {
                   ) : Variable.dataUrl.adress == "personal" ? (
                     <div class="header-btns">
                       <button
-                        class="btn"
+                        class="btn btn-green"
                         onclick={() => {
                           fn.modals.Deposit({});
                         }}
