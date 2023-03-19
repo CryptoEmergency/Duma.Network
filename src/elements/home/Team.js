@@ -75,7 +75,7 @@ const forExport = function ({ className }) {
     <section class="team" id="team">
       <center>
         <h2 class="general-title">Core team</h2>
-        <span>from different countries</span>
+        {/* <span>from different countries</span> */}
       </center>
       <div class="team-inner">
         {team.map((item) => {
