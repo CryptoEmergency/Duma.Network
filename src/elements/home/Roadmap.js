@@ -9,7 +9,7 @@ const forExport = function ({ className }) {
       <h2 class="general-title">Roadmap</h2>
       <div class="roadmap-inner">
         <div class="roadmap-item">
-          <h6 class="roadmap-title">Q3 2022</h6>
+          <h6 class="roadmap-title">Q3 &nbsp; 2022</h6>
           <div class="roadmap-desc">
             <p class="text-green">Idea Generation</p>
             <p class="text-green">Market Analysis</p>
@@ -22,7 +22,7 @@ const forExport = function ({ className }) {
           </div>
         </div>
         <div class="roadmap-item">
-          <h6 class="roadmap-title">Q3 2022</h6>
+          <h6 class="roadmap-title">Q4 &nbsp; 2022</h6>
           <div class="roadmap-desc">
             <p class="text-green">Personal Account Development</p>
             <p class="text-green">Registration of the Company</p>
@@ -34,7 +34,7 @@ const forExport = function ({ className }) {
           </div>
         </div>
         <div class="roadmap-item">
-          <h6 class="roadmap-title">Q3 2022</h6>
+          <h6 class="roadmap-title">Q1 &nbsp; 2023</h6>
           <div class="roadmap-desc">
             <p class="text-green">Negotiations with VC & DAO</p>
             <p class="text-green">Integration of Neural Networks in work</p>
@@ -54,7 +54,7 @@ const forExport = function ({ className }) {
           </div>
         </div>
         <div class="roadmap-item">
-          <h6 class="roadmap-title">Q3 2022</h6>
+          <h6 class="roadmap-title">Q2 &nbsp; 2023</h6>
           <div class="roadmap-desc">
             <p>Closing a Seed Round</p>
             <p>Open of Strategic Round</p>
@@ -74,7 +74,7 @@ const forExport = function ({ className }) {
           </div>
         </div>
         <div class="roadmap-item">
-          <h6 class="roadmap-title">Q3 2022</h6>
+          <h6 class="roadmap-title">Q3 &nbsp; 2023</h6>
           <div class="roadmap-desc">
             <p>Launch of Public Round on IDO</p>
             <p>Launch of NFT Sale</p>
@@ -94,7 +94,7 @@ const forExport = function ({ className }) {
           </div>
         </div>
         <div class="roadmap-item">
-          <h6 class="roadmap-title">Q3 2022</h6>
+          <h6 class="roadmap-title">Q4 &nbsp; 2023</h6>
           <div class="roadmap-desc">
             <p>Deployment of the trading platform</p>
             <p>Wallet development</p>
