@@ -14,13 +14,13 @@ const forExport = function ({ className, children, varName, items }) {
 			<div class="circle-effect circle-effect2"></div>
 			<div
 				class="tabs-controller"
-				style="z-index:5; position:relative; display: flex;"
+				style="z-index:5; position:relative; display:flex;"
 			>
 				<div class="glider"></div>
 				{
 					items.map((item, index) => {
 						return (
-							<div>
+							<section>
 								<input
 									// id={`tab-${varName + index}`}
 									id={`tab-${index + 1}`}
@@ -40,7 +40,7 @@ const forExport = function ({ className, children, varName, items }) {
 								>
 									{item.title}
 								</label>
-							</div>
+							</section>
 						)
 					})
 				}
