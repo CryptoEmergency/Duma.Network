@@ -15,12 +15,12 @@ const team = [
     link: "https://www.linkedin.com/in/denmagdanov/"
   },
   {
-    name: "ROMAN",
-    lastName: "SIDE",
-    img: images["team/roman"],
-    job: "cto",
-    about: "President of the Blockchain Developers Association. CEO and founder of Timeus Lab, ZYX Network, Atomic Green",
-    link: "https://www.linkedin.com/in/saydulin-roman/"
+    name: "TOM",
+    lastName: "NOSOV",
+    img: images["team/tom"],
+    job: "cao",
+    about: "Senior analyst and partnership development specialist. Experienced trader and Business Analyst",
+
   },
   {
     name: "MAXIM",

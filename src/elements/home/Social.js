@@ -9,7 +9,7 @@ const forExport = function ({ className }) {
   return (
     <section class="info-social" id="social">
       <div class="info">
-        <h3>MORE INFO</h3>
+        {/* <h3>MORE INFO</h3> */}
         <a
           target="_blank"
           href="https://linktr.ee/duma_network"
@@ -26,20 +26,26 @@ const forExport = function ({ className }) {
         </a>
       </div>
       <div class="social">
-        <h3>SOCIAL</h3>
+        <h2>SOCIAL</h2>
         <span>Subscribe to our social networks!</span>
         <div class="social-inner">
+          <a href="https://www.linkedin.com/company/88679206/" target="_blank">
+            <img src={svg["icons/in"]} alt="Linkedin" />
+          </a>
           <a href="https://discord.gg/8wg2pDGHgj" target="_blank">
             <img src={svg["icons/discord"]} alt="Discord" />
           </a>
-          <a href="https://t.me/duma_network" target="_blank">
+          <a href="https://t.me/+hcqjTIVE8Z0xNzUy" target="_blank">
             <img src={svg["icons/telegram"]} alt="Telegram" />
           </a>
-          <a href="https://twitter.com/duma_network" target="_blank">
+          <a href="https://t.me/+OiD9SYSHvNk2YTUy" target="_blank">
+            <img src={svg["icons/telegram"]} alt="Telegram" />
+          </a>
+          <a href="https://twitter.com/duma_network/" target="_blank">
             <img src={svg["icons/twitter"]} alt="Twitter" />
           </a>
           <a
-            href="https://www.youtube.com/@DENMAGDANOV/featured"
+            href="https://www.youtube.com/c/DENMAGDANOV/videos"
             target="_blank"
           >
             <img src={svg["icons/youtube"]} alt="Youtube" />

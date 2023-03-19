@@ -418,7 +418,7 @@ $back in $backAdvance {
   position: relative;
   background-image: url(../svg/backDown.svg);
   background-repeat: no-repeat;
-  background-position: center 0;
+  background-position: center -70px;
   width: 100%;
   padding-bottom: 25px;
   padding-top: 30px;
@@ -452,7 +452,7 @@ $back in $backAdvance {
 // }
 .social-inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 // section info-social
@@ -633,7 +633,7 @@ $back in $backAdvance {
   }
 
   .social-inner {
-    grid-gap: 10px;
+    grid-gap: 20px;
   }
 
   // team
