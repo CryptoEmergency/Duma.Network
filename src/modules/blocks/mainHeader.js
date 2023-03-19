@@ -169,7 +169,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burger = !burger;
+                          burgerMenu("hide")
                         }}
                       >
                         research
@@ -179,6 +179,7 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/research/seed");
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Seed</a>
@@ -186,6 +187,7 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/research/private");
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Private</a>
@@ -193,6 +195,7 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/research/public");
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Public</a>
@@ -205,6 +208,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
+                          burgerMenu("hide")
                         }}
                       >
                         Academy
@@ -216,6 +220,7 @@ const mainHeader = async function () {
                           this.classList.toggle("active");
                         }
                         initReload();
+
                       }}
                     >
                       <a href="" class="header-list_item">
@@ -238,7 +243,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burger = !burger;
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">About Project</a>
@@ -258,7 +263,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burger = !burger;
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Advantages</a>
@@ -278,7 +283,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burger = !burger;
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Partners</a>
@@ -298,7 +303,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burger = !burger;
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Roadmap</a>
@@ -318,7 +323,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burger = !burger;
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Team</a>
@@ -338,7 +343,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burger = !burger;
+                            burgerMenu("hide")
                           }}
                         >
                           <a class="menu-sublist_item">Social network</a>
@@ -358,7 +363,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burger = !burger;
+                          burgerMenu("hide")
                         }}
                       >
                         documents
@@ -379,6 +384,7 @@ const mainHeader = async function () {
                             class="menu-sublist_item"
                             onclick={() => {
                               fn.modals.Soon({});
+                              burgerMenu("hide")
                             }}
                           >
                             LitePaper
