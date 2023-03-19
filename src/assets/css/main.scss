@@ -327,7 +327,8 @@ $back in $backAdvance {
 
 .roadmap-item {
   padding: 15px 30px;
-  background: var(--text-main);
+  // background: var(--text-main);
+  background: $back-secondary;
   border-radius: 18px;
   transition: .5s ease;
 }
@@ -337,17 +338,23 @@ $back in $backAdvance {
 }
 
 .roadmap-title {
-  color: #0D3E36;
+  color: white;
+  // color: #0D3E36;
   font-size: 24px;
   line-height: 44px;
   text-decoration: underline #92d919;
 }
 
 .roadmap-desc {
-  color: #595656;
+  // color: #595656;
+  color: #cbcbcb;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 125%;
+}
+
+.text-green {
+  color: #92DA18;
 }
 
 // section roadmap

@@ -11,39 +11,39 @@ const forExport = function ({ className }) {
         <div class="roadmap-item">
           <h6 class="roadmap-title">Q3 2022</h6>
           <div class="roadmap-desc">
-            <p>Idea Generation</p>
-            <p>Market Analysis</p>
-            <p>WhitePaper v1.0</p>
-            <p>Pre-Seed round launch</p>
-            <p>Launch of the website and socials</p>
-            <p>Team building and expansion</p>
-            <p>Finalization of the concept and wrapping</p>
-            <p>Launch of the platform development</p>
+            <p class="text-green">Idea Generation</p>
+            <p class="text-green">Market Analysis</p>
+            <p class="text-green">WhitePaper v1.0</p>
+            <p class="text-green">Pre-Seed round launch</p>
+            <p class="text-green">Launch of the website and socials</p>
+            <p class="text-green">Team building and expansion</p>
+            <p class="text-green">Finalization of the concept and wrapping</p>
+            <p class="text-green">Launch of the platform development</p>
           </div>
         </div>
         <div class="roadmap-item">
           <h6 class="roadmap-title">Q3 2022</h6>
           <div class="roadmap-desc">
-            <p>Personal Account Development</p>
-            <p>Registration of the Company</p>
-            <p>Start Information Recourse Development</p>
-            <p>Search for Investors & Affiliates</p>
-            <p>Strategic partnerships</p>
-            <p>Launching Landing page</p>
-            <p>Launching Subpage on Site</p>
+            <p class="text-green">Personal Account Development</p>
+            <p class="text-green">Registration of the Company</p>
+            <p class="text-green">Start Information Recourse Development</p>
+            <p class="text-green">Search for Investors & Affiliates</p>
+            <p class="text-green">Strategic partnerships</p>
+            <p class="text-green">Launching Landing page</p>
+            <p class="text-green">Launching Subpage on Site</p>
           </div>
         </div>
         <div class="roadmap-item">
           <h6 class="roadmap-title">Q3 2022</h6>
           <div class="roadmap-desc">
-            <p>Negotiations with VC & DAO</p>
-            <p>Integration of Neural Networks in work</p>
-            <p>Launching Social Network & Automatization</p>
-            <p>Preparation of sites for attracting traffic</p>
-            <p>MVP, Testing</p>
-            <p>Launching Personal Account in System</p>
-            <p>First Projects on Listing</p>
-            <p>First Airdrop</p>
+            <p class="text-green">Negotiations with VC & DAO</p>
+            <p class="text-green">Integration of Neural Networks in work</p>
+            <p class="text-green">Launching Social Network & Automatization</p>
+            <p class="text-green">Preparation of sites for attracting traffic</p>
+            <p class="text-green">MVP, Testing</p>
+            <p class="text-green">Launching Personal Account in System</p>
+            <p class="text-green">First Projects on Listing</p>
+            <p class="text-green">First Airdrop</p>
             <p>Alpha Version of The Information Recourse</p>
             <p>Launch of Referral System</p>
             <p>Closing of the PreSeed Round</p>
