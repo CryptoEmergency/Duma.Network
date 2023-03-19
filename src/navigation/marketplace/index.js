@@ -66,8 +66,8 @@ const cardsRecords = [
     icon: "cookie",
     galery: ["1"]
   }
-
 ]
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTab = "seed";

@@ -45,9 +45,7 @@
   }
 }
 
-// .tabas-alone{
 
-// }
 .tabs-controller {
   position: relative;
   border-bottom: 1px solid $grey-dark;
@@ -203,6 +201,20 @@
   .icon {
     height: 100%;
     width: auto;
+  }
+
+  .circle {
+    width: 30px;
+    height: 30px;
+    color: $white;
+    background: $blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 32px;
+    font-weight: 700;
   }
 
   div {

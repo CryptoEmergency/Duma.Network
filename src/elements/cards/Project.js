@@ -13,14 +13,13 @@ const forExport = function ({ className, items = [] }) {
 			{items.map((item) => {
 				return (
 					<div class="card-item">
-						<img class="card-item_img" src={images[`card/${item.galery[0]}`]} />
+						<img class="card-item_img" src={images[`research/${item.galery[0]}`]} />
 						<div class="info">
 							<div class="info-bell">
-								<div class="circle">{item.rang ? item.rang : 0}</div>
 								<img src={svg["iconsGreen/bell"]} class="bell"></img>
 							</div>
 							<div class="company">
-								<img src={images[`card/logo/${item.icon}`]}></img>
+								<img src={images[`research/${item.icon}`]}></img>
 								<div class="company-title">
 									<span>{item.name}</span>
 								</div>
@@ -31,6 +30,8 @@ const forExport = function ({ className, items = [] }) {
 								</div>
 								<div class="status">{item.status}</div>
 								<div class="ecosystem">{item.category}</div>
+								<div class="circle">{item.rank ? item.rank : 0}</div>
+								<div style="color:#E7C343;">{item.rank < 100 ? "low rank" : "medium rank"}</div>
 							</div>
 							<div class="desc">
 								<span class="desc-title">{item.title}</span>
@@ -40,12 +41,10 @@ const forExport = function ({ className, items = [] }) {
 							</div>
 							<div class="socials">
 								{item.social.map((element) => {
-									// console.log(element.name, svg[`iconsGreen/${element.name}`]);
-
 									return (
 										<a target="_blank" href={element.link}>
 											<img
-												alt="Telegram"
+												alt={element.name}
 												src={svg[`iconsGreen/${element.name}`]}
 												class="icon-green"
 											></img>
@@ -53,19 +52,19 @@ const forExport = function ({ className, items = [] }) {
 									);
 								})}
 							</div>
-							{item.price && item.targetPrice ? (
-								<div class="progressBlock">
-									<div
-										style={[
-											`width: calc(100% / 100 * ${item.targetPrice / item.havePrice
-											})`,
-										]}
-										class="progressBlock-column"
-									></div>
-								</div>
-							) : null}
-							<span class="summ">{item.targetPrice}$</span>
-							<button class="btn">InvesT</button>
+							<div class="desc">
+								<span class="desc-title">SEED ROUND | {item.seedRound}$</span>
+							</div>
+							<div class="progressBlock">
+								<div
+									style={[
+										`width: calc(100% * ${item.have / item.target})`,
+									]}
+									class="progressBlock-column"
+								></div>
+							</div>
+							<span class="summ">{item.have}$/{item.target}$</span>
+							<button class="btn btn-green">{!item.partners ? "RESEARCH ABOUT THE Project" : "Become a partners"}</button>
 						</div>
 					</div>
 				)
