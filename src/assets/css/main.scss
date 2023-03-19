@@ -58,7 +58,7 @@ $back in $backAdvance {
   position: relative;
   background-image: url(../svg/backMain.svg);
   background-repeat: no-repeat;
-  background-position: center -460px;
+  background-position: center -500px;
   width: 100%;
 }
 
@@ -71,7 +71,7 @@ $back in $backAdvance {
 .advantages-inner,
 .parthers-inner,
 .roadmap-inner,
-.team-inner{
+.team-inner {
   padding-top: 50px;
 }
 
@@ -82,11 +82,12 @@ $back in $backAdvance {
   padding-top: 60px;
   position: relative;
 }
-.intro-desc{
+
+.intro-desc {
   align-self: flex-start;
 }
-.title-wrap
-.intro-title {
+
+.title-wrap .intro-title {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 40px;
@@ -108,6 +109,7 @@ $back in $backAdvance {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
 }
+
 .ecosystem-title {
   font-weight: 600;
   font-size: 30px;
@@ -115,9 +117,11 @@ $back in $backAdvance {
   position: relative;
   top: -60px;
 }
+
 .ecosystem-box {
   padding-bottom: 50px;
 }
+
 .eco-title {
   font-size: 18px;
   font-weight: 600;
@@ -125,16 +129,19 @@ $back in $backAdvance {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
-.eco-item .eco-text:not(:last-child){
+
+.eco-item .eco-text:not(:last-child) {
   padding-bottom: 20px;
 }
-.eco-item_desc{
+
+.eco-item_desc {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   // height: 100%;
 }
-.ecosystem-box .eco-item:nth-child(2) .eco-text{
+
+.ecosystem-box .eco-item:nth-child(2) .eco-text {
   border-right: 1px solid var(--text-main);
   border-left: 1px solid var(--text-main);
   padding-left: 25px;
@@ -410,6 +417,7 @@ $back in $backAdvance {
   padding-top: 30px;
   // z-index: 1;
 }
+
 // .main-back-down{
 //   position: absolute;
 //   bottom: -100px;
@@ -427,9 +435,11 @@ $back in $backAdvance {
 .info-social .btn {
   width: 250px;
 }
-.btn-green{
+
+.btn-green {
   background: var(--btn-green);
 }
+
 // .social{
 
 // }
@@ -473,9 +483,11 @@ $back in $backAdvance {
     border-right: none;
     border-left: none;
   }
-  .ecosystem-title{
+
+  .ecosystem-title {
     top: 0;
   }
+
   .ecosystem-box {
     padding-bottom: 25px;
   }

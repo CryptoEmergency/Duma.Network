@@ -1,11 +1,119 @@
 import {
   jsx,
-  jsxFrag
+  jsxFrag,
+  initAfter
 } from "@betarost/cemserver/cem.js";
 
 import images from "@assets/images/index.js";
+import anime from 'animejs/lib/anime.es.js';
+
+let options = {
+  opacityIn: [0, 1],
+  scaleIn: [0.2, 1],
+  scaleOut: 3,
+  durationIn: 800,
+  durationOut: 600,
+  delay: 500,
+  easing: "easeInExpo"
+};
+
+
 
 const forExport = function ({ className }) {
+  initAfter(() => {
+    console.log('=ce0c46=', "test")
+    anime.timeline({ loop: true })
+      .add({
+        targets: '.text-animation .one',
+        opacity: options.opacityIn,
+        scale: options.scaleIn,
+        duration: options.durationIn
+      })
+      .add({
+        targets: '.text-animation .one',
+        opacity: 0,
+        scale: options.scaleOut,
+        easing: options.easing,
+        duration: options.durationOut,
+        delay: options.delay
+      })
+      .add({
+        targets: '.text-animation .two',
+        opacity: options.opacityIn,
+        scale: options.scaleIn,
+        duration: options.durationIn
+      })
+      .add({
+        targets: '.text-animation .two',
+        opacity: 0,
+        scale: options.scaleOut,
+        easing: options.easing,
+        duration: options.durationOut,
+        delay: options.delay
+      })
+      .add({
+        targets: '.text-animation .three',
+        opacity: options.opacityIn,
+        scale: options.scaleIn,
+        duration: options.durationIn
+      })
+      .add({
+        targets: '.text-animation .three',
+        opacity: 0,
+        scale: options.scaleOut,
+        easing: options.easing,
+        duration: options.durationOut,
+        delay: options.delay
+      })
+      .add({
+        targets: '.text-animation .four',
+        opacity: options.opacityIn,
+        scale: options.scaleIn,
+        duration: options.durationIn
+      })
+      .add({
+        targets: '.text-animation .four',
+        opacity: 0,
+        scale: options.scaleOut,
+        easing: options.easing,
+        duration: options.durationOut,
+        delay: options.delay
+      })
+      .add({
+        targets: '.text-animation .five',
+        opacity: options.opacityIn,
+        scale: options.scaleIn,
+        duration: options.durationIn
+      })
+      .add({
+        targets: '.text-animation .five',
+        opacity: 0,
+        scale: options.scaleOut,
+        easing: options.easing,
+        duration: options.durationOut,
+        delay: options.delay
+      })
+      .add({
+        targets: '.text-animation .six',
+        opacity: options.opacityIn,
+        scale: options.scaleIn,
+        duration: options.durationIn
+      })
+      .add({
+        targets: '.text-animation .six',
+        opacity: 0,
+        scale: options.scaleOut,
+        easing: options.easing,
+        duration: options.durationOut,
+        delay: options.delay
+      })
+      .add({
+        targets: '.text-animation',
+        opacity: 0,
+        duration: 500,
+        delay: 500
+      })
+  })
   return (
     <section class="intro" id="about">
       <div class="intro-inner">
@@ -23,9 +131,17 @@ const forExport = function ({ className }) {
       </div>
 
       <div class="ecosystem">
-        <h2 class="ecosystem-title">
-          ALL IN ONE - <br />
-          CHOOSE, RESEARCH, STUDY, INVEST, SELL, EARN.
+        <h2 class="ecosystem-title" style="display:flex;">
+          ALL IN ONE -
+          <div class="text-animation">
+            <span class="one">CHOOSE</span>
+            <span class="two">RESEARCH</span>
+            <span class="three">STUDY</span>
+            <span class="four">INVEST</span>
+            <span class="five">SELL</span>
+            <span class="six">EARN</span>
+          </div>
+          {/* CHOOSE, RESEARCH, STUDY, INVEST, SELL, EARN. */}
         </h2>
         <div class="grid-3 ecosystem-box">
           <div class="eco-item">

@@ -38,9 +38,33 @@ const isMobile = {
   },
 };
 
-let burger = false;
+const burgerMenu = function (action = "toogle") {
+  if (action == "toogle") {
+    ElBurger.classList.toggle("active")
+    ElBurgerBlock.classList.toggle("active")
+    return
+  }
+
+  if (action == "hide") {
+    ElBurger.classList.remove("active")
+    ElBurgerBlock.classList.remove("active")
+    return
+  }
+
+  if (action == "show") {
+    ElBurger.classList.add("active")
+    ElBurgerBlock.classList.add("active")
+    return
+  }
+
+
+}
+
+let ElBurger
+let ElBurgerBlock
 
 const mainHeader = async function () {
+  let burger = false;
   load({
     ID: "mainHeader",
     fn: () => {
@@ -55,7 +79,7 @@ const mainHeader = async function () {
                 href="/"
                 onclick={(e) => {
                   fn.siteLink(e);
-                  burger = !burger;
+                  burgerMenu("hide")
                 }}
               >
                 <img src={images["logo"]}></img>
@@ -63,31 +87,38 @@ const mainHeader = async function () {
             </div>
             <div class="header-menu menu">
               <div
-                class={["menu-icon", burger ? "active" : null]}
+                Element={($el) => {
+                  ElBurger = $el;
+                }}
+                class="menu-icon"
                 onclick={function () {
-                  burger = !burger;
-                  initReload();
+                  burgerMenu()
                 }}
               >
                 <span></span>
               </div>
               <nav class="header-nav">
-                <div class={["menu-body", burger ? "active" : null]}>
+                <div
+                  Element={($el) => {
+                    ElBurgerBlock = $el;
+                  }}
+                  class="menu-body">
                   <a
                     target="_blank"
                     href="https://t.me/magdanov_bot"
                     class="btn btn-gradient mr-5"
+                    onclick={(e) => {
+                      burgerMenu("hide")
+                    }}
                   >
                     become our partner
                   </a>
-
                   <ul class="header-list">
                     <li
                       onclick={function () {
                         if (isMobile.any()) {
                           this.classList.toggle("active");
                         }
-                        initReload();
                       }}
                     >
                       <a
@@ -95,46 +126,33 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burger = !burger;
+                          burgerMenu("hide")
                         }}
                       >
                         MARKETPLACE
                       </a>
                       <span class="menu-arrow"></span>
                       <ul class="menu-sublist">
-                        <li>
-                          <a
-                            href="/marketplace/seed"
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              fn.siteLink(e);
-                              burger = !burger;
-                            }}
-                          >
-                            Seed
-                          </a>
+                        <li
+                          onclick={(e) => {
+                            fn.siteLink("/marketplace/seed");
+                            burgerMenu("hide")
+                          }}>
+                          <a class="menu-sublist_item">Seed</a>
                         </li>
-                        <li>
-                          <a
-                            href="/marketplace/private"
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              fn.siteLink(e);
-                            }}
-                          >
-                            Private
-                          </a>
+                        <li
+                          onclick={(e) => {
+                            fn.siteLink("/marketplace/private");
+                            burgerMenu("hide")
+                          }}>
+                          <a class="menu-sublist_item">Private</a>
                         </li>
-                        <li>
-                          <a
-                            href="/marketplace/public"
-                            class="menu-sublist_item"
-                            onclick={(e) => {
-                              fn.siteLink(e);
-                            }}
-                          >
-                            Public
-                          </a>
+                        <li
+                          onclick={(e) => {
+                            fn.siteLink("/marketplace/public");
+                            burgerMenu("hide")
+                          }}>
+                          <a class="menu-sublist_item">Public</a>
                         </li>
                       </ul>
                     </li>
@@ -435,7 +453,7 @@ const mainHeader = async function () {
                       My Account
                     </button>
                   )}
-                  <span onclick={function () {}}>ENG</span>
+                  <span onclick={function () { }}>ENG</span>
 
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"
