@@ -27,7 +27,7 @@ const team = [
     lastName: "SINKEVICH",
     img: images["team/maxim"],
     job: "cvo",
-    about: "CBDM and founder of Timeus Lab andZYX Network. Experienced entrepreneur in the blockchain industry.",
+    about: "CBDM and founder of Timeus Lab and ZYX Network. Experienced entrepreneur in the blockchain industry.",
     link: "https://www.linkedin.com/in/maxim-senkevich/"
   },
   {
