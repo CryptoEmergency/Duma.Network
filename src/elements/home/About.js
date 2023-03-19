@@ -21,7 +21,6 @@ let options = {
 
 const forExport = function ({ className }) {
   initAfter(() => {
-    console.log('=ce0c46=', "test")
     anime.timeline({ loop: true })
       .add({
         targets: '.text-animation .one',

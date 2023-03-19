@@ -7,28 +7,32 @@ import images from "@assets/images/index.js";
 
 const team = [
   {
-    name: "DEN MAGDANOV",
+    name: "DEN",
+    lastName: "MAGDANOV",
     img: images["team/den"],
     job: "ceo",
     about: "Entrepreneur with 11 years of experience in offline and online retail. An Crypto influencer with more than 20 thousand suscribers",
     link: "https://www.linkedin.com/in/denmagdanov/"
   },
   {
-    name: "ROMAN SIDE",
+    name: "ROMAN",
+    lastName: "SIDE",
     img: images["team/roman"],
     job: "cto",
     about: "President of the Blockchain Developers Association. CEO and founder of Timeus Lab, ZYX Network, Atomic Green",
     link: "https://www.linkedin.com/in/saydulin-roman/"
   },
   {
-    name: "MAXIM SINKEVICH",
+    name: "MAXIM",
+    lastName: "SINKEVICH",
     img: images["team/maxim"],
     job: "cvo",
     about: "CBDM and founder of Timeus Lab andZYX Network. Experienced entrepreneur in the blockchain industry.",
     link: "https://www.linkedin.com/in/maxim-senkevich/"
   },
   {
-    name: "ALEXANDER PRAVOSUDOV",
+    name: "ALEXANDER",
+    lastName: "PRAVOSUDOV",
     img: images["team/aleksandr"],
     job: "CIO",
     about:
@@ -90,7 +94,7 @@ const forExport = function ({ className }) {
                   <img class="team-img" src={item.img} />
               }
 
-              <h5 class="team-name">{item.name}</h5>
+              <h5 class="team-name"><div>{item.name}</div> <div>{item.lastName}</div></h5>
               <span class="team-job">
                 {item.job}
                 <img src={item.flag} />
