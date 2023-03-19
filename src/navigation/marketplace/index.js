@@ -9,65 +9,87 @@ import {
 import { fn } from "@src/functions/export.js";
 import Elements from '@src/elements/export.js';
 
+
 const cardsRecords = [
   {
+    galery: ["duma1"],
+    icon: "logo-duma",
     name: "DUMA Network",
-    rang: 100,
     status: "Active",
-    category: "Ecosystem",
-    title: "Unite To Earn",
-    description: "Is an investment ecosystem that combines a Launchpad, an information resource and an academy.",
+    category: "Platform",
+    rank: 101,
+    // title: "Unite To Earn",
+    description: "Invest in startups with flexible amounts & sell assets pre-market entry via our platform. Make informed decisions by studying the research.",
     social: [
       { name: "instagram", link: "" },
       { name: "facebook", link: "" },
       { name: "twitter", link: "" },
       { name: "youtube", link: "" }
     ],
-    price: 1,
-    havePrice: 5000,
-    targetPrice: 80000,
-    icon: "cookie",
-    galery: ["1"]
-  }, {
-    name: "DUMA2 Network",
-    rang: 100,
-    status: "Active",
-    category: "Ecosystem",
-    title: "Unite To Earn",
-    description: "Is an investment ecosystem that combines a Launchpad, an information resource and an academy.",
-    social: [
-      { name: "instagram", link: "" },
-      { name: "facebook", link: "" },
-      { name: "twitter", link: "" },
-      { name: "youtube", link: "" }
-    ],
-    price: 1,
-    havePrice: 5000,
-    targetPrice: 80000,
-    icon: "cookie",
-    galery: ["1"]
+    seedRound: 0.12,
+    have: 50000,
+    target: 580000,
+    partners: true
   },
   {
-    name: "DUMA3 Network",
-    rang: 100,
-    status: "Active",
-    category: "Ecosystem",
-    title: "Unite To Earn",
-    description: "Is an investment ecosystem that combines a Launchpad, an information resource and an academy.",
+    galery: ["cookie"],
+    icon: "logo-cookie",
+    name: "Cookie 3",
+    status: "Listing",
+    category: "Service",
+    rank: 119,
+    // title: "Unite To Earn",
+    description: "Cookie3 provides insights how to target ADS, personalize content etc.",
     social: [
       { name: "instagram", link: "" },
       { name: "facebook", link: "" },
       { name: "twitter", link: "" },
       { name: "youtube", link: "" }
     ],
-    price: 1,
-    havePrice: 5000,
-    targetPrice: 80000,
-    icon: "cookie",
-    galery: ["1"]
+    seedRound: 0.25,
+    have: 2500000,
+    target: 2500000
+  },
+  {
+    galery: ["veax"],
+    icon: "logo-veax",
+    name: "VEAX",
+    status: "Listing",
+    category: "DEX",
+    rank: 97,
+    // title: "Unite To Earn",
+    description: "Near blockchain based AMM with classic order-book interface and ability to provide single sided liquidity.",
+    social: [
+      { name: "instagram", link: "" },
+      { name: "facebook", link: "" },
+      { name: "twitter", link: "" },
+      { name: "youtube", link: "" }
+    ],
+    seedRound: 0.1,
+    have: 1200000,
+    target: 1200000
+  },
+  {
+    galery: ["takerProtokol"],
+    icon: "logo-takerProtokol",
+    name: "Taker Protocol",
+    status: "Listing",
+    category: "Ecosystem",
+    rank: 61,
+    // title: "Unite To Earn",
+    description: "Liquidity protocol that allows users to liquidate & rent all kinds of novel crypto assets, including encrypted collectibles, metaverse assets, financial papers, synthetic assets.",
+    social: [
+      { name: "instagram", link: "" },
+      { name: "facebook", link: "" },
+      { name: "twitter", link: "" },
+      { name: "youtube", link: "" }
+    ],
+    seedRound: 0.1,
+    have: 80000,
+    target: 80000
   }
-]
 
+]
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTab = "seed";
