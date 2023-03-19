@@ -9,7 +9,7 @@ import images from "@assets/images/index.js";
 const forExport = function ({ className }) {
   return (
     <section class="parthers" id="partners">
-      <h2 class="general-title">Partners + Bakers</h2>
+      <h2 class="general-title">Partners and Bakers</h2>
       <div class="parthers-inner">
         <a target="_blank" href="https://zyx.network/">
           <img class="parther-img" src={svg["partners/partner1"]} />
