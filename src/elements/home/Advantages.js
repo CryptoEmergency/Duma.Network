@@ -30,7 +30,7 @@ const forExport = function ({ className }) {
           <div class="invest-item">
             <img src={svg["investing/key"]} />
             <p class="duma-text">
-              Startups receive listing, shilling, investments & a large community from the platform.
+              Startups receive listing, shilling, investments and a large community from the platform.
             </p>
           </div>
           <div class="invest-item">
@@ -51,11 +51,19 @@ const forExport = function ({ className }) {
         <div class="contract-inner">
           <div class="contract-desc">
             <img src={svg["contract"]} class="contract-img" />
-            <span>
-              Conclusion of SAFT contract for amounts from 5000$
+            <span style="width: 80%; padding-left: 50px">
+              Secure investing through the platform protocol with escrow wallets and the possibility of a refund in case of a lack of development from the startup
             </span>
           </div>
-          <button class="btn">INVEST IN PROJECT</button>
+          <a
+            style="width: 20%;"
+            target="_blank"
+            href="https://linktr.ee/duma_network"
+            class="btn btn-green"
+          >
+            More INFORMATION
+          </a>
+          {/* <button class="btn btn-green"></button> */}
         </div>
       </section>
       <section class="advantages">
