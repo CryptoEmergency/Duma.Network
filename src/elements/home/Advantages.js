@@ -12,36 +12,37 @@ const forExport = function ({ className }) {
         <center>
           <h2 class="general-title">Advantages</h2>
           <span>
-            The benefits of investing now on the Pre Seed round:
+            For different market participants.
           </span>
         </center>
         <div class="invest-inner">
           <div class="invest-item">
             <img src={svg["investing/coin"]} />
-            <p class="duma-text">Low token price, just $0.1</p>
+            <p class="duma-text">Private investors receive project research and fund startups</p>
           </div>
           <div class="invest-item">
             <img src={svg["investing/door"]} />
             <p class="duma-text">
-              No token hold, unlocking from the 1st month
+              Newcomers study the market and all the information about
+              new projects
             </p>
           </div>
           <div class="invest-item">
             <img src={svg["investing/key"]} />
             <p class="duma-text">
-              No token hold, unlocking from the 1st month
+              Startups receive listing, shilling, investments & a large community from the platform.
             </p>
           </div>
           <div class="invest-item">
             <img src={svg["investing/picture"]} />
             <p class="duma-text">
-              NFT from ecosystem collection, on investing from 2000$
+              The community buys SAFT from investors, even after closed rounds.
             </p>
           </div>
           <div class="invest-item">
             <img src={svg["investing/bonus"]} />
             <p class="duma-text">
-              Bonus of 10% of tokens on amounts investing from 10000$
+              Influencers get allocations in the best projects and can invest together with followers
             </p>
           </div>
         </div>
