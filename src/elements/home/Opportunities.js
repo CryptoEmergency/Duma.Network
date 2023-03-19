@@ -47,7 +47,7 @@ const forExport = function ({ className }) {
             </p>
           </div>
           <div class="advance-item advance-item_back--5">
-            <h6 class="advance-title">NFT & their capabilities</h6>
+            <h6 class="advance-title">NFT and their capabilities</h6>
             <p class="duma-text">
               Additional opportunities for NFT platform holders. Closed investments, passive income, and networking.
             </p>
