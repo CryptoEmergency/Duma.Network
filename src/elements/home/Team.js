@@ -10,22 +10,22 @@ const team = [
     name: "DEN MAGDANOV",
     img: images["team/den"],
     job: "ceo",
-    about:
-      "Entrepreneur with 11 years of experience in offline & online retail. An Crypto influencer with more than 20 thousand suscribers",
+    about: "Entrepreneur with 11 years of experience in offline and online retail. An Crypto influencer with more than 20 thousand suscribers",
+    link: "https://www.linkedin.com/in/denmagdanov/"
   },
   {
     name: "ROMAN SIDE",
     img: images["team/roman"],
     job: "cto",
-    about:
-      "President of the Blockchain Developers Association. CEO & founder of Timeus Lab, ZYX Network, Atomic Green",
+    about: "President of the Blockchain Developers Association. CEO and founder of Timeus Lab, ZYX Network, Atomic Green",
+    link: "https://www.linkedin.com/in/saydulin-roman/"
   },
   {
     name: "MAXIM SINKEVICH",
     img: images["team/maxim"],
     job: "cvo",
-    about:
-      "CBDM & founder of Timeus Lab & ZYX Network. Experienced entrepreneur in the blockchain industry.",
+    about: "CBDM and founder of Timeus Lab andZYX Network. Experienced entrepreneur in the blockchain industry.",
+    link: "https://www.linkedin.com/in/maxim-senkevich/"
   },
   {
     name: "ALEXANDER PRAVOSUDOV",
@@ -77,7 +77,19 @@ const forExport = function ({ className }) {
         {team.map((item) => {
           return (
             <div class="team-item">
-              <img class="team-img" src={item.img} />
+              {
+                item.link
+                  ?
+                  <a
+                    href={item.link}
+                    target="_blank"
+                  >
+                    <img class="team-img" src={item.img} />
+                  </a>
+                  :
+                  <img class="team-img" src={item.img} />
+              }
+
               <h5 class="team-name">{item.name}</h5>
               <span class="team-job">
                 {item.job}
