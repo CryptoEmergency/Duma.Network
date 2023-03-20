@@ -61,6 +61,7 @@ const start = function (data, ID) {
                         <img src={images["personal/3"]}></img>
                         <img src={images["personal/4"]}></img>
                       </div>
+                      <div class="daily-progress"></div>
                       <button class="btn btn-green mt-10">daily task</button>
                     </div>
                     <div class="blocks-item interesting">

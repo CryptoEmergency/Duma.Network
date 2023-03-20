@@ -207,7 +207,7 @@ $back in $backAdvance {
 
 // section contract
 .contract {
-  padding: 45px 80px;
+  padding: 35px 80px;
   background: $back-secondary;
   border-radius: 12px;
   margin: 50px 0;
@@ -335,14 +335,28 @@ $back in $backAdvance {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
+  // .roadmap-item{
+  //   &:nth-child(3){
+  //     &.poligonBig{
+  //       position: absolute;
+  //       // top: 20px;
+  //       // left: 50px;
+  //       background: url(../svg/polygonBig.svg);
+  //       bottom: 0;
+  //       right: 0;
+  //     }
+  //   }
+  // }
 }
 
 .roadmap-item {
   padding: 15px 30px;
+  position: relative;
   // background: var(--text-main);
   background: $back-secondary;
   border-radius: 18px;
   transition: .5s ease;
+
 }
 
 .roadmap-item:hover {

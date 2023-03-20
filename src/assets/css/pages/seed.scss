@@ -213,7 +213,7 @@ $back in $backCard {
 
 .company {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   position: relative;
 
   img {
@@ -273,20 +273,22 @@ $back in $backCard {
     font-weight: 600;
     line-height: 32px;
   }
-
-  .ecosystem {
-    background: var(--text-main);
-    color: var(--black);
-  }
   .rang{
-    color: var(--orange);
-    font-family: $conthrax;
     font-size: 12px;
     line-height: 14px;
     font-weight: 600;
   }
-}
+  .ecosystem {
+    background: var(--text-main);
+    color: var(--black);
+  }
 
+}
+.rang{
+  color: var(--orange);
+  font-family: $conthrax;
+
+}
 .socials {
   display: flex;
   padding: 15px 0;
@@ -297,19 +299,24 @@ $back in $backCard {
 }
 
 .icon-green {
-  filter: invert(65%) sepia(94%) saturate(293%) hue-rotate(39deg) brightness(95%) contrast(94%);
+  // filter: invert(65%) sepia(94%) saturate(293%) hue-rotate(39deg) brightness(95%) contrast(94%);
   max-height: 20px;
 }
 
 .progressBlock {
-  background: $grey;
+  // background: $grey;
   border-radius: 4px;
+  // background: #1B2023;
+  background: rgba(27, 32, 35, 0.25);
+  // opacity: 0.25;
+  box-shadow: inset 0px 2px 2px #1B2023;
 }
 
 .progressBlock-column {
   height: 10px;
   background: $green-light;
   border-radius: 4px;
+  opacity: 1;
 }
 
 .summ {

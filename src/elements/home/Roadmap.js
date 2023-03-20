@@ -1,7 +1,4 @@
-import {
-  jsx,
-  jsxFrag
-} from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 const forExport = function ({ className }) {
   return (
@@ -34,12 +31,15 @@ const forExport = function ({ className }) {
           </div>
         </div>
         <div class="roadmap-item">
+          <div class="polygonBig"></div>
           <h6 class="roadmap-title">Q1 &nbsp; 2023</h6>
           <div class="roadmap-desc">
             <p class="text-green">Negotiations with VC & DAO</p>
             <p class="text-green">Integration of Neural Networks in work</p>
             <p class="text-green">Launching Social Network & Automatization</p>
-            <p class="text-green">Preparation of sites for attracting traffic</p>
+            <p class="text-green">
+              Preparation of sites for attracting traffic
+            </p>
             <p class="text-green">MVP, Testing</p>
             <p class="text-green">Launching Personal Account in System</p>
             <p class="text-green">First Projects on Listing</p>

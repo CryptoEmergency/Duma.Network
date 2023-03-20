@@ -150,11 +150,20 @@
       font-family: $inter;
       font-weight: 600;
       font-size: 20px;
+      position: relative;
     }
     .notice{
       width: 20px;
       height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
       background: var(--blue);
+      position: absolute;
+      top: 0;
+      right: -25px;
+      border-radius: 50%;
     }
   }
 }
