@@ -25,6 +25,7 @@ const initSocket = async function () {
         socket = io(options)
 
         socket.on("connect", (socket) => {
+            console.log('=862894=', "Socket connect!")
             Variable.socketConnect = true
             clearTimeout(linkTimer)
             if (Variable.load) {
@@ -35,6 +36,7 @@ const initSocket = async function () {
         });
 
         socket.on('disconnect', () => {
+            console.log('=862894=', "Socket disconnect!")
             socket = null
             Variable.socketConnect = false
             clearTimeout(linkTimer)

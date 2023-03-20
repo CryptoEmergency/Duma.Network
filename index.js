@@ -25,8 +25,9 @@ const start = async function () {
     hotReload,
     path: {
       src: path.resolve("app.js"),
+      template: path.resolve("src/template/index.html"),
       public: path.resolve("public"),
-      fileName: "main.js",
+      fileName: "main.[hash].js",
     },
     port,
     mode,
