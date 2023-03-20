@@ -1,6 +1,7 @@
 import { ServerInit, ServerBuild, ServerStart } from "@betarost/cemserver";
 import { schemaMongo, connectMongo } from "./mongoose/export.js";
 import { startSocket } from "./socket/export.js"
+import { startExpress } from "./express/export.js"
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
@@ -18,6 +19,7 @@ if (process.env.DISABLERELOAD) {
 const start = async function () {
   await schemaMongo()
   await connectMongo()
+  await startExpress(53535)
   await startSocket(portApi)
 
   ServerInit({
@@ -49,6 +51,11 @@ const start = async function () {
         target: "http://127.0.0.1:" + portApi,
         // pathRewrite: { "^/api": "" },
         ws: true
+      },
+      "/upload": {
+        target: "http://127.0.0.1:53535",
+        changeOrigin: true,
+        secure: false,
       },
     },
   });
