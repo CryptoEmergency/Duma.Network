@@ -151,6 +151,11 @@
       font-weight: 600;
       font-size: 20px;
     }
+    .notice{
+      width: 20px;
+      height: 20px;
+      background: var(--blue);
+    }
   }
 }
 .upgrade{
@@ -301,15 +306,15 @@
   &.reward{
     grid-row: 1;
     grid-column: 2 / span 3;
-    display: grid;
-    grid-template-columns: 7fr 2fr;
+    // display: grid;
+    // grid-template-columns: 7fr 2fr;
     grid-gap: 10px;
   }
   &.lock{
     grid-row: 2;
     grid-column: 2 / span 3;
-    display: grid;
-    grid-template-columns: 7fr 2fr;
+    // display: grid;
+    // grid-template-columns: 7fr 2fr;
   }
 }
 .row-block{
@@ -433,6 +438,62 @@
   
 }
 // refferal
+
+// bookmarks
+.bookmarks-inner{
+  display: grid;
+  // &.bookmarks-item:n
+}
+.bookmarks-item{
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
+
+  &:nth-child(2n){
+    background: var(--back-blur);
+  }
+
+  .user-card{
+    align-items: center;
+  }
+}
+// bookmarks
+
+// profile
+.main-blocks{
+  &.profile{
+    .blocks-item{
+      grid-column: 1 / span 3;
+      &:first-child{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 50px;
+      }
+      &:nth-child(2){
+        height: 400px;
+        position: relative;
+      }
+    }
+    .userDate{
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 1fr;
+    }
+    .dailyReward{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .recentLogins-item{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+// profile
 
 // forma admin
 .personal-form{

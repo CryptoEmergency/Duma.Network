@@ -38,7 +38,8 @@
 .btn{
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 12px;
+  // font-size: 12px;
+  font-size: 16px;
   line-height: 24px;
   display: flex;
   justify-content: center;
@@ -50,8 +51,7 @@
   border-radius: 10px;
   padding: 8px 10px;
   cursor: pointer;
-  height: 2.5rem;
-  // width: 14rem;
+  height: 50px;
 }
 .btn-gradient{
   background: var(--btn-gradient);

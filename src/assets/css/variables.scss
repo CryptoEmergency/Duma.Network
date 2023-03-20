@@ -9,6 +9,13 @@
   --green: #99CD41;
   --black: #000000;
   --orange: #F9BA33;
+  --blue: #1872DB;
+  
+
+  --back-card-0: linear-gradient(180deg, rgba(110, 150, 68, 0.33) 0%, rgba(0, 86, 252, 0.13) 100%);
+  --back-card-1: linear-gradient(180deg, rgba(155, 52, 255, 0.2) 0%, rgba(42, 16, 207, 0.05) 100%);
+  --back-card-2: linear-gradient(180deg, rgba(247, 242, 171, 0.3) 100%, #F4B6E7 100%);
+  --back-card-3: linear-gradient(180deg, #81D37E -170%, rgba(53, 60, 53, 0.39) 100%);
   --back-blur:linear-gradient(180deg, rgba(255, 255, 255, 0.25) 12.55%, rgba(255, 255, 255, 0.2) 33.51%, rgba(255, 255, 255, 0.2) 59.66%);
 }
 
@@ -33,18 +40,18 @@ $grey-dark: #97999B;
 $grey: #C0C0C0;
 $dashboard: #303437;
 // background
-$back0: linear-gradient(180deg, rgba(23, 74, 255, 0.5) -55.8%, rgba(112, 0, 255, 0) 130.07%), linear-gradient(180deg, rgba(255, 255, 255, 0.5) 12.55%, rgba(255, 255, 255, 0.3) 78.66%);
-$back1: linear-gradient(180deg, rgba(115, 255, 5, 0.07) 0%, rgba(154, 210, 57, 0.12) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back2: linear-gradient(180deg, rgba(158, 66, 247, 0.168) 0%, rgba(255, 119, 0, 0.3) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back3: linear-gradient(180deg, rgba(4, 141, 255, 0.376) 0%, rgba(255, 0, 0, 0.12) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.376) 12.55%, rgba(255, 255, 255, 0.4375) 42.51%, rgba(255, 255, 255, 0.312) 78.66%);
-$back4: linear-gradient(0deg, rgba(157, 57, 57, 0.2), rgba(157, 57, 57, 0.2)), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back5: linear-gradient(180.22deg, rgba(4, 255, 165, 0.2) -4.72%, rgba(44, 208, 149, 0.082) -4.71%, rgba(0, 255, 255, 0.2) 125.43%), linear-gradient(180deg, rgba(255, 255, 255, 0.376) 12.55%, rgba(255, 255, 255, 0.4375) 42.51%, rgba(255, 255, 255, 0.312) 78.66%);
-$back6: linear-gradient(180deg, rgba(255, 153, 0, 0.1776) -68.21%, rgba(255, 204, 0, 0) 155.63%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back7: linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), linear-gradient(180.65deg, rgba(81, 253, 0, 0.405) -44.18%, rgba(0, 56, 253, 0.265) 145.5%);
-$back8: linear-gradient(180deg, rgba(255, 0, 199, 0.062) -25.21%, rgba(255, 0, 0, 0.064) 130.58%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back9: linear-gradient(180.13deg, rgba(4, 141, 255, 0.61) -72.39%, rgba(255, 255, 255, 0.39) 152.98%, rgba(4, 141, 255, 0.65) 152.98%);
-$back10: linear-gradient(180deg, rgba(219, 237, 17, 0.22) 0%, rgba(255, 41, 195, 0.155) 100%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-$back11: linear-gradient(180.35deg, rgba(0, 86, 252, 0.119) 0.31%, rgba(106, 27, 154, 0.357) 106.36%), linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
+$back0: linear-gradient(180deg, rgba(23, 74, 255, 0.25) 0%, rgba(112, 0, 255, 0.05) 100%);
+$back1: linear-gradient(180deg, rgba(255, 153, 0, 0.25) 0%, rgba(255, 204, 0, 0.05) 100%);
+$back2: linear-gradient(180deg, rgba(158, 66, 247, 0.17) 0%, rgba(255, 119, 0, 0.3) 100%);
+$back3: linear-gradient(180deg, rgba(4, 141, 255, 0.38) 0%, rgba(255, 0, 0, 0.12) 110.87%);
+$back4: linear-gradient(180deg, rgba(94, 157, 64, 0.24) 0%, rgba(83, 57, 157, 0.42) 96.87%);
+$back5: linear-gradient(180deg, rgba(4, 255, 165, 0.2136) 0%, rgba(96, 44, 208, 0.18) 0.01%, rgba(0, 255, 240, 0.2) 100%);;
+$back6: linear-gradient(180deg, rgba(115, 255, 5, 0.07) 0%, rgba(154, 210, 57, 0.12) 99.48%);
+$back7: linear-gradient(180deg, rgba(4, 141, 255, 0.122) 0%, rgba(255, 255, 255, 0.078) 42.34%, rgba(4, 141, 255, 0.13) 100%);
+$back8: linear-gradient(180deg, rgba(255, 0, 199, 0.062) -25.21%, rgba(255, 0, 0, 0.064) 130.58%);
+$back9: linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), linear-gradient(178.42deg, rgba(0, 25, 253, 0.3) -40%, rgba(253, 0, 0, 0.2) 100.3%);
+$back10: linear-gradient(180deg, rgba(219, 237, 17, 0.22) 0%, rgba(255, 41, 195, 0.15) 99.48%);
+$back11: linear-gradient(180deg, rgba(0, 86, 252, 0.12) 0%, rgba(106, 27, 154, 0.35) 99.48%);
 // fonts
 $raleway: 'Raleway', sans-serif;
 $conthrax: 'Conthrax', sans-serif;

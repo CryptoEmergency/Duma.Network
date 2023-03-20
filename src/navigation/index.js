@@ -1,11 +1,8 @@
-import {
-  jsx,
-  jsxFrag,
-  load
-} from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag, load } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
-import Elements from '@src/elements/export.js';
+import svg from "@assets/svg/index.js";
+import Elements from "@src/elements/export.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
@@ -25,6 +22,7 @@ const start = function (data, ID) {
               <Elements.home.Social />
             </div>
           </div>
+          <img class="backDown" src={svg.backDown}></img>
         </div>
       );
     },

@@ -10,9 +10,7 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
-import Elements from '@src/elements/export.js';
-
-
+import Elements from "@src/elements/export.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
@@ -51,6 +49,7 @@ const start = function (data, ID) {
                           <div class="user-name">
                             <span class="user-name_name">
                               {Variable.myInfo.firstName}
+                              <span class="notice">5</span>
                             </span>
                             <span class="user-name_wel">Verify</span>
                           </div>
@@ -62,7 +61,7 @@ const start = function (data, ID) {
                         <img src={images["personal/3"]}></img>
                         <img src={images["personal/4"]}></img>
                       </div>
-                      <button class="btn mt-10">daily task</button>
+                      <button class="btn btn-green mt-10">daily task</button>
                     </div>
                     <div class="blocks-item interesting">
                       <span class="text-category text">
@@ -93,9 +92,7 @@ const start = function (data, ID) {
                       {/* <img src={images["personal/circleGraph"]}></img> */}
                     </div>
                     <div class="blocks-item news">
-                      <span class="text-category text">
-                        News
-                      </span>
+                      <span class="text-category text">News</span>
                       <span class="soon-text">coming soon</span>
                     </div>
                   </div>

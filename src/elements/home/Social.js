@@ -1,7 +1,4 @@
-import {
-  jsx,
-  jsxFrag
-} from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 import svg from "@assets/svg/index.js";
 
@@ -30,7 +27,7 @@ const forExport = function ({ className }) {
         <span>Subscribe to our social networks!</span>
         <div class="social-inner">
           <a href="https://www.linkedin.com/company/88679206/" target="_blank">
-            <img src={svg["icons/in"]} alt="Linkedin" />
+            <img src={svg["icons/linkedin"]} alt="Linkedin" />
           </a>
           <a href="https://discord.gg/8wg2pDGHgj" target="_blank">
             <img src={svg["icons/discord"]} alt="Discord" />

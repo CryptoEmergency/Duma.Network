@@ -26,32 +26,46 @@ const mainFooter = async function () {
             </div>
             <div class="social-icons">
               <a
+                href="https://www.linkedin.com/company/88679206/"
+                target="_blank"
+                class="social-icon"
+              >
+                <img src={svg["icons/linkedin"]} alt="Linkedin" />
+              </a>
+              <a
                 href="https://discord.gg/8wg2pDGHgj"
                 target="_blank"
                 class="social-icon"
               >
-                <img src={svg["icons/discord"]} />
+                <img src={svg["icons/discord"]} alt="Discord" />
               </a>
               <a
-                href="https://t.me/duma_network"
+                href="https://t.me/+hcqjTIVE8Z0xNzUy"
                 target="_blank"
                 class="social-icon"
               >
-                <img src={svg["icons/telegram"]} />
+                <img src={svg["icons/telegram"]} alt="Telegram" />
               </a>
               <a
-                href="https://twitter.com/duma_network"
+                href="https://t.me/+OiD9SYSHvNk2YTUy"
                 target="_blank"
                 class="social-icon"
               >
-                <img src={svg["icons/twitter"]} />
+                <img src={svg["icons/telegram"]} alt="Telegram" />
               </a>
               <a
-                href="https://www.youtube.com/@DENMAGDANOV/featured"
+                href="https://twitter.com/duma_network/"
                 target="_blank"
                 class="social-icon"
               >
-                <img src={svg["icons/youtube"]} />
+                <img src={svg["icons/twitter"]} alt="Twitter" />
+              </a>
+              <a
+                href="https://www.youtube.com/c/DENMAGDANOV/videos"
+                target="_blank"
+                class="social-icon"
+              >
+                <img src={svg["icons/youtube"]} alt="Youtube" />
               </a>
             </div>
             <div class="footer-info">
@@ -63,7 +77,8 @@ const mainFooter = async function () {
                     behavior: "smooth",
                   });
                 }}
-                class="arrow-up">
+                class="arrow-up"
+              >
                 <img src={svg["arrowUp"]} />
               </a>
             </div>

@@ -36,6 +36,8 @@ $backAdvance: (
   11: $back11,
 );
 
+
+
 @each $index,
 $back in $backAdvance {
   .advance-item_back--#{$index} {
@@ -58,7 +60,7 @@ $back in $backAdvance {
   position: relative;
   background-image: url(../svg/backMain.svg);
   background-repeat: no-repeat;
-  background-position: center -500px;
+  background-position: center -525px;
   width: 100%;
 }
 
@@ -205,7 +207,7 @@ $back in $backAdvance {
 
 // section contract
 .contract {
-  padding: 35px;
+  padding: 45px 80px;
   background: $back-secondary;
   border-radius: 12px;
   margin: 50px 0;
@@ -218,18 +220,28 @@ $back in $backAdvance {
 }
 
 .contract-inner {
+  // display: grid;
+  // grid-template-columns: 2fr 1fr;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .btn{
+    width: 370px;
+    height: 50px;
+  }
 }
 
 .contract-desc {
   display: flex;
   align-items: center;
+  span{
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 }
 
 .contract-img {
-  margin-right: 15px;
+  // margin-right: 15px;
   filter: drop-shadow(0px 0px 10px rgba(155, 211, 60, 0.4));
 }
 
@@ -413,18 +425,21 @@ $back in $backAdvance {
 // section info-social
 .info-social {
   display: flex;
-  justify-content: space-around;
-
+  justify-content: center;
+  padding: 65px;
   position: relative;
-  background-image: url(../svg/backDown.svg);
-  background-repeat: no-repeat;
-  background-position: center -70px;
-  width: 100%;
-  padding-bottom: 25px;
-  padding-top: 30px;
-  // z-index: 1;
+  z-index: 2;
+  .info{
+    padding-right: 170px;
+  }
 }
-
+.backDown{
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+}
 // .main-back-down{
 //   position: absolute;
 //   bottom: -100px;
@@ -440,19 +455,35 @@ $back in $backAdvance {
 }
 
 .info-social .btn {
-  width: 250px;
+  width: 300px;
 }
 
 .btn-green {
   background: var(--btn-green);
 }
 
-// .social{
-
-// }
+.social{
+  h2{
+    font-size: 36px;
+    line-height: 44px
+  }
+  span{
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
 .social-inner {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      background-size: contain;
+      max-height: 35px;
+    }
+  }
 }
 
 // section info-social
@@ -651,5 +682,11 @@ $back in $backAdvance {
 
   .team-text {
     font-size: 14px;
+  }
+  // social
+  .info-social{
+    .info{
+      padding-right: 0;
+    }
   }
 }

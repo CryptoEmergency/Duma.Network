@@ -55,99 +55,43 @@ const start = function (data, ID) {
                       </div>
                     </div>
                     <div class="blocks-item reward">
-                      <div class="col">
+                      <div class="row-block">
                         <span>Reward</span>
-                        <span>рефки</span>
-                        <span>токены которые приходят дистрибьюцией</span>
-                        <span>пассивный доход</span>
-                        <span>начисления стейкинга</span>
-                        <span>ЛП начисления</span>
+                        <span class="text-green">15,530$ (+4,17%)</span>
                       </div>
-                      <div class="col">
-                        <span
-                          class="text-green"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          15,530$ (+4,17%)
-                        </span>
-                        <span
-                          class="text-green"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-green"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-green"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-green"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-green"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
+                      <div class="row-block">
+                        <span>Refs</span>
+                        <span class="text-green">+1,500$</span>
+                      </div>
+                      <div class="row-block">
+                        <span>Buy</span>
+                        <span class="text-green">1,500$</span>
+                      </div>
+                      <div class="row-block">
+                        <span>Input</span>
+                        <span class="text-green">+1,500$</span>
+                      </div>
+                      <div class="row-block">
+                        <span>Output</span>
+                        <span class="text-green">-1,500$</span>
                       </div>
                     </div>
                     <div class="blocks-item lock">
-                      <div class="col">
-                        <span>Reward</span>
-                        <span>рефки</span>
-                        <span>токены которые приходят дистрибьюцией</span>
-                        <span>пассивный доход</span>
-                        <span>начисления стейкинга</span>
-                        <span>ЛП начисления</span>
+                      <div class="row-block">
+                        <span>Sale</span>
+                        <span class="text-red">+1,500$</span>
                       </div>
-                      <div class="col">
-                        <span
-                          class="text-red"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          15,530$
-                        </span>
-                        <span
-                          class="text-red"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-red"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-red"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-red"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
-                        <span
-                          class="text-red"
-                          style="justify-content:flex-end;display:flex;"
-                        >
-                          +1,500$
-                        </span>
+                      <div class="row-block">
+                        <span>Buy</span>
+                        <span class="text-red">-1,500$</span>
+                      </div>
+                      <div class="row-block">
+                        <span>Input</span>
+                        <span class="text-red">+1,500$</span>
+                      </div>
+                      <div class="row-block">
+                        <span>Output</span>
+                        <span class="text-red">-1,500$</span>
                       </div>
                     </div>
                     <div class="blocks-item news">
