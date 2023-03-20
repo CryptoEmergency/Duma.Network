@@ -9,8 +9,7 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
-import Elements from '@src/elements/export.js';
-
+import Elements from "@src/elements/export.js";
 
 const cardsRecords = [
   {
@@ -21,17 +20,18 @@ const cardsRecords = [
     category: "Platform",
     rank: 101,
     // title: "Unite To Earn",
-    description: "Invest in startups with flexible amounts & sell assets pre-market entry via our platform. Make informed decisions by studying the research.",
+    description:
+      "Invest in startups with flexible amounts & sell assets pre-market entry via our platform. Make informed decisions by studying the research.",
     social: [
       { name: "instagram", link: "" },
       { name: "facebook", link: "" },
       { name: "twitter", link: "" },
-      { name: "youtube", link: "" }
+      { name: "youtube", link: "" },
     ],
     seedRound: 0.12,
     have: 50000,
     target: 580000,
-    partners: true
+    partners: true,
   },
   {
     galery: ["cookie"],
@@ -41,16 +41,17 @@ const cardsRecords = [
     category: "Service",
     rank: 119,
     // title: "Unite To Earn",
-    description: "Cookie3 provides insights how to target ADS, personalize content etc.",
+    description:
+      "Cookie3 provides insights how to target ADS, personalize content etc.",
     social: [
       { name: "instagram", link: "" },
       { name: "facebook", link: "" },
       { name: "twitter", link: "" },
-      { name: "youtube", link: "" }
+      { name: "youtube", link: "" },
     ],
     seedRound: 0.25,
     have: 2500000,
-    target: 2500000
+    target: 2500000,
   },
   {
     galery: ["veax"],
@@ -60,16 +61,17 @@ const cardsRecords = [
     category: "DEX",
     rank: 97,
     // title: "Unite To Earn",
-    description: "Near blockchain based AMM with classic order-book interface and ability to provide single sided liquidity.",
+    description:
+      "Near blockchain based AMM with classic order-book interface and ability to provide single sided liquidity.",
     social: [
       { name: "instagram", link: "" },
       { name: "facebook", link: "" },
       { name: "twitter", link: "" },
-      { name: "youtube", link: "" }
+      { name: "youtube", link: "" },
     ],
     seedRound: 0.1,
     have: 1200000,
-    target: 1200000
+    target: 1200000,
   },
   {
     galery: ["takerProtokol"],
@@ -79,24 +81,66 @@ const cardsRecords = [
     category: "Ecosystem",
     rank: 61,
     // title: "Unite To Earn",
-    description: "Liquidity protocol that allows users to liquidate & rent all kinds of novel crypto assets, including encrypted collectibles, metaverse assets, financial papers, synthetic assets.",
+    description:
+      "Liquidity protocol that allows users to liquidate & rent all kinds of novel crypto assets, including encrypted collectibles, metaverse assets, financial papers, synthetic assets.",
     social: [
       { name: "instagram", link: "" },
       { name: "facebook", link: "" },
       { name: "twitter", link: "" },
-      { name: "youtube", link: "" }
+      { name: "youtube", link: "" },
     ],
     seedRound: 0.1,
     have: 80000,
-    target: 80000
-  }
-
-]
+    target: 80000,
+  },
+  {
+    galery: ["web3"],
+    icon: "logo-takerProtokol",
+    name: "Taker Protocol",
+    status: "Listing",
+    category: "Ecosystem",
+    rank: 61,
+    // title: "Unite To Earn",
+    description:
+      "Liquidity protocol that allows users to liquidate & rent all kinds of novel crypto assets, including encrypted collectibles, metaverse assets, financial papers, synthetic assets.",
+    social: [
+      { name: "instagram", link: "" },
+      { name: "facebook", link: "" },
+      { name: "twitter", link: "" },
+      { name: "youtube", link: "" },
+    ],
+    seedRound: 0.1,
+    have: 80000,
+    target: 80000,
+    blur: true,
+  },
+  {
+    galery: ["2"],
+    icon: "logo-takerProtokol",
+    name: "Taker Protocol",
+    status: "Listing",
+    category: "Ecosystem",
+    rank: 61,
+    // title: "Unite To Earn",
+    description:
+      "Liquidity protocol that allows users to liquidate & rent all kinds of novel crypto assets, including encrypted collectibles, metaverse assets, financial papers, synthetic assets.",
+    social: [
+      { name: "instagram", link: "" },
+      { name: "facebook", link: "" },
+      { name: "twitter", link: "" },
+      { name: "youtube", link: "" },
+    ],
+    seedRound: 0.1,
+    have: 80000,
+    target: 80000,
+    blur: true,
+  },
+];
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTab = "seed";
-  Static.projects = []
+  Static.projects = [];
   load({
     ID,
     fnLoad: async () => {
@@ -107,14 +151,18 @@ const start = function (data, ID) {
       //   method: "Projects",
       //   params: { filter: {} },
       // });
-
     },
     fn: () => {
       return (
         <div class="wrapper">
           <div class="main-inner">
-            <Elements.Bredcrumbs items={[{ title: "Research", link: '/research' }]} />
-            <h2 class="general-title mt-25" style="z-index:2; position:relative;">
+            <Elements.Bredcrumbs
+              items={[{ title: "Research", link: "/research" }]}
+            />
+            <h2
+              class="general-title mt-25"
+              style="z-index:2; position:relative;"
+            >
               Research
             </h2>
             <div class="tabs">
@@ -186,23 +234,27 @@ const start = function (data, ID) {
                 <div class="glider"></div>
               </div>
               <div>
-                <div class="tabs-content" hidden={Static.activeTab == "seed" ? false : true}>
-                  <Elements.cards.Project
-                    items={cardsRecords}
-                  />
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "seed" ? false : true}
+                >
+                  <Elements.cards.Project items={cardsRecords} />
                 </div>
-                <div class="tabs-content" hidden={Static.activeTab == "private" ? false : true}>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "private" ? false : true}
+                >
                   <Elements.cards.Project
                     items={[cardsRecords[1], cardsRecords[2]]}
                   />
                 </div>
-                <div class="tabs-content" hidden={Static.activeTab == "public" ? false : true}>
-                  <Elements.cards.Project
-                    items={[cardsRecords[2]]}
-                  />
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "public" ? false : true}
+                >
+                  <Elements.cards.Project items={[cardsRecords[2]]} />
                 </div>
               </div>
-
             </div>
           </div>
         </div>
