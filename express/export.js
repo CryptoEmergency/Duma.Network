@@ -6,8 +6,7 @@ const Router = express.Router();
 
 const pathFile = path.resolve("public/assets/upload/")
 
-console.log('=cab60f pathFile=', pathFile)
-Router.post('/upload/:type', function (req, res) {
+Router.post('/upload', function (req, res) {
 
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.json({ error: 'No files were uploaded.' });
@@ -159,7 +158,7 @@ Router.post('/upload/:type', function (req, res) {
 });
 
 
-const startExpress = function (port = 53535) {
+const startExpress = async function (port = 53535) {
     app.use(Router);
     app.listen(port, (error) => {
         if (error) {
