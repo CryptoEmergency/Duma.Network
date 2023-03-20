@@ -15,6 +15,7 @@ const start = function (data, ID) {
             <div class="main-inner">
               <Elements.home.About />
               <Elements.home.Advantages />
+             
               <Elements.home.Opportunities />
               <Elements.home.Partners />
               <Elements.home.Roadmap />

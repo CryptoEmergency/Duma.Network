@@ -233,20 +233,6 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-                  {/* <div class="scheme-card">
-                  <div class="scheme-sidebar_item text">
-                    <span>Utility Value</span>
-                    <span class="text-green">30 points</span>
-                  </div>
-                  <div class="scheme-card_desc">
-                   <div class="grid-2">
-                    <div>
-
-                    </div>
-                    <div></div>
-                   </div>
-                  </div>
-                </div> */}
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>

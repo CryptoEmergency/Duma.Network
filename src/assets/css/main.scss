@@ -252,7 +252,7 @@ $back in $backAdvance {
   position: relative;
 }
 
-.advantages .circle1,
+.advantages .circle1,.circle1, .cicle2,
 .advantages .circle2 {
   position: absolute;
   bottom: 30%;
@@ -261,14 +261,16 @@ $back in $backAdvance {
   box-shadow: 0 0 200px 125px #1E6978;
 }
 
-.advantages .circle2 {
+.advantages .circle2, .circle2 {
   top: 30%;
   right: 25%;
   bottom: auto;
   left: auto;
   box-shadow: 0px 0px 180px 100px #1e6978;
 }
-
+// .cicle2, .circle1{
+//   position: sticky;
+// }
 .advantages-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
