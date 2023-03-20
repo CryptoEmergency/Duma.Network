@@ -41,7 +41,7 @@ const initSocket = async function () {
 
         socket.on('disconnect', () => {
             console.log('=862894=', "Socket disconnect!")
-            socket = null
+            // socket = null
             Variable.socketConnect = false
             clearTimeout(linkTimer)
             if (Variable.load) {
