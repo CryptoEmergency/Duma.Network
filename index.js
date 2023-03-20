@@ -33,10 +33,21 @@ const start = async function () {
     mode,
     allowedHosts: ["duma.cryptodev.store", "duma.network", target],
     proxy: {
+      // "/api/v2": {
+      //   target: "http://127.0.0.1:" + portApi,
+      //   changeOrigin: true,
+      //   secure: false,
+      //   ws: true
+      // },
+      // "/api/v2": {
+      //   target: "http://127.0.0.1:" + portApi,
+      //   pathRewrite: { "^/api": "" },
+      //   changeOrigin: true,
+      //   secure: false,
+      // },
       "/api/v2": {
         target: "http://127.0.0.1:" + portApi,
-        changeOrigin: true,
-        secure: false,
+        // pathRewrite: { "^/api": "" },
         ws: true
       },
     },
