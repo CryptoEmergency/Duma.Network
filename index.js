@@ -8,7 +8,7 @@ dotenv.config();
 const port = 80;
 const portApi = 9092;
 let hotReload = true;
-const target = "cryptodev.store";
+const target = "duma.network";
 const mode = "development";
 
 if (process.env.DISABLERELOAD) {
