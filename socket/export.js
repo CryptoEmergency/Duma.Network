@@ -9,7 +9,7 @@ const io = new Server(server, {
     path: '/api/v2',
     pingTimeout: 3000,
     pingInterval: 3000,
-    // transports: ['websocket'],
+    transports: ['websocket'],
     // allowUpgrades: false,
     // upgrade: false,
     // cookie: false
