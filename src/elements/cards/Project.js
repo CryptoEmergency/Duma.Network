@@ -10,65 +10,72 @@ const forExport = function ({ className, items = [] }) {
       {items.map((item, index) => {
         return (
           <div class={["card-item", `card-item_${index}`]}>
-            <img
-              class="card-item_img"
-              src={images[`research/${item.galery[0]}`]}
-            />
-            <div class="info">
-              <div class="company">
-                <img src={images[`research/${item.icon}`]}></img>
-                <div class="company-title">
-                  <span>{item.name}</span>
+            {item.blur ? (
+              <span class="soon-text">NEW STARTUPS IS COMING SOON</span>
+            ) : null}
+            <div
+              class={["card-item_inner", item.blur ? "card-item_blur" : null]}
+            >
+              <img
+                class="card-item_img"
+                src={images[`research/${item.galery[0]}`]}
+              />
+              <div class="info">
+                <div class="company">
+                  <img src={images[`research/${item.icon}`]}></img>
+                  <div class="company-title">
+                    <span>{item.name}</span>
+                  </div>
+                  <div class="info-bell">
+                    <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                  </div>
                 </div>
-                <div class="info-bell">
-                  <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                <div class="statuses">
+                  <div class="icon">
+                    <img src={svg.binance}></img>
+                  </div>
+                  <div class="status">{item.status}</div>
+                  <div class="ecosystem">{item.category}</div>
+                  <div class="circle">{item.rank ? item.rank : 0}</div>
+                  <div class="rang">
+                    {item.rank < 100 ? "low rank" : "medium rank"}
+                  </div>
                 </div>
-              </div>
-              <div class="statuses">
-                <div class="icon">
-                  <img src={svg.binance}></img>
+                <div class="desc">
+                  <p class="desc-text">{item.description}</p>
                 </div>
-                <div class="status">{item.status}</div>
-                <div class="ecosystem">{item.category}</div>
-                <div class="circle">{item.rank ? item.rank : 0}</div>
-                <div class="rang">
-                  {item.rank < 100 ? "low rank" : "medium rank"}
+                <div class="socials">
+                  {item.social.map((element) => {
+                    return (
+                      <a target="_blank" href={element.link}>
+                        <img
+                          alt={element.name}
+                          src={svg[`iconsGreen/${element.name}`]}
+                          class="icon-green"
+                        ></img>
+                      </a>
+                    );
+                  })}
                 </div>
+                <div class="card-text">
+                  <span>SEED ROUND</span>
+                  {item.seedRound}$
+                </div>
+                <div class="progressBlock">
+                  <div
+                    style={[`width: calc(100% * ${item.have / item.target})`]}
+                    class="progressBlock-column"
+                  ></div>
+                </div>
+                <span class="summ">
+                  {item.have}$/{item.target}$
+                </span>
+                <button class="btn btn-green">
+                  {!item.partners
+                    ? "RESEARCH ABOUT THE Project"
+                    : "Become a partners"}
+                </button>
               </div>
-              <div class="desc">
-                <p class="desc-text">{item.description}</p>
-              </div>
-              <div class="socials">
-                {item.social.map((element) => {
-                  return (
-                    <a target="_blank" href={element.link}>
-                      <img
-                        alt={element.name}
-                        src={svg[`iconsGreen/${element.name}`]}
-                        class="icon-green"
-                      ></img>
-                    </a>
-                  );
-                })}
-              </div>
-              <div class="card-text">
-                <span>SEED ROUND</span>
-                {item.seedRound}$
-              </div>
-              <div class="progressBlock">
-                <div
-                  style={[`width: calc(100% * ${item.have / item.target})`]}
-                  class="progressBlock-column"
-                ></div>
-              </div>
-              <span class="summ">
-                {item.have}$/{item.target}$
-              </span>
-              <button class="btn btn-green">
-                {!item.partners
-                  ? "RESEARCH ABOUT THE Project"
-                  : "Become a partners"}
-              </button>
             </div>
           </div>
         );

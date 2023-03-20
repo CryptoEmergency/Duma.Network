@@ -155,6 +155,12 @@
     text-align: center;
   }
 }
+.list-num{
+  list-style-type: decimal;
+  ol{
+    list-style-type: decimal;
+  }
+}
 // project-scheme
 .el-bottom{
   .btn{

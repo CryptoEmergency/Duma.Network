@@ -186,20 +186,28 @@ const start = function (data, ID) {
                   </div>
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>Problem</span>
-                      <span class="text-green">10/10 points</span>
+                      <span>Product</span>
                     </div>
                     <div class="scheme-card_desc text">
-                      The first problem is the large number of newcomers who
-                      annually lose more than $10 billion in scam projects. The
-                      reason for this is the lack of basic knowledge of analysis
-                      and the high cost of quality education. The second problem
-                      is that venture investing is not accessible to most people
-                      and is often limited only to public rounds. The third
-                      problem is that more investors want to exit SAFT deals
-                      before TGE or before vesting ends. However, they cannot do
-                      so because there are no automated mechanics and liquidity
-                      for the asset.
+                      A platform for investing in startups with small checks and
+                      selling assets before entering the market, which includes:
+                      <ul class="list-num">
+                        <ol>
+                          Research hub with all the information about projects,
+                          research, a rating system and education.
+                        </ol>
+                        <ol>
+                          SAFT Marketplace for crowdfunding, asset management,
+                          distribution, and sales.
+                        </ol>
+                        <ol>
+                          A protocol for safe investment through an escrow smart
+                          contract, splitting your vesting assets, packaging
+                          them into NFTs with metadata about the final recipient
+                          and amount, for the possibility of further selling the
+                          vesting asset
+                        </ol>
+                      </ul>
                     </div>
                   </div>
                   <div class="scheme-card">

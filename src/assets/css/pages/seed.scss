@@ -131,6 +131,13 @@ $back in $backCard {
     background: $back;
   }
 }
+.card-item_blur{
+  filter: blur(10px);
+  background: rgba(48, 52, 55, 0.5);
+  backdrop-filter: blur(10px);
+  position: relative;
+
+}
 .card-item {
   border-radius: 20px;
   position: relative;
@@ -139,50 +146,60 @@ $back in $backCard {
   flex-direction: column;
   justify-content: space-between;
   backdrop-filter: blur(7px);
+    .card-item_inner{
+      .card-item_img {
+        position: relative;
+        top: -2px;
+        width: 100%;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+      }
 
-  .card-item_img {
-    position: relative;
-    top: -2px;
-    width: 100%;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-  }
+      .info {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // height: 100%;
+        grid-gap: 0;
+      }
 
-  .info {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    grid-gap: 0;
-  }
+      .desc {
+        font-size: 16px;
+      }
 
-  .desc {
-    font-size: 16px;
-  }
+      .desc-title {
+        font-weight: 600;
+      }
 
-  .desc-title {
-    font-weight: 600;
-  }
-
-  .desc-text {
-    font-weight: 600;
-    -webkit-line-clamp: 4;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 96px;
-  }
-  .card-text{
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 32px;
-    span{
-      border-right: 2px solid var(--green);
-      padding-right: 15px;
-      margin-right: 15px;
+      .desc-text {
+        font-weight: 600;
+        -webkit-line-clamp: 4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 96px;
+      }
+      .card-text{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 32px;
+        span{
+          border-right: 2px solid var(--green);
+          padding-right: 15px;
+          margin-right: 15px;
+        }
+      }
     }
+  .soon-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
   }
+
 
 }
 
