@@ -1,7 +1,4 @@
-import {
-  jsx,
-  jsxFrag
-} from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 import images from "@assets/images/index.js";
 
@@ -11,63 +8,35 @@ const team = [
     lastName: "MAGDANOV",
     img: images["team/den"],
     job: "ceo",
-    about: "Entrepreneur with 11 years of experience in offline and online retail. An Crypto influencer with more than 20 thousand suscribers",
-    link: "https://www.linkedin.com/in/denmagdanov/"
+    about:
+      "Entrepreneur with 11 years of experience in offline and online retail. An Crypto influencer with more than 20 thousand suscribers",
+    link: "https://www.linkedin.com/in/denmagdanov/",
   },
   {
     name: "TOM",
     lastName: "NOSOV",
     img: images["team/tom"],
     job: "cao",
-    about: "Senior analyst and partnership development specialist. Experienced trader and Business Analyst",
-
-  },
-  {
-    name: "MAXIM",
-    lastName: "SINKEVICH",
-    img: images["team/maxim"],
-    job: "cvo",
-    about: "CBDM and founder of Timeus Lab and ZYX Network. Experienced entrepreneur in the blockchain industry.",
-    link: "https://www.linkedin.com/in/maxim-senkevich/"
-  },
-  {
-    name: "ALEXANDER",
-    lastName: "PRAVOSUDOV",
-    img: images["team/aleksandr"],
-    job: "CIO",
     about:
-      "Head of development department at MST Company with more than 7 years of experience (Sberbank, Sberdrug,VTB, Dom.ru, Kinopoisk, Yandex).",
+      "Senior analyst and partnership development specialist. Experienced trader and Business Analyst",
   },
-  // {
-  //   name: "OGANNES OSIPYAN",
-  //   img: images["team/ogannes"],
-  //   job: "cm",
-  //   flag: images["flags/am"],
-  //   about: "President of the Blockchain Developers Association.",
-  // },
-  // {
-  //   name: "IVERI KUDAVA",
-  //   img: images["team/ivery"],
-  //   job: "bdm",
-  //   flag: images["flags/ge"],
-  //   about:
-  //     "Community manager. Crypto Business Developer. Professional Translator. Huge crypto enthusiast",
-  // },
-  // {
-  //   name: "ALEKSA MIROSLAVSKAYA",
-  //   img: images["team/roman"],
-  //   job: "bdm",
-  //   flag: images["flags/ru"],
-  //   about:
-  //     "Crypto enthusiast, investor. Has extensive experience working with major exchanges and foreign blockchain markets",
-  // },
-  // {
-  //   name: "ROMAN SIDE",
-  //   img: images["team/roman"],
-  //   job: "ceo",
-  //   flag: images["flags/country"],
-  //   about: "President of the Blockchain Developers Association.",
-  // },
+  {
+    name: "YAN",
+    lastName: "KRIVONOSOV",
+    img: images["team/yan"],
+    job: "cvo",
+    about:
+      "Founder of the Crypto Emergency development and social network laboratory, CEM blockchain, and decentralized wallet",
+    link: "https://www.linkedin.com/in/yan-krivonosov-328584219/",
+  },
+  {
+    name: "IGOR",
+    lastName: "IENSHIN",
+    img: images["team/igor"],
+    job: "CTO",
+    about:
+      "Senior with 20 years of programming experience. Creator of his own framework for website development and CTO in CEM",
+  },
 ];
 
 const forExport = function ({ className }) {
@@ -81,20 +50,17 @@ const forExport = function ({ className }) {
         {team.map((item) => {
           return (
             <div class="team-item">
-              {
-                item.link
-                  ?
-                  <a
-                    href={item.link}
-                    target="_blank"
-                  >
-                    <img class="team-img" src={item.img} />
-                  </a>
-                  :
+              {item.link ? (
+                <a href={item.link} target="_blank">
                   <img class="team-img" src={item.img} />
-              }
+                </a>
+              ) : (
+                <img class="team-img" src={item.img} />
+              )}
 
-              <h5 class="team-name"><div>{item.name}</div> <div>{item.lastName}</div></h5>
+              <h5 class="team-name">
+                <div>{item.name}</div> <div>{item.lastName}</div>
+              </h5>
               <span class="team-job">
                 {item.job}
                 <img src={item.flag} />

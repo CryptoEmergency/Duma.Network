@@ -184,32 +184,7 @@ const start = function (data, ID) {
                       for the asset.
                     </div>
                   </div>
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>Product</span>
-                    </div>
-                    <div class="scheme-card_desc text">
-                      A platform for investing in startups with small checks and
-                      selling assets before entering the market, which includes:
-                      <ul class="list-num">
-                        <ol>
-                          Research hub with all the information about projects,
-                          research, a rating system and education.
-                        </ol>
-                        <ol>
-                          SAFT Marketplace for crowdfunding, asset management,
-                          distribution, and sales.
-                        </ol>
-                        <ol>
-                          A protocol for safe investment through an escrow smart
-                          contract, splitting your vesting assets, packaging
-                          them into NFTs with metadata about the final recipient
-                          and amount, for the possibility of further selling the
-                          vesting asset
-                        </ol>
-                      </ul>
-                    </div>
-                  </div>
+
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
