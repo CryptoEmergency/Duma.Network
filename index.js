@@ -27,7 +27,7 @@ const start = async function () {
       src: path.resolve("app.js"),
       template: path.resolve("src/template/index.html"),
       public: path.resolve("public"),
-      fileName: "main.[hash].js",
+      fileName: "main.[fullhash].js",
     },
     port,
     mode,
