@@ -5,13 +5,18 @@ import anime from "animejs/lib/anime.es.js";
 import svg from "@assets/svg/index.js";
 
 let options = {
+  // targets: $el,
+
   opacityIn: [0, 1],
-  scaleIn: [0.2, 1],
+  // scaleIn: [0.2, 1],
   scaleOut: 3,
   durationIn: 800,
   durationOut: 600,
   delay: 500,
   easing: "easeInExpo",
+  // trans,
+  // easing: "linear",
+  // transalteY:
 };
 
 const forExport = function ({ className }) {
@@ -20,90 +25,103 @@ const forExport = function ({ className }) {
       .timeline({ loop: true })
       .add({
         targets: ".text-animation .one",
+        // translateY: [100, -100],
         opacity: options.opacityIn,
-        scale: options.scaleIn,
+        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .one",
+        // translateY: [100, -100],
         opacity: 0,
-        scale: options.scaleOut,
+        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       })
       .add({
         targets: ".text-animation .two",
+        // translateY: [100, -100],
         opacity: options.opacityIn,
-        scale: options.scaleIn,
+        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .two",
+        // translateY: [100, -100],
         opacity: 0,
-        scale: options.scaleOut,
+        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       })
       .add({
         targets: ".text-animation .three",
+        // translateY: [100, -100],
         opacity: options.opacityIn,
-        scale: options.scaleIn,
+        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .three",
+        // translateY: [100, -100],
         opacity: 0,
-        scale: options.scaleOut,
+        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       })
       .add({
         targets: ".text-animation .four",
+        // translateY: [100, -100],
         opacity: options.opacityIn,
-        scale: options.scaleIn,
+        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .four",
+        // translateY: [100, -100],
         opacity: 0,
-        scale: options.scaleOut,
+        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       })
       .add({
         targets: ".text-animation .five",
+        // translateY: [100, -100],
         opacity: options.opacityIn,
-        scale: options.scaleIn,
+        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .five",
+        // translateY: [100, -100],
         opacity: 0,
-        scale: options.scaleOut,
+        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       })
       .add({
         targets: ".text-animation .six",
+        // translateY: [100, -100],
         opacity: options.opacityIn,
-        scale: options.scaleIn,
+        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .six",
+        // translateY: [100, -100],
         opacity: 0,
-        scale: options.scaleOut,
+        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       })
       .add({
         targets: ".text-animation",
+        // translateY: [100, -100],
         opacity: 0,
         duration: 500,
         delay: 500,
