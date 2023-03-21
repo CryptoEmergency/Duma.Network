@@ -1,18 +1,18 @@
 import { mongoose } from "../../export.js";
 
-const getQuery = function ({ action, filter }) {
-  let query = null;
+const getQuery = function ({ action, filter, ls }) {
+  let query = null
   switch (action) {
     case "findOne":
-      query = model.findOne(filter);
+      query = model.findOne(filter)
       break;
 
     default:
-      query = model.find(filter);
+      query = model.find(filter, null, ls)
       break;
   }
-  return query;
-};
+  return query
+}
 
 const standartDate = {
   timestamps: { createdAt: "dateCreate", updatedAt: "dateUpdate" },
@@ -42,7 +42,7 @@ forExport.schema = new mongoose.Schema(
     have: { type: Number },
     target: { type: Number },
     icon: { type: String },
-    galery: [],
+    gallery: [],
     partners: { type: Boolean, default: false },
     moderation: { type: Boolean, default: false },
     active: { type: Boolean, default: true },
@@ -57,10 +57,8 @@ const model = mongoose.model(forExport.collection, forExport.schema);
 forExport.get = {};
 forExport.set = {};
 
-forExport.get.full = async function (
-  { filter = {} },
-  { _id = null, action, userInfo }
-) {
+forExport.get.full = async function ({ filter = {} }, { _id = null, action, userInfo }) {
+  filter.action = true
   if (_id) {
     const query = model.findOne({ _id });
     query.select({ password: 0 });
@@ -73,17 +71,18 @@ forExport.get.full = async function (
   return result;
 };
 
-forExport.get.all = async function (
-  { filter = {} },
-  { _id = null, action, userInfo }
-) {
+forExport.get.all = async function ({ filter = {}, sort = { _id: -1 }, limit = 20, offset = 0 }, { _id = null, action, userInfo }) {
+  filter.action = true
   if (_id) {
     const query = model.findOne({ _id });
     query.select({ password: 0 });
     const result = await query.exec();
     return result;
   }
-  const query = getQuery({ action, filter });
+  const query = getQuery({ action, filter, ls: { limit, skip: offset } })
+  if (sort) {
+    query.sort(sort)
+  }
   const result = await query.exec();
   return result;
 };

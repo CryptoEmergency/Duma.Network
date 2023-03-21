@@ -24,9 +24,7 @@ const start = function (data, ID) {
                 fn.siteLink("/");
                 return;
             }
-
-            // let tmp = await fn.socket.set({ method: "Projects", action: "insert", params: { insert: { name: "Crypto Emergency", rang: 100, status: "Active", category: "Best", title: "Mega super=))", description: "Is an investment ecosystem that combines a Launchpad, an information resource and an academy.", price: 0.64, targetPrice: 10000 } } })
-            // console.log('=f5b4ba=', tmp)
+            Static.records = await fn.socket.get({ method: "Research", params: { filter: {} } });
         },
         fn: () => {
             if (!Variable.auth || !Variable.myInfo.role) {
@@ -70,19 +68,27 @@ const start = function (data, ID) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="scheme-cards mb-15">
-                                    <div class="scheme-card">
-                                        <div class="scheme-sidebar_item text">
-                                            <img src={images["project/logo/logo"]}></img>
-
-                                        </div>
-                                        <div class="scheme-card_desc text">
-                                            <span>DUMA NETWORK</span>
-                                            <p>Invest in startups with flexible amounts & sell assets pre-market entry via our platform. Make informed decisions by studying the research.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                {
+                                    Static.records.map((item, index) => {
+                                        return (
+                                            <div class="scheme-cards mb-15"
+                                                onclick={async () => {
+                                                    fn.siteLink(`/personal/admin/edit/research/${item._id}`);
+                                                }}
+                                            >
+                                                <div class="scheme-card">
+                                                    <div class="scheme-sidebar_item text">
+                                                        <img src={item.icon ? `/assets/upload/${item.icon}` : images["project/logo/logo"]}></img>
+                                                    </div>
+                                                    <div class="scheme-card_desc text">
+                                                        <span>{item.name ? item.name : "New record"}</span>
+                                                        <p>{item.description}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>

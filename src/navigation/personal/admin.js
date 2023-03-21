@@ -24,9 +24,6 @@ const start = function (data, ID) {
                 fn.siteLink("/");
                 return;
             }
-
-            // let tmp = await fn.socket.set({ method: "Projects", action: "insert", params: { insert: { name: "Crypto Emergency", rang: 100, status: "Active", category: "Best", title: "Mega super=))", description: "Is an investment ecosystem that combines a Launchpad, an information resource and an academy.", price: 0.64, targetPrice: 10000 } } })
-            // console.log('=f5b4ba=', tmp)
         },
         fn: () => {
             if (!Variable.auth || !Variable.myInfo.role) {
