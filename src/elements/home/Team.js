@@ -19,6 +19,7 @@ const team = [
     job: "cao",
     about:
       "Senior analyst and partnership development specialist. Experienced trader and Business Analyst",
+    link: "https://www.linkedin.com/in/tom-nosov/",
   },
   {
     name: "YAN",

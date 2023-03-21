@@ -98,6 +98,7 @@
 // project-scheme
 .project-scheme{
   padding-top: 90px;
+  padding-bottom: 70px;
   display: grid;
   grid-template-columns: 1fr 9fr;
   grid-gap: 50px;
@@ -122,6 +123,7 @@
   display: grid;
   grid-template-columns: 1fr 8fr;
   padding: 20px;
+  grid-gap: 20px;
   background: var(--back-blur);
   background-blend-mode: overlay;
   box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
@@ -135,32 +137,59 @@
       margin-right: 15px;
     }
   }
+  textarea{
+    resize: none;
+  }
 }
 .list-standart{
   list-style: disc;
+  margin-left: 20px;
   > li:not(:last-child){
     padding-bottom: 15px;
   }
 }
 .scheme-team{
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 10px;
 }
 .scheme-team_item{
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-decoration: none;
+  color: var(--text-main);
   span{
     text-align: center;
   }
 }
 .list-num{
-  list-style-type: decimal;
+  list-style: decimal;
   ol{
     list-style-type: decimal;
   }
 }
+.scheme-card_desc{
+ .scheme-row:not(:last-child){
+    margin-bottom: 20px;
+ } 
+}
+.scheme-row{
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 25px;
+}
+.scheme-card_roadmap{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 50px;
+  grid-row-gap: 25px;
+}
+.link-text{
+  text-decoration: none;
+  cursor: pointer;
+}
+
 // project-scheme
 .el-bottom{
   .btn{
