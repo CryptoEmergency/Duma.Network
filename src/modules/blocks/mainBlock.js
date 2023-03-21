@@ -11,6 +11,8 @@ const mainBlock = async function () {
     fn: async ({ reload, ID, url, data }) => {
       timersClear();
       // console.log('=16853b=', Variable.listRouter)
+      // console.log('=16853b=', Variable.dataUrl)
+
       // if (
       //   Variable.dataUrl.adress == "personal" ||
       //   Variable.dataUrl.category == "personal"
@@ -49,6 +51,10 @@ const mainBlock = async function () {
 
         if (dataUrl.page) {
           page += "/" + dataUrl.page;
+        }
+
+        if (dataUrl.dopPage) {
+          page += "/" + dataUrl.dopPage;
         }
 
         if (!Variable.listRouter[page]) {

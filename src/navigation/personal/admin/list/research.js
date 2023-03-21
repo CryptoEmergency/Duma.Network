@@ -42,18 +42,38 @@ const start = function (data, ID) {
                             <div class="personal-content">
                                 {/* main page */}
                                 <section class="main mb-25  ">
-                                    <h2 class="general-title mt-25">Admin Action</h2>
+                                    <h2 class="general-title mt-25">Research lists</h2>
                                 </section>
-                                <div class="mb-10">
-                                    <button class="btn btn-green"
-                                        onclick={() => {
-                                            fn.siteLink("/personal/admin/list/research/");
-                                        }
-                                        }>Research Lists</button>
+                                <div
+                                    class="scheme-cards mb-15"
+                                    onclick={() => {
+                                        // fn.siteLink("/personal/admin/list/research/");
+                                    }}
+                                >
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <img src={images["project/logo/logo"]}></img>
+
+                                        </div>
+                                        <div class="scheme-card_desc text">
+                                            <span>ADD</span>
+                                            <p>ADD new Research</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                {/* <div>
-                                    <button class="btn btn-green">Daily Reward</button>
-                                </div> */}
+                                <div class="scheme-cards mb-15">
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <img src={images["project/logo/logo"]}></img>
+
+                                        </div>
+                                        <div class="scheme-card_desc text">
+                                            <span>DUMA NETWORK</span>
+                                            <p>Invest in startups with flexible amounts & sell assets pre-market entry via our platform. Make informed decisions by studying the research.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
