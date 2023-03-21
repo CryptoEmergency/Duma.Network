@@ -111,6 +111,20 @@ $back in $backAdvance {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
 }
+.ecosystem{
+  position: relative;
+  .polygonSmall{
+    bottom: -135px;
+    right: 220px;
+  }
+  .polygonBig{
+    bottom: -105px;
+    right: -50px;
+  }
+}
+.polygon{
+  position: absolute;
+}
 
 .ecosystem-title {
   font-weight: 600;
@@ -244,6 +258,16 @@ $back in $backAdvance {
 // section advantages
 .advantages {
   position: relative;
+  .polygonSmall{
+    bottom: -140px;
+    right: 170px;
+    width: 88px;
+  }
+  .polygonBig{
+    bottom: -190px;
+    right: -50px;
+    width: 157px;
+  }
 }
 
 .advantages .circle1,.circle1, .cicle2,
@@ -307,12 +331,27 @@ $back in $backAdvance {
 // section advantages
 
 // section partners
+.parthers{
+  position: relative;
+  .polygonBig{
+    top: -30px;
+    left: -125px;
+    width: 157px;
+  }
+  .polygonSmall{
+    bottom: -30px;
+    left: -40px;
+    width: 75px;
+  }
+}
+
 .parthers-inner {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-items: center;
   grid-gap: 25px;
   align-items: center;
+  padding-top: 70px;
 }
 
 .parther-img {
@@ -384,11 +423,24 @@ $back in $backAdvance {
 // section roadmap
 
 // section team
+.team{
+  position: relative;
+  .polygonSmall{
+    top: -70px;
+    left: 50px;
+    width: 88px;
+  }
+  .polygonBig{
+    top: -75px;
+    left: 240px;
+    width: 157px;
+  }
+}
 .team-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 50px;
-  padding-bottom: 80px;
+  padding-bottom: 120px;
 }
 
 .team-item {
@@ -444,6 +496,16 @@ $back in $backAdvance {
   .info{
     padding-right: 170px;
   }
+  .polygonSmall{
+    top: -125px;
+    right: 240px;
+    width: 88px;
+  }
+  .polygonBig{
+    top: -100px;
+    right: -20px;
+    width: 157px;
+  }
 }
 .backDown{
   position: absolute;
@@ -452,15 +514,7 @@ $back in $backAdvance {
   transform: translate(-50%, 0);
   z-index: 1;
 }
-// .main-back-down{
-//   position: absolute;
-//   bottom: -100px;
-//   left: 50%;
-//   transform: translate(-50%, 0);
-
-// }
-.info,
-.social {
+.info-social_item{
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 15px;
@@ -487,6 +541,7 @@ $back in $backAdvance {
 .social-inner {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
   a{
     display: flex;
     justify-content: center;
@@ -546,12 +601,6 @@ $back in $backAdvance {
     grid-template-columns: 1fr;
   }
 
-  .ecosystem{
-    &.ecosystem-text:first-child{
-      margin-bottom: 15px;
-    }
-  }
-
   .ecosystem-text {
     background-color: var(--text-main);
     color: var(--back-primary);
@@ -559,6 +608,7 @@ $back in $backAdvance {
     backdrop-filter: blur(2px);
     border-radius: 10px;
     font-size: 14px;
+    margin-bottom: 15px;
   }
 
   // main block
@@ -585,6 +635,23 @@ $back in $backAdvance {
 
   // investing
 
+  // contract
+  .contract{
+    padding: 20px;
+    // flex-direction: column;
+    .btn{
+      max-width: 150px;
+      width: 100%;
+    }
+  }
+  .contract-desc{
+    span{
+      padding: 0 15px;
+      font-size: 14px;
+    }
+  }
+  // contract
+
   // advantages 
   .advantages-inner {
     grid-template-columns: repeat(2, 1fr);
@@ -592,6 +659,15 @@ $back in $backAdvance {
   }
 
   // advantages 
+
+  // partners
+  .parthers-inner{
+    grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
+  }
+  .parther-img{
+    max-height: 100px;
+  }
+  // partners
 
   // roadmap 
   .roadmap-inner {
@@ -605,8 +681,42 @@ $back in $backAdvance {
   .team-inner {
     grid-template-columns: repeat(2, 1fr);
   }
-
   // team 
+
+  // info-social
+  .backDown{
+    bottom: -170px;
+  }
+  .info-social{
+    padding: 35px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 45px;
+    .info{
+      padding-right: 0;
+    }
+    .btn{
+      width: 100%;
+    }
+  }
+  .social{
+    h2{
+      font-size: 26px;
+    }
+    span{
+      font-size: 14px;
+    }
+    .social-inner{
+      a{
+        justify-content: flex-start;
+        img{
+          max-height: 25px;
+        }
+      }
+    }
+  }
+  // info-social
+
 }
 
 @media(max-width: 464px) {
@@ -635,17 +745,14 @@ $back in $backAdvance {
 
   // contract
   .contract{
-    padding: 20px;
     flex-direction: column;
     .btn{
       margin-top: 15px;
-      width: 100%;
+      max-width: 100%;
     }
   }
   .contract-desc{
     span{
-      padding: 0;
-      padding-left: 15px;
       font-size: 14px;
     }
   }
@@ -684,20 +791,6 @@ $back in $backAdvance {
     scale: 1;
   }
 
-  .info-social {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-  }
-
-  .info,
-  .social {
-    justify-items: center;
-  }
-
-  .social-inner {
-    grid-gap: 20px;
-  }
 
   // team
   .team-inner {
@@ -716,9 +809,26 @@ $back in $backAdvance {
     font-size: 14px;
   }
   // social
+  .backDown{
+    bottom: -45px;
+  }
   .info-social{
     .info{
       padding-right: 0;
     }
+  }
+  .info-social {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+
+  .info,
+  .social {
+    justify-items: center;
+  }
+
+  .social-inner {
+    grid-gap: 20px;
   }
 }

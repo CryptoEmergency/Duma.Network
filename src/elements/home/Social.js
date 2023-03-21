@@ -5,7 +5,9 @@ import svg from "@assets/svg/index.js";
 const forExport = function ({ className }) {
   return (
     <section class="info-social" id="social">
-      <div class="info">
+      <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
+      <img class="polygonBig polygon" src={svg.polygonBig}></img>
+      <div class="info info-social_item">
         {/* <h3>MORE INFO</h3> */}
         <a
           target="_blank"
@@ -22,7 +24,7 @@ const forExport = function ({ className }) {
           Dataroom
         </a>
       </div>
-      <div class="social">
+      <div class="social info-social_item">
         <h2>SOCIAL</h2>
         <span>Subscribe to our social networks!</span>
         <div class="social-inner">

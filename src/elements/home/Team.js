@@ -1,6 +1,7 @@
 import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 import images from "@assets/images/index.js";
+import svg from "@assets/svg/index.js";
 
 const team = [
   {
@@ -43,6 +44,8 @@ const team = [
 const forExport = function ({ className }) {
   return (
     <section class="team" id="team">
+      <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
+      <img class="polygonBig polygon" src={svg.polygonBig}></img>
       <center>
         <h2 class="general-title">Core team</h2>
         {/* <span>from different countries</span> */}

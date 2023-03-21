@@ -1,7 +1,4 @@
-import {
-  jsx,
-  jsxFrag
-} from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
@@ -9,6 +6,8 @@ import images from "@assets/images/index.js";
 const forExport = function ({ className }) {
   return (
     <section class="parthers" id="partners">
+      <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
+      <img class="polygonBig polygon" src={svg.polygonBig}></img>
       <h2 class="general-title">Partners and Bakers</h2>
       <div class="parthers-inner">
         <a target="_blank" href="https://zyx.network/">
