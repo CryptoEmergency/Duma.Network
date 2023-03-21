@@ -221,6 +221,7 @@ const start = function (data, ID) {
                   { title: "Private", name: "private" },
                   { title: "Public", name: "public" },
                 ]}
+                Static={Static}
               >
                 <div>
                   <div class="blur">

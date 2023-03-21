@@ -59,24 +59,12 @@ $backCard: (
   position: relative;
   border-bottom: 1px solid $grey-dark;
 
-  input {
-    position: relative;
-    opacity: 0;
-    padding: 0;
-  }
-
-  input:checked+label,
-  .checked-label {
-    color: $white;
-  }
-
-  input+label {
-    margin: 12px -8px;
+  .tab-item{
     width: 15%;
     transition: all 0.3s;
     text-align: center;
     border: none;
-    color: $grey-dark;
+    color: var(--text-secondary);
     display: inline-flex;
     -webkit-box-pack: center;
     padding: 5pt 10pt;
@@ -87,7 +75,42 @@ $backCard: (
     font-size: 24px;
     margin-bottom: 0.5px;
     cursor: pointer;
+
+    &.checked{
+      color: var(--text-main);
+    }
   }
+
+
+  // input {
+  //   position: relative;
+  //   opacity: 0;
+  //   padding: 0;
+  // }
+
+  // input:checked+label,
+  // .checked-label {
+  //   color: $white;
+  // }
+
+  // input+label {
+  //   margin: 12px -8px;
+  //   width: 15%;
+  //   transition: all 0.3s;
+  //   text-align: center;
+  //   border: none;
+  //   color: $grey-dark;
+  //   display: inline-flex;
+  //   -webkit-box-pack: center;
+  //   padding: 5pt 10pt;
+  //   vertical-align: top;
+  //   justify-content: center;
+  //   text-transform: uppercase;
+  //   font-weight: 600;
+  //   font-size: 24px;
+  //   margin-bottom: 0.5px;
+  //   cursor: pointer;
+  // }
 
   .glider {
     width: 200px;
@@ -97,20 +120,21 @@ $backCard: (
     transition: all .3s;
     z-index: 2;
     top: 99%;
+    left: 0;
   }
 
-  .checked-input#tab-1~.glider {
-    left: 0px;
-  }
+  // #tab-1~.glider {
+  //   left: 0px;
+  // }
 
-  .checked-input#tab-2~.glider {
-    left: 200px;
-  }
+  // #tab-2~.glider {
+  //   left: 200px;
+  // }
 
-  .checked-input#tab-3~.glider {
-    left: 415px;
-    width: 165px;
-  }
+  // #tab-3~.glider {
+  //   left: 415px;
+  //   width: 165px;
+  // }
 }
 
 // tabs
