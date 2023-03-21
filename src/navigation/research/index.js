@@ -75,7 +75,7 @@ const cardsRecords = [
   },
   {
     gallery: ["425ec4734f5e6ef55d11cd7d5ec6e5fd.png"],
-    icon: "logo-takerProtokol",
+    icon: "8317620f33712e1660d841dc89ef9d43.png",
     name: "Taker Protocol",
     status: "Listing",
     category: "Ecosystem",
@@ -116,7 +116,7 @@ const cardsRecords = [
   },
   {
     gallery: ["b514a7094383fc34b5a7b7e9be5cbf1f.png"],
-    icon: "logo-takerProtokol",
+    icon: "8317620f33712e1660d841dc89ef9d43.png",
     name: "Taker Protocol",
     status: "Listing",
     category: "Ecosystem",
