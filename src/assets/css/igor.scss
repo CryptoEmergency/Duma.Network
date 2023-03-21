@@ -22,3 +22,15 @@
     text-transform: uppercase;
     letter-spacing: 5px;
 }
+
+.form-div {
+    display: flex;
+
+    label {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-right: 10px;
+    }
+}

@@ -13,8 +13,8 @@ import Elements from "@src/elements/export.js";
 
 const cardsRecords = [
   {
-    galery: ["duma1"],
-    icon: "logo-duma",
+    gallery: ["6967b4f4ab50f3d13a1513b4dcff4687.png"],
+    icon: "f8381d2fb05228d348d7c0073836169d.png",
     name: "DUMA Network",
     status: "Active",
     category: "Platform",
@@ -34,8 +34,8 @@ const cardsRecords = [
     partners: true,
   },
   {
-    galery: ["cookie"],
-    icon: "logo-cookie",
+    gallery: ["a1c6c3d014afe4922d9416f93723d919.png"],
+    icon: "b397d4086727e996f8d2cd28492c24f4.png",
     name: "Cookie 3",
     status: "Listing",
     category: "Service",
@@ -54,8 +54,8 @@ const cardsRecords = [
     target: 2500000,
   },
   {
-    galery: ["veax"],
-    icon: "logo-veax",
+    gallery: ["b1587a35a8889f44d3d22cf2a47d765e.png"],
+    icon: "97e3f196d176af420b46c166030efea2.png",
     name: "VEAX",
     status: "Listing",
     category: "DEX",
@@ -74,7 +74,7 @@ const cardsRecords = [
     target: 1200000,
   },
   {
-    galery: ["takerProtokol"],
+    gallery: ["425ec4734f5e6ef55d11cd7d5ec6e5fd.png"],
     icon: "logo-takerProtokol",
     name: "Taker Protocol",
     status: "Listing",
@@ -94,8 +94,8 @@ const cardsRecords = [
     target: 80000,
   },
   {
-    galery: ["web3"],
-    icon: "logo-takerProtokol",
+    gallery: ["de898de39c653fafaaaf9ef3f929c227.png"],
+    icon: "8317620f33712e1660d841dc89ef9d43.png",
     name: "Taker Protocol",
     status: "Listing",
     category: "Ecosystem",
@@ -115,7 +115,7 @@ const cardsRecords = [
     blur: true,
   },
   {
-    galery: ["2"],
+    gallery: ["b514a7094383fc34b5a7b7e9be5cbf1f.png"],
     icon: "logo-takerProtokol",
     name: "Taker Protocol",
     status: "Listing",
@@ -147,10 +147,15 @@ const start = function (data, ID) {
       if (Variable.dataUrl.params) {
         Static.activeTab = Variable.dataUrl.params;
       }
-      // Static.projects = await fn.socket.get({
-      //   method: "Projects",
-      //   params: { filter: {} },
-      // });
+      let tmp = await fn.socket.get({
+        method: "Research",
+        params: { filter: {} },
+      });
+      if (tmp && tmp[0]) {
+        Static.projects = tmp
+      } else {
+        Static.projects = cardsRecords
+      }
     },
     fn: () => {
       return (
@@ -179,14 +184,14 @@ const start = function (data, ID) {
                   class="tabs-content"
                   hidden={Static.activeTab == "seed" ? false : true}
                 >
-                  <Elements.cards.Project items={cardsRecords} />
+                  <Elements.cards.Project items={Static.projects} />
                 </div>
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "private" ? false : true}
                 >
                   <Elements.cards.Project
-                    items={[cardsRecords[1], cardsRecords[2]]}
+                    items={cardsRecords}
                   />
                 </div>
                 <div

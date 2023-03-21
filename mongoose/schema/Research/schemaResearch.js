@@ -26,7 +26,13 @@ forExport.collection = "duma_research";
 forExport.schema = new mongoose.Schema(
   {
     name: { type: String },
-    rank: { type: Number },
+    rank: { type: Number, default: 0 },
+    rankList: {
+      problem: { type: Number, default: 0 },
+      product: { type: Number, default: 0 },
+      solution: { type: Number, default: 0 },
+      investors: { type: Number, default: 0 },
+    },
     status: { type: String },
     category: { type: String },
     tabs: { type: String },
@@ -43,6 +49,10 @@ forExport.schema = new mongoose.Schema(
     target: { type: Number },
     icon: { type: String },
     gallery: [],
+    problem: { type: String },
+    product: { type: String },
+    solution: { type: String },
+    investors: { type: String },
     partners: { type: Boolean, default: false },
     moderation: { type: Boolean, default: false },
     active: { type: Boolean, default: true },

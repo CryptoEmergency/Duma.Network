@@ -2,6 +2,7 @@
 const initData = {}
 initData.any = function (Static) {
     Static.elError;
+    Static.timerChange = {}
     return
 }
 
