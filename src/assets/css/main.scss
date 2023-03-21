@@ -212,16 +212,6 @@ $back in $backAdvance {
   border-radius: 12px;
   margin: 50px 0;
   transition: .5s ease;
-}
-
-.contract:hover {
-  // box-shadow: -15px 5px 10px rgb(153 205 65 / 10%);
-  scale: 1.01;
-}
-
-.contract-inner {
-  // display: grid;
-  // grid-template-columns: 2fr 1fr;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -229,6 +219,10 @@ $back in $backAdvance {
     width: 370px;
     height: 50px;
   }
+}
+
+.contract:hover {
+  scale: 1.01;
 }
 
 .contract-desc {
@@ -355,7 +349,8 @@ $back in $backAdvance {
   padding: 15px 30px;
   position: relative;
   // background: var(--text-main);
-  background: $back-secondary;
+  // background: $back-secondary;
+  background: rgba(39,44,49,0.7);
   border-radius: 18px;
   transition: .5s ease;
 
@@ -377,8 +372,9 @@ $back in $backAdvance {
   // color: #595656;
   color: #cbcbcb;
   font-weight: 400;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 125%;
+
 }
 
 .text-green {
@@ -550,6 +546,12 @@ $back in $backAdvance {
     grid-template-columns: 1fr;
   }
 
+  .ecosystem{
+    &.ecosystem-text:first-child{
+      margin-bottom: 15px;
+    }
+  }
+
   .ecosystem-text {
     background-color: var(--text-main);
     color: var(--back-primary);
@@ -557,10 +559,6 @@ $back in $backAdvance {
     backdrop-filter: blur(2px);
     border-radius: 10px;
     font-size: 14px;
-  }
-
-  .ecosystem-text1 {
-    margin-bottom: 10px;
   }
 
   // main block
@@ -634,6 +632,24 @@ $back in $backAdvance {
     height: stretch;
     height: -webkit-fill-available;
   }
+
+  // contract
+  .contract{
+    padding: 20px;
+    flex-direction: column;
+    .btn{
+      margin-top: 15px;
+      width: 100%;
+    }
+  }
+  .contract-desc{
+    span{
+      padding: 0;
+      padding-left: 15px;
+      font-size: 14px;
+    }
+  }
+  // contract
 
   .advantages-inner {
     grid-template-columns: 1fr;

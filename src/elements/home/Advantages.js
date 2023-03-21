@@ -47,23 +47,21 @@ const forExport = function ({ className }) {
         </div>
       </section>
       <section class="contract">
-        <div class="contract-inner">
-          <div class="contract-desc">
-            <img src={svg["contract"]} class="contract-img" />
-            <span>
-              Secure investing through the platform protocol with escrow wallets
-              and the possibility of a refund in case of a lack of development
-              from the startup
-            </span>
-          </div>
-          <a
-            target="_blank"
-            href="https://linktr.ee/duma_network"
-            class="btn btn-green"
-          >
-            More INFORMATION
-          </a>
+        <div class="contract-desc">
+          <img src={svg["contract"]} class="contract-img" />
+          <span>
+            Secure investing through the platform protocol with escrow wallets
+            and the possibility of a refund in case of a lack of development
+            from the startup
+          </span>
         </div>
+        <a
+          target="_blank"
+          href="https://linktr.ee/duma_network"
+          class="btn btn-green"
+        >
+          More INFORMATION
+        </a>
       </section>
     </section>
   );

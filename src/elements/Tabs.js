@@ -10,6 +10,8 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
 const forExport = function ({ className, children, varName, items, Static }) {
+  Static.tabWidth;
+  // Static.glider.style.width = `${Static.tabWidth}px`;
   return (
     <div class="tabs">
       <div class="circle-effect circle-effect1"></div>
@@ -27,6 +29,7 @@ const forExport = function ({ className, children, varName, items, Static }) {
           ]}
           Element={($el) => {
             Static.glider = $el;
+            Static.glider.style.width = `${Static.tabWidth}px`;
           }}
         ></div>
         {items.map((item, index) => {
@@ -37,17 +40,20 @@ const forExport = function ({ className, children, varName, items, Static }) {
                 `tab-item-${index}`,
                 Data.Static[varName] == item.name ? "checked" : null,
               ]}
-              onclick={() => {
+              onclick={function () {
+                Static.tabWidth = this.offsetWidth;
+                // console.log(this.offsetWidth);
                 Data.Static[varName] = item.name;
                 if (item.name == "seed") {
                   Static.glider.style.left = 0;
                 }
                 if (item.name == "private") {
-                  Static.glider.style.left = "190px";
+                  // Static.glider.style.left = "190px";
+                  Static.glider.style.left = `${Static.tabWidth}px`;
                 }
                 if (item.name == "public") {
-                  Static.glider.style.left = "392px";
-                  Static.glider.style.width = "165px";
+                  Static.glider.style.left = `${Static.tabWidth * 2}px`;
+                  // Static.glider.style.width = "165px";
                 }
                 initReload();
               }}

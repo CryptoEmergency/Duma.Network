@@ -82,7 +82,8 @@ $backCard: (
   }
 
   .glider {
-    width: 185px;
+    // width: 185px;
+    // width: 15%;
     height: 3px;
     background: $green-light;
     position: absolute;
@@ -102,7 +103,7 @@ $backCard: (
 
   .tab2.glider {
     left: 392px;
-    width: 165px;
+    // width: 165px;
   }
 }
 
@@ -353,9 +354,9 @@ $back in $backCard {
     
   }
 
-  .tabs-controller .glider {
-    width: 170px;
-  }
+  // .tabs-controller .glider {
+  //   width: 170px;
+  // }
 
   .tabs-controller #tab-1:checked~.glider {
     left: 30px;
