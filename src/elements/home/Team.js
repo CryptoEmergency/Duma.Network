@@ -32,7 +32,7 @@ const team = [
   },
   {
     name: "IGOR",
-    lastName: "IENSHIN",
+    lastName: "ENSHIN",
     img: images["team/igor"],
     job: "CTO",
     about:

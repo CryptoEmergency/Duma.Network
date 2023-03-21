@@ -116,7 +116,7 @@ const start = function (data, ID) {
               >
                 Marketplace
               </h2>
-              <div class="tabs">
+              {/* <div class="tabs">
                 <div class="circle-effect circle-effect1"></div>
                 <div class="circle-effect circle-effect2"></div>
                 <div
@@ -213,32 +213,41 @@ const start = function (data, ID) {
                     <Elements.cards.Project items={[cardsRecords[2]]} />
                   </div>
                 </div>
-              </div>
-              {/* <Elements.Tabs
-              varName={"activeTab"}
-              items={[{ title: "Seed", name: "seed" }, { title: "Private", name: "private" }, { title: "Public", name: "public" }]}
-            >
-              <div>
-                <div class="blur">
-                  <h2>COMING SOON</h2>
+              </div> */}
+              <Elements.Tabs
+                varName={"activeTab"}
+                items={[
+                  { title: "Seed", name: "seed" },
+                  { title: "Private", name: "private" },
+                  { title: "Public", name: "public" },
+                ]}
+              >
+                <div>
+                  <div class="blur">
+                    <h2>COMING SOON</h2>
+                  </div>
+                  <div
+                    class="tabs-content"
+                    hidden={Static.activeTab == "seed" ? false : true}
+                  >
+                    <Elements.cards.Project items={cardsRecords} />
+                  </div>
+                  <div
+                    class="tabs-content"
+                    hidden={Static.activeTab == "private" ? false : true}
+                  >
+                    <Elements.cards.Project
+                      items={[cardsRecords[1], cardsRecords[2]]}
+                    />
+                  </div>
+                  <div
+                    class="tabs-content"
+                    hidden={Static.activeTab == "public" ? false : true}
+                  >
+                    <Elements.cards.Project items={[cardsRecords[2]]} />
+                  </div>
                 </div>
-                <div class="tabs-content" hidden={Static.activeTab == "seed" ? false : true}>
-                  <Elements.cards.Project
-                    items={cardsRecords}
-                  />
-                </div>
-                <div class="tabs-content" hidden={Static.activeTab == "private" ? false : true}>
-                  <Elements.cards.Project
-                    items={[cardsRecords[1], cardsRecords[2]]}
-                  />
-                </div>
-                <div class="tabs-content" hidden={Static.activeTab == "public" ? false : true}>
-                  <Elements.cards.Project
-                    items={[cardsRecords[2]]}
-                  />
-                </div>
-              </div>
-            </Elements.Tabs> */}
+              </Elements.Tabs>
             </div>
           </div>
         </div>
