@@ -25,14 +25,12 @@ const forExport = function ({ className }) {
       .timeline({ loop: true })
       .add({
         targets: ".text-animation .one",
-        translateY: [-100, 0, 100],
         opacity: options.opacityIn,
         // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .one",
-        translateY: [-100, 0, 100],
         opacity: 0,
         // scale: options.scaleOut,
         easing: options.easing,
@@ -41,14 +39,12 @@ const forExport = function ({ className }) {
       })
       .add({
         targets: ".text-animation .two",
-        translateY: [-100, 0, 100],
         opacity: options.opacityIn,
         // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .two",
-        translateY: [-100, 0, 100],
         opacity: 0,
         // scale: options.scaleOut,
         easing: options.easing,
@@ -57,14 +53,12 @@ const forExport = function ({ className }) {
       })
       .add({
         targets: ".text-animation .three",
-        translateY: [-100, 0, 100],
         opacity: options.opacityIn,
         // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .three",
-        translateY: [-100, 0, 100],
         opacity: 0,
         // scale: options.scaleOut,
         easing: options.easing,
@@ -73,14 +67,12 @@ const forExport = function ({ className }) {
       })
       .add({
         targets: ".text-animation .four",
-        translateY: [-100, 0, 100],
         opacity: options.opacityIn,
         // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .four",
-        translateY: [-100, 0, 100],
         opacity: 0,
         // scale: options.scaleOut,
         easing: options.easing,
@@ -89,14 +81,12 @@ const forExport = function ({ className }) {
       })
       .add({
         targets: ".text-animation .five",
-        translateY: [-100, 0, 100],
         opacity: options.opacityIn,
         // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .five",
-        translateY: [-100, 0, 100],
         opacity: 0,
         // scale: options.scaleOut,
         easing: options.easing,
@@ -105,14 +95,12 @@ const forExport = function ({ className }) {
       })
       .add({
         targets: ".text-animation .six",
-        translateY: [-100, 0, 100],
         opacity: options.opacityIn,
         // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .six",
-        translateY: [-100, 0, 100],
         // opacity: 0,
         opacity: options.opacityIn,
         // scale: options.scaleOut,
