@@ -82,40 +82,45 @@ const start = function (data, ID) {
                                                                     return
                                                                 }
                                                                 Static.item.gallery.push(response.name)
+                                                                let tmp = await fn.socket.set({ method: "Research", action: "findOneAndUpdate", _id: Static.item._id, params: { update: { gallery: Static.item.gallery } } })
                                                                 initReload()
                                                             },
-                                                            onprogress: async function () {
-                                                                console.log('=81bde2=', "onprogress")
+                                                            onprogress: async function (e) {
+                                                                let contentLength;
+                                                                if (e.lengthComputable) {
+                                                                    contentLength = e.total;
+                                                                } else {
+                                                                    contentLength = parseInt(
+                                                                        e.target.getResponseHeader(
+                                                                            "x-decompressed-content-length"
+                                                                        ),
+                                                                        10
+                                                                    );
+                                                                }
+                                                                console.log("onprogress", e.loaded, contentLength)
                                                             }
                                                         })
                                                         return
-                                                        sendFile(
-                                                            item,
-                                                            "news",
-                                                            async function () {
-
-                                                                if (!this.response) {
-                                                                    alert("Произошла ошибка Попробуйте еще раз")
-                                                                    return
-                                                                }
-                                                                let response = JSON.parse(this.response);
-                                                                Static.forms.image = response.name
-                                                                updateRecords(Static, { image: Static.forms.image })
-                                                                initReload()
-                                                            },
-                                                        )
                                                     })
-                                                    initReload()
                                                 }}
                                             />
                                             <img src={images["card/1"]}></img>
                                         </div>
+                                        {
+                                            Static.item.gallery.map((item, index) => {
+                                                return (
+                                                    <div class="picture">
+                                                        <img src={`/assets/upload/${item}`}></img>
+                                                    </div>
+                                                )
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div >
             );
         },
     });
