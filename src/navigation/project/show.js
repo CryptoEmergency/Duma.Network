@@ -453,79 +453,105 @@ const start = function (data, ID) {
                         <div class="scheme-card_roadmap-item">
                           <h6>Q3 2022 </h6>
                           <div class="text-green">
-                            Launch of the Platform Development Personal Account
-                            Development Registration of the Company Start
-                            Information Recourse Development Search for
-                            Investors & Affiliates Strategic partnerships
-                            Launching Landing page Launching Subpage on Site
+                            <p>Launch of the Platform Development</p>
+                            <p>Personal Account Development</p>
+                            <p>Registration of the Company</p>
+                            <p>Start Information Recourse Development</p>
+                            <p>Search for Investors & Affiliates</p>
+                            <p>Strategic partnerships</p>
+                            <p>Launching Landing page</p>
+                            <p>Launching Subpage on Site</p>
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-item">
                           <h6>Q4 2022 </h6>
                           <div class="text-green">
-                            Launch of the Platform Development Personal Account
-                            Development Registration of the Company Start
-                            Information Recourse Development Search for
-                            Investors & Affiliates Strategic partnerships
-                            Launching Landing page Launching Subpage on Site
+                            <p>Launch of the Platform Development</p>
+                            <p>Personal Account Development</p>
+                            <p>Registration of the Company</p>
+                            <p>Start Information Recourse Development</p>
+                            <p>Search for Investors & Affiliates</p>
+                            <p>Strategic partnerships</p>
+                            <p>Launching Landing page</p>
+                            <p>Launching Subpage on Site</p>
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-item">
                           <h6>Q1 2023</h6>
                           <div class="text-green">
-                            Negotiations with VC & DAO Integration of Neural
-                            Networks in work Launching Social Network &
-                            Automatization First Projects on Listing First
-                            Airdrop Alpha Version of The Information Recourse
+                            <p>Negotiations with VC & DAO</p>
+                            <p>Integration of Neural Networks in work</p>
+                            <p>Launching Social Network & Automatization</p>
+                            <p>First Projects on Listing</p>
+                            <p>First Airdrop</p>
+                            <p>Alpha Version of The Information Recourse</p>
                           </div>
                           <div>
-                            Preparation of sites for attracting traffic MVP,
-                            Testing Launching Personal Account in System Launch
-                            of Referral System Closing of the PreSeed Round Open
-                            of the Seed Round The First Investment from VC
-                            Partnership with KOLs and PRs Lead Investor
-                            Partnership
+                            <p>Preparation of sites for attracting traffic</p>
+                            <p>MVP, Testing</p>
+                            <p>Launching Personal Account in System</p>
+                            <p>Launch of Referral System</p>
+                            <p>Closing of the PreSeed Round</p>
+                            <p>Open of the Seed Round</p>
+                            <p>The First Investment from VC</p>
+                            <p>Partnership with KOLs and PRs</p>
+                            <p>Lead Investor Partnership</p>
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-item">
                           <h6>Q2 2023</h6>
                           <div>
-                            Closing a Seed Round Open of Strategic Round
-                            Marketing Events The Alpha Version of the Ecosystem
-                            First Fundraisings on the Platform Launching Academy
-                            Development Implementation of Info-Bot Negotiations
-                            with CEX and DEX platforms Closing a Strategic Round
-                            Launch of Private Round NFT collection Developing
-                            Marketplace and INO development Customer and User
-                            Scaling Mobile application development Closing a
-                            Private Round
+                            <p>Closing a Seed Round</p>
+                            <p>Open of Strategic Round</p>
+                            <p>Marketing Events</p>
+                            <p>The Alpha Version of the Ecosystem</p>
+                            <p>First Fundraisings on the Platform</p>
+                            <p>Launching Academy Development</p>
+                            <p>Implementation of Info-Bot</p>
+                            <p>Negotiations with CEX and DEX platforms</p>
+                            <p>Closing a Strategic Round</p>
+                            <p>Launch of Private Round</p>
+                            <p>NFT collection Developing</p>
+                            <p>Marketplace and INO development</p>
+                            <p>Customer and User Scaling</p>
+                            <p>Mobile application development</p>
+                            <p>Closing a Private Round</p>
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-item">
                           <h6>Q3 2023 </h6>
                           <div>
-                            Launch of Public Round on IDO Launch of NFT Sale
-                            Launch DAO, Staking, LP Closing a Public Round
-                            Development of bot-assistant First Educational
-                            Programs Firtst Alpha Mobile Application TGE and
-                            Listing Listing on CEX and DEX Development of P2P
-                            Exchanger Launch and Testing of the Marketplace
-                            Educational software integration Launch and testing
-                            of the Online Academy Scaling all directions of the
-                            ecosystem Holding marketing events Launch a
-                            Markentlace on Platform
+                            <p>Launch of Public Round on IDO</p>
+                            <p>Launch of NFT Sale</p>
+                            <p>Launch DAO, Staking, LP</p>
+                            <p>Closing a Public Round</p>
+                            <p>Development of bot-assistant</p>
+                            <p>First Educational Programs</p>
+                            <p>Firtst Alpha Mobile Application</p>
+                            <p>TGE and Listing Listing on CEX and DEX</p>
+                            <p>Development of P2P Exchanger</p>
+                            <p>Launch and Testing of the Marketplace</p>
+                            <p>Educational software integration</p>
+                            <p>Launch and testing of the Online Academy</p>
+                            <p>Scaling all directions of the ecosystem</p>
+                            <p>Holding marketing events</p>
+                            <p>Launch a Markentlace on Platform</p>
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-item">
                           <h6>Q4 2023</h6>
                           <div>
-                            Deployment of the trading platform Wallet
-                            development Promotion of the Online Academy Opening
-                            affiliate branches Emphasis on patner formation
-                            Active ecosystem and brand PR Expanding the
-                            community of the entire ecosystem Analysis and
-                            fine-tuning of the entire system Official opening of
-                            all ecosystem products
+                            <p>Deployment of the trading platform</p>
+                            <p>Wallet development</p>
+                            <p>Promotion of the Online Academy</p>
+                            <p>Opening affiliate branches</p>
+                            <p>Emphasis on patner formation</p>
+                            <p>Active ecosystem and brand PR</p>
+                            <p>
+                              Expanding the community of the entire ecosystem
+                            </p>
+                            <p>Analysis and fine-tuning of the entire system</p>
+                            <p>Official opening of all ecosystem products</p>
                           </div>
                         </div>
                       </div>

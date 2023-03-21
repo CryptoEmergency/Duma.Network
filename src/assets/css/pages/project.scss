@@ -183,7 +183,12 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 50px;
-  grid-row-gap: 25px;
+  grid-row-gap: 35px;
+}
+.scheme-card_roadmap-item{
+  h6{
+    font-size: 18px;
+  }
 }
 .link-text{
   text-decoration: none;
