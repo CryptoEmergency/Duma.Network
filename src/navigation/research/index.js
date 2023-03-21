@@ -166,7 +166,37 @@ const start = function (data, ID) {
               >
                 Research
               </h2>
-              <div class="tabs">
+              <Elements.Tabs
+                varName={"activeTab"}
+                items={[
+                  { title: "Seed", name: "seed" },
+                  { title: "Private", name: "private" },
+                  { title: "Public", name: "public" },
+                ]}
+                Static={Static}
+              >
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "seed" ? false : true}
+                >
+                  <Elements.cards.Project items={cardsRecords} />
+                </div>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "private" ? false : true}
+                >
+                  <Elements.cards.Project
+                    items={[cardsRecords[1], cardsRecords[2]]}
+                  />
+                </div>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "public" ? false : true}
+                >
+                  <Elements.cards.Project items={[cardsRecords[2]]} />
+                </div>
+              </Elements.Tabs>
+              {/* <div class="tabs">
                 <div class="circle-effect circle-effect1"></div>
                 <div class="circle-effect circle-effect2"></div>
                 <div
@@ -260,7 +290,7 @@ const start = function (data, ID) {
                     <Elements.cards.Project items={[cardsRecords[2]]} />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
