@@ -63,14 +63,21 @@ const forExport = function ({ className, items = [] }) {
 								</div>
 								<div class="progressBlock">
 									<div
-										style={[!item.have || !item.target ? `width: calc(0%)` : item.have >= item.target ? `width: calc(100%)` : `width: calc(100% * ${item.have / item.target})`]}
+										style={!item.have || !item.target ? `width: calc(0%)` : item.have >= item.target ? `width: calc(100%)` : `width: calc(100% * ${item.have / item.target})`}
 										class="progressBlock-column"
 									></div>
 								</div>
 								<span class="summ">
 									{item.have}$/{item.target}$
 								</span>
-								<button class="btn btn-green">
+								<button
+									class="btn btn-green"
+									onclick={() => {
+										if (!item.blur) {
+											fn.siteLink("/research/show/" + item._id);
+										}
+									}}
+								>
 									{!item.partners
 										? "RESEARCH ABOUT THE Project"
 										: "Become a partners"}
