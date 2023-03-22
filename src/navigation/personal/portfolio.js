@@ -50,10 +50,24 @@ const start = function (data, ID) {
                       <button class="btn btn-white mt-10">More</button>
                     </div>
                     <div class="blocks-item">
-                      <span class="title-block pb-10">Profitability</span>
+                      <span class="title-block">Profitability</span>
                       <img src={images["personal/grafikWallet"]}></img>
                       <div class="grid-2">
                         <div>
+                          <div class="blocks-item_check">
+                            <span>Venture investments</span>
+                            <div class="checkbox">
+                              <input
+                                id="checkbox-1"
+                                type="checkbox"
+                                checked
+                              ></input>
+                              <label for="checkbox-1">
+                                <img class="icon-done" src={svg.done}></img>
+                              </label>
+                            </div>
+                          </div>
+                          <span class="text-green">+1,500$ +4,17%</span>
                           <div class="row-block">
                             <span>Sale</span>
                             <span class="text-green">+1,500$</span>
@@ -73,6 +87,20 @@ const start = function (data, ID) {
                           <button class="btn btn-white mt-10">More</button>
                         </div>
                         <div>
+                          <div class="blocks-item_check">
+                            <span>Marketplace</span>
+                            <div class="checkbox">
+                              <input
+                                id="checkbox-1"
+                                type="checkbox"
+                                checked
+                              ></input>
+                              <label for="checkbox-1">
+                                <img class="icon-done" src={svg.done}></img>
+                              </label>
+                            </div>
+                          </div>
+                          <span class="text-green">+1,500$ +4,17%</span>
                           <div class="row-block">
                             <span>Sale</span>
                             <span class="text-green">+1,500$</span>
@@ -92,6 +120,20 @@ const start = function (data, ID) {
                           <button class="btn btn-white mt-10">More</button>
                         </div>
                         <div>
+                          <div class="blocks-item_check">
+                            <span>Exchange portfolio</span>
+                            <div class="checkbox">
+                              <input
+                                id="checkbox-1"
+                                type="checkbox"
+                                checked
+                              ></input>
+                              <label for="checkbox-1">
+                                <img class="icon-done" src={svg.done}></img>
+                              </label>
+                            </div>
+                          </div>
+                          <span class="text-green">+1,500$ +4,17%</span>
                           <div class="row-block">
                             <span>Sale</span>
                             <span class="text-green">+1,500$</span>
@@ -111,6 +153,20 @@ const start = function (data, ID) {
                           <button class="btn btn-white mt-10">More</button>
                         </div>
                         <div>
+                          <div class="blocks-item_check">
+                            <span>Non-custodial wallet</span>
+                            <div class="checkbox">
+                              <input
+                                id="checkbox-1"
+                                type="checkbox"
+                                checked
+                              ></input>
+                              <label for="checkbox-1">
+                                <img class="icon-done" src={svg.done}></img>
+                              </label>
+                            </div>
+                          </div>
+                          <span class="text-green">+1,500$ +4,17%</span>
                           <div class="row-block">
                             <span>Sale</span>
                             <span class="text-green">+1,500$</span>
