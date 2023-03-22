@@ -53,10 +53,10 @@ const start = function (data, ID) {
                       <div class="wallet-btns">
                         <button class="btn btn-white">Invest</button>
                         <button class="btn btn-white">Buy</button>
-                        <button class="btn btn-white">ПРОДАТЬ</button>
-                        <button class="btn btn-white">ВВОД</button>
-                        <button class="btn btn-white">ВЫВОД</button>
-                        <button class="btn btn-white">ОБМЕН</button>
+                        <button class="btn btn-white">Sell</button>
+                        <button class="btn btn-white">Input</button>
+                        <button class="btn btn-white">Output</button>
+                        <button class="btn btn-white">Exchange</button>
                       </div>
                     </div>
                     <div class="blocks-item reward">
