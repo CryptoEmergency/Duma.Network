@@ -24,11 +24,6 @@ const formCheck = function () {
     return false;
   }
 
-  if (!Data.Static.pass.length) {
-    showError("Enter the password");
-    return false;
-  }
-
   return true;
 };
 
@@ -42,7 +37,7 @@ const forExport = function (data, ID) {
           <div class="wrap-body">
             <div class="wrap-content" id="settingsPage">
               <header class="header-modal">
-                <h2 class="general-title mt-0">Log in to your account</h2>
+                <h2 class="general-title mt-0">Forgot your password?</h2>
                 <button
                   class="button-close button-modal"
                   onclick={() => {
@@ -60,34 +55,20 @@ const forExport = function (data, ID) {
                   style="display:none;"
                   class="error-text"
                 ></div>
-                <form class="form-modal">
-                  <div class="form-item">
-                    <label for="email" class="form-label">
-                      Email :
-                    </label>
-                    <input
-                      class="form-input"
-                      type="email"
-                      placeholder="email@xyz.com"
-                      onchange={function () {
-                        Static.email = this.value;
-                      }}
-                    ></input>
-                  </div>
-                  <div class="form-item">
-                    <label for="password" class="form-label">
-                      Password :
-                    </label>
-                    <input
-                      class="form-input"
-                      type="password"
-                      placeholder="xxxxxxxxxx"
-                      onchange={function () {
-                        Static.pass = this.value;
-                      }}
-                    ></input>
-                  </div>
-                </form>
+
+                <div class="form-remind">
+                  <label for="email" class="form-label">
+                    Enter your email :
+                  </label>
+                  <input
+                    class="form-input"
+                    type="email"
+                    placeholder="email@xyz.com"
+                    onchange={function () {
+                      Static.email = this.value;
+                    }}
+                  ></input>
+                </div>
               </main>
               <footer class="footer-modal">
                 <button
@@ -104,7 +85,6 @@ const forExport = function (data, ID) {
                       method: "Login",
                       params: {
                         email: Static.email.trim(),
-                        pass: Static.pass.trim(),
                       },
                     });
 
@@ -113,38 +93,21 @@ const forExport = function (data, ID) {
                       this.disabled = false;
                       return;
                     }
-
-                    setStorage("myInfo", response);
-                    setStorage("auth", true);
-                    Variable.myInfo = response;
-                    Variable.auth = true;
-                    fn.modals.close(ID);
-                    fn.siteLink("/personal/");
                   }}
                 >
-                  LOG IN
+                  Remind password
                 </button>
 
-                <span
-                  class="remind mt-15"
-                  onclick={() => {
-                    fn.modals.close(ID);
-                    fn.modals.Remind({});
-                  }}
-                >
-                  remind password
-                </span>
-
                 <span class="duma-text">
-                  Don't have an account yet?
+                  If you already have an account, just
                   <a
                     class="link-modal"
                     onclick={() => {
                       fn.modals.close(ID);
-                      fn.modals.Registration({});
+                      fn.modals.Login({});
                     }}
                   >
-                    Sign up.
+                    login.
                   </a>
                 </span>
               </footer>

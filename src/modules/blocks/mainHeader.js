@@ -436,7 +436,10 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-green"
                         onclick={() => {
-                          fn.modals.Transaction({ title: "Deposit" });
+                          fn.modals.Transaction({
+                            title: "Deposit",
+                            text: "Replenishment amount",
+                          });
                         }}
                       >
                         DEPOSIT
@@ -444,7 +447,10 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-bordo"
                         onclick={() => {
-                          fn.modals.Transaction({ title: "Withdraw" });
+                          fn.modals.Transaction({
+                            title: "Withdraw",
+                            text: "Withdrawal amount",
+                          });
                         }}
                       >
                         WITHDRAW

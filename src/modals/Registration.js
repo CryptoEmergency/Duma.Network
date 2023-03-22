@@ -19,7 +19,6 @@ const showError = function (text) {
 };
 
 const formCheck = function () {
-
   if (!Data.Static.firstName.length) {
     showError("Enter the First Name");
     return false;
@@ -75,9 +74,7 @@ const forExport = function (data, ID) {
                   }}
                   style="display:none;"
                   class="error-text"
-                >
-
-                </div>
+                ></div>
                 <form action class="form-modal">
                   <div class="form-item">
                     <label for="name" class="form-label">
@@ -149,7 +146,7 @@ const forExport = function (data, ID) {
                       params: {
                         email: Static.email.trim(),
                         pass: Static.pass.trim(),
-                        firstName: Static.firstName.trim()
+                        firstName: Static.firstName.trim(),
                       },
                     });
 
@@ -161,9 +158,11 @@ const forExport = function (data, ID) {
 
                     fn.modals.close(ID);
                     fn.modals.Login({});
-
-                  }}>SIGN UP</button>
-                <span>
+                  }}
+                >
+                  SIGN UP
+                </button>
+                <span class="duma-text">
                   If you already have an account, just
                   <a
                     class="link-modal"

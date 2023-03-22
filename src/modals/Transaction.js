@@ -33,12 +33,48 @@ const forExport = function (data, ID) {
               </header>
               <main class="main-modal">
                 <div class="form-item">
-                  <textarea
-                    rows="5"
-                    id="text"
-                    class="personal-input form-input"
-                    placeholder="Enter text..."
-                  ></textarea>
+                  <label for="summ" class="form-label">
+                    {data.text}:
+                  </label>
+                  <input
+                    id="summ"
+                    class="form-input personal-input"
+                    placeholder={data.text}
+                  ></input>
+                </div>
+
+                <div class="form-group mt-15">
+                  <div class="dropdown">
+                    <button
+                      class="dropdown__button"
+                      onclick={() => {
+                        Static.dropList.classList.toggle(
+                          "dropdown__list--visible"
+                        );
+                      }}
+                    >
+                      Lorem Ipsum
+                    </button>
+                    <ul
+                      class="dropdown__list"
+                      Element={($el) => {
+                        Static.dropList = $el;
+                      }}
+                    >
+                      <li class="dropdown__list-item" data-value="travel">
+                        Lorem Ipsum 1
+                      </li>
+                      <li class="dropdown__list-item" data-value="lessons">
+                        Lorem Ipsum 2
+                      </li>
+                      <li class="dropdown__list-item" data-value="photo">
+                        Lorem Ipsum 3
+                      </li>
+                      <li class="dropdown__list-item" data-value="sport">
+                        Lorem Ipsum 4
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </main>
               <footer class="footer-modal">
