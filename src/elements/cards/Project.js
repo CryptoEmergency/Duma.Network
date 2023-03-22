@@ -72,11 +72,11 @@ const forExport = function ({ className, items = [] }) {
 								</span>
 								<button
 									class="btn btn-green"
-									onclick={() => {
-										if (!item.blur) {
-											fn.siteLink("/research/show/" + item._id);
-										}
-									}}
+								// onclick={() => {
+								// 	if (!item.blur) {
+								// 		fn.siteLink("/research/show/" + item._id);
+								// 	}
+								// }}
 								>
 									{!item.partners
 										? "RESEARCH ABOUT THE Project"
