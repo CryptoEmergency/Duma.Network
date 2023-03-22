@@ -6,9 +6,6 @@ import {
   Data,
 } from "@betarost/cemserver/cem.js";
 
-import { fn } from "@src/functions/export.js";
-import svg from "@assets/svg/index.js";
-
 const forExport = function ({ className, children, varName, items, Static }) {
   Static.tabWidth;
   // Static.glider.style.width = `${Static.tabWidth}px`;

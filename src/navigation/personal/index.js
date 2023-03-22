@@ -31,7 +31,7 @@ const start = function (data, ID) {
       return (
         <div class="wrapper">
           <div class="personal-inner">
-            <Elements.BlockMenu />
+            <Elements.BlockMenu Static={Static} />
             <div class="personal-main">
               <Elements.BlockPersonal />
               <div class="personal-content">
@@ -51,7 +51,7 @@ const start = function (data, ID) {
                               {Variable.myInfo.firstName}
                               <span class="notice">5</span>
                             </span>
-                            <span class="user-name_wel">Verify</span>
+                            <span class="text-underline">Verify</span>
                           </div>
                         </div>
                       </div>
@@ -61,7 +61,9 @@ const start = function (data, ID) {
                         <img src={images["personal/3"]}></img>
                         <img src={images["personal/4"]}></img>
                       </div>
-                      <div class="daily-progress"></div>
+                      <div class="daily-progress mt-15">
+                        <img src={images["personal/everyDay"]}></img>
+                      </div>
                       <button class="btn btn-green mt-10">daily task</button>
                     </div>
                     <div class="blocks-item interesting">
@@ -71,13 +73,19 @@ const start = function (data, ID) {
                       <span class="soon-text">coming soon</span>
                     </div>
                     <div class="blocks-item bag">
+                      <span class="text-category text">Portfolio</span>
                       <div class="user-icon">
                         <img src={svg["iconsGreen/bag"]}></img>
                       </div>
-                      <div class="nums">
-                        <span class="num_big">0,00</span>
-                        <span class="num_small">+0$</span>
-                        <span class="num_small"> +0,00%</span>
+                      <div class="bag-value">
+                        <span class="text">Nums</span>
+                        <img class="arrow arr-left" src={svg.arrowLeft}></img>
+                        <div class="nums">
+                          <span class="num_big">0,00</span>
+                          <span class="num_small">+0$</span>
+                          <span class="num_small"> +0,00%</span>
+                        </div>
+                        <img class="arrow arr-right" src={svg.arrowRight}></img>
                       </div>
                     </div>
                     <div class="blocks-item graph">

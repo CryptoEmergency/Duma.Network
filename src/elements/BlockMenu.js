@@ -11,6 +11,7 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
 const forExport = function ({ Static, onclick, className }) {
+  console.log(Variable.dataUrl.category);
   return (
     <div class="sidebar">
       <div class="nums">
@@ -20,7 +21,14 @@ const forExport = function ({ Static, onclick, className }) {
       </div>
       <nav>
         <ul class="sidebar-list">
-          <li class="sidebar-item">
+          <li
+            class={[
+              "sidebar-item",
+              Variable.dataUrl.category == undefined
+                ? "sidebar-item_active"
+                : null,
+            ]}
+          >
             <a
               onclick={() => {
                 fn.siteLink("/personal/");
@@ -30,7 +38,14 @@ const forExport = function ({ Static, onclick, className }) {
               <span>Dashboard</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li
+            class={[
+              "sidebar-item",
+              Variable.dataUrl.category == "wallet"
+                ? "sidebar-item_active"
+                : null,
+            ]}
+          >
             <a
               onclick={() => {
                 fn.siteLink("/personal/wallet/");
@@ -43,7 +58,14 @@ const forExport = function ({ Static, onclick, className }) {
               <span class="passive-text">Wallet</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li
+            class={[
+              "sidebar-item",
+              Variable.dataUrl.category == "portfolio"
+                ? "sidebar-item_active"
+                : null,
+            ]}
+          >
             <a
               onclick={() => {
                 fn.siteLink("/personal/portfolio/");
@@ -56,7 +78,14 @@ const forExport = function ({ Static, onclick, className }) {
               <span class="passive-text">Portfolio</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li
+            class={[
+              "sidebar-item",
+              Variable.dataUrl.category == "referral"
+                ? "sidebar-item_active"
+                : null,
+            ]}
+          >
             <a
               onclick={() => {
                 fn.siteLink("/personal/referral/");
@@ -69,7 +98,14 @@ const forExport = function ({ Static, onclick, className }) {
               <span class="passive-text">Referral</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li
+            class={[
+              "sidebar-item",
+              Variable.dataUrl.category == "bookmarks"
+                ? "sidebar-item_active"
+                : null,
+            ]}
+          >
             <a
               onclick={() => {
                 fn.siteLink("/personal/bookmarks/");
@@ -82,7 +118,14 @@ const forExport = function ({ Static, onclick, className }) {
               <span class="passive-text">Bookmarks</span>
             </a>
           </li>
-          <li class="sidebar-item">
+          <li
+            class={[
+              "sidebar-item",
+              Variable.dataUrl.category == "profile"
+                ? "sidebar-item_active"
+                : null,
+            ]}
+          >
             <a
               onclick={() => {
                 fn.siteLink("/personal/profile/");
@@ -96,7 +139,14 @@ const forExport = function ({ Static, onclick, className }) {
             </a>
           </li>
           {Variable.myInfo.role ? (
-            <li class="sidebar-item">
+            <li
+              class={[
+                "sidebar-item",
+                Variable.dataUrl.category == "admin"
+                  ? "sidebar-item_active"
+                  : null,
+              ]}
+            >
               <a
                 onclick={() => {
                   fn.siteLink("/personal/admin/");

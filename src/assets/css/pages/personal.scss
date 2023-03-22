@@ -76,7 +76,13 @@
   filter: $filterOlive;
 }
 .sidebar-item:hover{
-  color: $olive;
+  color: var(--green);
+}
+.sidebar-item_active{
+  color: var(--green);
+  .sidebar-icon{
+    filter: $filterOlive;
+  }
 }
 .sidebar-out{
   margin: 35px 0;
@@ -167,6 +173,9 @@
     }
   }
 }
+.text-underline{
+  text-decoration: underline var(--text-main);
+}
 .upgrade{
   font-size: 16px;
   font-weight: 600;
@@ -223,6 +232,7 @@
   backdrop-filter: blur(7px);
   border-radius: 20px;
   padding: 15px;
+  font-family: $inter;
   .user-profile{
     position: relative;
   }
@@ -239,6 +249,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
     .nums{
       padding-bottom: 0;
     }
@@ -281,7 +292,32 @@
     font-size: 14px;
   }
 }
-
+.bag-value{
+  position: relative;
+  .arrow{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    cursor: pointer;
+  }
+  .arr-left{
+    left: -35%;
+  }
+  .arr-right{
+    right: -35%;
+  }
+}
+.wallet{
+  .bag-value{
+    .arr-left{
+      left: 0;
+    }
+    .arr-right{
+      right: 0;
+    }
+  }
+  
+}
 .user-icon{
   position: absolute;
   top: 15px;
@@ -330,6 +366,14 @@
   display: flex;
   justify-content: space-between;
 }
+.block-title{
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 600;
+}
+.icon-points{
+  margin-left: 10px;
+}
 .wallet-btns{
   display: grid;
   grid-template-columns: 1fr;
@@ -338,10 +382,16 @@
 .btn-white{
   background: var(--text-main);
   color: #696969;
-  
+  height: 40px;
 }
 .text-red{
   color: #DB375E;
+}
+.reward-inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 // wallet
 

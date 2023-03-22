@@ -40,10 +40,15 @@ const start = function (data, ID) {
                   <h2 class="general-title mt-25">Wallet</h2>
                   <div class="main-blocks mt-20">
                     <div class="blocks-item wallet">
-                      <div class="nums">
-                        <span class="num_big">17,805</span>
-                        <span class="num_small">+1,500$</span>
-                        <span class="num_small"> +4,17%</span>
+                      <div class="bag-value">
+                        <span class="text">Nums</span>
+                        <img class="arrow arr-left" src={svg.arrowLeft}></img>
+                        <div class="nums">
+                          <span class="num_big">0,00</span>
+                          <span class="num_small">+0$</span>
+                          <span class="num_small"> +0,00%</span>
+                        </div>
+                        <img class="arrow arr-right" src={svg.arrowRight}></img>
                       </div>
                       <div class="wallet-btns">
                         <button class="btn btn-white">Invest</button>
@@ -55,43 +60,82 @@ const start = function (data, ID) {
                       </div>
                     </div>
                     <div class="blocks-item reward">
-                      <div class="row-block">
-                        <span>Reward</span>
-                        <span class="text-green">15,530$ (+4,17%)</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Refs</span>
-                        <span class="text-green">+1,500$</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Buy</span>
-                        <span class="text-green">1,500$</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Input</span>
-                        <span class="text-green">+1,500$</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Output</span>
-                        <span class="text-green">-1,500$</span>
+                      <div class="reward-inner">
+                        <div class="row-block block-title">
+                          <span>Reward</span>
+                          <span class="text-green">15,530$ (+4,17%)</span>
+                        </div>
+                        <div class="row-block">
+                          <span>Refs</span>
+                          <span class="text-green">
+                            +1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Tokens that come by distribution</span>
+                          <span class="text-green">
+                            +1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Passive income</span>
+                          <span class="text-green">
+                            +1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Staking accruals</span>
+                          <span class="text-green">
+                            +1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Profit</span>
+                          <span class="text-green">
+                            +1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div class="blocks-item lock">
-                      <div class="row-block">
-                        <span>Sale</span>
-                        <span class="text-red">+1,500$</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Buy</span>
-                        <span class="text-red">-1,500$</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Input</span>
-                        <span class="text-red">+1,500$</span>
-                      </div>
-                      <div class="row-block">
-                        <span>Output</span>
-                        <span class="text-red">-1,500$</span>
+                      <div class="reward-inner">
+                        <div class="row-block block-title">
+                          <span>Lock </span>
+                          <span class="text-red">15,530$</span>
+                        </div>
+                        <div class="row-block">
+                          <span>Blocked money in projects</span>
+                          <span class="text-red">
+                            1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Lock in Staking</span>
+                          <span class="text-red">
+                            1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Marketplace offers</span>
+                          <span class="text-red">
+                            1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
+                        <div class="row-block">
+                          <span>Orders on the platform</span>
+                          <span class="text-red">
+                            1,500$
+                            <img class="icon-points" src={svg.points}></img>
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div class="blocks-item news">
