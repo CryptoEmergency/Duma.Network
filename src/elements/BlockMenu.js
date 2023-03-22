@@ -127,7 +127,7 @@ const forExport = function ({ Static, onclick, className }) {
         <button
           class="btn-empty"
           onclick={() => {
-            fn.modals.Suggestions({});
+            fn.modals.Suggestions({ title: "Suggest an idea" });
           }}
         >
           Suggest an idea
@@ -135,7 +135,7 @@ const forExport = function ({ Static, onclick, className }) {
         <button
           class="btn-empty"
           onclick={() => {
-            fn.modals.Suggestions({});
+            fn.modals.Suggestions({ title: "Bug report" });
           }}
         >
           Bug report
@@ -143,7 +143,7 @@ const forExport = function ({ Static, onclick, className }) {
         <button
           class="btn-empty"
           onclick={() => {
-            fn.modals.Suggestions({});
+            fn.modals.Suggestions({ title: "I want team" });
           }}
         >
           I want team

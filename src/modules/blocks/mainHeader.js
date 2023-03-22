@@ -40,28 +40,26 @@ const isMobile = {
 
 const burgerMenu = function (action = "toogle") {
   if (action == "toogle") {
-    ElBurger.classList.toggle("active")
-    ElBurgerBlock.classList.toggle("active")
-    return
+    ElBurger.classList.toggle("active");
+    ElBurgerBlock.classList.toggle("active");
+    return;
   }
 
   if (action == "hide") {
-    ElBurger.classList.remove("active")
-    ElBurgerBlock.classList.remove("active")
-    return
+    ElBurger.classList.remove("active");
+    ElBurgerBlock.classList.remove("active");
+    return;
   }
 
   if (action == "show") {
-    ElBurger.classList.add("active")
-    ElBurgerBlock.classList.add("active")
-    return
+    ElBurger.classList.add("active");
+    ElBurgerBlock.classList.add("active");
+    return;
   }
+};
 
-
-}
-
-let ElBurger
-let ElBurgerBlock
+let ElBurger;
+let ElBurgerBlock;
 
 const mainHeader = async function () {
   let burger = false;
@@ -79,7 +77,7 @@ const mainHeader = async function () {
                 href="/"
                 onclick={(e) => {
                   fn.siteLink(e);
-                  burgerMenu("hide")
+                  burgerMenu("hide");
                 }}
               >
                 <img src={images["logo"]}></img>
@@ -92,7 +90,7 @@ const mainHeader = async function () {
                 }}
                 class="menu-icon"
                 onclick={function () {
-                  burgerMenu()
+                  burgerMenu();
                 }}
               >
                 <span></span>
@@ -102,13 +100,14 @@ const mainHeader = async function () {
                   Element={($el) => {
                     ElBurgerBlock = $el;
                   }}
-                  class="menu-body">
+                  class="menu-body"
+                >
                   <a
                     target="_blank"
                     href="https://t.me/magdanov_bot"
                     class="btn btn-gradient mr-5"
                     onclick={(e) => {
-                      burgerMenu("hide")
+                      burgerMenu("hide");
                     }}
                   >
                     become our partner
@@ -126,7 +125,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burgerMenu("hide")
+                          burgerMenu("hide");
                         }}
                       >
                         MARKETPLACE
@@ -136,22 +135,25 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/marketplace/seed");
-                            burgerMenu("hide")
-                          }}>
+                            burgerMenu("hide");
+                          }}
+                        >
                           <a class="menu-sublist_item">Seed</a>
                         </li>
                         <li
                           onclick={(e) => {
                             fn.siteLink("/marketplace/private");
-                            burgerMenu("hide")
-                          }}>
+                            burgerMenu("hide");
+                          }}
+                        >
                           <a class="menu-sublist_item">Private</a>
                         </li>
                         <li
                           onclick={(e) => {
                             fn.siteLink("/marketplace/public");
-                            burgerMenu("hide")
-                          }}>
+                            burgerMenu("hide");
+                          }}
+                        >
                           <a class="menu-sublist_item">Public</a>
                         </li>
                       </ul>
@@ -169,7 +171,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burgerMenu("hide")
+                          burgerMenu("hide");
                         }}
                       >
                         research
@@ -179,7 +181,7 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/research/seed");
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Seed</a>
@@ -187,7 +189,7 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/research/private");
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Private</a>
@@ -195,7 +197,7 @@ const mainHeader = async function () {
                         <li
                           onclick={(e) => {
                             fn.siteLink("/research/public");
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Public</a>
@@ -208,7 +210,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burgerMenu("hide")
+                          burgerMenu("hide");
                         }}
                       >
                         Academy
@@ -220,7 +222,6 @@ const mainHeader = async function () {
                           this.classList.toggle("active");
                         }
                         initReload();
-
                       }}
                     >
                       <a href="" class="header-list_item">
@@ -243,7 +244,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">About Project</a>
@@ -263,7 +264,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Advantages</a>
@@ -283,7 +284,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Partners</a>
@@ -303,7 +304,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Roadmap</a>
@@ -323,7 +324,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Team</a>
@@ -343,7 +344,7 @@ const mainHeader = async function () {
                                 behavior: "smooth",
                               });
                             }, timeGo);
-                            burgerMenu("hide")
+                            burgerMenu("hide");
                           }}
                         >
                           <a class="menu-sublist_item">Social network</a>
@@ -363,7 +364,7 @@ const mainHeader = async function () {
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
-                          burgerMenu("hide")
+                          burgerMenu("hide");
                         }}
                       >
                         documents
@@ -384,7 +385,7 @@ const mainHeader = async function () {
                             class="menu-sublist_item"
                             onclick={() => {
                               fn.modals.Soon({});
-                              burgerMenu("hide")
+                              burgerMenu("hide");
                             }}
                           >
                             LitePaper
@@ -435,7 +436,7 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-green"
                         onclick={() => {
-                          fn.modals.Deposit({});
+                          fn.modals.Transaction({ title: "Deposit" });
                         }}
                       >
                         DEPOSIT
@@ -443,7 +444,7 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-bordo"
                         onclick={() => {
-                          fn.modals.Withdraw({});
+                          fn.modals.Transaction({ title: "Withdraw" });
                         }}
                       >
                         WITHDRAW
@@ -459,7 +460,7 @@ const mainHeader = async function () {
                       My Account
                     </button>
                   )}
-                  <span onclick={function () { }}>ENG</span>
+                  <span onclick={function () {}}>ENG</span>
 
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"

@@ -213,7 +213,13 @@
     top: 40%;
     right: 0;
     transform: translate(-40%, 0);
+    -webkit-tap-highlight-color: transparent;
   }
+  .menu-icon:focus,
+  .menu-icon:active{
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .menu-icon span,
   .menu-icon::before,
   .menu-icon::after{

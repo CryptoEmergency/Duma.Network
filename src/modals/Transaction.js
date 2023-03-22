@@ -21,7 +21,7 @@ const forExport = function (data, ID) {
           <div class="wrap-body">
             <div class="wrap-content bug">
               <header class="header-modal">
-                <h2 class="general-title mt-0">Withdraw</h2>
+                <h2 class="general-title mt-0">{data.title}</h2>
                 <button
                   class="button-close button-modal"
                   onclick={() => {

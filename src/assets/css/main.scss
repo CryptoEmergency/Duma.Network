@@ -54,8 +54,23 @@ $back in $backAdvance {
 
 .main-inner {
   margin: 0 15px;
+  position: relative;
 }
-
+// .circle-wrap{
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 100%;
+//   visibility: hidden;
+// }
+.circle-1{
+  position: sticky;
+  border-radius: 50%;
+  box-shadow: 0 0 200px 125px #1E6978;
+  min-height: 2em;
+  top: 10%;
+  // visibility: visible;
+}
 .main-back {
   position: relative;
   background-image: url(../svg/backMain.svg);
@@ -278,7 +293,7 @@ $back in $backAdvance {
   }
 }
 
-.advantages .circle1,.circle1, .cicle2,
+.advantages .circle1,
 .advantages .circle2 {
   position: absolute;
   bottom: 30%;
@@ -287,16 +302,14 @@ $back in $backAdvance {
   box-shadow: 0 0 200px 125px #1E6978;
 }
 
-.advantages .circle2, .circle2 {
+.advantages .circle2 {
   top: 30%;
   right: 25%;
   bottom: auto;
   left: auto;
   box-shadow: 0px 0px 180px 100px #1e6978;
 }
-// .cicle2, .circle1{
-//   position: sticky;
-// }
+
 .advantages-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -757,8 +770,8 @@ $back in $backAdvance {
   }
 
   .invest-item {
-    height: stretch;
     height: -webkit-fill-available;
+    height: 175px;
   }
 
   // contract
@@ -775,11 +788,13 @@ $back in $backAdvance {
     }
   }
   // contract
-
+  // opportunities
   .advantages-inner {
     grid-template-columns: 1fr;
   }
-
+  .advantages .circle1, .advantages .circle2{
+    box-shadow: 0 0 160px 100px #1E6978;
+  }
   .advance {
     grid-gap: 15px;
   }
@@ -791,6 +806,7 @@ $back in $backAdvance {
   .advance-item:hover {
     scale: 1;
   }
+  // opportunities
 
   .parthers-inner{
     grid-template-columns: repeat(3, 1fr);
