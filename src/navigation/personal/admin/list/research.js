@@ -62,8 +62,7 @@ const start = function (data, ID) {
                         `/personal/admin/edit/research/${response._id}`
                       );
                       // fn.siteLink("/personal/admin/list/research/");
-                    }}
-                  >
+                    }}>
                     +
                   </div>
                 </div>

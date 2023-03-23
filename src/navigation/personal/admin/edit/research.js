@@ -442,14 +442,6 @@ const start = function (data, ID) {
                                                         Static.channelNewSocial = item;
                                                         Static.viewForm = true
                                                         Static.elSocialInput.innerText = Static.forms.socials[item].link
-                                                        // Static.forms.social[item].url = "";
-                                                        // Static.linkNewSocial = "";
-                                                        // for (let item2 of Static.item.social) {
-                                                        //     if (item2.channel == Static.channelNewSocial) {
-                                                        //         Static.forms.social[item].url = item2.url;
-                                                        //         Static.linkNewSocial = item2.url;
-                                                        //     }
-                                                        // }
                                                         initReload();
                                                     }}
                                                 >
@@ -468,7 +460,6 @@ const start = function (data, ID) {
                                         Element={(el) => {
                                             Static.elSocialInput = el
                                         }}
-                                        // innerText={Static.forms.socials[Static.channelNewSocial]?.link}
                                         oninput={function () {
                                             Static.forms.socials[Static.channelNewSocial].link = this.innerText.trim()
                                             let tmpSocials = []
@@ -479,65 +470,64 @@ const start = function (data, ID) {
                                             updateValue({ key: "socials", value: Static.item.socials })
                                         }}
                                     >
-                                        {/* {Static.forms.socials[Static.channelNewSocial]?.link} */}
                                     </div>
-                                    <h4>Upload gallery</h4>
-                                    <div class="form-item pictures">
-                                        <div class="picture" >
-                                            <input
-                                                type="file"
-                                                hidden
-                                                Element={($el) => {
-                                                    Static.elAddMedia = $el
-                                                }}
-                                                onchange={async function (e) {
-                                                    e.stopPropagation();
-                                                    Array.from(this.files).forEach((item) => {
-                                                        fn.uploadFile({
-                                                            file: item,
-                                                            onload: async function () {
-                                                                // console.log('=81bde2=', "onload")
-                                                                if (!this.response) {
-                                                                    alert("Have some Error. Try again...")
-                                                                    return
-                                                                }
-                                                                let response = JSON.parse(this.response);
-                                                                // console.log('=35f155=', response)
-                                                                if (response.error || !response.name) {
-                                                                    alert("Have some Error. Try again... " + response.error)
-                                                                    return
-                                                                }
-                                                                Static.item.gallery.push(response.name)
-                                                                updateValue({ key: "gallery", value: Static.item.gallery })
-                                                                // let tmp = await fn.socket.set({ method: "Research", action: "findOneAndUpdate", _id: Static.item._id, params: { update: { gallery: Static.item.gallery } } })
-                                                                initReload()
-                                                            },
-                                                            onprogress: async function (e) {
-                                                                let contentLength;
-                                                                if (e.lengthComputable) {
-                                                                    contentLength = e.total;
-                                                                } else {
-                                                                    contentLength = parseInt(
-                                                                        e.target.getResponseHeader(
-                                                                            "x-decompressed-content-length"
-                                                                        ),
-                                                                        10
-                                                                    );
-                                                                }
-                                                                console.log("onprogress", e.loaded, contentLength)
-                                                            }
-                                                        })
-                                                        return
-                                                    })
-                                                }}
-                                            />
-                                            <img
-                                                src={images["card/1"]}
-                                                onclick={() => {
-                                                    Static.elAddMedia.click()
-                                                }}
-                                            ></img>
+                                    <div class="inner-add">
+                                        <h4>Upload gallery</h4>
+                                        <div
+                                            class="add"
+                                            onclick={() => {
+                                                Static.elAddMedia.click()
+                                            }}>
+                                            +
                                         </div>
+                                    </div>
+                                    <div class="form-item pictures">
+                                        <input
+                                            type="file"
+                                            hidden
+                                            Element={($el) => {
+                                                Static.elAddMedia = $el
+                                            }}
+                                            onchange={async function (e) {
+                                                e.stopPropagation();
+                                                Array.from(this.files).forEach((item) => {
+                                                    fn.uploadFile({
+                                                        file: item,
+                                                        onload: async function () {
+                                                            // console.log('=81bde2=', "onload")
+                                                            if (!this.response) {
+                                                                alert("Have some Error. Try again...")
+                                                                return
+                                                            }
+                                                            let response = JSON.parse(this.response);
+                                                            // console.log('=35f155=', response)
+                                                            if (response.error || !response.name) {
+                                                                alert("Have some Error. Try again... " + response.error)
+                                                                return
+                                                            }
+                                                            Static.item.gallery.push(response.name)
+                                                            updateValue({ key: "gallery", value: Static.item.gallery })
+                                                            // let tmp = await fn.socket.set({ method: "Research", action: "findOneAndUpdate", _id: Static.item._id, params: { update: { gallery: Static.item.gallery } } })
+                                                            initReload()
+                                                        },
+                                                        onprogress: async function (e) {
+                                                            let contentLength;
+                                                            if (e.lengthComputable) {
+                                                                contentLength = e.total;
+                                                            } else {
+                                                                contentLength = parseInt(
+                                                                    e.target.getResponseHeader(
+                                                                        "x-decompressed-content-length"
+                                                                    ),
+                                                                    10
+                                                                );
+                                                            }
+                                                            console.log("onprogress", e.loaded, contentLength)
+                                                        }
+                                                    })
+                                                    return
+                                                })
+                                            }} />
                                         {
                                             Static.item.gallery.map((item, index) => {
                                                 return (
