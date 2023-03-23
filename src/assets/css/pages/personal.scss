@@ -11,10 +11,12 @@
 
 // another elements
 .inner-add {
-  .add {
-    width: 30;
-    height: 30;
-    font-size: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // width: ;
+  .add{
+    padding: 20px 35px;
   }
 }
 
