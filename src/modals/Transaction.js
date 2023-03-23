@@ -77,7 +77,7 @@ const forExport = function (data, ID) {
                   </div>
                 </div>
 
-                <div class="switcher">
+                <div class="switcher mt-15">
                   <input id="switch-1" type="checkbox"></input>
                   <label for="switch-1"></label>
                 </div>
