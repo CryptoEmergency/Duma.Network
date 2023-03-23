@@ -130,7 +130,6 @@ const forExport = function ({ className }) {
               width="422"
               height="255"
               oncanplay={function () {
-                console.log('=17742f=', "oncanplay")
                 try {
                   this.muted = true
                   this.play()
