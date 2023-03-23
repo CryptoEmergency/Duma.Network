@@ -75,7 +75,9 @@ forExport.schema = new mongoose.Schema(
     moderation: { type: Boolean, default: false },
     active: { type: Boolean, default: true },
     author: { type: mongoose.Schema.Types.ObjectId, ref: "duma_users" },
-    showDate: { type: Date, default: Date.now }
+    showDate: { type: Date, default: Date.now },
+    startDate: { type: Date },
+    endDate: { type: Date }
   },
   standartDate
 );

@@ -471,6 +471,41 @@ const start = function (data, ID) {
                                         }}
                                     >
                                     </div>
+
+                                    <div class="grid-2">
+                                        <div class="form-div">
+                                            <label>
+                                                Start date:
+                                            </label>
+                                            <div class="form-input personal-input">
+                                                <input
+                                                    type="datetime-local"
+                                                    max="9999-12-31T23:59"
+                                                    value={!Static.item.startDate ? fn.moment().format('YYYY-MM-DD HH:mm') : fn.moment(Static.item.startDate).format('YYYY-MM-DD HH:mm')}
+                                                    oninput={function (e) {
+                                                        Static.item.startDate = this.value
+                                                        updateValue({ key: "startDate", value: Static.item.startDate })
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="form-div">
+                                            <label>
+                                                End date:
+                                            </label>
+                                            <div class="form-input personal-input">
+                                                <input
+                                                    type="datetime-local"
+                                                    max="9999-12-31T23:59"
+                                                    value={!Static.item.endDate ? fn.moment().format('YYYY-MM-DD HH:mm') : fn.moment(Static.item.endDate).format('YYYY-MM-DD HH:mm')}
+                                                    oninput={function (e) {
+                                                        Static.item.endDate = this.value
+                                                        updateValue({ key: "endDate", value: Static.item.endDate })
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="inner-add">
                                         <h4>Upload gallery</h4>
                                         <div
@@ -541,10 +576,9 @@ const start = function (data, ID) {
                                                             <div
                                                                 class="news-form_gallery-delete"
                                                                 onClick={() => {
-                                                                    console.log('=2bc1f6=', "fhfh")
-                                                                    // Static.forms.media.splice(index, 1);
-                                                                    // updateRecords({ media: Static.item.media })
-                                                                    // initReload()
+                                                                    Static.item.gallery.splice(index, 1);
+                                                                    updateRecords({ gallery: Static.item.gallery })
+                                                                    initReload()
                                                                 }}
                                                             >
                                                                 <img src={svg["delete_icon"]} />
