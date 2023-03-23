@@ -424,6 +424,249 @@ const start = function (data, ID) {
                                         </div>
                                     </div>
 
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Documentation</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.documentation = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.documentation || Static.item.rankList.documentation >= 0) {
+                                                        updateValue({ key: "rankList.documentation", value: Static.item.rankList.investors })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.documentation}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.documentation = this.innerText.trim()
+                                                updateValue({ key: "documentation", value: Static.item.documentation })
+                                            }}>
+                                            {Static.item.documentation}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Social</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.social = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.social || Static.item.rankList.social >= 0) {
+                                                        updateValue({ key: "rankList.social", value: Static.item.rankList.investors })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.social}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.social = this.innerText.trim()
+                                                updateValue({ key: "social", value: Static.item.social })
+                                            }}>
+                                            {Static.item.social}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Launchpad</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.launchpad = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.launchpad || Static.item.rankList.launchpad >= 0) {
+                                                        updateValue({ key: "rankList.launchpad", value: Static.item.rankList.investors })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.launchpad}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.launchpad = this.innerText.trim()
+                                                updateValue({ key: "launchpad", value: Static.item.launchpad })
+                                            }}>
+                                            {Static.item.launchpad}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>CEX/DEX</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.cexDex = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.cexDex || Static.item.rankList.cexDex >= 0) {
+                                                        updateValue({ key: "rankList.cexDex", value: Static.item.rankList.investors })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.cexDex}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.cexDex = this.innerText.trim()
+                                                updateValue({ key: "cexDex", value: Static.item.cexDex })
+                                            }}>
+                                            {Static.item.cexDex}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Listing on aggregator</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.aggregator = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.aggregator || Static.item.rankList.aggregator >= 0) {
+                                                        updateValue({ key: "rankList.aggregator", value: Static.item.rankList.aggregator })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.aggregator}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.aggregator = this.innerText.trim()
+                                                updateValue({ key: "aggregator", value: Static.item.aggregator })
+                                            }}>
+                                            {Static.item.aggregator}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Competitors</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.competitors = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.competitors || Static.item.rankList.competitors >= 0) {
+                                                        updateValue({ key: "rankList.competitors", value: Static.item.rankList.competitors })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.competitors}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.competitors = this.innerText.trim()
+                                                updateValue({ key: "competitors", value: Static.item.competitors })
+                                            }}>
+                                            {Static.item.competitors}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Media</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.mediaText = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.mediaText || Static.item.rankList.mediaText >= 0) {
+                                                        updateValue({ key: "rankList.mediaText", value: Static.item.rankList.mediaText })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.mediaText}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.mediaText = this.innerText.trim()
+                                                updateValue({ key: "mediaText", value: Static.item.mediaText })
+                                            }}>
+                                            {Static.item.mediaText}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Audit</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.audit = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.audit || Static.item.rankList.audit >= 0) {
+                                                        updateValue({ key: "rankList.audit", value: Static.item.rankList.audit })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.audit}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.audit = this.innerText.trim()
+                                                updateValue({ key: "audit", value: Static.item.audit })
+                                            }}>
+                                            {Static.item.audit}
+                                        </div>
+                                    </div>
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>TOTAL</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.rankList.totalText = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.totalText || Static.item.rankList.totalText >= 0) {
+                                                        updateValue({ key: "rankList.totalText", value: Static.item.rankList.totalText })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.totalText}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+                                        <div
+                                            class="scheme-card_desc text"
+                                            contenteditable="plaintext-only"
+                                            oninput={function () {
+                                                Static.item.totalText = this.innerText.trim()
+                                                updateValue({ key: "totalText", value: Static.item.totalText })
+                                            }}>
+                                            {Static.item.totalText}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

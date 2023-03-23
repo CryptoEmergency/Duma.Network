@@ -32,12 +32,14 @@ forExport.schema = new mongoose.Schema(
       product: { type: Number, default: 0 },
       solution: { type: Number, default: 0 },
       investors: { type: Number, default: 0 },
+      documentation: { type: Number, default: 0 },
+      social: { type: Number, default: 0 },
     },
     status: { type: String },
     category: { type: String },
     tabs: { type: String },
     description: { type: String },
-    social: [
+    socials: [
       {
         name: { type: String },
         icon: { type: String },
@@ -53,6 +55,8 @@ forExport.schema = new mongoose.Schema(
     product: { type: String },
     solution: { type: String },
     investors: { type: String },
+    documentation: { type: String },
+    social: { type: String },
     partners: { type: Boolean, default: false },
     moderation: { type: Boolean, default: false },
     active: { type: Boolean, default: true },

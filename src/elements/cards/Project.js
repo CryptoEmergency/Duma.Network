@@ -45,7 +45,7 @@ const forExport = function ({ className, items = [] }) {
 									<p class="desc-text">{item.description}</p>
 								</div>
 								<div class="socials">
-									{item.social.map((element) => {
+									{item.socials.map((element) => {
 										return (
 											<a target="_blank" href={element.link}>
 												<img

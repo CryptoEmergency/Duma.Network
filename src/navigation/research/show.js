@@ -142,6 +142,16 @@ const start = function (data, ID) {
                                         </div>
                                     </div>
 
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Documentation</span>
+                                            <span class="text-green">{Static.item.rankList.documentation} points</span>
+                                        </div>
+                                        <div class="scheme-card_desc text">
+                                            {fn.editText(Static.item.documentation, { paragraph: true, html: true })}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </section>
                         </div>
