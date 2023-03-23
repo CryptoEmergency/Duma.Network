@@ -92,6 +92,12 @@ $indent in $indents {
   .ml-#{$index}{
     margin-left: $indent !important;
   }
+  .mY-#{$index}{
+    margin: $indent 0!important;
+  }
+  .mX-#{$index}{
+    margin: 0 $indent!important;
+  }
   .pt-#{$index} {
     padding-top: $indent !important;
   }

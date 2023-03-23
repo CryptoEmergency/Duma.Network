@@ -83,7 +83,7 @@ const start = function (data, ID) {
                     </div>
                     <h2>PRE SEED ROUND IS OPEN</h2>
                     <p class="text">{Static.item.description}</p>
-                    <div class="socials">
+                    <div class="socials mt-15 mb-15">
                       {(Static.item.socials || []).map((element) => {
                         if (element.link && element.link.length > 0) {
                           return (

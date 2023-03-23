@@ -93,71 +93,357 @@ const start = function (data, ID) {
               </section>
               <section class="project-scheme">
                 <div class="scheme-sidebar">
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#problem").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Problem</span>
                     <span class="text-green">10/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#product").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Product</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#solution").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Solution</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#investors").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Investors</span>
                     <span class="text-green">4 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#preSeed").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Seed Round</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#tokenomics").offsetTop -
+                            72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Tokenomics</span>
                     <span class="text-green">23 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#utility").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Utility Value</span>
                     <span class="text-green">30 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top: document.querySelector("#team").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Team Advisors</span>
                     <span class="text-green">8/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#roadmap").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Roadmap</span>
                     <span class="text-green">10/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#documentation").offsetTop -
+                            72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                      burgerMenu("hide");
+                    }}
+                  >
                     <span>Documentation</span>
                     <span class="text-green">8/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top: document.querySelector("#social").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Social</span>
                     <span class="text-green">8/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#launchpad").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Launchpad</span>
                     <span class="text-green">0/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top: document.querySelector("#cex").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>CEX/DEX</span>
                     <span class="text-green">0/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#listing").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Listing</span>
                     <span class="text-green">0 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top:
+                            document.querySelector("#competitors").offsetTop -
+                            72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Media</span>
                     <span class="text-green">8/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top: document.querySelector("#media").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Competitors</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top: document.querySelector("#audit").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Audit</span>
                     <span class="text-green">5/10 points</span>
                   </div>
-                  <div class="scheme-sidebar_item text">
+                  <div
+                    class="scheme-sidebar_item text"
+                    onclick={(e) => {
+                      let timeGo = 10;
+                      // if (Variable.dataUrl.adress != "index") {
+                      //   fn.siteLink("/");
+                      //   timeGo = 100;
+                      // }
+                      setTimeout(() => {
+                        window.scrollTo({
+                          top: document.querySelector("#total").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                      }, timeGo);
+                    }}
+                  >
                     <span>Total</span>
                     <span class="text-green">107 points</span>
                   </div>
@@ -166,7 +452,7 @@ const start = function (data, ID) {
                   </div>
                 </div>
                 <div class="scheme-cards">
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="problem">
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
                       <span class="text-green">10/10 points</span>
@@ -184,7 +470,7 @@ const start = function (data, ID) {
                       for the asset.
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="product">
                     <div class="scheme-sidebar_item text">
                       <span>Product</span>
                     </div>
@@ -210,7 +496,7 @@ const start = function (data, ID) {
                       </ul>
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="solution">
                     <div class="scheme-sidebar_item text">
                       <span>Solution</span>
                     </div>
@@ -267,7 +553,7 @@ const start = function (data, ID) {
                       </ul>
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="investors">
                     <div class="scheme-sidebar_item text">
                       <span>Investors</span>
                       <span class="text-green">4 points</span>
@@ -281,7 +567,7 @@ const start = function (data, ID) {
                       fund.
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="preSeed">
                     <div class="scheme-sidebar_item text">
                       <span>Pre-Seed Round</span>
                     </div>
@@ -299,7 +585,7 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="tokenomics">
                     <div class="scheme-sidebar_item text">
                       <span>Tokenomics</span>
                       <span class="text-green">23 points</span>
@@ -333,7 +619,7 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="utility">
                     <div class="scheme-sidebar_item text">
                       <span>Utility and Value</span>
                       <span class="text-green">30 points</span>
@@ -391,7 +677,7 @@ const start = function (data, ID) {
                    </div>
                   </div>
                 </div> */}
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="team">
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>
                       <span class="text-green">8/10 points</span>
@@ -447,7 +733,7 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="roadmap">
                     <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
                       <span class="text-green">10/10 points</span>
@@ -561,7 +847,7 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="documentation">
                     <div class="scheme-sidebar_item text">
                       <span>Documentation</span>
                       <span class="text-green">8/10 points</span>
@@ -580,7 +866,7 @@ const start = function (data, ID) {
                       the public domain
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="social">
                     <div class="scheme-sidebar_item text">
                       <span>Social</span>
                       <span class="text-green">8/10 points</span>
@@ -614,7 +900,7 @@ const start = function (data, ID) {
                       </ul>
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="launchpad">
                     <div class="scheme-sidebar_item text">
                       <span>Launchpad</span>
                       <span class="text-green">0/10 points</span>
@@ -623,7 +909,7 @@ const start = function (data, ID) {
                       The project is not listed on top tier launchpads
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="cex">
                     <div class="scheme-sidebar_item text">
                       <span>CEX/DEX</span>
                       <span class="text-green">0/10 points</span>
@@ -633,7 +919,7 @@ const start = function (data, ID) {
                       exchange
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="listing">
                     <div class="scheme-sidebar_item text">
                       <span>Listing on aggregator</span>
                       <span class="text-green">0 points</span>
@@ -642,7 +928,7 @@ const start = function (data, ID) {
                       The project is not listed on aggregator sites
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="competitors">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
                     </div>
@@ -651,7 +937,7 @@ const start = function (data, ID) {
                       the startup with the same business model.
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="media">
                     <div class="scheme-sidebar_item text">
                       <span>Media</span>
                       <span class="text-green">0/10 points</span>
@@ -660,7 +946,7 @@ const start = function (data, ID) {
                       Articles and reviews on media resources were not found
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="audit">
                     <div class="scheme-sidebar_item text">
                       <span>Audit</span>
                       <span class="text-green">0/10 points</span>
@@ -670,7 +956,7 @@ const start = function (data, ID) {
                       has been conducted
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="total">
                     <div class="scheme-sidebar_item text">
                       <span>TOTAL</span>
                       <span class="text-green">101 points</span>
@@ -695,7 +981,7 @@ const start = function (data, ID) {
                       value of resold assets even before entering the market.
                     </div>
                   </div>
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="comments">
                     <div class="scheme-sidebar_item">
                       <span>Comments</span>
                     </div>

@@ -108,6 +108,11 @@
   grid-template-columns: 1fr 9fr;
   grid-gap: 50px;
 }
+.scheme-sidebar{
+  .scheme-sidebar_item{
+    cursor: pointer;
+  }
+}
 .scheme-sidebar, .scheme-sidebar_item{
   display: flex;
   flex-direction: column;
