@@ -76,6 +76,14 @@
             }
         }
 
+        &_have {
+            background: initial;
+
+            .create_social_icon_inner {
+                background-color: #36680d;
+            }
+        }
+
         &_inner {
             position: relative;
             width: 100%;

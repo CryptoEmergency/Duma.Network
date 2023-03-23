@@ -32,8 +32,9 @@ const updateRecords = async function (update) {
 
 const start = function (data, ID) {
     let [Static] = fn.GetParams({ data, ID });
+
     Static.forms = {}
-    Static.forms.social = {
+    Static.forms.socials = {
         youtube: {},
         facebook: {},
         twitter: {},
@@ -58,6 +59,14 @@ const start = function (data, ID) {
                 // console.log('=9ebbf7=', Static.item)
                 if (Static.item && !Static.item.gallery) {
                     Static.item.gallery = []
+                }
+
+                if (!Static.item.socials) {
+                    Static.item.socials = []
+                }
+
+                for (let item of Static.item.socials) {
+                    Static.forms.socials[item.name] = item
                 }
             }
         },
@@ -421,16 +430,18 @@ const start = function (data, ID) {
                                     </div>
 
                                     <div class="" style="display:flex;">
-                                        {Object.keys(Static.forms.social).map((item) => {
+                                        {Object.keys(Static.forms.socials).map((item) => {
                                             return (
                                                 <div
                                                     class={[
                                                         "create_social_icon",
-                                                        Static.channelNewSocial == item ? "create_social_icon_active" : null
+                                                        Static.channelNewSocial == item ? "create_social_icon_active" : Static.forms.socials[item].link && Static.forms.socials[item].link.length ? "create_social_icon_have" : null
                                                     ]}
                                                     onclick={(e) => {
                                                         e.preventDefault();
-                                                        // Static.channelNewSocial = item;
+                                                        Static.channelNewSocial = item;
+                                                        Static.viewForm = true
+                                                        Static.elSocialInput.innerText = Static.forms.socials[item].link
                                                         // Static.forms.social[item].url = "";
                                                         // Static.linkNewSocial = "";
                                                         // for (let item2 of Static.item.social) {
@@ -439,7 +450,7 @@ const start = function (data, ID) {
                                                         //         Static.linkNewSocial = item2.url;
                                                         //     }
                                                         // }
-                                                        // initReload();
+                                                        initReload();
                                                     }}
                                                 >
                                                     <div class="create_social_icon_inner">
@@ -450,7 +461,26 @@ const start = function (data, ID) {
                                         })
                                         }
                                     </div>
-
+                                    <div
+                                        hidden={!Static.viewForm}
+                                        class="form-input personal-input"
+                                        contenteditable="true"
+                                        Element={(el) => {
+                                            Static.elSocialInput = el
+                                        }}
+                                        // innerText={Static.forms.socials[Static.channelNewSocial]?.link}
+                                        oninput={function () {
+                                            Static.forms.socials[Static.channelNewSocial].link = this.innerText.trim()
+                                            let tmpSocials = []
+                                            for (let key in Static.forms.socials) {
+                                                tmpSocials.push({ name: key, link: Static.forms.socials[key].link })
+                                            }
+                                            Static.item.socials = tmpSocials
+                                            updateValue({ key: "socials", value: Static.item.socials })
+                                        }}
+                                    >
+                                        {/* {Static.forms.socials[Static.channelNewSocial]?.link} */}
+                                    </div>
                                     <h4>Upload gallery</h4>
                                     <div class="form-item pictures">
                                         <div class="picture" >

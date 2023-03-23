@@ -11,7 +11,6 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
 const forExport = function ({ Static, onclick, className }) {
-  console.log(Variable.dataUrl.category);
   return (
     <div class="sidebar">
       <div class="nums">
