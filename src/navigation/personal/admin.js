@@ -37,7 +37,11 @@ const start = function (data, ID) {
                         <div class="personal-main">
                             <Elements.BlockPersonal />
                             <div class="personal-content">
-                                {/* main page */}
+                                <Elements.Bredcrumbs
+                                    items={[
+                                        { title: "Admin", link: "/personal/admin/" }
+                                    ]}
+                                />
                                 <section class="main mb-25  ">
                                     <h2 class="general-title mt-25">Admin Action</h2>
                                 </section>

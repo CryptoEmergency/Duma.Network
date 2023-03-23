@@ -85,7 +85,13 @@ const start = function (data, ID) {
                         <div class="personal-main">
                             <Elements.BlockPersonal />
                             <div class="personal-content">
-                                {/* main page */}
+                                <Elements.Bredcrumbs
+                                    items={[
+                                        { title: "Admin", link: "/personal/admin/" },
+                                        { title: "Research lists", link: "/personal/admin/list/research/" },
+                                        { title: Static.item.name ? Static.item.name : "New record" }
+                                    ]}
+                                />
                                 <section class="main mb-25 inner-add">
                                     <h2 class="general-title mt-0">Edit Research</h2>
                                     <label style={Static.item.moderation ? "color:green;" : "color:red;"}>{Static.item.moderation ? "Show" : "Hidden"}</label>
@@ -479,9 +485,9 @@ const start = function (data, ID) {
                                             </label>
                                             <div class="form-input personal-input">
                                                 <input
-                                                    type="datetime-local"
+                                                    type="date"
                                                     max="9999-12-31T23:59"
-                                                    value={!Static.item.startDate ? fn.moment().format('YYYY-MM-DD HH:mm') : fn.moment(Static.item.startDate).format('YYYY-MM-DD HH:mm')}
+                                                    value={!Static.item.startDate ? fn.moment().format('YYYY-MM-DD') : fn.moment(Static.item.startDate).format('YYYY-MM-DD')}
                                                     oninput={function (e) {
                                                         Static.item.startDate = this.value
                                                         updateValue({ key: "startDate", value: Static.item.startDate })
@@ -495,9 +501,9 @@ const start = function (data, ID) {
                                             </label>
                                             <div class="form-input personal-input">
                                                 <input
-                                                    type="datetime-local"
+                                                    type="date"
                                                     max="9999-12-31T23:59"
-                                                    value={!Static.item.endDate ? fn.moment().format('YYYY-MM-DD HH:mm') : fn.moment(Static.item.endDate).format('YYYY-MM-DD HH:mm')}
+                                                    value={!Static.item.endDate ? fn.moment().format('YYYY-MM-DD') : fn.moment(Static.item.endDate).format('YYYY-MM-DD')}
                                                     oninput={function (e) {
                                                         Static.item.endDate = this.value
                                                         updateValue({ key: "endDate", value: Static.item.endDate })
