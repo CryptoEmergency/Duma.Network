@@ -43,11 +43,15 @@ const start = function (data, ID) {
                       <span class="title-block pb-15">Offer</span>
                       <div class="row-block">
                         <span>ID</span>
-                        <span>123234</span>
+                        <span class="cY">
+                          123234<img class="ml-10" src={svg.copy}></img>
+                        </span>
                       </div>
                       <div class="row-block">
                         <span>Link</span>
-                        <span>12323432</span>
+                        <span class="cY">
+                          12323432<img class="ml-10" src={svg.copy}></img>
+                        </span>
                       </div>
                       <button class="btn btn-white mt-10">
                         invite friends

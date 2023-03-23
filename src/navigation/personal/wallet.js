@@ -67,35 +67,35 @@ const start = function (data, ID) {
                         </div>
                         <div class="row-block">
                           <span>Refs</span>
-                          <span class="text-green">
+                          <span class="text-green cY">
                             +1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Tokens that come by distribution</span>
-                          <span class="text-green">
+                          <span class="text-green cY">
                             +1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Passive income</span>
-                          <span class="text-green">
+                          <span class="text-green cY">
                             +1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Staking accruals</span>
-                          <span class="text-green">
+                          <span class="text-green cY">
                             +1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Profit</span>
-                          <span class="text-green">
+                          <span class="text-green cY">
                             +1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
@@ -110,28 +110,28 @@ const start = function (data, ID) {
                         </div>
                         <div class="row-block">
                           <span>Blocked money in projects</span>
-                          <span class="text-red">
+                          <span class="text-red cY">
                             1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Lock in Staking</span>
-                          <span class="text-red">
+                          <span class="text-red cY">
                             1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Marketplace offers</span>
-                          <span class="text-red">
+                          <span class="text-red cY">
                             1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>
                         </div>
                         <div class="row-block">
                           <span>Orders on the platform</span>
-                          <span class="text-red">
+                          <span class="text-red cY">
                             1,500$
                             <img class="icon-points" src={svg.points}></img>
                           </span>

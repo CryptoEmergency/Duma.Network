@@ -610,10 +610,21 @@ $back in $backAdvance {
 
   .intro-inner {
     padding: 25px 0;
+    flex-direction: column;
+    padding-bottom: 0;
   }
 
-  .intro-inner img {
-    display: none;
+  .device{
+    .device-video{
+      position: relative;
+      top: auto;
+      right: auto;
+      width: 100%;
+      height: auto;
+    }
+    img{
+      display: none;
+    }
   }
 
   .ecosystem-box .eco-item:nth-child(2) .eco-title {
@@ -659,7 +670,7 @@ $back in $backAdvance {
   .invest-item img {
     width: 35px;
     height: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .duma-text {
