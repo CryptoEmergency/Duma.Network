@@ -150,12 +150,13 @@ const start = function (data, ID) {
       let tmp = await fn.socket.get({
         method: "Research",
         // params: { filter: { moderation: true } },
-        params: { filter: { tabs: Static.activeTab } },
+        params: { filter: { moderation: true, tabs: Static.activeTab } },
       });
+      console.log('=2eba1a=', tmp, Static.activeTab)
       if (tmp && tmp[0]) {
         Static.projects = tmp
       } else {
-        Static.projects = cardsRecords
+        Static.projects = [cardsRecords[4], cardsRecords[5]]
       }
     },
     fn: () => {
@@ -180,19 +181,19 @@ const start = function (data, ID) {
                 items={[
                   {
                     title: "Seed", name: "seed", onclick: async () => {
-                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { tabs: Static.activeTab } } });
+                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { moderation: true, tabs: Static.activeTab } } });
                       initReload()
                     }
                   },
                   {
                     title: "Private", name: "private", onclick: async () => {
-                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { tabs: Static.activeTab } } });
+                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { moderation: true, tabs: Static.activeTab } } });
                       initReload()
                     }
                   },
                   {
                     title: "Public", name: "public", onclick: async () => {
-                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { tabs: Static.activeTab } } });
+                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { moderation: true, tabs: Static.activeTab } } });
                       initReload()
                     }
                   },
