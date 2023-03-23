@@ -65,6 +65,10 @@ const start = function (data, ID) {
                     Static.item.socials = []
                 }
 
+                if (!Static.item.utility) {
+                    Static.item.utility = {}
+                }
+
                 for (let item of Static.item.socials) {
                     Static.forms.socials[item.name] = item
                 }
@@ -113,7 +117,6 @@ const start = function (data, ID) {
 
 
                                     <div class="grid-2">
-
                                         <div class="form-item wrap-logo">
                                             <div class="picture">
                                                 <input
@@ -175,7 +178,7 @@ const start = function (data, ID) {
                                                 </label> */}
                                                 <div
                                                     class="form-input personal-input"
-                                                    contenteditable="true"
+                                                    contenteditable="plaintext-only"
                                                     oninput={function () {
                                                         Static.item.name = this.innerText.trim()
                                                         updateValue({ key: "name", value: Static.item.name })
@@ -375,7 +378,7 @@ const start = function (data, ID) {
                                         <div
                                             style="min-height:100px;"
                                             class="form-input personal-input"
-                                            contenteditable="true"
+                                            contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.description = this.innerText.trim()
                                                 updateValue({ key: "description", value: Static.item.description })
@@ -391,7 +394,7 @@ const start = function (data, ID) {
                                             </label>
                                             <div
                                                 class="form-input personal-input"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.seedRound = Number(this.innerText.trim())
                                                     if (Static.item.seedRound || Static.item.seedRound >= 0) {
@@ -407,7 +410,7 @@ const start = function (data, ID) {
                                             </label>
                                             <div
                                                 class="form-input personal-input"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.have = Number(this.innerText.trim())
                                                     if (Static.item.have || Static.item.have >= 0) {
@@ -423,7 +426,7 @@ const start = function (data, ID) {
                                             </label>
                                             <div
                                                 class="form-input personal-input"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.target = Number(this.innerText.trim())
                                                     if (Static.item.target || Static.item.target >= 0) {
@@ -462,7 +465,7 @@ const start = function (data, ID) {
                                     <div
                                         hidden={!Static.viewForm}
                                         class="form-input personal-input"
-                                        contenteditable="true"
+                                        contenteditable="plaintext-only"
                                         Element={(el) => {
                                             Static.elSocialInput = el
                                         }}
@@ -596,12 +599,71 @@ const start = function (data, ID) {
                                         }
                                     </div>
 
+
+                                    <div class="scheme-card">
+                                        <div class="scheme-sidebar_item text">
+                                            <span>Utility and Value</span>
+                                            <div
+                                                class="form-input personal-input text-green"
+                                                contenteditable="plaintext-only"
+                                                oninput={function () {
+                                                    Static.item.rankList.utility = Number(this.innerText.trim())
+                                                    if (Static.item.rankList.utility || Static.item.rankList.utility >= 0) {
+                                                        updateValue({ key: "rankList.utility", value: Static.item.rankList.utility })
+                                                    }
+                                                }}>
+                                                {Static.item.rankList.utility}
+                                            </div>
+                                            <span class="text-green">Max. 10</span>
+                                        </div>
+
+                                        <div class="scheme-card_desc">
+                                            <div class="scheme-row">
+                                                <div>Token Utility</div>
+                                                <div
+                                                    class="text personal-input"
+                                                    contenteditable="plaintext-only"
+                                                    oninput={function () {
+                                                        Static.item.utility.token = this.innerText.trim()
+                                                        updateValue({ key: "utility.token", value: Static.item.utility.token })
+                                                    }}>
+                                                    {Static.item.utility?.token}
+                                                </div>
+                                            </div>
+                                            <div class="scheme-row">
+                                                <div>Value capture</div>
+                                                <div
+                                                    class="text personal-input"
+                                                    contenteditable="plaintext-only"
+                                                    oninput={function () {
+                                                        Static.item.utility.capture = this.innerText.trim()
+                                                        updateValue({ key: "utility.capture", value: Static.item.utility.capture })
+                                                    }}>
+                                                    {Static.item.utility?.capture}
+                                                </div>
+                                            </div>
+                                            <div class="scheme-row">
+                                                <div>Value accural</div>
+                                                <div
+                                                    class="text personal-input"
+                                                    contenteditable="plaintext-only"
+                                                    oninput={function () {
+                                                        Static.item.utility.accural = this.innerText.trim()
+                                                        updateValue({ key: "utility.accural", value: Static.item.utility.accural })
+                                                    }}>
+                                                    {Static.item.utility?.accural}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <div class="scheme-card">
                                         <div class="scheme-sidebar_item text">
                                             <span>Problem</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.problem = Number(this.innerText.trim())
                                                     if (Static.item.rankList.problem || Static.item.rankList.problem >= 0) {
@@ -613,7 +675,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.problem = this.innerText.trim()
@@ -628,7 +690,7 @@ const start = function (data, ID) {
                                             <span>Product</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.product = Number(this.innerText.trim())
                                                     if (Static.item.rankList.product || Static.item.rankList.product >= 0) {
@@ -640,7 +702,7 @@ const start = function (data, ID) {
                                             {/* <span class="text-green">Max. 10</span> */}
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.product = this.innerText.trim()
@@ -655,7 +717,7 @@ const start = function (data, ID) {
                                             <span>Solution</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.solution = Number(this.innerText.trim())
                                                     if (Static.item.rankList.solution || Static.item.rankList.solution >= 0) {
@@ -667,7 +729,7 @@ const start = function (data, ID) {
                                             {/* <span class="text-green">Max. 10</span> */}
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.solution = this.innerText.trim()
@@ -682,7 +744,7 @@ const start = function (data, ID) {
                                             <span>Investors</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.investors = Number(this.innerText.trim())
                                                     if (Static.item.rankList.investors || Static.item.rankList.investors >= 0) {
@@ -694,7 +756,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 4</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.investors = this.innerText.trim()
@@ -709,7 +771,7 @@ const start = function (data, ID) {
                                             <span>Documentation</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.documentation = Number(this.innerText.trim())
                                                     if (Static.item.rankList.documentation || Static.item.rankList.documentation >= 0) {
@@ -721,7 +783,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.documentation = this.innerText.trim()
@@ -736,7 +798,7 @@ const start = function (data, ID) {
                                             <span>Social</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.social = Number(this.innerText.trim())
                                                     if (Static.item.rankList.social || Static.item.rankList.social >= 0) {
@@ -748,7 +810,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.social = this.innerText.trim()
@@ -763,7 +825,7 @@ const start = function (data, ID) {
                                             <span>Launchpad</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.launchpad = Number(this.innerText.trim())
                                                     if (Static.item.rankList.launchpad || Static.item.rankList.launchpad >= 0) {
@@ -775,7 +837,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.launchpad = this.innerText.trim()
@@ -790,7 +852,7 @@ const start = function (data, ID) {
                                             <span>CEX/DEX</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.cexDex = Number(this.innerText.trim())
                                                     if (Static.item.rankList.cexDex || Static.item.rankList.cexDex >= 0) {
@@ -802,7 +864,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.cexDex = this.innerText.trim()
@@ -817,7 +879,7 @@ const start = function (data, ID) {
                                             <span>Listing on aggregator</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.aggregator = Number(this.innerText.trim())
                                                     if (Static.item.rankList.aggregator || Static.item.rankList.aggregator >= 0) {
@@ -829,7 +891,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.aggregator = this.innerText.trim()
@@ -844,7 +906,7 @@ const start = function (data, ID) {
                                             <span>Competitors</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.competitors = Number(this.innerText.trim())
                                                     if (Static.item.rankList.competitors || Static.item.rankList.competitors >= 0) {
@@ -856,7 +918,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.competitors = this.innerText.trim()
@@ -871,7 +933,7 @@ const start = function (data, ID) {
                                             <span>Media</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.mediaText = Number(this.innerText.trim())
                                                     if (Static.item.rankList.mediaText || Static.item.rankList.mediaText >= 0) {
@@ -883,7 +945,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.mediaText = this.innerText.trim()
@@ -898,7 +960,7 @@ const start = function (data, ID) {
                                             <span>Audit</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.audit = Number(this.innerText.trim())
                                                     if (Static.item.rankList.audit || Static.item.rankList.audit >= 0) {
@@ -910,7 +972,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.audit = this.innerText.trim()
@@ -925,7 +987,7 @@ const start = function (data, ID) {
                                             <span>TOTAL</span>
                                             <div
                                                 class="form-input personal-input text-green"
-                                                contenteditable="true"
+                                                contenteditable="plaintext-only"
                                                 oninput={function () {
                                                     Static.item.rankList.totalText = Number(this.innerText.trim())
                                                     if (Static.item.rankList.totalText || Static.item.rankList.totalText >= 0) {
@@ -937,7 +999,7 @@ const start = function (data, ID) {
                                             <span class="text-green">Max. 10</span>
                                         </div>
                                         <div
-                                            class="scheme-card_desc text"
+                                            class="scheme-card_desc personal-input text"
                                             contenteditable="plaintext-only"
                                             oninput={function () {
                                                 Static.item.totalText = this.innerText.trim()
