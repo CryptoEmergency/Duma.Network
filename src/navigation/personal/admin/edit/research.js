@@ -32,7 +32,20 @@ const updateRecords = async function (update) {
 
 const start = function (data, ID) {
     let [Static] = fn.GetParams({ data, ID });
-
+    Static.forms = {}
+    Static.forms.social = {
+        youtube: {},
+        facebook: {},
+        twitter: {},
+        discord: {},
+        instagram: {},
+        tiktok: {},
+        twitch: {},
+        vk: {},
+        telegram: {},
+        github: {},
+        linkedin: {},
+    }
     load({
         ID,
         fnLoad: async () => {
@@ -457,41 +470,36 @@ const start = function (data, ID) {
                                         </div>
                                     </div>
 
-                                    {/* <div class="grid-2">
-                                        <div class="form-div">
-                                            <label>
-                                                Invest:
-                                            </label>
-                                            <div
-                                                class="form-input personal-input"
-                                                contenteditable="true"
-                                                oninput={function () {
-                                                    Static.item.have = Number(this.innerText.trim())
-                                                    if (Static.item.have || Static.item.have >= 0) {
-                                                        updateValue({ key: "have", value: Static.item.have })
-                                                    }
-                                                }}>
-                                                {Static.item.have}
-                                            </div>
-                                        </div>
-                                        <div class="form-div">
-                                            <label>
-                                                Target invest:
-                                            </label>
-                                            <div
-                                                class="form-input personal-input"
-                                                contenteditable="true"
-                                                oninput={function () {
-                                                    Static.item.target = Number(this.innerText.trim())
-                                                    if (Static.item.target || Static.item.target >= 0) {
-                                                        updateValue({ key: "target", value: Static.item.target })
-                                                    }
-                                                }}>
-                                                {Static.item.target}
-                                            </div>
-                                        </div>
-                                    </div> */}
-
+                                    <div class="" style="display:flex;">
+                                        {Object.keys(Static.forms.social).map((item) => {
+                                            return (
+                                                <div
+                                                    class={[
+                                                        "create_social_icon",
+                                                        Static.channelNewSocial == item ? "create_social_icon_active" : null
+                                                    ]}
+                                                    onclick={(e) => {
+                                                        e.preventDefault();
+                                                        // Static.channelNewSocial = item;
+                                                        // Static.forms.social[item].url = "";
+                                                        // Static.linkNewSocial = "";
+                                                        // for (let item2 of Static.item.social) {
+                                                        //     if (item2.channel == Static.channelNewSocial) {
+                                                        //         Static.forms.social[item].url = item2.url;
+                                                        //         Static.linkNewSocial = item2.url;
+                                                        //     }
+                                                        // }
+                                                        // initReload();
+                                                    }}
+                                                >
+                                                    <div class="create_social_icon_inner">
+                                                        <img src={svg[`socials/${item}`]} />
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                        }
+                                    </div>
                                     <div class="scheme-card">
                                         <div class="scheme-sidebar_item text">
                                             <span>Problem</span>
