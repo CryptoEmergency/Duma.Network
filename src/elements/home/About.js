@@ -1,4 +1,4 @@
-import { jsx, jsxFrag, initAfter } from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag, initAfter, Data } from "@betarost/cemserver/cem.js";
 
 import images from "@assets/images/index.js";
 import anime from "animejs/lib/anime.es.js";
@@ -123,12 +123,25 @@ const forExport = function ({ className }) {
           <a href="https://youtu.be/oNQOcFADbNo" target="_blank">
             <img src={images["device"]}></img>
             <video
-              autoplay
-              loop
+              autoplay={true}
+              loop={true}
+              playsinline="true"
               class="device-video"
               width="422"
               height="255"
-              // poster="/assets/image/videoPoster.png"
+              oncanplay={function () {
+                console.log('=17742f=', "oncanplay")
+                try {
+                  this.muted = true
+                  this.play()
+                } catch (error) {
+                  console.error(error)
+                }
+              }}
+              Element={($el) => {
+                Data.Static.elVideoMain = $el
+              }}
+            // poster="/assets/image/videoPoster.png"
             >
               <source src="/assets/video/duma.mp4" type="video/mp4"></source>
             </video>
