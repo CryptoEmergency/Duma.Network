@@ -78,7 +78,7 @@ const start = function (data, ID) {
                       }}
                     >
                       <div class="scheme-card">
-                        <div class="scheme-sidebar_item text">
+                        <div class="scheme-img text">
                           <img
                             src={
                               item.icon

@@ -62,7 +62,6 @@ let ElBurger;
 let ElBurgerBlock;
 
 const mainHeader = async function () {
-  let burger = false;
   load({
     ID: "mainHeader",
     fn: () => {

@@ -261,7 +261,8 @@
     position: relative;
     cursor: pointer;
     border-radius: 1.6rem;
-    background: var(--back-primary);
+    // background: var(--back-primary);
+    background: var(--text-secondary);
   }
   label:before{
     content: "";
@@ -279,7 +280,7 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: var(--text-secondary);
+    background: var(--text-main);
     transition: all 0.4s ease;
   }
   

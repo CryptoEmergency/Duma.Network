@@ -303,7 +303,7 @@ $back in $backCard {
 .socials {
   display: flex;
   padding: 15px 0;
-
+  flex-wrap: wrap;
   a {
     margin-right: 15px;
   }
