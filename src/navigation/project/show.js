@@ -306,7 +306,11 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div class="grid-2">
-                        <img src={images["project/tokenomisc"]} />
+                        <div class="tokenomic">
+                          <div class="blur">
+                            <h2>Tokenomic is changed</h2>
+                          </div>
+                        </div>
                         <ul class="list-standart">
                           <li>
                             The main task of the team is to make every effort to
@@ -408,8 +412,8 @@ const start = function (data, ID) {
                             target="_blank"
                           >
                             <img src={images["team/den"]} />
-                            <span>Den</span>
-                            <span>Magdanov</span>
+                            <span>DEN</span>
+                            <span>MAGDANOV</span>
                           </a>
                         </div>
                         <div>
@@ -485,11 +489,11 @@ const start = function (data, ID) {
                             <p>First Projects on Listing</p>
                             <p>First Airdrop</p>
                             <p>Alpha Version of The Information Recourse</p>
-                          </div>
-                          <div>
                             <p>Preparation of sites for attracting traffic</p>
                             <p>MVP, Testing</p>
                             <p>Launching Personal Account in System</p>
+                          </div>
+                          <div>
                             <p>Launch of Referral System</p>
                             <p>Closing of the PreSeed Round</p>
                             <p>Open of the Seed Round</p>

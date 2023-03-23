@@ -166,6 +166,15 @@ $back in $backCard {
         font-weight: 600;
       }
 
+      .socials {
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        grid-gap: 15px;
+        justify-content: center;
+        max-width: 300px;
+      }
+
       .desc-text {
         font-weight: 600;
         -webkit-line-clamp: 4;
@@ -302,14 +311,7 @@ $back in $backCard {
   font-family: $conthrax;
 
 }
-.socials {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 15px;
-  justify-items: center;
 
-}
 
 .icon-green {
   max-height: 20px;

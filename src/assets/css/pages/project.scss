@@ -79,6 +79,14 @@
     top: 20px;
     right: 35px;
   }
+  .socials {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 15px;
+    justify-content: center;
+    max-width: 300px;
+  }
 }
 .card-btns{
   display: grid;
@@ -146,6 +154,17 @@
   }
   textarea{
     resize: none;
+  }
+}
+.tokenomic{
+  position: relative;
+  border-radius: 20px;
+  background: url(/src/assets/images/project/tokenomisc.png) no-repeat;
+  background-position: center center;
+  background-size: cover;
+  .blur{
+    border-radius: 20px;
+    position: absolute;
   }
 }
 .list-standart{
