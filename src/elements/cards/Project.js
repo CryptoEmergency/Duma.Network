@@ -55,7 +55,7 @@ const forExport = function ({ className, items = [] }) {
 									<p class="desc-text">{item.description}</p>
 								</div>
 								<div class="socials">
-									{(item.socials || []).filter(soc => soc.link && soc.link.length > 0).map((element) => {
+									{/* {(item.socials || []).filter(soc => soc.link && soc.link.length > 0).map((element) => {
 										return (
 											<a target="_blank" href={element.link}>
 												<img
@@ -65,6 +65,27 @@ const forExport = function ({ className, items = [] }) {
 												></img>
 											</a>
 										);
+									})} */}
+									{(item.socials || []).map((element) => {
+										if (element.link && element.link.length > 0) {
+											return (
+												<a target="_blank" href={element.link}>
+													<img
+														alt={element.name}
+														src={svg[`socials/${element.name}-green`]}
+														class="icon-green"
+													></img>
+												</a>
+											);
+										} else {
+											return (
+												<img
+													alt={element.name}
+													src={svg[`socials/${element.name}-grey`]}
+													class="icon-green"
+												></img>
+											);
+										}
 									})}
 								</div>
 								<div class="card-text">

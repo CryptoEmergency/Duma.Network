@@ -446,7 +446,7 @@ const start = function (data, ID) {
                                                     }}
                                                 >
                                                     <div class="create_social_icon_inner">
-                                                        <img src={svg[`socials/${item}`]} />
+                                                        <img src={svg[`socials/${item}-white`]} />
                                                     </div>
                                                 </div>
                                             )
