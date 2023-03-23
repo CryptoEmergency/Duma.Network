@@ -120,17 +120,29 @@ const forExport = function ({ className }) {
           </p>
         </div>
         <div class="device">
-          <img src={images["device"]}></img>
-          <iframe
-            class="device-video"
-            width="422"
-            height="245"
-            src="https://www.youtube.com/embed/oNQOcFADbNo"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          <a>
+            <img src={images["device"]}></img>
+            <video
+              autoplay
+              loop
+              class="device-video"
+              width="422"
+              height="255"
+              // poster="/assets/image/videoPoster.png"
+            >
+              <source src="/assets/video/duma.mp4" type="video/mp4"></source>
+            </video>
+            {/* <iframe
+              class="device-video"
+              width="422"
+              height="245"
+              src="https://www.youtube.com/embed/oNQOcFADbNo"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe> */}
+          </a>
         </div>
       </div>
 

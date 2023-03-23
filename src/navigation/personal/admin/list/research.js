@@ -43,42 +43,29 @@ const start = function (data, ID) {
                 <section class="main mb-25  ">
                   <h2 class="general-title mt-25">Research lists</h2>
                 </section>
-                <div class="scheme-cards mb-15">
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <img src={images["project/logo/logo"]}></img>
-                    </div>
-                    <div class="scheme-card_desc text">
-                      <div class="inner-add">
-                        <div class="mr-15">
-                          <span>ADD</span>
-                          <p>ADD new Research</p>
-                        </div>
-                        <div
-                          class="add"
-                          onclick={async () => {
-                            let insert = {
-                              tabs: "seed",
-                            };
-                            let response = await fn.socket.set({
-                              method: "Research",
-                              action: "insert",
-                              params: { insert },
-                            });
-                            if (!response || !response._id) {
-                              alert("error");
-                              return;
-                            }
-                            fn.siteLink(
-                              `/personal/admin/edit/research/${response._id}`
-                            );
-                            // fn.siteLink("/personal/admin/list/research/");
-                          }}
-                        >
-                          +
-                        </div>
-                      </div>
-                    </div>
+                <div class="inner-add mb-20">
+                  <div
+                    class="add"
+                    onclick={async () => {
+                      let insert = {
+                        tabs: "seed",
+                      };
+                      let response = await fn.socket.set({
+                        method: "Research",
+                        action: "insert",
+                        params: { insert },
+                      });
+                      if (!response || !response._id) {
+                        alert("error");
+                        return;
+                      }
+                      fn.siteLink(
+                        `/personal/admin/edit/research/${response._id}`
+                      );
+                      // fn.siteLink("/personal/admin/list/research/");
+                    }}
+                  >
+                    +
                   </div>
                 </div>
                 {Static.records.map((item, index) => {

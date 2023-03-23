@@ -11,7 +11,11 @@
 
 // another elements
 .inner-add{
-  display: flex;
+  .add{
+    width: 300px;
+    height: 100px;
+    font-size: 50px;
+  }
 }
 .add{
   background: var(--green);
