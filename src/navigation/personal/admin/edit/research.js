@@ -114,8 +114,6 @@ const start = function (data, ID) {
                                     </div>
                                 </section>
                                 <div class="personal-form">
-
-
                                     <div class="grid-2">
                                         <div class="form-item wrap-logo">
                                             <div class="picture">
@@ -167,6 +165,8 @@ const start = function (data, ID) {
                                                 />
                                                 <img
                                                     src={Static.item.icon ? `/assets/upload/${Static.item.icon}` : images["research/logo-empty"]}
+                                                    width="50"
+                                                    height="50"
                                                     onclick={() => {
                                                         Static.elAddIcon.click()
                                                     }}
@@ -625,7 +625,7 @@ const start = function (data, ID) {
                                                     contenteditable="plaintext-only"
                                                     oninput={function () {
                                                         Static.item.utility.token = this.innerText.trim()
-                                                        updateValue({ key: "utility.token", value: Static.item.utility.token })
+                                                        updateValue({ key: "utility", value: Static.item.utility })
                                                     }}>
                                                     {Static.item.utility?.token}
                                                 </div>
@@ -637,7 +637,7 @@ const start = function (data, ID) {
                                                     contenteditable="plaintext-only"
                                                     oninput={function () {
                                                         Static.item.utility.capture = this.innerText.trim()
-                                                        updateValue({ key: "utility.capture", value: Static.item.utility.capture })
+                                                        updateValue({ key: "utility", value: Static.item.utility })
                                                     }}>
                                                     {Static.item.utility?.capture}
                                                 </div>
@@ -649,7 +649,7 @@ const start = function (data, ID) {
                                                     contenteditable="plaintext-only"
                                                     oninput={function () {
                                                         Static.item.utility.accural = this.innerText.trim()
-                                                        updateValue({ key: "utility.accural", value: Static.item.utility.accural })
+                                                        updateValue({ key: "utility", value: Static.item.utility })
                                                     }}>
                                                     {Static.item.utility?.accural}
                                                 </div>
