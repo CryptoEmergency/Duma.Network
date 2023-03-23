@@ -531,8 +531,25 @@ const start = function (data, ID) {
                                         {
                                             Static.item.gallery.map((item, index) => {
                                                 return (
-                                                    <div class="picture">
-                                                        <img src={`/assets/upload/${item}`}></img>
+                                                    <div class="news-form_gallery">
+                                                        <div class="news-form_gallery-image">
+                                                            <img
+                                                                src={`/assets/upload/${item}`}
+                                                                width="200"
+                                                                height="100"
+                                                            ></img>
+                                                            <div
+                                                                class="news-form_gallery-delete"
+                                                                onClick={() => {
+                                                                    console.log('=2bc1f6=', "fhfh")
+                                                                    // Static.forms.media.splice(index, 1);
+                                                                    // updateRecords({ media: Static.item.media })
+                                                                    // initReload()
+                                                                }}
+                                                            >
+                                                                <img src={svg["delete_icon"]} />
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 )
                                             })
