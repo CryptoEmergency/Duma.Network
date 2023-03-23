@@ -301,19 +301,15 @@ $back in $backCard {
 
 }
 .socials {
-  // display: flex;
-  // padding: 15px 0;
-  // flex-wrap: wrap;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
-  a {
-    margin-right: 15px;
-  }
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 15px;
+  justify-items: center;
+
 }
 
 .icon-green {
-  filter: invert(84%) sepia(14%) saturate(1976%) hue-rotate(30deg) brightness(94%) contrast(80%);
-  // filter: var(--filterGreen);
   max-height: 20px;
   height: 20px;
 }
