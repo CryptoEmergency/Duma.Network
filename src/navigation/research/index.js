@@ -149,7 +149,8 @@ const start = function (data, ID) {
       }
       let tmp = await fn.socket.get({
         method: "Research",
-        params: { filter: {} },
+        // params: { filter: { moderation: true } },
+        params: { filter: { tabs: Static.activeTab } },
       });
       if (tmp && tmp[0]) {
         Static.projects = tmp
@@ -158,6 +159,9 @@ const start = function (data, ID) {
       }
     },
     fn: () => {
+      if (!Static.projects || !Static.projects[0]) {
+        Static.projects = [cardsRecords[4], cardsRecords[5]]
+      }
       return (
         <div class="back-secondary">
           <div class="wrapper">
@@ -174,9 +178,24 @@ const start = function (data, ID) {
               <Elements.Tabs
                 varName={"activeTab"}
                 items={[
-                  { title: "Seed", name: "seed" },
-                  { title: "Private", name: "private" },
-                  { title: "Public", name: "public" },
+                  {
+                    title: "Seed", name: "seed", onclick: async () => {
+                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { tabs: Static.activeTab } } });
+                      initReload()
+                    }
+                  },
+                  {
+                    title: "Private", name: "private", onclick: async () => {
+                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { tabs: Static.activeTab } } });
+                      initReload()
+                    }
+                  },
+                  {
+                    title: "Public", name: "public", onclick: async () => {
+                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { tabs: Static.activeTab } } });
+                      initReload()
+                    }
+                  },
                 ]}
                 Static={Static}
               >
@@ -191,14 +210,14 @@ const start = function (data, ID) {
                   hidden={Static.activeTab == "private" ? false : true}
                 >
                   <Elements.cards.Project
-                    items={cardsRecords}
+                    items={Static.projects}
                   />
                 </div>
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "public" ? false : true}
                 >
-                  <Elements.cards.Project items={[cardsRecords[2]]} />
+                  <Elements.cards.Project items={Static.projects} />
                 </div>
               </Elements.Tabs>
             </div>

@@ -52,6 +52,9 @@ const forExport = function ({ className, children, varName, items, Static }) {
                   Static.glider.style.left = `${Static.tabWidth * 2}px`;
                   // Static.glider.style.width = "165px";
                 }
+                if (item.onclick) {
+                  item.onclick()
+                }
                 initReload();
               }}
             >

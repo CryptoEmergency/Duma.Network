@@ -192,22 +192,103 @@ const start = function (data, ID) {
                                             ></img>
                                         </div>
                                     </div>
-                                    <div class="form-div">
-                                        <label>
-                                            Name:
-                                        </label>
-                                        <div
-                                            class="form-input personal-input"
-                                            contenteditable="true"
-                                            oninput={function () {
-                                                Static.item.name = this.innerText.trim()
-                                                updateValue({ key: "name", value: Static.item.name })
-                                            }}>
-                                            {Static.item.name}
+                                    <div class="grid-2">
+                                        <div class="form-div">
+                                            <label>
+                                                Name:
+                                            </label>
+                                            <div
+                                                class="form-input personal-input"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.name = this.innerText.trim()
+                                                    updateValue({ key: "name", value: Static.item.name })
+                                                }}>
+                                                {Static.item.name}
+                                            </div>
+                                        </div>
+                                        <div class="form-div">
+                                            <label>
+                                                Total rank:
+                                            </label>
+                                            <div
+                                                class="form-input personal-input"
+                                            >
+                                                {Static.item.rank} (Auto calculate)
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="grid-2">
+                                    <div class="grid-3">
+                                        <div class="form-div">
+                                            <label>
+                                                Tabs:
+                                            </label>
+                                            <div class="dropdown">
+                                                <button
+                                                    class="dropdown__button"
+                                                    onclick={() => {
+                                                        Static.selectList.tabs.classList.toggle("dropdown__list--visible");
+                                                    }}>
+                                                    {Static.item.tabs}
+                                                </button>
+                                                <ul
+                                                    class="dropdown__list"
+                                                    Element={($el) => {
+                                                        Static.selectList.tabs = $el;
+                                                    }}>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.tabs = "seed"
+                                                            updateValue({ key: "tabs", value: Static.item.tabs })
+                                                            Static.selectList.tabs.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        seed
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.tabs = "pre-seed"
+                                                            updateValue({ key: "tabs", value: Static.item.tabs })
+                                                            Static.selectList.tabs.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        pre-seed
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.tabs = "strategic"
+                                                            updateValue({ key: "tabs", value: Static.item.tabs })
+                                                            Static.selectList.tabs.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        strategic
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.tabs = "public"
+                                                            updateValue({ key: "tabs", value: Static.item.tabs })
+                                                            Static.selectList.tabs.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        public
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.tabs = "private"
+                                                            updateValue({ key: "tabs", value: Static.item.tabs })
+                                                            Static.selectList.tabs.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        private
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                         <div class="form-div">
                                             <label>
                                                 Status:
@@ -216,19 +297,15 @@ const start = function (data, ID) {
                                                 <button
                                                     class="dropdown__button"
                                                     onclick={() => {
-                                                        Static.selectList.status.classList.toggle(
-                                                            "dropdown__list--visible"
-                                                        );
-                                                    }}
-                                                >
+                                                        Static.selectList.status.classList.toggle("dropdown__list--visible");
+                                                    }}>
                                                     {Static.item.status}
                                                 </button>
                                                 <ul
                                                     class="dropdown__list"
                                                     Element={($el) => {
                                                         Static.selectList.status = $el;
-                                                    }}
-                                                >
+                                                    }}>
                                                     <li
                                                         class="dropdown__list-item"
                                                         onclick={() => {
@@ -251,29 +328,65 @@ const start = function (data, ID) {
                                                     </li>
                                                 </ul>
                                             </div>
-
-                                            {/* <div
-                                                class="form-input personal-input"
-                                                contenteditable="true"
-                                                oninput={function () {
-                                                    Static.item.status = this.innerText.trim()
-                                                    updateValue({ key: "status", value: Static.item.status })
-                                                }}>
-                                                {Static.item.status}
-                                            </div> */}
                                         </div>
                                         <div class="form-div">
                                             <label>
                                                 Category:
                                             </label>
-                                            <div
-                                                class="form-input personal-input"
-                                                contenteditable="true"
-                                                oninput={function () {
-                                                    Static.item.category = this.innerText.trim()
-                                                    updateValue({ key: "category", value: Static.item.category })
-                                                }}>
-                                                {Static.item.category}
+                                            <div class="dropdown">
+                                                <button
+                                                    class="dropdown__button"
+                                                    onclick={() => {
+                                                        Static.selectList.category.classList.toggle("dropdown__list--visible");
+                                                    }}>
+                                                    {Static.item.category}
+                                                </button>
+                                                <ul
+                                                    class="dropdown__list"
+                                                    Element={($el) => {
+                                                        Static.selectList.category = $el;
+                                                    }}>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.category = "Platform"
+                                                            updateValue({ key: "category", value: Static.item.category })
+                                                            Static.selectList.category.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        Platform
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.category = "Ecosystem"
+                                                            updateValue({ key: "category", value: Static.item.category })
+                                                            Static.selectList.category.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        Ecosystem
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.category = "Service"
+                                                            updateValue({ key: "category", value: Static.item.category })
+                                                            Static.selectList.category.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        Service
+                                                    </li>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.category = "DEX"
+                                                            updateValue({ key: "category", value: Static.item.category })
+                                                            Static.selectList.category.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        DEX
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -293,17 +406,7 @@ const start = function (data, ID) {
                                         </div>
                                     </div>
 
-                                    <div class="grid-2">
-                                        <div class="form-div">
-                                            <label>
-                                                Total rank:
-                                            </label>
-                                            <div
-                                                class="form-input personal-input"
-                                            >
-                                                {Static.item.rank}
-                                            </div>
-                                        </div>
+                                    <div class="grid-3">
                                         <div class="form-div">
                                             <label>
                                                 Seed round:
@@ -320,9 +423,6 @@ const start = function (data, ID) {
                                                 {Static.item.seedRound}
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="grid-2">
                                         <div class="form-div">
                                             <label>
                                                 Invest:
@@ -356,6 +456,41 @@ const start = function (data, ID) {
                                             </div>
                                         </div>
                                     </div>
+
+                                    {/* <div class="grid-2">
+                                        <div class="form-div">
+                                            <label>
+                                                Invest:
+                                            </label>
+                                            <div
+                                                class="form-input personal-input"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.have = Number(this.innerText.trim())
+                                                    if (Static.item.have || Static.item.have >= 0) {
+                                                        updateValue({ key: "have", value: Static.item.have })
+                                                    }
+                                                }}>
+                                                {Static.item.have}
+                                            </div>
+                                        </div>
+                                        <div class="form-div">
+                                            <label>
+                                                Target invest:
+                                            </label>
+                                            <div
+                                                class="form-input personal-input"
+                                                contenteditable="true"
+                                                oninput={function () {
+                                                    Static.item.target = Number(this.innerText.trim())
+                                                    if (Static.item.target || Static.item.target >= 0) {
+                                                        updateValue({ key: "target", value: Static.item.target })
+                                                    }
+                                                }}>
+                                                {Static.item.target}
+                                            </div>
+                                        </div>
+                                    </div> */}
 
                                     <div class="scheme-card">
                                         <div class="scheme-sidebar_item text">
