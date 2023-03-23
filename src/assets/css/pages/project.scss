@@ -13,15 +13,12 @@
     'image about';
   .company-title{
     font-size: 36px;
-    line-height: 43px;
+    line-height: 32px;
     word-wrap: break-word;
   }
   .statuses{
     padding: 0;
   }
-  // img{
-  //   max-width: auto;
-  // }
 }
 .project-name{
   display: flex;
@@ -114,6 +111,11 @@
   img{
     width: 70px;
   }
+}
+.text{
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 16px;
 }
 .text-green{
   color: var(--green);

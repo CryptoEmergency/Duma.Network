@@ -251,6 +251,8 @@ $back in $backCard {
   .icon {
     height: 100%;
     width: auto;
+    display: flex;
+    align-items: flex-end;
   }
 
   .circle {
