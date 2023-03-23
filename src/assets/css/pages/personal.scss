@@ -57,6 +57,15 @@
     grid-column: 2;
   }
 }
+.nums-col{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
+  justify-items: center;
+  .num_big{
+    grid-column: 1;
+  }
+}
 .sidebar-item{
   cursor: pointer;
 }
@@ -445,6 +454,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 23px;
+  position: relative;
 }
 
 // checkbox
@@ -504,9 +514,22 @@
         }
       }
       &:nth-child(4){
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 1 / span 3;
         height: 400px;
+      }
+      &.platform{
+        background: url(/src/assets/images/personal/elPlatform.png) no-repeat;
+        background-position: center center;
+        // background-size: contain;
+        .blur{
+          background: rgba(48, 52, 55, 0.7);
+          backdrop-filter: blur(2.5px);
+          border-radius: 20px;
+        }
+        .title-block{
+          z-index: 2;
+        }
       }
     }
   }
@@ -520,22 +543,27 @@
 .block-table{
   .block-table_row{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: 0.5fr 0.5fr 1.5fr 0.5fr 1fr 1fr 0.5fr;
     grid-gap: 10px;
     padding: 10px 20px;
     border-radius: 10px;
+    justify-items: center;
     &:nth-child(2n){
       background: var(--back-blur);
+    }
+    & span:first-child{
+      justify-self: flex-start;
     }
   }
   
 }
+
 // refferal
 
 // bookmarks
 .bookmarks-inner{
   display: grid;
-  // &.bookmarks-item:n
+  grid-gap: 15px;
 }
 .bookmarks-item{
   display: grid;
@@ -543,6 +571,8 @@
   grid-gap: 10px;
   justify-items: center;
   align-items: center;
+  border-radius: 10px;
+  padding: 5px 8px;
 
   &:nth-child(2n){
     background: var(--back-blur);
@@ -551,6 +581,16 @@
   .user-card{
     align-items: center;
   }
+  .btn{
+    width: 100%;
+  }
+}
+.btn-transparent{
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--text-main);
+  height: auto;
 }
 // bookmarks
 
@@ -559,14 +599,26 @@
   &.profile{
     .blocks-item{
       grid-column: 1 / span 3;
-      &:first-child{
+      .profile-inner{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 50px;
+        align-items: flex-start;
       }
       &:nth-child(2){
-        height: 400px;
+        height: 200px;
         position: relative;
+      }
+      &.wallets{
+        background: url(/src/assets/images/personal/wallets.png) no-repeat;
+        background-position: center center;
+        .title-block{
+          z-index: 2;
+        }
+        .blur{
+          border-radius: 20px;
+          background: rgba(48, 52, 55, 0.7);
+        }
       }
     }
     .userDate{
@@ -579,6 +631,19 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      .nums{
+        padding-bottom: 20px;
+      }
+    }
+    .recentLogins{
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 15px;
+    }
+    .recentLogins-inner{
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 15px;
     }
     .recentLogins-item{
       display: grid;

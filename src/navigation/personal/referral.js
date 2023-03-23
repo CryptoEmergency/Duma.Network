@@ -52,6 +52,7 @@ const start = function (data, ID) {
                       <button class="btn btn-white mt-10">
                         invite friends
                       </button>
+                      <span class="text">referral program</span>
                     </div>
                     <div class="blocks-item">
                       <span class="title-block pb-15">
@@ -62,7 +63,7 @@ const start = function (data, ID) {
                       <span class="title-block pb-15">Referral accruals</span>
                       <div class="grid-3 pb-20">
                         <div>
-                          <div class="nums">
+                          <div class="nums-col">
                             <span class="num_big">0,00</span>
                             <span class="num_small">+0$</span>
                             <span class="num_small"> +0,00%</span>
@@ -79,46 +80,59 @@ const start = function (data, ID) {
                         <div class="block-table_row subtitle">
                           <span>№</span>
                           <span>%</span>
-                          <span>Registered</span>
-                          <span>Invested</span>
-                          <span>Average investment amount</span>
-                          <span>Total investment amount</span>
-                          <span>The total amount of referral</span>
+                          <span>E-mail</span>
+                          <span>Projects</span>
+                          <span>Average amount</span>
+                          <span>Total amount</span>
+                          <span>Referral</span>
                         </div>
                         <div class="block-table_row">
                           <span>1</span>
-                          <span>1%</span>
+                          <span>15%</span>
+                          <span>person2@ya.ru</span>
                           <span>123</span>
-                          <span>-</span>
-                          <span>2344</span>
-                          <span>1500</span>
+                          <span>344$</span>
+                          <span>1500$</span>
                           <span>1234</span>
                         </div>
                         <div class="block-table_row">
                           <span>2</span>
                           <span>1%</span>
+                          <span>person1@mail.com</span>
                           <span>123</span>
-                          <span>-</span>
-                          <span>2344</span>
-                          <span>1500</span>
+                          <span>244$</span>
+                          <span>1500$</span>
                           <span>1234</span>
                         </div>
                         <div class="block-table_row">
                           <span>3</span>
-                          <span>1%</span>
+                          <span>12%</span>
+                          <span>person2@ya.ru</span>
                           <span>123</span>
-                          <span>-</span>
-                          <span>2344</span>
-                          <span>1500</span>
-                          <span>1234</span>
+                          <span>230$</span>
+                          <span>1500$</span>
+                          <span>123</span>
+                        </div>
+                        <div class="block-table_row">
+                          <span>4</span>
+                          <span>14%</span>
+                          <span>person1@mail.com</span>
+                          <span>123</span>
+                          <span>235$</span>
+                          <span>1454$</span>
+                          <span>123</span>
                         </div>
                       </div>
                     </div>
-                    {/* <div class="blocks-item">
-                      <span class="text-category text">
-                        You will be interested
+                    <div class="blocks-item platform">
+                      <div class="blur">
+                        <h2>coming soon</h2>
+                      </div>
+                      <span class="title-block">
+                        Closed sections of the platform that can be opened for
+                        referral accruals
                       </span>
-                    </div> */}
+                    </div>
                   </div>
                 </section>
               </div>

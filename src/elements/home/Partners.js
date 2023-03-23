@@ -8,7 +8,7 @@ const forExport = function ({ className }) {
     <section class="parthers" id="partners">
       <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
       <img class="polygonBig polygon" src={svg.polygonBig}></img>
-      <h2 class="general-title">Partners and Bakers</h2>
+      <h2 class="general-title">Partners and Baсkers</h2>
       <div class="parthers-inner">
         <a target="_blank" href="https://zyx.network/">
           <img class="parther-img" src={svg["partners/partner1"]} />

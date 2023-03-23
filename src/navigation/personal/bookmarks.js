@@ -36,23 +36,73 @@ const start = function (data, ID) {
               <Elements.BlockPersonal />
 
               {/* main page */}
-              <section class="bookmarks">
+              <section class="bookmarks main">
                 <h2 class="general-title mt-25">Bookmarks</h2>
-                <div class="bookmarks-inner">
+                <div class="bookmarks-inner mt-25">
                   <div class="bookmarks-item">
                     <div class="user-card">
                       <img src={images["personal/logoProject"]}></img>
-                      <span>название</span>
+                      <span>name</span>
                     </div>
                     <div class="round">round</div>
                     <div class="price">price token</div>
                     <div class="price">10k/100k</div>
                     <div>date tge</div>
-                    <div>lead investor</div>
+                    <div class="text-underline">lead investor</div>
                     <div>category</div>
-                    <div>
-                      <button class="btn btn-white">more</button>
+                    <button class="btn btn-transparent">more</button>
+                  </div>
+                  <div class="bookmarks-item">
+                    <div class="user-card">
+                      <img src={images["personal/logoProject"]}></img>
+                      <span>name</span>
                     </div>
+                    <div class="round">round</div>
+                    <div class="price">price token</div>
+                    <div class="price">10k/100k</div>
+                    <div>date tge</div>
+                    <div class="text-underline">lead investor</div>
+                    <div>category</div>
+                    <button class="btn btn-transparent">more</button>
+                  </div>
+                  <div class="bookmarks-item">
+                    <div class="user-card">
+                      <img src={images["personal/logoProject"]}></img>
+                      <span>name</span>
+                    </div>
+                    <div class="round">round</div>
+                    <div class="price">price token</div>
+                    <div class="price">10k/100k</div>
+                    <div>date tge</div>
+                    <div class="text-underline">lead investor</div>
+                    <div>category</div>
+                    <button class="btn btn-transparent">more</button>
+                  </div>
+                  <div class="bookmarks-item">
+                    <div class="user-card">
+                      <img src={images["personal/logoProject"]}></img>
+                      <span>name</span>
+                    </div>
+                    <div class="round">round</div>
+                    <div class="price">price token</div>
+                    <div class="price">10k/100k</div>
+                    <div>date tge</div>
+                    <div class="text-underline">lead investor</div>
+                    <div>category</div>
+                    <button class="btn btn-transparent">more</button>
+                  </div>
+                  <div class="bookmarks-item">
+                    <div class="user-card">
+                      <img src={images["personal/logoProject"]}></img>
+                      <span>name</span>
+                    </div>
+                    <div class="round">round</div>
+                    <div class="price">price token</div>
+                    <div class="price">10k/100k</div>
+                    <div>date tge</div>
+                    <div class="text-underline">lead investor</div>
+                    <div>category</div>
+                    <button class="btn btn-transparent">more</button>
                   </div>
                 </div>
               </section>
