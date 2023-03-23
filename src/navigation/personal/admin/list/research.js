@@ -40,34 +40,34 @@ const start = function (data, ID) {
               <Elements.BlockPersonal />
               <div class="personal-content">
                 {/* main page */}
-                <section class="main mb-25  ">
+                <section class="main mb-25 grid-2" >
                   <h2 class="general-title mt-25">Research lists</h2>
-                </section>
-                <div class="inner-add mb-20">
-                  <div
-                    class="add"
-                    onclick={async () => {
-                      let insert = {
-                        tabs: "seed",
-                      };
-                      let response = await fn.socket.set({
-                        method: "Research",
-                        action: "insert",
-                        params: { insert },
-                      });
-                      if (!response || !response._id) {
-                        alert("error");
-                        return;
-                      }
-                      fn.siteLink(
-                        `/personal/admin/edit/research/${response._id}`
-                      );
-                      // fn.siteLink("/personal/admin/list/research/");
-                    }}
-                  >
-                    +
+                  <div class="inner-add mt-30">
+                    <div
+                      class="add"
+                      onclick={async () => {
+                        let insert = {
+                          tabs: "seed",
+                        };
+                        let response = await fn.socket.set({
+                          method: "Research",
+                          action: "insert",
+                          params: { insert },
+                        });
+                        if (!response || !response._id) {
+                          alert("error");
+                          return;
+                        }
+                        fn.siteLink(
+                          `/personal/admin/edit/research/${response._id}`
+                        );
+                        // fn.siteLink("/personal/admin/list/research/");
+                      }}
+                    >
+                      +
+                    </div>
                   </div>
-                </div>
+                </section>
                 {Static.records.map((item, index) => {
                   return (
                     <div
