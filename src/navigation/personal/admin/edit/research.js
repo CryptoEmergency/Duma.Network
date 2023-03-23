@@ -206,11 +206,47 @@ const start = function (data, ID) {
                                             {Static.item.name}
                                         </div>
                                     </div>
+
                                     <div class="grid-2">
                                         <div class="form-div">
                                             <label>
                                                 Status:
                                             </label>
+                                            <div class="dropdown">
+                                                <button
+                                                    class="dropdown__button"
+                                                    onclick={() => {
+                                                        Static.selectList.status.classList.toggle(
+                                                            "dropdown__list--visible"
+                                                        );
+                                                    }}
+                                                >
+                                                    {Static.item.status}
+                                                </button>
+                                                <ul
+                                                    class="dropdown__list"
+                                                    Element={($el) => {
+                                                        Static.selectList.status = $el;
+                                                    }}
+                                                >
+                                                    <li class="dropdown__list-item" onclick={() => {
+                                                        Static.item.status = "Active"
+                                                        updateValue({ key: "status", value: Static.item.status })
+                                                    }}>
+                                                        Active
+                                                    </li>
+                                                    <li class="dropdown__list-item" data-value="lessons">
+                                                        Lorem Ipsum 2
+                                                    </li>
+                                                    <li class="dropdown__list-item" data-value="photo">
+                                                        Lorem Ipsum 3
+                                                    </li>
+                                                    <li class="dropdown__list-item" data-value="sport">
+                                                        Lorem Ipsum 4
+                                                    </li>
+                                                </ul>
+                                            </div>
+
                                             <div
                                                 class="form-input personal-input"
                                                 contenteditable="true"
