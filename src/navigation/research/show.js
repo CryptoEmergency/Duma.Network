@@ -21,6 +21,9 @@ const start = function (data, ID) {
             if (Variable.dataUrl.params) {
                 Static.item = await fn.socket.get({ method: "Research", _id: Variable.dataUrl.params })
             }
+            if (!Static.item.socials || !Static.item.socials[0]) {
+                Static.item.socials = []
+            }
         },
         fn: () => {
             console.log('=0e0048=', Static.item)
@@ -65,7 +68,7 @@ const start = function (data, ID) {
                                             {Static.item.description}
                                         </p>
                                         <div class="socials">
-                                            {Static.item.social.map((element) => {
+                                            {Static.item.socials.map((element) => {
                                                 return (
                                                     <a target="_blank" href={element.link}>
                                                         <img
