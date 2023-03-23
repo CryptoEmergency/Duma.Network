@@ -472,7 +472,7 @@ const start = function (data, ID) {
                                                                     return
                                                                 }
                                                                 let response = JSON.parse(this.response);
-                                                                console.log('=35f155=', response)
+                                                                // console.log('=35f155=', response)
                                                                 if (response.error || !response.name) {
                                                                     alert("Have some Error. Try again... " + response.error)
                                                                     return
