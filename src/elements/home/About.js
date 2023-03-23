@@ -120,7 +120,7 @@ const forExport = function ({ className }) {
           </p>
         </div>
         <div class="device">
-          <a>
+          <a href="https://youtu.be/oNQOcFADbNo" target="_blank">
             <img src={images["device"]}></img>
             <video
               autoplay
