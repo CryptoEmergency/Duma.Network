@@ -35,6 +35,7 @@ const optionInit = {
 
 if (process.env.DISABLERELOAD) {
   hotReload = false;
+  optionInit.hotReload = false
   optionInit.proxy["/upload"] = {
     target: "http://127.0.0.1:53535",
     changeOrigin: true,
