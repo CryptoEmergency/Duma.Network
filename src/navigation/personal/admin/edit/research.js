@@ -229,25 +229,30 @@ const start = function (data, ID) {
                                                         Static.selectList.status = $el;
                                                     }}
                                                 >
-                                                    <li class="dropdown__list-item" onclick={() => {
-                                                        Static.item.status = "Active"
-                                                        updateValue({ key: "status", value: Static.item.status })
-                                                    }}>
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.status = "Active"
+                                                            updateValue({ key: "status", value: Static.item.status })
+                                                            Static.selectList.status.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
                                                         Active
                                                     </li>
-                                                    <li class="dropdown__list-item" data-value="lessons">
-                                                        Lorem Ipsum 2
-                                                    </li>
-                                                    <li class="dropdown__list-item" data-value="photo">
-                                                        Lorem Ipsum 3
-                                                    </li>
-                                                    <li class="dropdown__list-item" data-value="sport">
-                                                        Lorem Ipsum 4
+                                                    <li
+                                                        class="dropdown__list-item"
+                                                        onclick={() => {
+                                                            Static.item.status = "Listing"
+                                                            updateValue({ key: "status", value: Static.item.status })
+                                                            Static.selectList.status.classList.remove("dropdown__list--visible");
+                                                            initReload()
+                                                        }}>
+                                                        Listing
                                                     </li>
                                                 </ul>
                                             </div>
 
-                                            <div
+                                            {/* <div
                                                 class="form-input personal-input"
                                                 contenteditable="true"
                                                 oninput={function () {
@@ -255,7 +260,7 @@ const start = function (data, ID) {
                                                     updateValue({ key: "status", value: Static.item.status })
                                                 }}>
                                                 {Static.item.status}
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div class="form-div">
                                             <label>
