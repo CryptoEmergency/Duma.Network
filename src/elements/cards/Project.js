@@ -8,6 +8,7 @@ const forExport = function ({ className, items = [] }) {
 	return (
 		<div class="cards">
 			{items.map((item, index) => {
+
 				return (
 					<div class={["card-item", `card-item_${index}`]}>
 						{item.blur ? (
@@ -45,7 +46,7 @@ const forExport = function ({ className, items = [] }) {
 									<p class="desc-text">{item.description}</p>
 								</div>
 								<div class="socials">
-									{item.socials.map((element) => {
+									{(item.socials || []).map((element) => {
 										return (
 											<a target="_blank" href={element.link}>
 												<img

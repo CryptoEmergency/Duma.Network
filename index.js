@@ -12,8 +12,45 @@ let hotReload = true;
 const target = "duma.network";
 const mode = "development";
 
+const optionInit = {
+  target,
+  hotReload,
+  path: {
+    src: path.resolve("app.js"),
+    public: path.resolve("public"),
+    fileName: "main.[fullhash].js",
+    template: path.resolve("src/template/index.html"),
+  },
+  port,
+  mode,
+  allowedHosts: ["duma.cryptodev.store", target],
+  proxy: {
+    "/api/v2": {
+      target: "http://127.0.0.1:" + portApi,
+      // pathRewrite: { "^/api": "" },
+      ws: true
+    }
+  },
+}
+
 if (process.env.DISABLERELOAD) {
   hotReload = false;
+  optionInit.proxy["/upload"] = {
+    target: "http://127.0.0.1:53535",
+    changeOrigin: true,
+    secure: false,
+  }
+} else {
+  optionInit.proxy["/upload"] = {
+    target: `https://${target}`,
+    changeOrigin: true,
+    secure: false,
+  }
+  optionInit.proxy["/assets/upload"] = {
+    target: `https://${target}`,
+    changeOrigin: true,
+    secure: false,
+  }
 }
 
 const start = async function () {
@@ -21,44 +58,7 @@ const start = async function () {
   await connectMongo()
   await startExpress(53535)
   await startSocket(portApi)
-
-  ServerInit({
-    target,
-    hotReload,
-    path: {
-      src: path.resolve("app.js"),
-      public: path.resolve("public"),
-      fileName: "main.[fullhash].js",
-      template: path.resolve("src/template/index.html"),
-    },
-    port,
-    mode,
-    allowedHosts: ["duma.cryptodev.store", "duma.network", target],
-    proxy: {
-      // "/api/v2": {
-      //   target: "http://127.0.0.1:" + portApi,
-      //   changeOrigin: true,
-      //   secure: false,
-      //   ws: true
-      // },
-      // "/api/v2": {
-      //   target: "http://127.0.0.1:" + portApi,
-      //   pathRewrite: { "^/api": "" },
-      //   changeOrigin: true,
-      //   secure: false,
-      // },
-      "/api/v2": {
-        target: "http://127.0.0.1:" + portApi,
-        // pathRewrite: { "^/api": "" },
-        ws: true
-      },
-      "/upload": {
-        target: "http://127.0.0.1:53535",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  });
+  ServerInit(optionInit);
   ServerBuild({}).then((result) => {
     if (result) ServerStart(result);
   });
