@@ -121,6 +121,16 @@ const forExport = function ({ className }) {
         </div>
         <div class="device">
           <img src={images["device"]}></img>
+          <iframe
+            class="device-video"
+            width="422"
+            height="245"
+            src="https://www.youtube.com/embed/oNQOcFADbNo"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </div>
 

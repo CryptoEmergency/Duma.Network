@@ -38,6 +38,7 @@ const team = [
     job: "CTO",
     about:
       "Senior with 20 years of programming experience. Creator of his own framework for website development and CTO in CEM",
+    link: "https://www.linkedin.com/in/igor-enshin-08539126b",
   },
 ];
 
