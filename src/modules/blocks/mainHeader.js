@@ -6,9 +6,9 @@ import {
   setStorage,
   initReload,
 } from "@betarost/cemserver/cem.js";
+import { fn } from "@src/functions/export.js";
 
 import svg from "@assets/svg/index.js";
-import { fn } from "@src/functions/export.js";
 import images from "@assets/images/index.js";
 
 const isMobile = {
@@ -467,7 +467,9 @@ const mainHeader = async function () {
                       My Account
                     </button>
                   )}
-                  <span onclick={function () {}}>ENG</span>
+                  <span class="lang" onclick={function () {}}>
+                    ENG
+                  </span>
 
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"

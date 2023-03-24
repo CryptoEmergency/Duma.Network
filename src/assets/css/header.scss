@@ -64,6 +64,7 @@
 }
 .btn-gradient{
   background: var(--btn-gradient);
+  text-align: center;
 }
 .btn-bordo{
   background: $bordo;
@@ -212,13 +213,25 @@
     }
     .btn-gradient{
       line-height: 14px;
-      text-align: center;
     }
   }
 }
 @media(max-width: 992px) {
-  .header-list_item{
+  .header-logo{
+    margin-right: 10px;
+  }
+  .header-list{
+    li:first-child{
+      .header-list_item{
+        margin-left: 5px;
+      }
+    }
+  }
+  .header-list_item, .lang{
     font-size: 12px;
+  }
+  .header-list_item{
+    margin-left: 20px;
   }
   .menu-body .btn{
     font-size: 12px;
@@ -236,9 +249,10 @@
   }
   .menu-body{
     .btn-gradient{
-      width: 125px;
+      width: 100%;
     }
   }
+
 }
 
 @media(max-width: 767px){

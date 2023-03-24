@@ -126,6 +126,7 @@ $back in $backAdvance {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
 }
+
 .ecosystem{
   position: relative;
   .polygonSmall{
@@ -572,8 +573,47 @@ $back in $backAdvance {
     }
   }
 }
-
 // section info-social
+
+// error
+.error{
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .left{
+    left: 0;
+    z-index: 1;
+  }
+  .right{
+    right: 0;
+    z-index: 1;
+  }
+  .f-col-c{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .title-error{
+    font-size: 70px;
+  }
+  .btn{
+    width: 300px;
+  }
+  .circle1{
+    left: 20%;
+    top: 40%;
+    z-index: 0;
+  }
+  .circle2{
+    right: 20%;
+    bottom: 40%;
+    z-index: 0;
+  }
+}
+// error
 
 // media
 @media(max-width: 992px) {
