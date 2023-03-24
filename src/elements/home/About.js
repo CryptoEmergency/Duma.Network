@@ -1,22 +1,16 @@
 import { jsx, jsxFrag, initAfter, Data } from "@betarost/cemserver/cem.js";
+import anime from "animejs/lib/anime.es.js";
 
 import images from "@assets/images/index.js";
-import anime from "animejs/lib/anime.es.js";
 import svg from "@assets/svg/index.js";
 
 let options = {
-  // targets: $el,
-
   opacityIn: [0, 1],
-  // scaleIn: [0.2, 1],
   scaleOut: 3,
   durationIn: 800,
   durationOut: 600,
   delay: 500,
   easing: "easeInExpo",
-  // trans,
-  // easing: "linear",
-  // transalteY:
 };
 
 const forExport = function ({ className }) {
@@ -26,13 +20,11 @@ const forExport = function ({ className }) {
       .add({
         targets: ".text-animation .one",
         opacity: options.opacityIn,
-        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .one",
         opacity: 0,
-        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
@@ -40,13 +32,11 @@ const forExport = function ({ className }) {
       .add({
         targets: ".text-animation .two",
         opacity: options.opacityIn,
-        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .two",
         opacity: 0,
-        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
@@ -54,13 +44,11 @@ const forExport = function ({ className }) {
       .add({
         targets: ".text-animation .three",
         opacity: options.opacityIn,
-        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .three",
         opacity: 0,
-        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
@@ -68,13 +56,11 @@ const forExport = function ({ className }) {
       .add({
         targets: ".text-animation .four",
         opacity: options.opacityIn,
-        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .four",
         opacity: 0,
-        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
@@ -82,13 +68,11 @@ const forExport = function ({ className }) {
       .add({
         targets: ".text-animation .five",
         opacity: options.opacityIn,
-        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .five",
         opacity: 0,
-        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
@@ -96,19 +80,17 @@ const forExport = function ({ className }) {
       .add({
         targets: ".text-animation .six",
         opacity: options.opacityIn,
-        // scale: options.scaleIn,
         duration: options.durationIn,
       })
       .add({
         targets: ".text-animation .six",
-        // opacity: 0,
         opacity: options.opacityIn,
-        // scale: options.scaleOut,
         easing: options.easing,
         duration: options.durationOut,
         delay: options.delay,
       });
   });
+
   return (
     <section class="intro" id="about">
       <div class="intro-inner">
@@ -125,7 +107,9 @@ const forExport = function ({ className }) {
             <video
               autoplay={true}
               loop={true}
+              preload="metadata"
               playsinline="true"
+              muted="true"
               class="device-video"
               width="422"
               height="255"
@@ -139,21 +123,9 @@ const forExport = function ({ className }) {
               }}
               Element={($el) => {
                 Data.Static.elVideoMain = $el
-              }}
-            // poster="/assets/image/videoPoster.png"
-            >
+              }}>
               <source src="/assets/video/duma.mp4" type="video/mp4"></source>
             </video>
-            {/* <iframe
-              class="device-video"
-              width="422"
-              height="245"
-              src="https://www.youtube.com/embed/oNQOcFADbNo"
-              title="YouTube video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe> */}
           </a>
         </div>
       </div>
@@ -161,7 +133,6 @@ const forExport = function ({ className }) {
       <div class="ecosystem">
         <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
         <img class="polygonBig polygon" src={svg.polygonBig}></img>
-
         <h2 class="ecosystem-title" style="display:flex;">
           ALL IN ONE -
           <div class="text-animation">
@@ -172,7 +143,6 @@ const forExport = function ({ className }) {
             <span class="five">SELL</span>
             <span class="six">EARN</span>
           </div>
-          {/* CHOOSE, RESEARCH, STUDY, INVEST, SELL, EARN. */}
         </h2>
         <div class="grid-3 ecosystem-box">
           <div class="eco-item">
@@ -208,7 +178,7 @@ const forExport = function ({ className }) {
             <h6 class="eco-title">SAFT MARKETPLACE</h6>
             <div class="eco-item_desc">
               <p class="general-text eco-text">
-                P2P transactions between funds, investors and users.{" "}
+                P2P transactions between funds, investors and users.
               </p>
               <p class="general-text eco-text">
                 Buy SAFT assets from early venture investors who are selling
@@ -232,3 +202,4 @@ const forExport = function ({ className }) {
 };
 
 export default forExport;
+// 24.03.2023

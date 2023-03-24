@@ -1,43 +1,41 @@
 import { ServerInit, ServerBuild, ServerStart } from "@betarost/cemserver";
 import { schemaMongo, connectMongo } from "./mongoose/export.js";
-import { startSocket } from "./socket/export.js"
 import { startExpress } from "./express/export.js"
+import { startSocket } from "./socket/export.js"
+import { runDebugger } from "./debugger/export.js";
+
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 
-const port = 80;
 const portApi = 9092;
-let hotReload = true;
+const portExpress = 53535;
 const target = "duma.network";
-const mode = "development";
 
 const optionInit = {
+  port: 80,
   target,
-  hotReload,
+  hotReload: true,
+  mode: "development",
   path: {
     src: path.resolve("app.js"),
     public: path.resolve("public"),
     fileName: "main.[fullhash].js",
     template: path.resolve("src/template/index.html"),
   },
-  port,
-  mode,
-  allowedHosts: ["duma.cryptodev.store", target],
+  allowedHosts: [target],
   proxy: {
     "/api/v2": {
       target: "http://127.0.0.1:" + portApi,
-      // pathRewrite: { "^/api": "" },
       ws: true
     }
   },
 }
 
 if (process.env.DISABLERELOAD) {
-  hotReload = false;
   optionInit.hotReload = false
   optionInit.proxy["/upload"] = {
-    target: "http://127.0.0.1:53535",
+    target: "http://127.0.0.1:" + portExpress,
     changeOrigin: true,
     secure: false,
   }
@@ -55,9 +53,10 @@ if (process.env.DISABLERELOAD) {
 }
 
 const start = async function () {
+  runDebugger()
   await schemaMongo()
   await connectMongo()
-  await startExpress(53535)
+  await startExpress(portExpress)
   await startSocket(portApi)
   ServerInit(optionInit);
   ServerBuild({}).then((result) => {
@@ -66,3 +65,4 @@ const start = async function () {
 };
 
 start();
+// 24.03.2023

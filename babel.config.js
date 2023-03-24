@@ -16,7 +16,8 @@ export default {
                     "@fn": "./src/functions",
                     "@assets": "./src/assets",
                     "@navigation": "./src/navigation",
-                    "@modules": "./src/modules"
+                    "@modules": "./src/modules",
+                    "@elements": "./src/elements"
                 }
             }
         ]

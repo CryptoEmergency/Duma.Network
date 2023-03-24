@@ -16,6 +16,9 @@
             ],
             "@fn/*": [
                 "./src/functions/*"
+            ],
+            "@elements/*": [
+                "./src/elements/*"
             ]
         }
     }
