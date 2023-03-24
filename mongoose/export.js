@@ -67,7 +67,7 @@ const schemaMongo = async function () {
             }
         }
     })
-
+    b = 1
     return true
 }
 

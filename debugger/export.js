@@ -6,6 +6,24 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const __logs = PatchJoin(__dirname, "../logs/")
 
+const catchError = async function (error, str, ret) {
+    let telMessage = `🔔❗️ Catch (${str}) ❗️🔔\n\n`
+    let errText = `🔔❗️ Catch (${str}) ❗️🔔\n`
+    if (error?.message) {
+        telMessage += error.message
+        errText += error.message + "\n"
+        errText += error.stack
+    } else {
+        telMessage += error
+        errText += error
+    }
+    console.error(telMessage);
+    await writeLogs(errText)
+    await telegramSend(telMessage)
+    return ret
+}
+
+
 const writeLogs = async function (errorText) {
     return new Promise((resolve, reject) => {
         try {
@@ -76,4 +94,4 @@ const runDebugger = function () {
     })
 }
 
-export { runDebugger, writeLogs }
+export { runDebugger, writeLogs, catchError }

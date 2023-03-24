@@ -2,7 +2,7 @@ import { ServerInit, ServerBuild, ServerStart } from "@betarost/cemserver";
 import { schemaMongo, connectMongo } from "./mongoose/export.js";
 import { startExpress } from "./express/export.js"
 import { startSocket } from "./socket/export.js"
-import { runDebugger } from "./debugger/export.js";
+import { runDebugger, catchError } from "./debugger/export.js";
 
 import path from "path";
 import dotenv from "dotenv";
