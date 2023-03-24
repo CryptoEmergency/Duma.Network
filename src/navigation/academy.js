@@ -1,20 +1,15 @@
 import {
   jsx,
   jsxFrag,
-  setStorage,
-  Variable,
-  load,
-  Data,
+  load
 } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
-import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from '@src/elements/export.js';
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-
   load({
     ID,
     fn: () => {
@@ -22,10 +17,7 @@ const start = function (data, ID) {
         <div class="wrapper">
           <div class="main-inner">
             <Elements.Bredcrumbs items={[{ title: "Academy", link: '/academy' }]} />
-            <h2
-              class="general-title mt-25"
-              style="z-index:3; position:relative;"
-            >
+            <h2 class="general-title mt-25" style="z-index:3; position:relative;">
               Academy
             </h2>
             <section class="courses pt-30 pb-30">

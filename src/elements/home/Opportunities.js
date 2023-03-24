@@ -1,7 +1,6 @@
 import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 import svg from "@assets/svg/index.js";
-import images from "@assets/images/index.js";
 
 const forExport = function ({ className }) {
   return (
@@ -104,3 +103,4 @@ const forExport = function ({ className }) {
 };
 
 export default forExport;
+// 24.03.2023

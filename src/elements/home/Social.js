@@ -8,7 +8,6 @@ const forExport = function ({ className }) {
       <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
       <img class="polygonBig polygon" src={svg.polygonBig}></img>
       <div class="info info-social_item">
-        {/* <h3>MORE INFO</h3> */}
         <a
           target="_blank"
           href="https://linktr.ee/duma_network"
@@ -56,3 +55,4 @@ const forExport = function ({ className }) {
 };
 
 export default forExport;
+// 24.03.2023

@@ -1,5 +1,6 @@
 import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
+import { fn } from '@src/functions/export.js';
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
@@ -19,7 +20,11 @@ const forExport = function ({ className }) {
         <a target="_blank" href="http://atomic.green">
           <img class="parther-img" src={svg["partners/partner3"]} />
         </a>
-        <a href="/">
+        <a
+          href="/"
+          onclick={(e) => {
+            fn.siteLink(e);
+          }}>
           <img class="parther-img" src={images["logo-white"]} />
         </a>
         <a target="_blank" href="https://crypto-emergency.com/">
@@ -31,3 +36,4 @@ const forExport = function ({ className }) {
 };
 
 export default forExport;
+// 24.03.2023

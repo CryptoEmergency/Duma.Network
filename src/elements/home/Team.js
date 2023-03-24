@@ -50,26 +50,25 @@ const forExport = function ({ className }) {
       <img class="polygonBig polygon" src={svg.polygonBig}></img>
       <center>
         <h2 class="general-title">Core team</h2>
-        {/* <span>from different countries</span> */}
       </center>
       <div class="team-inner">
         {team.map((item) => {
           return (
             <div class="team-item">
-              {item.link ? (
-                <a href={item.link} target="_blank">
+              {
+                item.link
+                  ?
+                  <a href={item.link} target="_blank">
+                    <img class="team-img" src={item.img} />
+                  </a>
+                  :
                   <img class="team-img" src={item.img} />
-                </a>
-              ) : (
-                <img class="team-img" src={item.img} />
-              )}
-
+              }
               <h5 class="team-name">
                 <div>{item.name}</div> <div>{item.lastName}</div>
               </h5>
               <span class="team-job">
                 {item.job}
-                <img src={item.flag} />
               </span>
               <p class="team-text">{item.about}</p>
             </div>
@@ -81,3 +80,4 @@ const forExport = function ({ className }) {
 };
 
 export default forExport;
+// 24.03.2023

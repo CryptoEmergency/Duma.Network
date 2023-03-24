@@ -39,9 +39,7 @@ const forExport = function ({ className }) {
             <p class="text-green">Negotiations with VC & DAO</p>
             <p class="text-green">Integration of Neural Networks in work</p>
             <p class="text-green">Launching Social Network & Automatization</p>
-            <p class="text-green">
-              Preparation of sites for attracting traffic
-            </p>
+            <p class="text-green">Preparation of sites for attracting traffic</p>
             <p class="text-green">MVP, Testing</p>
             <p class="text-green">Launching Personal Account in System</p>
             <p class="text-green">First Projects on Listing</p>
@@ -115,3 +113,4 @@ const forExport = function ({ className }) {
 };
 
 export default forExport;
+// 24.03.2023
