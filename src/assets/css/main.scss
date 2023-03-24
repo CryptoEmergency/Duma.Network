@@ -615,6 +615,9 @@ $back in $backAdvance {
   }
 
   .device{
+    padding: 10px 10px 3px 10px;
+    border-radius: 8px;
+    background: var(--black);
     .device-video{
       position: relative;
       top: auto;

@@ -414,20 +414,22 @@ const mainHeader = async function () {
                   {!Variable.auth ? (
                     <div class="header-btns">
                       <button
-                        class="btn"
+                        class="btn btn-reg"
                         onclick={() => {
                           fn.modals.Registration({});
                         }}
                       >
-                        Registration
+                        <span>Registration</span>
+                        <img src={images.addUser}></img>
                       </button>
                       <button
-                        class="btn"
+                        class="btn btn-reg"
                         onclick={() => {
                           fn.modals.Login({});
                         }}
                       >
-                        Login
+                        <span>Login</span>
+                        <img src={images.inputUser}></img>
                       </button>
                     </div>
                   ) : Variable.dataUrl.adress == "personal" ? (
