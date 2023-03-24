@@ -3,6 +3,8 @@ import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 const forExport = function ({ className }) {
   return (
     <section class="roadmap" id="roadmap">
+      <div class="circle1"></div>
+      <div class="circle2"></div>
       <h2 class="general-title">Roadmap</h2>
       <div class="roadmap-inner">
         <div class="roadmap-item">

@@ -4,8 +4,9 @@ import svg from "@assets/svg/index.js";
 
 const forExport = function ({ className }) {
   return (
-    <section id="advantages">
-      <section class="investing">
+    <section id="advantages" class="advantages">
+      <div class="circle1"></div>
+      <div class="investing">
         <center>
           <h2 class="general-title">Advantages</h2>
           <span>For different market participants.</span>
@@ -45,8 +46,8 @@ const forExport = function ({ className }) {
             </p>
           </div>
         </div>
-      </section>
-      <section class="contract">
+      </div>
+      <div class="contract">
         <div class="contract-desc">
           <img src={svg["contract"]} class="contract-img" />
           <span>
@@ -62,7 +63,7 @@ const forExport = function ({ className }) {
         >
           More INFORMATION
         </a>
-      </section>
+      </div>
     </section>
   );
 };

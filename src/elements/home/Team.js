@@ -45,6 +45,7 @@ const team = [
 const forExport = function ({ className }) {
   return (
     <section class="team" id="team">
+      <div class="circle1"></div>
       <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
       <img class="polygonBig polygon" src={svg.polygonBig}></img>
       <center>

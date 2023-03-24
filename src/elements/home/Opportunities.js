@@ -5,11 +5,10 @@ import images from "@assets/images/index.js";
 
 const forExport = function ({ className }) {
   return (
-    <section class="advantages">
+    <section class="opportunities">
       <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
       <img class="polygonBig polygon" src={svg.polygonBig}></img>
       <div class="circle1"></div>
-      <div class="circle2"></div>
       <h2 class="general-title">Opportunities</h2>
       <div class="advantages-inner">
         <div class="advance">

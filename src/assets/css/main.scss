@@ -36,8 +36,6 @@ $backAdvance: (
   11: $back11,
 );
 
-
-
 @each $index,
 $back in $backAdvance {
   .advance-item_back--#{$index} {
@@ -45,6 +43,13 @@ $back in $backAdvance {
   }
 }
 
+.circle1,.circle2{
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0 0 200px 125px #1E6978;
+  z-index: 0;
+}
+// ======================================
 .c-main {
   margin-top: 72px;
   background-color: var(--back-primary);
@@ -56,21 +61,7 @@ $back in $backAdvance {
   margin: 0 15px;
   position: relative;
 }
-// .circle-wrap{
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 100%;
-//   visibility: hidden;
-// }
-.circle-1{
-  position: sticky;
-  border-radius: 50%;
-  box-shadow: 0 0 200px 125px #1E6978;
-  min-height: 2em;
-  top: 10%;
-  // visibility: visible;
-}
+
 .main-back {
   position: relative;
   background-image: url(../svg/backMain.svg);
@@ -204,6 +195,14 @@ $back in $backAdvance {
 // about
 
 // section investing
+.advantages{
+  position: relative;
+  .circle1{
+    top: 50%;
+    right: 30%;
+    box-shadow: 0px 0px 235px 125px #1E6978;
+  }
+}
 .investing{
   padding-top: 50px;
 }
@@ -223,15 +222,13 @@ $back in $backAdvance {
   justify-content: center;
   flex-direction: column;
   background: $back-secondary;
-  // background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
   background-blend-mode: overlay;
-  // box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
   border-radius: 18px;
   transition: .5s ease;
+  z-index: 1;
 }
 
 .invest-item:hover {
-  // box-shadow: 15px 5px 10px rgb(153 205 65 / 10%);
   scale: 1.1;
 }
 
@@ -280,14 +277,13 @@ $back in $backAdvance {
 }
 
 .contract-img {
-  // margin-right: 15px;
   filter: drop-shadow(0px 0px 10px rgba(155, 211, 60, 0.4));
 }
 
 // section contract
 
-// section advantages
-.advantages {
+// section opportunities
+.opportunities {
   position: relative;
   .polygonSmall{
     bottom: -140px;
@@ -303,21 +299,9 @@ $back in $backAdvance {
   }
 }
 
-.advantages .circle1,
-.advantages .circle2 {
-  position: absolute;
-  bottom: 30%;
-  left: 25%;
-  border-radius: 50%;
-  box-shadow: 0 0 200px 125px #1E6978;
-}
-
-.advantages .circle2 {
-  top: 30%;
-  right: 25%;
-  bottom: auto;
-  left: auto;
-  box-shadow: 0px 0px 180px 100px #1e6978;
+.opportunities .circle1{
+  top: 45%;
+  left: 30%;
 }
 
 .advantages-inner {
@@ -339,8 +323,6 @@ $back in $backAdvance {
   background-blend-mode: normal, overlay;
   box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
   transition: .5s ease;
-  // background: $back-secondary;
-  // background: rgba(255, 255, 255, 0.11);
 }
 
 .advance-item:hover {
@@ -359,7 +341,7 @@ $back in $backAdvance {
   font-weight: 400;
 }
 
-// section advantages
+// section opportunities
 
 // section partners
 .parthers{
@@ -399,29 +381,27 @@ $back in $backAdvance {
 // section partners
 
 // section roadmap
+.roadmap{
+  position: relative;
+  .circle1{
+    top: 10%;
+    right: 20%;
+    box-shadow: 0 0 150px 80px #1E6978;
+  }
+  .circle2{
+    bottom: 30%;
+    left: 30%;
+  }
+}
 .roadmap-inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
-  // .roadmap-item{
-  //   &:nth-child(3){
-  //     &.poligonBig{
-  //       position: absolute;
-  //       // top: 20px;
-  //       // left: 50px;
-  //       background: url(../svg/polygonBig.svg);
-  //       bottom: 0;
-  //       right: 0;
-  //     }
-  //   }
-  // }
 }
 
 .roadmap-item {
   padding: 15px 30px;
   position: relative;
-  // background: var(--text-main);
-  // background: $back-secondary;
   background: rgba(39,44,49,0.7);
   border-radius: 18px;
   transition: .5s ease;
@@ -434,14 +414,12 @@ $back in $backAdvance {
 
 .roadmap-title {
   color: white;
-  // color: #0D3E36;
   font-size: 24px;
   line-height: 44px;
   text-decoration: underline #92d919;
 }
 
 .roadmap-desc {
-  // color: #595656;
   color: #cbcbcb;
   font-weight: 400;
   font-size: 16px;
@@ -470,6 +448,10 @@ $back in $backAdvance {
     width: 157px;
     z-index: 0;
   }
+  .circle1{
+    bottom: 30%;
+    left: 30%;
+  }
 }
 .team-inner {
   display: grid;
@@ -483,6 +465,7 @@ $back in $backAdvance {
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  z-index: 1;
 }
 
 .team-name {
@@ -689,7 +672,6 @@ $back in $backAdvance {
   // contract
   .contract{
     padding: 20px;
-    // flex-direction: column;
     .btn{
       max-width: 150px;
       width: 100%;
@@ -816,7 +798,7 @@ $back in $backAdvance {
   .advantages-inner {
     grid-template-columns: 1fr;
   }
-  .advantages .circle1, .advantages .circle2{
+  .opportunities .circle1, .opportunities .circle2{
     box-shadow: 0 0 160px 100px #1E6978;
   }
   .advance {
@@ -907,7 +889,7 @@ $back in $backAdvance {
       width: 75px;
     }
   }
-  .advantages{
+  .opportunities{
     .polygonBig{
       top: -80px;
       right: -45px;
