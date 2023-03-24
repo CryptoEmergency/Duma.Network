@@ -27,7 +27,7 @@ const start = function (data, ID) {
       }
     },
     fn: () => {
-      console.log("=0e0048=", Static.item);
+      // console.log("=0e0048=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }
@@ -112,9 +112,8 @@ const start = function (data, ID) {
                           !Static.item.have || !Static.item.target
                             ? `width: calc(0%)`
                             : Static.item.have >= Static.item.target
-                            ? `width: calc(100%)`
-                            : `width: calc(100% * ${
-                                Static.item.have / Static.item.target
+                              ? `width: calc(100%)`
+                              : `width: calc(100% * ${Static.item.have / Static.item.target
                               })`
                         }
                         class="progressBlock-column"
