@@ -1,46 +1,77 @@
+import fs from 'fs';
+import { dirname, join as PatchJoin } from 'path';
+import { fileURLToPath } from 'url';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const __logs = PatchJoin(__dirname, "../logs/")
 
-const closeServer = async function (fn) {
+const writeLogs = async function (errorText) {
+    return new Promise((resolve, reject) => {
+        try {
+            let today = new Date();
+            let today_file_name = today.getDate() + '.' + today.getMonth() + '.' + today.getFullYear() + '.log'
+            let str = (new Date).toUTCString() + '\n=======>\n' + errorText + '\n<=======\n'
+            let pathLogsFile = PatchJoin(__logs, today_file_name);
+            fs.appendFile(pathLogsFile, str, function (error) {
+                if (error) throw error;
+                resolve(true)
+            });
+        } catch (error) {
+            console.error("Ошибка writeLogs", error);
+            resolve(true)
+        }
+    })
+}
 
-    fn()
+const closeServer = async function (error, telMessage, fn) {
+    console.error(telMessage);
+    await writeLogs(error)
+    // fn()
     return
 }
 
 const runDebugger = function () {
     process.on('uncaughtException', async function (error) {
-        let errText = "🔔❗️ uncaughtException Error ❗️🔔\n\n"
+        let telMessage = "🔔❗️ Unhandled Exception ❗️🔔\n\n"
+        let errText = "🔔❗️ Unhandled Exception ❗️🔔\n"
         if (error?.message) {
-            errText += error.message + "\n\n"
-            // Если надо в телегу отправляем
-            // errText += error.stack
+            telMessage += error.message
+            errText += error.message + "\n"
+            errText += error.stack
         } else {
+            telMessage += error
             errText += error
-            // Если надо в телегу отправляем
         }
 
-        console.error(errText);
+        closeServer(errText, telMessage, () => {
+            process.exit(1);
+        });
+
+        setTimeout(() => {
+            process.abort();
+        }, 2000).unref()
     })
 
     process.on('unhandledRejection', async function (error, promise) {
-        // console.log('=d40c88=', promise)
-        let errText = "🔔❗️ unhandledRejection Error ❗️🔔\n\n"
+        let telMessage = "🔔❗️ Unhandled Rejection ❗️🔔\n\n"
+        let errText = "🔔❗️ Unhandled Rejection ❗️🔔\n"
         if (error?.message) {
-            errText += error.message + "\n\n"
-            // Если надо в телегу отправляем
-            // errText += error.stack
+            telMessage += error.message
+            errText += error.message + "\n"
+            errText += error.stack
         } else {
+            telMessage += error
             errText += error
-            // Если надо в телегу отправляем
         }
 
-        console.error(errText);
-        closeServer(() => {
+        closeServer(errText, telMessage, () => {
             process.exit(1);
         });
+
         setTimeout(() => {
             process.abort();
-        }, 1000).unref()
+        }, 2000).unref()
     })
 }
 
-export { runDebugger }
+export { runDebugger, writeLogs }
