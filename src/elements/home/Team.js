@@ -38,7 +38,6 @@ const team = [
     job: "CTO",
     about:
       "Senior with 20 years of programming experience. Creator of his own framework for website development and CTO in CEM",
-    link: "https://www.linkedin.com/in/igor-enshin-08539126b",
   },
 ];
 
@@ -55,21 +54,17 @@ const forExport = function ({ className }) {
         {team.map((item) => {
           return (
             <div class="team-item">
-              {
-                item.link
-                  ?
-                  <a href={item.link} target="_blank">
-                    <img class="team-img" src={item.img} />
-                  </a>
-                  :
+              {item.link ? (
+                <a href={item.link} target="_blank">
                   <img class="team-img" src={item.img} />
-              }
+                </a>
+              ) : (
+                <img class="team-img" src={item.img} />
+              )}
               <h5 class="team-name">
                 <div>{item.name}</div> <div>{item.lastName}</div>
               </h5>
-              <span class="team-job">
-                {item.job}
-              </span>
+              <span class="team-job">{item.job}</span>
               <p class="team-text">{item.about}</p>
             </div>
           );

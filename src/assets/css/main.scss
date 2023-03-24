@@ -584,20 +584,19 @@ $back in $backAdvance {
   align-items: center;
   .left{
     left: 0;
-    z-index: 1;
   }
   .right{
     right: 0;
-    z-index: 1;
   }
-  .f-col-c{
+  .title-error{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  .title-error{
-    font-size: 70px;
+    z-index: 1;
+    h1{
+      font-size: 70px;
+    }
   }
   .btn{
     width: 300px;
@@ -617,11 +616,24 @@ $back in $backAdvance {
 
 // media
 @media(max-width: 992px) {
-
   // investing
   .invest-item {
     padding: 15px;
   }
+
+  // error
+  .error{
+    .polygon{
+      width: 350px;
+    }
+    .left{
+      top: 5%;
+    }
+    .right{
+      bottom: 5%;
+    }
+  }
+  // error
 }
 
 @media(max-width: 767px) {
@@ -791,7 +803,20 @@ $back in $backAdvance {
   // info-social
 
 }
-
+@media(max-width: 550px){
+  // error
+  .error{
+    .polygon{
+      width: 300px;
+    }
+    .title-error{
+      h1{
+        font-size: 56px;
+      }
+    }
+  }
+  // error
+}
 @media(max-width: 464px) {
   .general-title {
     margin-top: 25px;
@@ -967,4 +992,23 @@ $back in $backAdvance {
     }
   }
   // polygon element
+}
+@media(max-width: 400px){
+  .error{
+    .polygon{
+      width: 270px;
+    }
+    .title-error{
+      h2{
+        margin-bottom: 15px;
+      }
+      h1{
+        font-size: 36px;
+        margin-bottom: 15px;
+      }
+    }
+    .btn{
+      width: 150px;
+    }
+  }
 }

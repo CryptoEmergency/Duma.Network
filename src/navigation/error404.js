@@ -15,9 +15,9 @@ const start = function (data, ID) {
               <div class="circle2"></div>
               <img class="left polygon" src={svg.honeycombL}></img>
               <img class="right polygon" src={svg.honeycombR}></img>
-              <div class="f-col-c">
+              <div class="title-error">
                 <h2>Page not found</h2>
-                <h1 class="title-error mb-25">Error 404</h1>
+                <h1 class="mb-25">Error 404</h1>
                 <button class="btn btn-green">MAIN PAGE</button>
               </div>
             </div>
