@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { telegramSend } from '../telegram/export.js';
 import { dirname, join as PatchJoin } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -26,7 +27,8 @@ const writeLogs = async function (errorText) {
 const closeServer = async function (error, telMessage, fn) {
     console.error(telMessage);
     await writeLogs(error)
-    // fn()
+    await telegramSend(telMessage)
+    fn()
     return
 }
 
@@ -49,7 +51,7 @@ const runDebugger = function () {
 
         setTimeout(() => {
             process.abort();
-        }, 2000).unref()
+        }, 5000).unref()
     })
 
     process.on('unhandledRejection', async function (error, promise) {
