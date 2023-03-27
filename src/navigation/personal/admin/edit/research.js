@@ -830,7 +830,7 @@ const start = function (data, ID) {
                                                 oninput={function () {
                                                     Static.item.rankList.launchpad = Number(this.innerText.trim())
                                                     if (Static.item.rankList.launchpad || Static.item.rankList.launchpad >= 0) {
-                                                        updateValue({ key: "rankList.launchpad", value: Static.item.rankList.investors })
+                                                        updateValue({ key: "rankList.launchpad", value: Static.item.rankList.launchpad })
                                                     }
                                                 }}>
                                                 {Static.item.rankList.launchpad}
@@ -857,7 +857,7 @@ const start = function (data, ID) {
                                                 oninput={function () {
                                                     Static.item.rankList.cexDex = Number(this.innerText.trim())
                                                     if (Static.item.rankList.cexDex || Static.item.rankList.cexDex >= 0) {
-                                                        updateValue({ key: "rankList.cexDex", value: Static.item.rankList.investors })
+                                                        updateValue({ key: "rankList.cexDex", value: Static.item.rankList.cexDex })
                                                     }
                                                 }}>
                                                 {Static.item.rankList.cexDex}
