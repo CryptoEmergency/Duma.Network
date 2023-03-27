@@ -33,6 +33,38 @@ const mapPoints = {
     maxPoint: 0,
     noPoints: true,
   },
+  tokenomics: {
+    name: "Tokenomics",
+    maxPoint: 23,
+  },
+  utility: {
+    name: "Utility and Value",
+    maxPoints: 0,
+  },
+  roadmap: {
+    name: "Roadmap",
+    maxPoints: 10,
+  },
+  documentation: {
+    name: "Documentation",
+    maxPoints: 10,
+  },
+  social: {
+    name: "Social",
+    maxPoints: 10,
+  },
+  launchpad: {
+    name: "Launchpad",
+    maxPoints: 10,
+  },
+  cexDex: {
+    name: "CEX/DEX",
+    maxPoint: 10,
+  },
+  aggregator: {
+    name: ,
+    maxPoint:
+  },
 };
 
 const start = function (data, ID) {
@@ -284,6 +316,20 @@ const start = function (data, ID) {
                       })}
                     </div>
                   </div>
+
+                  <center class="el-bottom mt-70">
+                    <button class="btn btn-green mb-15">
+                      Contributing is currently unavailable
+                    </button>
+                    <div class="project-rang-vertical">
+                      <span>
+                        {Static.item.rank ? Static.item.rank : 0} points
+                      </span>
+                      <span class="rang">
+                        {Static.item.rank < 100 ? "low rank" : "medium rank"}
+                      </span>
+                    </div>
+                  </center>
                 </div>
               </section>
             </div>
