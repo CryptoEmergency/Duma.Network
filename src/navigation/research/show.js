@@ -11,6 +11,32 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
+
+const mapPoints = {
+  problem: {
+    name: "Problem",
+    maxPoint: 10
+  },
+  product: {
+    name: "Product",
+    maxPoint: 0
+  },
+  solution: {
+    name: "Solution",
+    maxPoint: 0
+  },
+  investors: {
+    name: "Investors",
+    maxPoint: 0
+  }
+  ,
+  SeedRound: {
+    name: "Seed Round",
+    maxPoint: 0,
+    noPoints: true
+  }
+}
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   load({
@@ -137,19 +163,43 @@ const start = function (data, ID) {
 
               <section class="project-scheme">
                 <div class="scheme-sidebar">
-                  <div class="scheme-sidebar_item text">
-                    <span>Problem</span>
-                    <span class="text-green">
-                      {Static.item.rankList.problem}/10 points
-                    </span>
-                  </div>
+                  {
+                    Object.keys(mapPoints).map((key) => {
+                      return (
+                        <div
+                          class="scheme-sidebar_item text"
+                          onclick={(e) => {
+                            let timeGo = 10;
+                            setTimeout(() => {
+                              window.scrollTo({
+                                top:
+                                  document.querySelector(`#${key}`).offsetTop - 72,
+                                behavior: "smooth",
+                              });
+                            }, timeGo);
+                          }}>
+                          <span>{mapPoints[key].name}</span>
+                          {
+                            !mapPoints[key].noPoints
+                              ?
+                              <span class="text-green">
+                                {Static.item?.rankList[key]}{mapPoints[key].maxPoint ? `/${mapPoints[key].maxPoint}` : null} points
+                              </span>
+                              :
+                              null
+                          }
+                        </div>
+                      )
+                    })
+                  }
                 </div>
                 <div class="scheme-cards">
-                  <div class="scheme-card">
+
+                  <div class="scheme-card" id="problem">
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
                       <span class="text-green">
-                        {Static.item.rankList.problem}/10 points
+                        {Static.item.rankList.problem}{mapPoints.problem.maxPoint ? `/${mapPoints.problem.maxPoint}` : null} points
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
@@ -160,7 +210,7 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="product">
                     <div class="scheme-sidebar_item text">
                       <span>Product</span>
                     </div>
@@ -172,7 +222,7 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="solution">
                     <div class="scheme-sidebar_item text">
                       <span>Solution</span>
                     </div>
