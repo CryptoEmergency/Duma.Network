@@ -753,7 +753,7 @@ const start = function (data, ID) {
                     })}
                   </div>
 
-                  <div class="scheme-card">
+                  {/* <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                         <span>Roadmap</span>
                         <div
@@ -779,7 +779,7 @@ const start = function (data, ID) {
                       <span class="text-green">Max. 10</span>
                     </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
