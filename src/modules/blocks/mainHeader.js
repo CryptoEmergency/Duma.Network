@@ -109,7 +109,8 @@ const mainHeader = async function () {
                       burgerMenu("hide");
                     }}
                   >
-                    become our partner
+                    <span>become our partner</span>
+                    <img src={images.bot}></img>
                   </a>
                   <ul class="header-list">
                     <li
@@ -459,12 +460,13 @@ const mainHeader = async function () {
                     </div>
                   ) : (
                     <button
-                      class="btn mr-10 ml-10 pX-20"
+                      class="btn btn-user mr-10 ml-10 pX-20"
                       onclick={() => {
                         fn.siteLink("/personal/");
                       }}
                     >
-                      My Account
+                      <span>MY ACCOUNT</span>
+                      <img src={images.user}></img>
                     </button>
                   )}
                   <span class="lang" onclick={function () {}}>

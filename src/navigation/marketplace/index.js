@@ -132,7 +132,7 @@ const cardsRecords = [
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTab = "seed";
-  Static.tabWidth = 0
+  Static.tabWidth = 0;
   load({
     ID,
     fnLoad() {
@@ -142,11 +142,29 @@ const start = function (data, ID) {
     },
     fn: () => {
       return (
+        // <div class="back-market">
+        //   <div class="wrapper">
+        //     <div class="main-inner">
+        //       <Elements.Bredcrumbs
+        //         items={[{ title: "Marketplace", link: "/marketplace" }]}
+        //       />
+        //       <div class="m-cards">
+        //         <div class="m-card"></div>
+        //       </div>
+        //     </div>
+        //   </div>
+        // </div>
+
         <div class="back-secondary">
           <div class="wrapper">
             <div class="main-inner">
-              <Elements.Bredcrumbs items={[{ title: "Marketplace", link: "/marketplace" }]} />
-              <h2 class="general-title mt-25" style="z-index:2; position:relative;" >
+              <Elements.Bredcrumbs
+                items={[{ title: "Marketplace", link: "/marketplace" }]}
+              />
+              <h2
+                class="general-title mt-25"
+                style="z-index:2; position:relative;"
+              >
                 Marketplace
               </h2>
               <Elements.Tabs
@@ -155,7 +173,8 @@ const start = function (data, ID) {
                   { title: "Seed", name: "seed" },
                   { title: "Private", name: "private" },
                   { title: "Public", name: "public" },
-                ]}>
+                ]}
+              >
                 <div>
                   <div class="blur">
                     <h2>COMING SOON</h2>

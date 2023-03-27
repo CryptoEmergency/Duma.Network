@@ -11,31 +11,29 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
-
 const mapPoints = {
   problem: {
     name: "Problem",
-    maxPoint: 10
+    maxPoint: 10,
   },
   product: {
     name: "Product",
-    maxPoint: 0
+    maxPoint: 0,
   },
   solution: {
     name: "Solution",
-    maxPoint: 0
+    maxPoint: 0,
   },
   investors: {
     name: "Investors",
-    maxPoint: 0
-  }
-  ,
-  SeedRound: {
+    maxPoint: 0,
+  },
+  preSeed: {
     name: "Seed Round",
     maxPoint: 0,
-    noPoints: true
-  }
-}
+    noPoints: true,
+  },
+};
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
@@ -53,7 +51,7 @@ const start = function (data, ID) {
       }
     },
     fn: () => {
-      // console.log("=0e0048=", Static.item);
+      console.log("=0e0048=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }
@@ -138,8 +136,9 @@ const start = function (data, ID) {
                           !Static.item.have || !Static.item.target
                             ? `width: calc(0%)`
                             : Static.item.have >= Static.item.target
-                              ? `width: calc(100%)`
-                              : `width: calc(100% * ${Static.item.have / Static.item.target
+                            ? `width: calc(100%)`
+                            : `width: calc(100% * ${
+                                Static.item.have / Static.item.target
                               })`
                         }
                         class="progressBlock-column"
@@ -163,43 +162,46 @@ const start = function (data, ID) {
 
               <section class="project-scheme">
                 <div class="scheme-sidebar">
-                  {
-                    Object.keys(mapPoints).map((key) => {
-                      return (
-                        <div
-                          class="scheme-sidebar_item text"
-                          onclick={(e) => {
-                            let timeGo = 10;
-                            setTimeout(() => {
-                              window.scrollTo({
-                                top:
-                                  document.querySelector(`#${key}`).offsetTop - 72,
-                                behavior: "smooth",
-                              });
-                            }, timeGo);
-                          }}>
-                          <span>{mapPoints[key].name}</span>
-                          {
-                            !mapPoints[key].noPoints
-                              ?
-                              <span class="text-green">
-                                {Static.item?.rankList[key]}{mapPoints[key].maxPoint ? `/${mapPoints[key].maxPoint}` : null} points
-                              </span>
-                              :
-                              null
-                          }
-                        </div>
-                      )
-                    })
-                  }
+                  {Object.keys(mapPoints).map((key) => {
+                    return (
+                      <div
+                        class="scheme-sidebar_item text"
+                        onclick={(e) => {
+                          let timeGo = 10;
+                          setTimeout(() => {
+                            window.scrollTo({
+                              top:
+                                document.querySelector(`#${key}`).offsetTop -
+                                72,
+                              behavior: "smooth",
+                            });
+                          }, timeGo);
+                        }}
+                      >
+                        <span>{mapPoints[key].name}</span>
+                        {!mapPoints[key].noPoints ? (
+                          <span class="text-green">
+                            {Static.item?.rankList[key]}
+                            {mapPoints[key].maxPoint
+                              ? `/${mapPoints[key].maxPoint}`
+                              : null}{" "}
+                            points
+                          </span>
+                        ) : null}
+                      </div>
+                    );
+                  })}
                 </div>
                 <div class="scheme-cards">
-
                   <div class="scheme-card" id="problem">
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
                       <span class="text-green">
-                        {Static.item.rankList.problem}{mapPoints.problem.maxPoint ? `/${mapPoints.problem.maxPoint}` : null} points
+                        {Static.item.rankList.problem}
+                        {mapPoints.problem.maxPoint
+                          ? `/${mapPoints.problem.maxPoint}`
+                          : null}{" "}
+                        points
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
@@ -234,7 +236,7 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="investors">
                     <div class="scheme-sidebar_item text">
                       <span>Investors</span>
                       <span class="text-green">
@@ -249,7 +251,26 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
+                  <div class="scheme-card" id="preSeed">
+                    <div class="scheme-sidebar_item text">
+                      <span>Pre-Seed Round</span>
+                    </div>
+                    <div class="scheme-card_desc">
+                      <span>Raised: $ 60,000 / 01 Mar, 2023/ </span>
+                      <div class="grid-2">
+                        <div class="company">
+                          <img src={images["project/circle2"]} />
+                          <span>DUMA Capital</span>
+                        </div>
+                        <div class="company">
+                          <img src={images["project/circle1"]} />
+                          <span>Angel investors</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="scheme-card" id="documentation">
                     <div class="scheme-sidebar_item text">
                       <span>Documentation</span>
                       <span class="text-green">
