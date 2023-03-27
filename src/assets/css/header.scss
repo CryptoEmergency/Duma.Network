@@ -62,6 +62,13 @@
     display: none;
   }
 }
+.header-btns{
+  .btn-green, .btn-bordo{
+    img{
+      display: none;
+    }
+  }
+}
 .btn-gradient{
   background: var(--btn-gradient);
   text-align: center;
@@ -216,6 +223,16 @@
       width: 20px;
     }
   }
+  .header-btns{
+    .btn-green, .btn-bordo{
+      span{
+        display: none;
+      }
+      img{
+        display: block;
+      }
+    }
+  }
   .menu-body{
     .btn{
       height: 40px;
@@ -359,7 +376,16 @@
         display: none;
       }
     }
-    
+    .header-btns{
+      .btn-green, .btn-bordo{
+        span{
+          display: block;
+        }
+        img{
+          display: none;
+        }
+      }
+    }
   }
   .header-logo{
     top: 10px;

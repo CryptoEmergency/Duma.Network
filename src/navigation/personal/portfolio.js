@@ -207,7 +207,9 @@ const start = function (data, ID) {
                       </div>
                     </div>
                     <div class="blocks-item">
-                      <span class="title-block pb-15">Released projects</span>
+                      <span class="title-block pb-15">
+                        Released projects <span class="add">+</span>
+                      </span>
                       <div class="project-wrap">
                         <div class="block-project">
                           <div class="user-card">
@@ -239,6 +241,7 @@ const start = function (data, ID) {
 
                       <span class="title-block pb-15 pt-15">
                         Unreleased projects
+                        <span class="add">+</span>
                       </span>
                       <div class="project-wrap">
                         <div class="block-project">

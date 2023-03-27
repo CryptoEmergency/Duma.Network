@@ -444,7 +444,8 @@ const mainHeader = async function () {
                           });
                         }}
                       >
-                        DEPOSIT
+                        <span>DEPOSIT</span>
+                        <img src={images["icons/deposit"]}></img>
                       </button>
                       <button
                         class="btn btn-bordo"
@@ -455,7 +456,8 @@ const mainHeader = async function () {
                           });
                         }}
                       >
-                        WITHDRAW
+                        <span>WITHDRAW</span>
+                        <img src={images["icons/withdraw"]}></img>
                       </button>
                     </div>
                   ) : (
