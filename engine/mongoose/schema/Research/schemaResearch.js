@@ -27,6 +27,7 @@ forExport.schema = new mongoose.Schema(
   {
     name: { type: String },
     rank: { type: Number, default: 0 },
+    test: { type: String },
     rankList: {
       problem: { type: Number, default: 0 },
       product: { type: Number, default: 0 },
@@ -108,6 +109,7 @@ forExport.get.full = async function ({ filter = {} }, { _id = null, action, user
 };
 
 forExport.get.all = async function ({ filter = {}, sort = { _id: -1 }, limit = 20, offset = 0 }, { _id = null, action, userInfo }) {
+  // console.log('=c69964=', filter, sort, limit, offset, _id, action)
   filter.action = true
   if (_id) {
     const query = model.findOne({ _id });
@@ -123,10 +125,7 @@ forExport.get.all = async function ({ filter = {}, sort = { _id: -1 }, limit = 2
   return result;
 };
 
-forExport.set.full = async function (
-  { insert = {} },
-  { _id = null, action, userInfo }
-) {
+forExport.set.full = async function ({ insert = {} }, { _id = null, action, userInfo }) {
   if (action == "insert") {
     insert.author = userInfo._id;
     let record = new model();
@@ -136,10 +135,7 @@ forExport.set.full = async function (
   }
 };
 
-forExport.set.auth = async function (
-  { insert = {}, update = {}, filter = {} },
-  { _id = null, action, userInfo }
-) {
+forExport.set.auth = async function ({ insert = {}, update = {}, filter = {} }, { _id = null, action, userInfo }) {
   // filter.author = userInfo._id;
   if (_id) {
     action = "findOneAndUpdate";

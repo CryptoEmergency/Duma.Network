@@ -186,6 +186,7 @@ const start = function (data, ID) {
                                                     {Static.item.name}
                                                 </div>
                                             </div>
+
                                         </div>
 
                                         <div class="form-div">
