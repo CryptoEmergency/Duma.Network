@@ -17,7 +17,8 @@ export default {
                     "@assets": "./src/assets",
                     "@navigation": "./src/navigation",
                     "@modules": "./src/modules",
-                    "@elements": "./src/elements"
+                    "@elements": "./src/elements",
+                    "@engine": "./engine"
                 }
             }
         ]

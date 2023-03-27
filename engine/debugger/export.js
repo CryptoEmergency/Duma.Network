@@ -4,7 +4,7 @@ import { dirname, join as PatchJoin } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const __logs = PatchJoin(__dirname, "../logs/")
+const __logs = PatchJoin(__dirname, "../../logs/")
 
 const catchError = async function (error, str, ret) {
     let telMessage = `🔔❗️ Catch (${str}) ❗️🔔\n\n`
@@ -22,7 +22,6 @@ const catchError = async function (error, str, ret) {
     await telegramSend(telMessage)
     return ret
 }
-
 
 const writeLogs = async function (errorText) {
     return new Promise((resolve, reject) => {

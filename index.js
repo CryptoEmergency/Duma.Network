@@ -1,8 +1,8 @@
 import { ServerInit, ServerBuild, ServerStart } from "@betarost/cemserver";
-import { schemaMongo, connectMongo } from "./mongoose/export.js";
-import { startExpress } from "./express/export.js"
-import { startSocket } from "./socket/export.js"
-import { runDebugger, catchError } from "./debugger/export.js";
+import { schemaMongo, connectMongo } from "./engine/mongoose/export.js";
+import { startExpress } from "./engine/express/export.js"
+import { startSocket } from "./engine/socket/export.js"
+import { runDebugger, catchError } from "./engine/debugger/export.js";
 
 import path from "path";
 import dotenv from "dotenv";
@@ -16,6 +16,7 @@ const optionInit = {
   port: 80,
   target,
   hotReload: true,
+  watch: true,
   mode: "development",
   path: {
     src: path.resolve("app.js"),
@@ -65,4 +66,4 @@ const start = async function () {
 };
 
 start();
-// 24.03.2023
+// 27.03.2023

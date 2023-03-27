@@ -19,6 +19,9 @@
             ],
             "@elements/*": [
                 "./src/elements/*"
+            ],
+            "@engine/*": [
+                "./engine/*"
             ]
         }
     }
