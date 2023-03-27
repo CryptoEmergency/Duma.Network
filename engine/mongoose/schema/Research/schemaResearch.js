@@ -1,18 +1,18 @@
 import { mongoose } from "../../export.js";
 
 const getQuery = function ({ action, filter, ls }) {
-  let query = null
+  let query = null;
   switch (action) {
     case "findOne":
-      query = model.findOne(filter)
+      query = model.findOne(filter);
       break;
 
     default:
-      query = model.find(filter, null, ls)
+      query = model.find(filter, null, ls);
       break;
   }
-  return query
-}
+  return query;
+};
 
 const standartDate = {
   timestamps: { createdAt: "dateCreate", updatedAt: "dateUpdate" },
@@ -69,6 +69,10 @@ forExport.schema = new mongoose.Schema(
     product: { type: String },
     solution: { type: String },
     investors: { type: String },
+    roadmap: {
+      text: { type: String },
+      link: { type: String },
+    },
     documentation: { type: String },
     social: { type: String },
     launchpad: { type: String },
@@ -84,7 +88,7 @@ forExport.schema = new mongoose.Schema(
     author: { type: mongoose.Schema.Types.ObjectId, ref: "duma_users" },
     showDate: { type: Date, default: Date.now },
     startDate: { type: Date },
-    endDate: { type: Date }
+    endDate: { type: Date },
   },
   standartDate
 );
@@ -94,8 +98,11 @@ const model = mongoose.model(forExport.collection, forExport.schema);
 forExport.get = {};
 forExport.set = {};
 
-forExport.get.full = async function ({ filter = {} }, { _id = null, action, userInfo }) {
-  filter.action = true
+forExport.get.full = async function (
+  { filter = {} },
+  { _id = null, action, userInfo }
+) {
+  filter.action = true;
   if (_id) {
     const query = model.findOne({ _id });
     query.select({ password: 0 });
@@ -108,24 +115,30 @@ forExport.get.full = async function ({ filter = {} }, { _id = null, action, user
   return result;
 };
 
-forExport.get.all = async function ({ filter = {}, sort = { _id: -1 }, limit = 20, offset = 0 }, { _id = null, action, userInfo }) {
+forExport.get.all = async function (
+  { filter = {}, sort = { _id: -1 }, limit = 20, offset = 0 },
+  { _id = null, action, userInfo }
+) {
   // console.log('=c69964=', filter, sort, limit, offset, _id, action)
-  filter.action = true
+  filter.action = true;
   if (_id) {
     const query = model.findOne({ _id });
     query.select({ password: 0 });
     const result = await query.exec();
     return result;
   }
-  const query = getQuery({ action, filter, ls: { limit, skip: offset } })
+  const query = getQuery({ action, filter, ls: { limit, skip: offset } });
   if (sort) {
-    query.sort(sort)
+    query.sort(sort);
   }
   const result = await query.exec();
   return result;
 };
 
-forExport.set.full = async function ({ insert = {} }, { _id = null, action, userInfo }) {
+forExport.set.full = async function (
+  { insert = {} },
+  { _id = null, action, userInfo }
+) {
   if (action == "insert") {
     insert.author = userInfo._id;
     let record = new model();
@@ -135,7 +148,10 @@ forExport.set.full = async function ({ insert = {} }, { _id = null, action, user
   }
 };
 
-forExport.set.auth = async function ({ insert = {}, update = {}, filter = {} }, { _id = null, action, userInfo }) {
+forExport.set.auth = async function (
+  { insert = {}, update = {}, filter = {} },
+  { _id = null, action, userInfo }
+) {
   // filter.author = userInfo._id;
   if (_id) {
     action = "findOneAndUpdate";
