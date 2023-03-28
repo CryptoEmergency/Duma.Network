@@ -363,9 +363,9 @@ $back in $backAdvance {
 
 .parthers-inner {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  grid-gap: 25px;
+  grid-row-gap: 25px;
   align-items: center;
   padding-top: 70px;
 }
@@ -746,11 +746,11 @@ $back in $backAdvance {
   // advantages 
 
   // partners
-  .parthers-inner{
-    grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
-  }
+  // .parthers-inner{
+  //   grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
+  // }
   .parther-img{
-    max-height: 100px;
+    max-height: 70px;
   }
   // partners
 
@@ -880,7 +880,7 @@ $back in $backAdvance {
   // opportunities
 
   .parthers-inner{
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .parther-img {

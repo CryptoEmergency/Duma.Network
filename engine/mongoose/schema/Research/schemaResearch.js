@@ -80,7 +80,7 @@ forExport.schema = new mongoose.Schema(
     audit: { type: String },
     totalText: { type: String },
     roadmap: {
-      // image: { type: String },
+      image: { type: String },
       text: { type: String },
       link: { type: String },
     },

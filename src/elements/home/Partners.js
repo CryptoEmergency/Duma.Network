@@ -1,6 +1,6 @@
 import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
-import { fn } from '@src/functions/export.js';
+import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
@@ -23,17 +23,25 @@ const forExport = function ({ className }) {
         <a
           href="/"
           onclick={async (e) => {
-
             // let tmp = await fn.socket.get({ method: "Research" })
             // console.log('=c7f06a=', tmp)
             // let tmp2 = await fn.socket.set({ method: "Research", _id: "6419af420463545678c163b8", params: { update: { test: "Привет!!!!!" } } })
             // console.log('=58001c=', tmp2)
             fn.siteLink(e);
-          }}>
+          }}
+        >
           <img class="parther-img" src={images["logo-white"]} />
         </a>
         <a target="_blank" href="https://crypto-emergency.com/">
           <img class="parther-img" src={svg["partners/partner4"]} />
+        </a>
+        <a
+          href="/"
+          onclick={async (e) => {
+            fn.siteLink(e);
+          }}
+        >
+          <img class="parther-img" src={svg["partners/only"]} />
         </a>
       </div>
     </section>

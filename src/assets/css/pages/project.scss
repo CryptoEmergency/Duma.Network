@@ -213,8 +213,17 @@
 .scheme-card_roadmap{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 50px;
-  grid-row-gap: 35px;
+  grid-gap: 35px;
+}
+.scheme-card_roadmap-img{
+  .roadmap-img{
+    width: 300px;
+  }
+  .news-form_gallery-delete{
+    right: 0;
+    top: 0;
+    
+  }
 }
 .scheme-card_roadmap-item{
   h6{

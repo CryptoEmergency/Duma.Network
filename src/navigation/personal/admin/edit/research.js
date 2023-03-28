@@ -33,6 +33,7 @@ const updateRecords = async function (update) {
   if (!response || response.error) {
     console.log("=updateRecords= Error", response);
   }
+  // console.log("=a0d3c8=", response);
 };
 
 const start = function (data, ID) {
@@ -213,9 +214,6 @@ const start = function (data, ID) {
                         ></img>
                       </div>
                       <div class="form-div">
-                        {/* <label>
-                                                    Name:
-                                                </label> */}
                         <div
                           class="form-input personal-input"
                           contenteditable="plaintext-only"
@@ -783,31 +781,115 @@ const start = function (data, ID) {
                       <span class="text-green">Max. 10</span>
                     </div>
 
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.roadmap.text = this.innerText.trim();
-                        updateValue({
-                          key: "roadmap.text",
-                          value: Static.item.roadmap.text,
-                        });
-                      }}
-                    >
-                      {Static.item.roadmap?.text}
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.roadmap.link = this.innerText.trim();
-                        updateValue({
-                          key: "roadmap.link",
-                          value: Static.item.roadmap.link,
-                        });
-                      }}
-                    >
-                      {Static.item.roadmap?.link}
+                    <div class="scheme-card_desc">
+                      <div class="scheme-card_roadmap">
+                        <div class="scheme-card_roadmap-img">
+                          <div
+                            class={[
+                              "add",
+                              "mb-15",
+                              Static.item.roadmap.image ? "add-hidden" : null,
+                            ]}
+                            onclick={() => {
+                              Static.mediaRoadmap.click();
+                            }}
+                          >
+                            +
+                          </div>
+                          <div class="picture">
+                            <input
+                              type="file"
+                              hidden
+                              Element={($el) => {
+                                Static.mediaRoadmap = $el;
+                              }}
+                              onchange={async function (e) {
+                                e.stopPropagation();
+                                Array.from(this.files).forEach((item) => {
+                                  fn.uploadFile({
+                                    file: item,
+                                    onload: async function () {
+                                      if (!this.response) {
+                                        alert("Have some Error. Try again...");
+                                        return;
+                                      }
+                                      let response = JSON.parse(this.response);
+                                      if (response.error || !response.name) {
+                                        alert(
+                                          "Have some Error. Try again... " +
+                                            response.error
+                                        );
+                                        return;
+                                      }
+                                      Static.item.roadmap.image = response.name;
+                                      updateValue({
+                                        key: "roadmap.image",
+                                        value: Static.item.roadmap.image,
+                                      });
+                                      initReload();
+                                    },
+                                  });
+                                  return;
+                                });
+                              }}
+                            />
+                            <div class="news-form_gallery-image">
+                              <img
+                                class="roadmap-img"
+                                src={
+                                  Static.item.roadmap.image
+                                    ? `/assets/upload/${Static.item.roadmap.image}`
+                                    : images["research/logo-empty"]
+                                }
+                              />
+                              <div
+                                class="news-form_gallery-delete"
+                                onclick={() => {
+                                  Static.item.roadmap.image = "";
+                                  // updateRecords({
+                                  //   gallery: Static.item.gallery,
+                                  // });
+                                  updateValue({
+                                    key: "roadmap.image",
+                                    value: Static.item.roadmap.image,
+                                  });
+                                  initReload();
+                                }}
+                              >
+                                <img src={svg["delete_icon"]} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="scheme-card_roadmap-desc">
+                          <div
+                            class="scheme-card_desc personal-input text mb-15"
+                            contenteditable="plaintext-only"
+                            oninput={function () {
+                              Static.item.roadmap.text = this.innerText.trim();
+                              updateValue({
+                                key: "roadmap.text",
+                                value: Static.item.roadmap.text,
+                              });
+                            }}
+                          >
+                            {Static.item.roadmap?.text}
+                          </div>
+                          <div
+                            class="scheme-card_desc personal-input text"
+                            contenteditable="plaintext-only"
+                            oninput={function () {
+                              Static.item.roadmap.link = this.innerText.trim();
+                              updateValue({
+                                key: "roadmap.link",
+                                value: Static.item.roadmap.link,
+                              });
+                            }}
+                          >
+                            {Static.item.roadmap?.link}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
