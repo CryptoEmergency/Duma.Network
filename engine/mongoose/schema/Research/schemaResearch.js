@@ -44,6 +44,8 @@ forExport.schema = new mongoose.Schema(
       utility: { type: Number, default: 0 },
       totalText: { type: Number, default: 0 },
       roadmap: { type: Number, default: 0 },
+      tokenomics: { type: Number, default: 0 },
+      team: { type: Number, default: 0 },
     },
     status: { type: String },
     category: { type: String },
@@ -83,6 +85,21 @@ forExport.schema = new mongoose.Schema(
       image: { type: String },
       text: { type: String },
       link: { type: String },
+    },
+    tokenomics: {
+      image: { type: String },
+      text: { type: String },
+    },
+    team: {
+      text: { type: String },
+      link: { type: String },
+      records: [
+        {
+          fio: { type: String },
+          link: { type: String },
+          image: { type: String },
+        },
+      ],
     },
     partners: { type: Boolean, default: false },
     moderation: { type: Boolean, default: false },

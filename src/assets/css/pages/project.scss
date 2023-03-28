@@ -163,13 +163,18 @@
 }
 .tokenomic{
   position: relative;
-  border-radius: 20px;
-  background: url(/src/assets/images/project/tokenomisc.png) no-repeat;
-  background-position: center center;
-  background-size: cover;
+  // border-radius: 20px;
+  // background: url(/src/assets/images/project/tokenomisc.png) no-repeat;
+  // background-position: center center;
+  // background-size: cover;
   .blur{
     border-radius: 20px;
     position: absolute;
+  }
+  img{
+    max-width: 450px;
+    background-size: cover;
+    border-radius: 20px;
   }
 }
 .list-standart{
@@ -222,7 +227,7 @@
   .news-form_gallery-delete{
     right: 0;
     top: 0;
-    
+
   }
 }
 .scheme-card_roadmap-item{

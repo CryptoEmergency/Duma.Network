@@ -342,32 +342,35 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc">
-                      <div class="grid-2">
-                        <div class="tokenomic">
-                          <div class="blur">
+                      {Static.item.tokenomics.image ? (
+                        <div class="grid-2">
+                          <div class="tokenomic">
+                            {/* <div class="blur">
                             <h2>Tokenomic is changed</h2>
+                          </div> */}
+                            <img
+                              src={
+                                Static.item.tokenomics.image
+                                  ? `/assets/upload/${Static.item.tokenomics.image}`
+                                  : null
+                              }
+                            />
+                          </div>
+                          <div class="text">
+                            {fn.editText(Static.item.tokenomics.text, {
+                              paragraph: true,
+                              html: true,
+                            })}
                           </div>
                         </div>
-                        <ul class="list-standart">
-                          <li>
-                            The main task of the team is to make every effort to
-                            encourage token holders to hold onto their tokens
-                            after TGE and not sell them.
-                          </li>
-                          <li>
-                            New token mechanics and adjustments are being
-                            considered daily. In the future, public rounds and
-                            the team's share will be reduced and adjusted to
-                            avoid large token sales in the future
-                          </li>
-                          <li>
-                            The tokenomics include a portion allocated for
-                            marketing and a portion for reserves. This has been
-                            done to maintain the token price and have tokens
-                            available for anticipated situations
-                          </li>
-                        </ul>
-                      </div>
+                      ) : (
+                        <div class="text">
+                          {fn.editText(Static.item.tokenomics.text, {
+                            paragraph: true,
+                            html: true,
+                          })}
+                        </div>
+                      )}
                     </div>
                   </div>
 

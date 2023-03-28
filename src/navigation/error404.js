@@ -18,7 +18,15 @@ const start = function (data, ID) {
               <div class="title-error">
                 <h2>Page not found</h2>
                 <h1 class="mb-25">Error 404</h1>
-                <button class="btn btn-green">MAIN PAGE</button>
+                <a
+                  href="/"
+                  class="btn btn-green"
+                  onclick={(e) => {
+                    fn.siteLink(e);
+                  }}
+                >
+                  MAIN PAGE
+                </a>
               </div>
             </div>
           </div>

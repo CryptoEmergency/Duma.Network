@@ -82,8 +82,16 @@ const start = function (data, ID) {
           Static.item.roadmap = {};
         }
 
+        if (!Static.item.tokenomics) {
+          Static.item.tokenomics = {};
+        }
+
         for (let item of Static.item.socials) {
           Static.forms.socials[item.name] = item;
+        }
+
+        for (let item of Static.item.team) {
+          Static.forms.team[item.name] = item;
         }
       }
     },
@@ -755,6 +763,268 @@ const start = function (data, ID) {
                     })}
                   </div>
 
+                  {/* <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Team</span>
+                      <div
+                        class="form-input personal-input text-green"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.rankList.team = Number(
+                            this.innerText.trim()
+                          );
+                          if (
+                            Static.item.rankList.team ||
+                            Static.item.rankList.team >= 0
+                          ) {
+                            updateValue({
+                              key: "rankList.roadmap",
+                              value: Static.item.rankList.team,
+                            });
+                          }
+                        }}
+                      >
+                        {Static.item.rankList.team}
+                      </div>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+
+                    <div class="scheme-card_desc">
+                      <div class="scheme-team">
+                        <div
+                          class={["add", "mb-15"]}
+                          onclick={() => {
+                            // Static.addPartner.click();
+                            if (!Static.item.team?.records) {
+                              Static.item.team.records = [];
+                            }
+                            Static.item.team.records.push({});
+                            initReload();
+                          }}
+                        >
+                          +
+                        </div>
+
+                        <input
+                          type="file"
+                          hidden
+                          Element={($el) => {
+                            Static.addPartner = $el;
+                          }}
+                          onchange={async function (e) {
+                            e.stopPropagation();
+                            Array.from(this.files).forEach((item) => {
+                              fn.uploadFile({
+                                file: item,
+                                onload: async function () {
+                                  // console.log('=81bde2=', "onload")
+                                  if (!this.response) {
+                                    alert("Have some Error. Try again...");
+                                    return;
+                                  }
+                                  let response = JSON.parse(this.response);
+                                  // console.log('=35f155=', response)
+                                  if (response.error || !response.name) {
+                                    alert(
+                                      "Have some Error. Try again... " +
+                                        response.error
+                                    );
+                                    return;
+                                  }
+                                  Static.item.team["image"] = response.name;
+                                  // Static.item.team["image"].push(
+                                  //   response.name
+                                  // );
+                                  // Static.item.team.set(
+                                  //   "image",
+                                  //   response.name
+                                  // );
+                                  updateValue({
+                                    key: "team",
+                                    value: Static.item.team,
+                                  });
+                                  initReload();
+                                },
+                              });
+                              return;
+                            });
+                          }}
+                        />
+                        {(Static.item.team?.records || []).map(
+                          (item, index) => {
+                            return (
+                              <div class="scheme-team_item">
+                                <div class="scheme-team_item-img">
+                                  <img
+                                    src={
+                                      item.image
+                                        ? `/assets/upload/${item.image}`
+                                        : images["research/logo-empty"]
+                                    }
+                                  />
+                                </div>
+                                <div
+                                  class="personal-input text"
+                                  contenteditable="plaintext-only"
+                                  oninput={function () {
+                                    Static.item.team.text =
+                                      this.innerText.trim();
+                                    updateValue({
+                                      key: "tokenomics.text",
+                                      value: Static.item.tokenomics.text,
+                                    });
+                                  }}
+                                >
+                                  {item?.fio}
+                                </div>
+                                <div
+                                  class="personal-input text"
+                                  contenteditable="plaintext-only"
+                                  oninput={function () {
+                                    Static.item.tokenomics.text =
+                                      this.innerText.trim();
+                                    updateValue({
+                                      key: "tokenomics.text",
+                                      value: Static.item.tokenomics.text,
+                                    });
+                                  }}
+                                >
+                                  {item?.link}
+                                </div>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                  </div> */}
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Tokenomics</span>
+                      <div
+                        class="form-input personal-input text-green"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.rankList.tokenomics = Number(
+                            this.innerText.trim()
+                          );
+                          if (
+                            Static.item.rankList.tokenomics ||
+                            Static.item.rankList.tokenomics >= 0
+                          ) {
+                            updateValue({
+                              key: "rankList.roadmap",
+                              value: Static.item.rankList.tokenomics,
+                            });
+                          }
+                        }}
+                      >
+                        {Static.item.rankList.tokenomics}
+                      </div>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+
+                    <div class="scheme-card_desc">
+                      <div class="scheme-card_roadmap">
+                        <div class="scheme-card_roadmap-img">
+                          <div
+                            class={[
+                              "add",
+                              "mb-15",
+                              Static.item.tokenomics.image
+                                ? "add-hidden"
+                                : null,
+                            ]}
+                            onclick={() => {
+                              Static.mediaTokenomics.click();
+                            }}
+                          >
+                            +
+                          </div>
+                          <div class="picture">
+                            <input
+                              type="file"
+                              hidden
+                              Element={($el) => {
+                                Static.mediaTokenomics = $el;
+                              }}
+                              onchange={async function (e) {
+                                e.stopPropagation();
+                                Array.from(this.files).forEach((item) => {
+                                  fn.uploadFile({
+                                    file: item,
+                                    onload: async function () {
+                                      if (!this.response) {
+                                        alert("Have some Error. Try again...");
+                                        return;
+                                      }
+                                      let response = JSON.parse(this.response);
+                                      if (response.error || !response.name) {
+                                        alert(
+                                          "Have some Error. Try again... " +
+                                            response.error
+                                        );
+                                        return;
+                                      }
+                                      Static.item.tokenomics.image =
+                                        response.name;
+                                      updateValue({
+                                        key: "tokenomics.image",
+                                        value: Static.item.tokenomics.image,
+                                      });
+                                      initReload();
+                                    },
+                                  });
+                                  return;
+                                });
+                              }}
+                            />
+                            <div class="news-form_gallery-image">
+                              <img
+                                class="roadmap-img"
+                                src={
+                                  Static.item.tokenomics.image
+                                    ? `/assets/upload/${Static.item.tokenomics.image}`
+                                    : images["research/logo-empty"]
+                                }
+                              />
+                              <div
+                                class="news-form_gallery-delete"
+                                onclick={() => {
+                                  Static.item.tokenomics.image = "";
+                                  updateValue({
+                                    key: "roadmap.image",
+                                    value: Static.item.tokenomics.image,
+                                  });
+                                  initReload();
+                                }}
+                              >
+                                <img src={svg["delete_icon"]} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="scheme-card_roadmap-desc">
+                          <div
+                            class="scheme-card_desc personal-input text mb-15"
+                            contenteditable="plaintext-only"
+                            oninput={function () {
+                              Static.item.tokenomics.text =
+                                this.innerText.trim();
+                              updateValue({
+                                key: "tokenomics.text",
+                                value: Static.item.tokenomics.text,
+                              });
+                            }}
+                          >
+                            {Static.item.tokenomics?.text}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
@@ -1187,7 +1457,7 @@ const start = function (data, ID) {
                           ) {
                             updateValue({
                               key: "rankList.social",
-                              value: Static.item.rankList.investors,
+                              value: Static.item.rankList.social,
                             });
                           }
                         }}
