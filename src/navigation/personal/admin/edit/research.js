@@ -64,7 +64,7 @@ const start = function (data, ID) {
           method: "Research",
           _id: Variable.dataUrl.params,
         });
-        // console.log('=9ebbf7=', Static.item)
+        console.log("=9ebbf7=", Static.item);
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -75,6 +75,10 @@ const start = function (data, ID) {
 
         if (!Static.item.utility) {
           Static.item.utility = {};
+        }
+
+        if (!Static.item.roadmap) {
+          Static.item.roadmap = {};
         }
 
         for (let item of Static.item.socials) {
@@ -753,33 +757,59 @@ const start = function (data, ID) {
                     })}
                   </div>
 
-                  {/* <div class="scheme-card">
+                  <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                        <span>Roadmap</span>
-                        <div
+                      <span>Roadmap</span>
+                      <div
                         class="form-input personal-input text-green"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.rankList.utility = Number(
+                          Static.item.rankList.roadmap = Number(
                             this.innerText.trim()
                           );
                           if (
-                            Static.item.rankList.utility ||
-                            Static.item.rankList.utility >= 0
+                            Static.item.rankList.roadmap ||
+                            Static.item.rankList.roadmap >= 0
                           ) {
                             updateValue({
-                              key: "rankList.utility",
-                              value: Static.item.rankList.utility,
+                              key: "rankList.roadmap",
+                              value: Static.item.rankList.roadmap,
                             });
                           }
                         }}
                       >
-                        {Static.item.rankList.utility}
+                        {Static.item.rankList.roadmap}
                       </div>
                       <span class="text-green">Max. 10</span>
                     </div>
+
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.roadmap.text = this.innerText.trim();
+                        updateValue({
+                          key: "roadmap.text",
+                          value: Static.item.roadmap.text,
+                        });
+                      }}
+                    >
+                      {Static.item.roadmap?.text}
                     </div>
-                  </div> */}
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.roadmap.link = this.innerText.trim();
+                        updateValue({
+                          key: "roadmap.link",
+                          value: Static.item.roadmap.link,
+                        });
+                      }}
+                    >
+                      {Static.item.roadmap?.link}
+                    </div>
+                  </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">

@@ -495,7 +495,11 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      <div class="scheme-card_roadmap">
+                      {fn.editText(Static.item.roadmap.text, {
+                        paragraph: true,
+                        html: true,
+                      })}
+                      {/* <div class="scheme-card_roadmap">
                         <div class="scheme-card_roadmap-item">
                           <h6>Q3 2022 </h6>
                           <div class="text-green">
@@ -600,7 +604,13 @@ const start = function (data, ID) {
                             <p>Official opening of all ecosystem products</p>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
+                    </div>
+                    <div class="scheme-card_desc text">
+                      {fn.editText(Static.item.roadmap.link, {
+                        paragraph: true,
+                        html: true,
+                      })}
                     </div>
                   </div>
 
