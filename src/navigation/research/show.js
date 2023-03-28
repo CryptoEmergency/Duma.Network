@@ -342,7 +342,7 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc">
-                      {Static.item.tokenomics.image ? (
+                      {Static.item.tokenomics?.image ? (
                         <div class="grid-2">
                           <div class="tokenomic">
                             {/* <div class="blur">
@@ -357,7 +357,7 @@ const start = function (data, ID) {
                             />
                           </div>
                           <div class="text">
-                            {fn.editText(Static.item.tokenomics.text, {
+                            {fn.editText(Static.item.tokenomics?.text, {
                               paragraph: true,
                               html: true,
                             })}
@@ -365,7 +365,7 @@ const start = function (data, ID) {
                         </div>
                       ) : (
                         <div class="text">
-                          {fn.editText(Static.item.tokenomics.text, {
+                          {fn.editText(Static.item.tokenomics?.text, {
                             paragraph: true,
                             html: true,
                           })}
@@ -498,33 +498,32 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      <div class="scheme-card_roadmap">
-                        <div class="scheme-card_roadmap-img">
-                          <img
-                            src={
-                              Static.item.roadmap.image
-                                ? `/assets/upload/${Static.item.roadmap.image}`
-                                : null
-                            }
-                          />
-                        </div>
-                        <div class="scheme-card_roadmap-desc">
-                          {fn.editText(Static.item.roadmap.text, {
-                            paragraph: true,
-                            html: true,
-                          })}
-                          {/* <a
-                            href={Static.item.roadmap.link}
-                            target="_blank"
-                            // class="link-text"
-                          >
-                            {fn.editText(Static.item.roadmap.link, {
+                      {Static.item.roadmap?.image ? (
+                        <div class="scheme-card_roadmap">
+                          <div class="scheme-card_roadmap-img">
+                            <img
+                              src={
+                                Static.item.roadmap?.image
+                                  ? `/assets/upload/${Static.item.roadmap.image}`
+                                  : null
+                              }
+                            />
+                          </div>
+                          <div class="scheme-card_roadmap-desc">
+                            {fn.editText(Static.item.roadmap?.text, {
                               paragraph: true,
                               html: true,
                             })}
-                          </a> */}
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div class="scheme-card_roadmap-desc">
+                          {fn.editText(Static.item.roadmap?.text, {
+                            paragraph: true,
+                            html: true,
+                          })}
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -604,7 +603,7 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      {fn.editText(Static.item.launchpad, {
+                      {fn.editText(Static.item?.launchpad, {
                         paragraph: true,
                         html: true,
                       })}
@@ -623,7 +622,7 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      {fn.editText(Static.item.cexDex, {
+                      {fn.editText(Static.item?.cexDex, {
                         paragraph: true,
                         html: true,
                       })}
@@ -642,7 +641,7 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      {fn.editText(Static.item.aggregator, {
+                      {fn.editText(Static.item?.aggregator, {
                         paragraph: true,
                         html: true,
                       })}
@@ -711,7 +710,7 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text-green bold">
-                      {fn.editText(Static.item.totalText, {
+                      {fn.editText(Static.item?.totalText, {
                         paragraph: true,
                         html: true,
                       })}
