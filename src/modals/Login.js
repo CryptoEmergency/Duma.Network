@@ -19,7 +19,6 @@ const showError = function (text) {
 };
 
 const formCheck = function () {
-  console.log('=0d43cc=', fn.validator)
   if (!fn.validator.isEmail(Data.MStatic.email)) {
     showError("Enter the correct Email address");
     return false;
