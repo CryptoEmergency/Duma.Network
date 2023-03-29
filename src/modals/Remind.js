@@ -11,15 +11,15 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
 const showError = function (text) {
-  Data.Static.elError.style.display = "block";
-  Data.Static.elError.innerHTML = text;
+  Data.MStatic.elError.style.display = "block";
+  Data.MStatic.elError.innerHTML = text;
   setTimeout(() => {
-    Data.Static.elError.style.display = "none";
+    Data.MStatic.elError.style.display = "none";
   }, 5000);
 };
 
 const formCheck = function () {
-  if (!fn.validator.isEmail(Data.Static.email)) {
+  if (!fn.validator.isEmail(Data.MStatic.email)) {
     showError("Enter the correct Email address");
     return false;
   }

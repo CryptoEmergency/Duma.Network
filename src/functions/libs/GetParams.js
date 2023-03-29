@@ -36,6 +36,8 @@ const forExport = function ({
   }
   if (ID == "mainBlock") {
     Data.Static = this.Static[ID];
+  } else {
+    Data.MStatic = this.Static[ID];
   }
   Data.Item = item;
   return [this.Static[ID], item];
