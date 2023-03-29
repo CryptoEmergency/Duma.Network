@@ -23,11 +23,22 @@ const forExport = function ({ className }) {
         <a
           href="/"
           onclick={async (e) => {
+            fn.siteLink(e);
             // let tmp = await fn.socket.get({ method: "Research" })
             // console.log('=c7f06a=', tmp)
             // let tmp2 = await fn.socket.set({ method: "Research", _id: "6419af420463545678c163b8", params: { update: { test: "Привет!!!!!" } } })
             // console.log('=58001c=', tmp2)
-            fn.siteLink(e);
+            // let tmp = await fn.socket.get({
+            //   method: "Fonds",
+            //   params: { filter: { icon: "icon3.png" } },
+            // });
+
+            // await fn.socket.set({
+            //   method: "Fonds",
+            //   action: "insert",
+            //   params: { insert: { name: "fonds 2", icon: "icon2.png" } },
+            // });
+            // console.log("Fonds: ", tmp);
           }}
         >
           <img class="parther-img" src={images["logo-white"]} />

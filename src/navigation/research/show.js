@@ -436,52 +436,31 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      The team currently consists of more than 15 people,
-                      including experienced developers in the IT and blockchain
-                      industry, analysts and traders, and product managers from
-                      large companies. The CEO of the project is an entrepreneur
-                      with 11 years of experience in retail and a crypto
-                      influencer. The team is open and all members can be found
-                      on social media, with their experience confirmed
+                      {fn.editText(Static.item.team.text, {
+                        paragraph: true,
+                        html: true,
+                      })}
                       <div class="scheme-team">
-                        <div>
-                          <a
-                            class="scheme-team_item"
-                            href="https://www.linkedin.com/in/denmagdanov/"
-                            target="_blank"
-                          >
-                            <img src={images["team/den"]} />
-                            <span>DEN</span>
-                            <span>MAGDANOV</span>
-                          </a>
-                        </div>
-                        <div>
-                          <a
-                            class="scheme-team_item"
-                            href="https://www.linkedin.com/in/tom-nosov/"
-                            target="_blank"
-                          >
-                            <img src={images["team/tom"]} />
-                            <span>TOM</span>
-                            <span>NOSOV</span>
-                          </a>
-                        </div>
-                        <div>
-                          <a
-                            class="scheme-team_item"
-                            href="https://www.linkedin.com/in/yan-krivonosov-328584219/"
-                            target="_blank"
-                          >
-                            <img src={images["team/yan"]} />
-                            <span>YAN</span>
-                            <span>KRIVONOSOV</span>
-                          </a>
-                        </div>
-                        <div class="scheme-team_item">
-                          <img src={images["team/igor"]} />
-                          <span>IGOR</span>
-                          <span>IENSHIN</span>
-                        </div>
+                        {Static.item.team.records.map((item) => {
+                          return (
+                            <div>
+                              <a
+                                class="scheme-team_item"
+                                href={item.link}
+                                target="_blank"
+                              >
+                                <img
+                                  src={
+                                    item.image
+                                      ? `/assets/upload/${item.image}`
+                                      : null
+                                  }
+                                />
+                                <span>{item.fio}</span>
+                              </a>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

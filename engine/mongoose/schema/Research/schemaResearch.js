@@ -101,6 +101,7 @@ forExport.schema = new mongoose.Schema(
         },
       ],
     },
+    fonds: [{ type: mongoose.Schema.Types.ObjectId, ref: "duma_fonds" }],
     partners: { type: Boolean, default: false },
     moderation: { type: Boolean, default: false },
     active: { type: Boolean, default: true },
@@ -135,18 +136,24 @@ forExport.get.full = async function (
 };
 
 forExport.get.all = async function (
-  { filter = {}, sort = { _id: -1 }, limit = 20, offset = 0 },
+  { filter = {}, sort = { _id: -1 }, limit = 20, offset = 0, populate },
   { _id = null, action, userInfo }
 ) {
   // console.log('=c69964=', filter, sort, limit, offset, _id, action)
   filter.action = true;
   if (_id) {
     const query = model.findOne({ _id });
+    if (populate) {
+      query.populate(populate);
+    }
     query.select({ password: 0 });
     const result = await query.exec();
     return result;
   }
   const query = getQuery({ action, filter, ls: { limit, skip: offset } });
+  if (populate) {
+    query.populate(populate);
+  }
   if (sort) {
     query.sort(sort);
   }

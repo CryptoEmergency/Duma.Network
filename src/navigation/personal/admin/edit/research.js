@@ -39,6 +39,7 @@ const updateRecords = async function (update) {
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
 
+  Static.fondList = [];
   Static.forms = {};
   Static.forms.socials = {
     youtube: {},
@@ -64,6 +65,7 @@ const start = function (data, ID) {
         Static.item = await fn.socket.get({
           method: "Research",
           _id: Variable.dataUrl.params,
+          params: { populate: { path: "fonds" } },
         });
         console.log("=9ebbf7=", Static.item);
         if (Static.item && !Static.item.gallery) {
@@ -90,8 +92,8 @@ const start = function (data, ID) {
           Static.forms.socials[item.name] = item;
         }
 
-        for (let item of Static.item.team) {
-          Static.forms.team[item.name] = item;
+        if (!Static.item.team) {
+          Static.item.team = {};
         }
       }
     },
@@ -763,7 +765,112 @@ const start = function (data, ID) {
                     })}
                   </div>
 
-                  {/* <div class="scheme-card">
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Seed Round</span>
+                    </div>
+
+                    <div class="scheme-card_desc">
+                      <div
+                        class={["add", "mb-15"]}
+                        onclick={() => {
+                          fn.modals.FondList({
+                            title: "Fond list",
+                            listsFonds: Static.item.fonds,
+                            callback: async (filterFonds) => {
+                              console.log("=666583=", filterFonds);
+                              Static.item.fonds = filterFonds;
+                              if (!filterFonds.length) {
+                                return;
+                              }
+                              await updateRecords({ fonds: Static.item.fonds });
+                              let tmp = await fn.socket.get({
+                                method: "Research",
+                                _id: Variable.dataUrl.params,
+                                params: { populate: { path: "fonds" } },
+                              });
+                              if (tmp.fonds) {
+                                Static.item.fonds = tmp.fonds;
+                              }
+
+                              initReload();
+                              return;
+                            },
+                          });
+                        }}
+                      >
+                        +
+                      </div>
+
+                      <input
+                        type="file"
+                        hidden
+                        Element={($el) => {
+                          Static.addPartner = $el;
+                        }}
+                        onchange={async function (e) {
+                          e.stopPropagation();
+                          Array.from(this.files).forEach((item) => {
+                            fn.uploadFile({
+                              file: item,
+                              onload: async function () {
+                                // console.log('=81bde2=', "onload")
+                                if (!this.response) {
+                                  alert("Have some Error. Try again...");
+                                  return;
+                                }
+                                let response = JSON.parse(this.response);
+                                // console.log('=35f155=', response)
+                                if (response.error || !response.name) {
+                                  alert(
+                                    "Have some Error. Try again... " +
+                                      response.error
+                                  );
+                                  return;
+                                }
+                                Static.item.team["image"] = response.name;
+                                // Static.item.team["image"].push(
+                                //   response.name
+                                // );
+                                // Static.item.team.set(
+                                //   "image",
+                                //   response.name
+                                // );
+                                updateValue({
+                                  key: "team",
+                                  value: Static.item.team,
+                                });
+                                initReload();
+                              },
+                            });
+                            return;
+                          });
+                        }}
+                      />
+                      <div class="fondlist-wrap">
+                        {(Static.item.fonds || []).map((item, index) => {
+                          return (
+                            <div class="fondlist-item">
+                              <div class="fondlist-item_img">
+                                <img
+                                  src={
+                                    item.icon
+                                      ? `/assets/upload/${item.icon}`
+                                      : images["research/logo-empty"]
+                                  }
+                                />
+                              </div>
+                              <span class="fondlist-item_desc">
+                                {item.name}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>
                       <div
@@ -790,71 +897,145 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
-                      <div class="scheme-team">
-                        <div
-                          class={["add", "mb-15"]}
-                          onclick={() => {
-                            // Static.addPartner.click();
-                            if (!Static.item.team?.records) {
-                              Static.item.team.records = [];
-                            }
-                            Static.item.team.records.push({});
-                            initReload();
-                          }}
-                        >
-                          +
-                        </div>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.team.text = this.innerText.trim();
+                          updateValue({
+                            key: "team.text",
+                            value: Static.item.team.text,
+                          });
+                        }}
+                      >
+                        {Static.item.team?.text}
+                      </div>
+                      <div
+                        class={["add", "mb-15"]}
+                        onclick={() => {
+                          // Static.addPartner.click();
+                          if (!Static.item.team?.records) {
+                            Static.item.team.records = [];
+                          }
+                          Static.item.team.records.push({});
+                          initReload();
+                        }}
+                      >
+                        +
+                      </div>
 
-                        <input
-                          type="file"
-                          hidden
-                          Element={($el) => {
-                            Static.addPartner = $el;
-                          }}
-                          onchange={async function (e) {
-                            e.stopPropagation();
-                            Array.from(this.files).forEach((item) => {
-                              fn.uploadFile({
-                                file: item,
-                                onload: async function () {
-                                  // console.log('=81bde2=', "onload")
-                                  if (!this.response) {
-                                    alert("Have some Error. Try again...");
-                                    return;
-                                  }
-                                  let response = JSON.parse(this.response);
-                                  // console.log('=35f155=', response)
-                                  if (response.error || !response.name) {
-                                    alert(
-                                      "Have some Error. Try again... " +
-                                        response.error
-                                    );
-                                    return;
-                                  }
-                                  Static.item.team["image"] = response.name;
-                                  // Static.item.team["image"].push(
-                                  //   response.name
-                                  // );
-                                  // Static.item.team.set(
-                                  //   "image",
-                                  //   response.name
-                                  // );
-                                  updateValue({
-                                    key: "team",
-                                    value: Static.item.team,
-                                  });
-                                  initReload();
-                                },
-                              });
-                              return;
+                      <input
+                        type="file"
+                        hidden
+                        Element={($el) => {
+                          Static.addPartner = $el;
+                        }}
+                        onchange={async function (e) {
+                          e.stopPropagation();
+                          Array.from(this.files).forEach((item) => {
+                            fn.uploadFile({
+                              file: item,
+                              onload: async function () {
+                                // console.log('=81bde2=', "onload")
+                                if (!this.response) {
+                                  alert("Have some Error. Try again...");
+                                  return;
+                                }
+                                let response = JSON.parse(this.response);
+                                // console.log('=35f155=', response)
+                                if (response.error || !response.name) {
+                                  alert(
+                                    "Have some Error. Try again... " +
+                                      response.error
+                                  );
+                                  return;
+                                }
+                                Static.item.team["image"] = response.name;
+                                // Static.item.team["image"].push(
+                                //   response.name
+                                // );
+                                // Static.item.team.set(
+                                //   "image",
+                                //   response.name
+                                // );
+                                updateValue({
+                                  key: "team",
+                                  value: Static.item.team,
+                                });
+                                initReload();
+                              },
                             });
-                          }}
-                        />
+                            return;
+                          });
+                        }}
+                      />
+                      <div class="scheme-team">
                         {(Static.item.team?.records || []).map(
                           (item, index) => {
                             return (
                               <div class="scheme-team_item">
-                                <div class="scheme-team_item-img">
+                                <img
+                                  onclick={() => {
+                                    Static.item.team.records.splice(index, 1);
+                                    updateRecords({
+                                      "team.records": Static.item.team.records,
+                                    });
+                                    initReload();
+                                  }}
+                                  class="icon-delete"
+                                  src={svg["delete_icon"]}
+                                />
+                                <div
+                                  class="scheme-team_item-img"
+                                  onclick={() => {
+                                    Static.teamMedia.click();
+                                  }}
+                                >
+                                  <input
+                                    type="file"
+                                    hidden
+                                    Element={($el) => {
+                                      Static.teamMedia = $el;
+                                    }}
+                                    onchange={async function (e) {
+                                      e.stopPropagation();
+                                      Array.from(this.files).forEach((item) => {
+                                        fn.uploadFile({
+                                          file: item,
+                                          onload: async function () {
+                                            if (!this.response) {
+                                              alert(
+                                                "Have some Error. Try again..."
+                                              );
+                                              return;
+                                            }
+                                            let response = JSON.parse(
+                                              this.response
+                                            );
+                                            if (
+                                              response.error ||
+                                              !response.name
+                                            ) {
+                                              alert(
+                                                "Have some Error. Try again... " +
+                                                  response.error
+                                              );
+                                              return;
+                                            }
+                                            Static.item.team.records[
+                                              index
+                                            ].image = response.name;
+                                            updateValue({
+                                              key: "team.records",
+                                              value: Static.item.team.records,
+                                            });
+                                            initReload();
+                                          },
+                                        });
+                                        return;
+                                      });
+                                    }}
+                                  />
                                   <img
                                     src={
                                       item.image
@@ -864,14 +1045,14 @@ const start = function (data, ID) {
                                   />
                                 </div>
                                 <div
-                                  class="personal-input text"
+                                  class="personal-input text mb-15"
                                   contenteditable="plaintext-only"
                                   oninput={function () {
-                                    Static.item.team.text =
+                                    Static.item.team.records[index].fio =
                                       this.innerText.trim();
                                     updateValue({
-                                      key: "tokenomics.text",
-                                      value: Static.item.tokenomics.text,
+                                      key: "team.records",
+                                      value: Static.item.team.records,
                                     });
                                   }}
                                 >
@@ -881,11 +1062,11 @@ const start = function (data, ID) {
                                   class="personal-input text"
                                   contenteditable="plaintext-only"
                                   oninput={function () {
-                                    Static.item.tokenomics.text =
+                                    Static.item.team.records[index].link =
                                       this.innerText.trim();
                                     updateValue({
-                                      key: "tokenomics.text",
-                                      value: Static.item.tokenomics.text,
+                                      key: "team.records",
+                                      value: Static.item.team.records,
                                     });
                                   }}
                                 >
@@ -897,7 +1078,7 @@ const start = function (data, ID) {
                         )}
                       </div>
                     </div>
-                  </div> */}
+                  </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">

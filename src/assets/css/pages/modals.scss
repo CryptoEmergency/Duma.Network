@@ -286,6 +286,45 @@
   
 }
 // switcher
+// fond list modal
+.fondlist-wrap{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 10px;
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.fondlist-item{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+}
+.fondlistEdit-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.fondlist-item_img{
+  margin-right: 15px;
+}
+.header-modal{
+  .add{
+    position: absolute;
+    right: 15px;
+    top: 50px;
+  }
+}
+.fondlist-item:hover{
+  background: var(--back-primary);
+  cursor: pointer;
+}
+.fondlist-item_active{
+  background: var(--back-primary);
+}
+// fond list modal
 @media(max-width: 767px){
   .wrap-body{
     padding: 10px;
