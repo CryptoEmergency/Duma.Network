@@ -142,7 +142,6 @@ const forExport = function (data, ID) {
                           },
                         },
                       });
-                      console.log(create);
                       // if (create.error || create) {
                       //   alert("Error, fund filling");
                       //   return;

@@ -7,8 +7,6 @@ import {
 } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
-import svg from "@assets/svg/index.js";
-import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
 const cardsRecords = [
@@ -154,14 +152,14 @@ const start = function (data, ID) {
       });
 
       if (tmp && tmp[0]) {
-        Static.projects = tmp
+        Static.projects = tmp;
       } else {
-        Static.projects = [cardsRecords[4], cardsRecords[5]]
+        Static.projects = [cardsRecords[4], cardsRecords[5]];
       }
     },
     fn: () => {
       if (!Static.projects || !Static.projects[0]) {
-        Static.projects = [cardsRecords[4], cardsRecords[5]]
+        Static.projects = [cardsRecords[4], cardsRecords[5]];
       }
       return (
         <div class="back-secondary">
@@ -180,22 +178,43 @@ const start = function (data, ID) {
                 varName={"activeTab"}
                 items={[
                   {
-                    title: "Seed", name: "seed", onclick: async () => {
-                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { moderation: true, tabs: Static.activeTab } } });
-                      initReload()
-                    }
+                    title: "Seed",
+                    name: "seed",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "Research",
+                        params: {
+                          filter: { moderation: true, tabs: Static.activeTab },
+                        },
+                      });
+                      initReload();
+                    },
                   },
                   {
-                    title: "Private", name: "private", onclick: async () => {
-                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { moderation: true, tabs: Static.activeTab } } });
-                      initReload()
-                    }
+                    title: "Private",
+                    name: "private",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "Research",
+                        params: {
+                          filter: { moderation: true, tabs: Static.activeTab },
+                        },
+                      });
+                      initReload();
+                    },
                   },
                   {
-                    title: "Public", name: "public", onclick: async () => {
-                      Static.projects = await fn.socket.get({ method: "Research", params: { filter: { moderation: true, tabs: Static.activeTab } } });
-                      initReload()
-                    }
+                    title: "Public",
+                    name: "public",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "Research",
+                        params: {
+                          filter: { moderation: true, tabs: Static.activeTab },
+                        },
+                      });
+                      initReload();
+                    },
                   },
                 ]}
                 Static={Static}
@@ -210,9 +229,7 @@ const start = function (data, ID) {
                   class="tabs-content"
                   hidden={Static.activeTab == "private" ? false : true}
                 >
-                  <Elements.cards.Project
-                    items={Static.projects}
-                  />
+                  <Elements.cards.Project items={Static.projects} />
                 </div>
                 <div
                   class="tabs-content"

@@ -775,7 +775,7 @@ const start = function (data, ID) {
                         class={["add", "mb-15"]}
                         onclick={() => {
                           fn.modals.FondList({
-                            title: "Fond list",
+                            title: "Fund list",
                             listsFonds: Static.item.fonds,
                             callback: async (filterFonds) => {
                               console.log("=666583=", filterFonds);

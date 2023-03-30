@@ -1,13 +1,15 @@
-import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
+import { jsx, jsxFrag, data } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
-const forExport = function ({ className, items = [] }) {
+const forExport = function ({ Static, className, items = [] }) {
+  // let [Static] = fn.GetParams({ data, ID });
   return (
     <div class="cards">
       {items.map((item, index) => {
+        console.log("=ad7907=", item);
         return (
           <div class={["card-item", `card-item_${index}`]}>
             {item.blur ? (
@@ -36,8 +38,18 @@ const forExport = function ({ className, items = [] }) {
                   <div class="company-title">
                     <span>{item.name}</span>
                   </div>
-                  <div class="info-bell">
-                    <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                  <div
+                    class="info-bell"
+                    onclick={async () => {
+                      await fn.socket.set({
+                        method: "Bookmarks",
+                        action: "insert",
+                        params: { insert: { projectId: item._id } },
+                      });
+                    }}
+                  >
+                    {/* <img src={svg["iconsGreen/bell"]} class="bell"></img> */}
+                    <img src={svg.bell} class="bell" />
                   </div>
                 </div>
                 <div class="statuses">

@@ -22,6 +22,11 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
+      Static.tmp = await fn.socket.get({
+        method: "Bookmarks",
+        params: { populate: { path: "projectId" } },
+      });
+      console.log("=65766d=", Static.tmp);
     },
     fn: () => {
       if (!Variable.auth) {
@@ -39,71 +44,31 @@ const start = function (data, ID) {
               <section class="bookmarks main">
                 <h2 class="general-title mt-25">Bookmarks</h2>
                 <div class="bookmarks-inner mt-25">
-                  <div class="bookmarks-item">
-                    <div class="user-card">
-                      <img src={images["personal/logoProject"]}></img>
-                      <span>name</span>
-                    </div>
-                    <div class="round">round</div>
-                    <div class="price">price token</div>
-                    <div class="price">10k/100k</div>
-                    <div>date tge</div>
-                    <div class="text-underline">lead investor</div>
-                    <div>category</div>
-                    <button class="btn btn-transparent">more</button>
-                  </div>
-                  <div class="bookmarks-item">
-                    <div class="user-card">
-                      <img src={images["personal/logoProject"]}></img>
-                      <span>name</span>
-                    </div>
-                    <div class="round">round</div>
-                    <div class="price">price token</div>
-                    <div class="price">10k/100k</div>
-                    <div>date tge</div>
-                    <div class="text-underline">lead investor</div>
-                    <div>category</div>
-                    <button class="btn btn-transparent">more</button>
-                  </div>
-                  <div class="bookmarks-item">
-                    <div class="user-card">
-                      <img src={images["personal/logoProject"]}></img>
-                      <span>name</span>
-                    </div>
-                    <div class="round">round</div>
-                    <div class="price">price token</div>
-                    <div class="price">10k/100k</div>
-                    <div>date tge</div>
-                    <div class="text-underline">lead investor</div>
-                    <div>category</div>
-                    <button class="btn btn-transparent">more</button>
-                  </div>
-                  <div class="bookmarks-item">
-                    <div class="user-card">
-                      <img src={images["personal/logoProject"]}></img>
-                      <span>name</span>
-                    </div>
-                    <div class="round">round</div>
-                    <div class="price">price token</div>
-                    <div class="price">10k/100k</div>
-                    <div>date tge</div>
-                    <div class="text-underline">lead investor</div>
-                    <div>category</div>
-                    <button class="btn btn-transparent">more</button>
-                  </div>
-                  <div class="bookmarks-item">
-                    <div class="user-card">
-                      <img src={images["personal/logoProject"]}></img>
-                      <span>name</span>
-                    </div>
-                    <div class="round">round</div>
-                    <div class="price">price token</div>
-                    <div class="price">10k/100k</div>
-                    <div>date tge</div>
-                    <div class="text-underline">lead investor</div>
-                    <div>category</div>
-                    <button class="btn btn-transparent">more</button>
-                  </div>
+                  {Static.tmp.map((item) => {
+                    return (
+                      <div class="bookmarks-item">
+                        <div class="user-card">
+                          <img
+                            src={
+                              item.projectId.icon
+                                ? `/assets/upload/${item.projectId.icon}`
+                                : images["personal/logoProject"]
+                            }
+                          />
+                          <span>{item.projectId.name}</span>
+                        </div>
+                        <div class="round">round</div>
+                        <div class="price">price token</div>
+                        <div class="price">
+                          {item.projectId.have}$/{item.projectId.target}$
+                        </div>
+                        <div>date tge</div>
+                        <div class="text-underline">lead investor</div>
+                        <div>{item.projectId.category}</div>
+                        <button class="btn btn-transparent">more</button>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             </div>
