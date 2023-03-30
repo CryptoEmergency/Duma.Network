@@ -161,6 +161,17 @@
     resize: none;
   }
 }
+.scheme-card_desc{
+  .fondlist-item{
+    position: relative;
+    .icon-delete{
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translate(0, -50%);
+    }
+  }
+}
 .tokenomic{
   position: relative;
   // border-radius: 20px;

@@ -851,6 +851,17 @@ const start = function (data, ID) {
                         {(Static.item.fonds || []).map((item, index) => {
                           return (
                             <div class="fondlist-item">
+                              <img
+                                class="icon-delete"
+                                src={svg["delete_icon"]}
+                                onclick={() => {
+                                  Static.item.fonds.splice(index, 1);
+                                  updateRecords({
+                                    fonds: Static.item.fonds,
+                                  });
+                                  initReload();
+                                }}
+                              ></img>
                               <div class="fondlist-item_img">
                                 <img
                                   src={

@@ -11,11 +11,12 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
-let showForAdd = true;
+// let showForAdd = true;
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   // console.log("=b1d9cd=", Static.listsFonds);
+  Static.showForAdd = false;
   Static.fond_list = [];
   if (Static.listsFonds) {
     for (let item of Static.listsFonds) {
@@ -27,14 +28,16 @@ const forExport = function (data, ID) {
     ID,
     fnLoad: async () => {
       Static.items = await fn.socket.get({ method: "Fonds" });
+      Static.showFonds = Static.items;
     },
     fn: () => {
       // console.log("fond list:", Static.items);
       // console.log("check fond list", Static.fond_list);
+      console.log("=7ba689=", Static.showFonds);
       return (
         <div class="wrap">
           <div class="wrap-body">
-            <div class="wrap-content bug">
+            <div class="wrap-content fonds">
               <header class="header-modal">
                 <h2 class="general-title mt-0">{data.title}</h2>
                 <button
@@ -47,8 +50,16 @@ const forExport = function (data, ID) {
                 </button>
                 <div
                   class="add"
+                  Element={($el) => {
+                    Static.addNewFond = $el;
+                  }}
                   onclick={() => {
-                    showForAdd = !showForAdd;
+                    Static.showForAdd = !Static.showForAdd;
+                    if (Static.showForAdd == true) {
+                      Static.addNewFond.innerText = "x";
+                    } else {
+                      Static.addNewFond.innerText = "+";
+                    }
                     initReload();
                   }}
                 >
@@ -56,7 +67,13 @@ const forExport = function (data, ID) {
                 </div>
               </header>
               <main class="main-modal">
-                <div class="fondlistEdit-wrap" hidden={showForAdd}>
+                <div
+                  class={[
+                    "fondlistEdit-wrap",
+                    "mb-15",
+                    Static.showForAdd ? "fondlistEdit-wrap_show" : null,
+                  ]}
+                >
                   <div
                     class="fondlist-item_img"
                     onclick={() => {
@@ -133,7 +150,8 @@ const forExport = function (data, ID) {
                       Static.fondIcon = null;
                       Static.nameFond = "";
                       Static.items.push(create);
-                      showForAdd = !showForAdd;
+                      Static.showForAdd = !Static.showForAdd;
+                      Static.addNewFond.innerText = "+";
                       initReload();
                     }}
                   >
@@ -149,11 +167,34 @@ const forExport = function (data, ID) {
                       type="text"
                       class="filter-fondlist_input form-input"
                       placeholder="Сhoose a fund"
+                      oninput={function () {
+                        let searchText = this.value.toLowerCase();
+                        // console.log("=69eb6a=", this.value);
+                        Static.showFonds = Static.items.filter((item) => {
+                          if (item.name.toLowerCase().includes(searchText)) {
+                            return true;
+                          }
+                        });
+                        initReload("modals");
+                      }}
                     />
+                    <span
+                      class="input-delete"
+                      Element={($el) => {
+                        Static.fondSearchDel = $el;
+                      }}
+                      onclick={() => {
+                        Static.showFonds = Static.items;
+                        Static.fondSearch.value = "";
+                        initReload("modals");
+                      }}
+                    >
+                      x
+                    </span>
                   </form>
                 </div>
                 <div class="fondlist-wrap">
-                  {Static.items.map((item, index) => {
+                  {Static.showFonds.map((item) => {
                     return (
                       <div
                         class={[
@@ -164,7 +205,10 @@ const forExport = function (data, ID) {
                         ]}
                         onclick={() => {
                           if (Static.fond_list.includes(item._id)) {
-                            Static.fond_list.splice(index, 1);
+                            Static.fond_list.splice(
+                              Static.fond_list.indexOf(item._id),
+                              1
+                            );
                           } else {
                             Static.fond_list.push(item._id);
                           }

@@ -99,6 +99,7 @@ const start = function (data, ID) {
         Static.item = await fn.socket.get({
           method: "Research",
           _id: Variable.dataUrl.params,
+          params: { populate: { path: "fonds" } },
         });
       }
       if (!Static.item.socials || !Static.item.socials[0]) {
@@ -316,16 +317,32 @@ const start = function (data, ID) {
                       <span>Pre-Seed Round</span>
                     </div>
                     <div class="scheme-card_desc">
-                      <span>Raised: $ 60,000 / 01 Mar, 2023/ </span>
-                      <div class="grid-2">
-                        <div class="company">
+                      <span>
+                        Raised: $ {Static.item.target} / 01 Mar, 2023/
+                      </span>
+                      <div class="grid-2 mt-15">
+                        {Static.item.fonds.map((item) => {
+                          return (
+                            <div class="company">
+                              <img
+                                src={
+                                  item.icon
+                                    ? `/assets/upload/${item.icon}`
+                                    : null
+                                }
+                              />
+                              <span>{item.name}</span>
+                            </div>
+                          );
+                        })}
+                        {/* <div class="company">
                           <img src={images["project/circle2"]} />
                           <span>DUMA Capital</span>
                         </div>
                         <div class="company">
                           <img src={images["project/circle1"]} />
                           <span>Angel investors</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

@@ -88,18 +88,8 @@ const start = function (data, ID) {
                         <img class="arrow arr-right" src={svg.arrowRight}></img>
                       </div>
                     </div>
-                    <div class="blocks-item graph">
-                      <div class="blur">
-                        <h2>coming soon</h2>
-                      </div>
-                      {/* <img src={images["personal/grafik"]}></img> */}
-                    </div>
-                    <div class="blocks-item circle-graph">
-                      <div class="blur">
-                        <h2>coming soon</h2>
-                      </div>
-                      {/* <img src={images["personal/circleGraph"]}></img> */}
-                    </div>
+                    <div class="blocks-item graph"></div>
+                    <div class="blocks-item circle-graph"></div>
                     <div class="blocks-item news">
                       <span class="text-category text">News</span>
                       <span class="soon-text">coming soon</span>

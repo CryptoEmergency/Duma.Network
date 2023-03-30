@@ -26,10 +26,14 @@
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(7px);
   color: $white;
-  &.bug{
+  &.bug, &.fonds{
     .btn{
       width: 13rem;
     }
+  }
+  &.fonds{
+    max-width: 650px;
+
   }
   .blur{
     border-radius: 20px;
@@ -292,23 +296,53 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   grid-gap: 10px;
-  max-height: 600px;
+  padding-right: 10px;
+  // max-height: 600px;
+  max-height: 285px;
   overflow-y: auto;
   overflow-x: hidden;
+  
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $back-primary;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $green-light;
+    border-radius: 8px;
+    border: 1px solid $back-primary;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 }
 .fondlist-item{
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 10px;
+  border-radius: 8px;
+  padding: 10px;
 }
 .fondlistEdit-wrap{
+  // display: flex;
+  // align-items: center;
+  // justify-content: flex-start;
+  display: none;
+  transition: all 0.3s ease;
+}
+.fondlistEdit-wrap_show{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .fondlist-item_img{
   margin-right: 15px;
+  img{
+    width: 35px;
+  }
 }
 .header-modal{
   .add{
@@ -323,6 +357,16 @@
 }
 .fondlist-item_active{
   background: var(--back-primary);
+}
+.fondlistForm-wrap{
+  position: relative;
+}
+.input-delete{
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translate(0, -50%);
+  cursor: pointer;
 }
 // fond list modal
 @media(max-width: 767px){
