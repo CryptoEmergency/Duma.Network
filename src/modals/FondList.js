@@ -15,7 +15,6 @@ import images from "@assets/images/index.js";
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  // console.log("=b1d9cd=", Static.listsFonds);
   Static.showForAdd = false;
   Static.fond_list = [];
   if (Static.listsFonds) {
@@ -31,9 +30,6 @@ const forExport = function (data, ID) {
       Static.showFonds = Static.items;
     },
     fn: () => {
-      // console.log("fond list:", Static.items);
-      // console.log("check fond list", Static.fond_list);
-      console.log("=7ba689=", Static.showFonds);
       return (
         <div class="wrap">
           <div class="wrap-body">
@@ -168,7 +164,6 @@ const forExport = function (data, ID) {
                       placeholder="Сhoose a fund"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
-                        // console.log("=69eb6a=", this.value);
                         Static.showFonds = Static.items.filter((item) => {
                           if (item.name.toLowerCase().includes(searchText)) {
                             return true;

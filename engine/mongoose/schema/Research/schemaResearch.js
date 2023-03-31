@@ -1,5 +1,9 @@
-import { mongoose } from "../../export.js";
+import { mongoose, Api } from "../../export.js";
 
+let preFind = {
+  start: false,
+  userId: null,
+};
 const getQuery = function ({ action, filter, ls }) {
   let query = null;
   switch (action) {
@@ -105,6 +109,7 @@ forExport.schema = new mongoose.Schema(
     partners: { type: Boolean, default: false },
     moderation: { type: Boolean, default: false },
     active: { type: Boolean, default: true },
+    bookmarks: { type: Boolean, default: false },
     author: { type: mongoose.Schema.Types.ObjectId, ref: "duma_users" },
     showDate: { type: Date, default: Date.now },
     startDate: { type: Date },
@@ -113,7 +118,50 @@ forExport.schema = new mongoose.Schema(
   standartDate
 );
 
+// forExport.schema.post("init", async function (doc) {
+//   doc.bookmarks = false;
+//   if (preFind?.userId) {
+//     console.log("=f6d68a=", "Startt pre init ", preFind?.userId);
+//     doc.bookmarks = true;
+//     let tmp = await Api.getBookmarks.all(
+//       { filter: { projectId: doc._id } },
+//       { userInfo: { _id: preFind?.userId } }
+//     );
+
+//     if (tmp && tmp.length) {
+//       doc.test = "555555";
+//       doc.bookmarks = true;
+//     }
+//     console.log("=e8b364=", tmp);
+//   }
+//   // console.log(doc._id, doc.name, doc.$locals);
+// });
+
+// forExport.schema.virtual("checkBook").get(async function (userID) {
+//   console.log("=3b064c=", userID, this);
+//   return this;
+//   // return this.email.slice(this.email.indexOf('@') + 1);
+// });
+
+// forExport.schema.methods.checkBook = function (userID, cb) {
+//   console.log("=3b064c=", userID, this);
+//   return;
+//   return mongoose.model("Animal").find({ type: this.type }, cb);
+// };
+
+// forExport.schema.method("checkBook", function checkBook() {
+//   console.log("=3b064c=", userID, this);
+//   return;
+//   return this.firstName + " " + this.lastName;
+// });
+
 const model = mongoose.model(forExport.collection, forExport.schema);
+
+// model.checkBook = function (userID, cb) {
+//   console.log("=3b064c=", userID, this);
+//   return;
+//   return mongoose.model("Animal").find({ type: this.type }, cb);
+// };
 
 forExport.get = {};
 forExport.set = {};
@@ -122,6 +170,8 @@ forExport.get.full = async function (
   { filter = {} },
   { _id = null, action, userInfo }
 ) {
+  preFind = {};
+
   filter.action = true;
   if (_id) {
     const query = model.findOne({ _id });
@@ -140,6 +190,10 @@ forExport.get.all = async function (
   { _id = null, action, userInfo }
 ) {
   // console.log('=c69964=', filter, sort, limit, offset, _id, action)
+  preFind = {
+    start: true,
+    userId: userInfo._id,
+  };
   filter.action = true;
   if (_id) {
     const query = model.findOne({ _id });
@@ -157,7 +211,21 @@ forExport.get.all = async function (
   if (sort) {
     query.sort(sort);
   }
+
   const result = await query.exec();
+
+  if (userInfo?._id) {
+    for (let item of result) {
+      item.bookmarks = false;
+      let tmp = await Api.getBookmarks.all(
+        { filter: { projectId: item._id } },
+        { userInfo }
+      );
+      if (tmp && tmp.length) {
+        item.bookmarks = true;
+      }
+    }
+  }
   return result;
 };
 
@@ -165,6 +233,7 @@ forExport.set.full = async function (
   { insert = {} },
   { _id = null, action, userInfo }
 ) {
+  preFind = {};
   if (action == "insert") {
     insert.author = userInfo._id;
     let record = new model();
@@ -178,6 +247,7 @@ forExport.set.auth = async function (
   { insert = {}, update = {}, filter = {} },
   { _id = null, action, userInfo }
 ) {
+  preFind = {};
   // filter.author = userInfo._id;
   if (_id) {
     action = "findOneAndUpdate";

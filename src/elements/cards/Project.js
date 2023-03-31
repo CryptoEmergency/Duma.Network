@@ -1,4 +1,10 @@
-import { jsx, jsxFrag, data } from "@betarost/cemserver/cem.js";
+import {
+  jsx,
+  jsxFrag,
+  data,
+  initReload,
+  Variable,
+} from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
@@ -9,7 +15,7 @@ const forExport = function ({ Static, className, items = [] }) {
   return (
     <div class="cards">
       {items.map((item, index) => {
-        console.log("=ad7907=", item);
+        // console.log("=ad7907=", item);
         return (
           <div class={["card-item", `card-item_${index}`]}>
             {item.blur ? (
@@ -41,15 +47,29 @@ const forExport = function ({ Static, className, items = [] }) {
                   <div
                     class="info-bell"
                     onclick={async () => {
+                      // if (item.bookmarks == true) {
+                      //   return;
+                      // }
                       await fn.socket.set({
                         method: "Bookmarks",
-                        action: "insert",
-                        params: { insert: { projectId: item._id } },
+                        action: "findOneAndUpdate",
+                        params: {
+                          update: { active: !item.bookmarks },
+                          filter: {
+                            projectId: item._id,
+                            author: Variable.myInfo._id,
+                          },
+                        },
                       });
+                      item.bookmarks = !item.bookmarks;
+                      initReload();
                     }}
                   >
-                    {/* <img src={svg["iconsGreen/bell"]} class="bell"></img> */}
-                    <img src={svg.bell} class="bell" />
+                    {item.bookmarks ? (
+                      <img src={svg.bellGreen} class="bell" />
+                    ) : (
+                      <img src={svg.bellGrey} class="bell" />
+                    )}
                   </div>
                 </div>
                 <div class="statuses">

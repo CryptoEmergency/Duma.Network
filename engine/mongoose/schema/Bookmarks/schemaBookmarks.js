@@ -41,7 +41,6 @@ forExport.get.all = async function (
   { filter = {}, sort = { _id: -1 }, limit = 20, offset = 0, populate },
   { _id = null, action, userInfo }
 ) {
-  // console.log('=c69964=', filter, sort, limit, offset, _id, action)
   filter.active = true;
   if (_id) {
     const query = model.findOne({ _id });
@@ -52,6 +51,7 @@ forExport.get.all = async function (
     return result;
   }
   filter.author = userInfo._id;
+  // console.log("=c69964=", action, filter);
   const query = getQuery({ action, filter, ls: { limit, skip: offset } });
   if (populate) {
     query.populate(populate);
@@ -67,6 +67,8 @@ forExport.set.all = async function (
   { insert = {}, update = {}, filter = {} },
   { _id = null, action, userInfo }
 ) {
+  // console.log("=829dc1=", filter, update);
+
   if (_id) {
     action = "findOneAndUpdate";
     filter._id = _id;
@@ -86,7 +88,10 @@ forExport.set.all = async function (
   }
 
   if (action == "findOneAndUpdate") {
-    const query = model.findOneAndUpdate(filter, update, { new: true });
+    const query = model.findOneAndUpdate(filter, update, {
+      new: true,
+      upsert: true,
+    });
     const result = await query.exec();
     return result;
   }

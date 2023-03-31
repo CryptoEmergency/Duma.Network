@@ -151,6 +151,8 @@ const start = function (data, ID) {
         params: { filter: { moderation: true, tabs: Static.activeTab } },
       });
 
+      console.log("=92f11b=", tmp);
+
       if (tmp && tmp[0]) {
         Static.projects = tmp;
       } else {

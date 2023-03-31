@@ -802,51 +802,6 @@ const start = function (data, ID) {
                         +
                       </div>
 
-                      <input
-                        type="file"
-                        hidden
-                        Element={($el) => {
-                          Static.addPartner = $el;
-                        }}
-                        onchange={async function (e) {
-                          e.stopPropagation();
-                          Array.from(this.files).forEach((item) => {
-                            fn.uploadFile({
-                              file: item,
-                              onload: async function () {
-                                // console.log('=81bde2=', "onload")
-                                if (!this.response) {
-                                  alert("Have some Error. Try again...");
-                                  return;
-                                }
-                                let response = JSON.parse(this.response);
-                                // console.log('=35f155=', response)
-                                if (response.error || !response.name) {
-                                  alert(
-                                    "Have some Error. Try again... " +
-                                      response.error
-                                  );
-                                  return;
-                                }
-                                Static.item.team["image"] = response.name;
-                                // Static.item.team["image"].push(
-                                //   response.name
-                                // );
-                                // Static.item.team.set(
-                                //   "image",
-                                //   response.name
-                                // );
-                                updateValue({
-                                  key: "team",
-                                  value: Static.item.team,
-                                });
-                                initReload();
-                              },
-                            });
-                            return;
-                          });
-                        }}
-                      />
                       <div class="fondlist-wrap">
                         {(Static.item.fonds || []).map((item, index) => {
                           return (
@@ -921,10 +876,10 @@ const start = function (data, ID) {
                       >
                         {Static.item.team?.text}
                       </div>
+                      {/* поля для заполнения текста ^ */}
                       <div
                         class={["add", "mb-15"]}
                         onclick={() => {
-                          // Static.addPartner.click();
                           if (!Static.item.team?.records) {
                             Static.item.team.records = [];
                           }
@@ -934,6 +889,7 @@ const start = function (data, ID) {
                       >
                         +
                       </div>
+                      {/* add + нового члена команды ^ */}
 
                       <input
                         type="file"
@@ -947,13 +903,11 @@ const start = function (data, ID) {
                             fn.uploadFile({
                               file: item,
                               onload: async function () {
-                                // console.log('=81bde2=', "onload")
                                 if (!this.response) {
                                   alert("Have some Error. Try again...");
                                   return;
                                 }
                                 let response = JSON.parse(this.response);
-                                // console.log('=35f155=', response)
                                 if (response.error || !response.name) {
                                   alert(
                                     "Have some Error. Try again... " +
@@ -962,13 +916,6 @@ const start = function (data, ID) {
                                   return;
                                 }
                                 Static.item.team["image"] = response.name;
-                                // Static.item.team["image"].push(
-                                //   response.name
-                                // );
-                                // Static.item.team.set(
-                                //   "image",
-                                //   response.name
-                                // );
                                 updateValue({
                                   key: "team",
                                   value: Static.item.team,
@@ -999,14 +946,16 @@ const start = function (data, ID) {
                                 <div
                                   class="scheme-team_item-img"
                                   onclick={() => {
-                                    Static.teamMedia.click();
+                                    // Static.teamMedia.click();
+                                    Static[`teamMedia${index}`].click();
                                   }}
                                 >
                                   <input
                                     type="file"
                                     hidden
                                     Element={($el) => {
-                                      Static.teamMedia = $el;
+                                      // Static.teamMedia = $el;
+                                      Static[`teamMedia${index}`] = $el;
                                     }}
                                     onchange={async function (e) {
                                       e.stopPropagation();
