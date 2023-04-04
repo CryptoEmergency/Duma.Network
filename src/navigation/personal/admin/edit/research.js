@@ -235,7 +235,9 @@ const start = function (data, ID) {
                             });
                           }}
                         >
-                          {Static.item.name}
+                          {Static.item?.name
+                            ? Static.item?.name
+                            : "Name research"}
                         </div>
                       </div>
                     </div>
@@ -361,7 +363,9 @@ const start = function (data, ID) {
                             );
                           }}
                         >
-                          {Static.item.status}
+                          {Static.item?.status
+                            ? Static.item.status
+                            : "Select status"}
                         </button>
                         <ul
                           class="dropdown__list"
@@ -415,7 +419,9 @@ const start = function (data, ID) {
                             );
                           }}
                         >
-                          {Static.item.category}
+                          {Static.item?.category
+                            ? Static.item.category
+                            : "Select category"}
                         </button>
                         <ul
                           class="dropdown__list"
@@ -839,26 +845,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.team
+                            ? Static.item.rankList.team
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.team = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.team ||
-                            Static.item.rankList.team >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.roadmap",
-                              value: Static.item.rankList.team,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.team = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.team",
+                            value: Static.item.rankList.team,
+                          });
                         }}
                       >
                         {Static.item.rankList.team}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
 
@@ -1043,26 +1060,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Tokenomics</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.tokenomics
+                            ? Static.item.rankList.tokenomics
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.tokenomics = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.tokenomics ||
-                            Static.item.rankList.tokenomics >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.roadmap",
-                              value: Static.item.rankList.tokenomics,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.tokenomics = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.tokenomics",
+                            value: Static.item.rankList.tokenomics,
+                          });
                         }}
                       >
                         {Static.item.rankList.tokenomics}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
 
@@ -1131,7 +1159,7 @@ const start = function (data, ID) {
                                 }
                               />
                               <div
-                                class="news-form_gallery-delete"
+                                class={["news-form_gallery-delete"]}
                                 onclick={() => {
                                   Static.item.tokenomics.image = "";
                                   updateValue({
@@ -1141,7 +1169,14 @@ const start = function (data, ID) {
                                   initReload();
                                 }}
                               >
-                                <img src={svg["delete_icon"]} />
+                                <img
+                                  class={
+                                    Static.item.tokenomics.image
+                                      ? null
+                                      : "add-hidden"
+                                  }
+                                  src={svg["delete_icon"]}
+                                />
                               </div>
                             </div>
                           </div>
@@ -1169,26 +1204,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.roadmap
+                            ? Static.item.rankList.roadmap
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.roadmap = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.roadmap ||
-                            Static.item.rankList.roadmap >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.roadmap",
-                              value: Static.item.rankList.roadmap,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.roadmap = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.roadmap",
+                            value: Static.item.rankList.roadmap,
+                          });
                         }}
                       >
                         {Static.item.rankList.roadmap}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
 
@@ -1307,26 +1353,38 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Utility and Value</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        // class="form-input personal-input text-green"
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.utility
+                            ? Static.item.rankList.utility
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.utility = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.utility ||
-                            Static.item.rankList.utility >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.utility",
-                              value: Static.item.rankList.utility,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.utility = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.utility",
+                            value: Static.item.rankList.utility,
+                          });
                         }}
                       >
                         {Static.item.rankList.utility}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
 

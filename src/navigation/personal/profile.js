@@ -54,7 +54,7 @@ const start = function (data, ID) {
                             </div>
                           </div>
                           <div class="userDate mt-10">
-                            <span>annxhenya23@gmail.com</span>
+                            <span>{Variable.myInfo.email}</span>
                             <span>pipe number</span>
                             <span>security check</span>
                             <span>KYC</span>

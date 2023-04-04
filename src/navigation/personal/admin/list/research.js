@@ -114,34 +114,38 @@ const start = function (data, ID) {
                           ></img>
                         </div>
                         <div class="scheme-card_desc text">
-                          <div class="edit-wrap">
-                            <img
-                              src={svg.edit}
-                              onclick={async () => {
-                                fn.siteLink(
-                                  `/personal/admin/edit/research/${item._id}`
-                                );
-                              }}
-                            />
-                            <div class="switcher mt-0 ">
-                              <input
-                                id="switch-moderation"
-                                type="checkbox"
-                                checked={item.moderation}
-                                onchange={() => {
-                                  item.moderation = !item.moderation;
-                                  updateValue({
-                                    key: "moderation",
-                                    value: item.moderation,
-                                  });
-                                  initReload();
+                          <div class="title-research_list mb-15">
+                            <span>{item.name ? item.name : "New record"}</span>
+                            <div class="edit-wrap">
+                              <img
+                                src={svg.edit}
+                                onclick={async () => {
+                                  fn.siteLink(
+                                    `/personal/admin/edit/research/${item._id}`
+                                  );
                                 }}
-                              ></input>
-                              <label for="switch-moderation"></label>
+                              />
+                              <div class="switcher mt-0 ">
+                                <input
+                                  id={`switch-moderation${index}`}
+                                  type="checkbox"
+                                  checked={item.moderation}
+                                  onchange={() => {
+                                    item.moderation = !item.moderation;
+                                    updateValue({
+                                      key: "moderation",
+                                      value: item.moderation,
+                                    });
+                                    initReload();
+                                  }}
+                                ></input>
+                                <label
+                                  for={`switch-moderation${index}`}
+                                ></label>
+                              </div>
                             </div>
                           </div>
 
-                          <span>{item.name ? item.name : "New record"}</span>
                           <p>{item.description}</p>
                         </div>
                       </div>

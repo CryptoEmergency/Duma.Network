@@ -47,9 +47,6 @@ const forExport = function ({ Static, className, items = [] }) {
                   <div
                     class="info-bell"
                     onclick={async () => {
-                      // if (item.bookmarks == true) {
-                      //   return;
-                      // }
                       await fn.socket.set({
                         method: "Bookmarks",
                         action: "findOneAndUpdate",
