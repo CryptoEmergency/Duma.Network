@@ -202,6 +202,16 @@ forExport.get.all = async function (
     }
     query.select({ password: 0 });
     const result = await query.exec();
+    if (userInfo?._id && result?._id) {
+      result.bookmarks = false;
+      let tmp = await Api.getBookmarks.all(
+        { filter: { projectId: result._id } },
+        { userInfo }
+      );
+      if (tmp && tmp.length) {
+        result.bookmarks = true;
+      }
+    }
     return result;
   }
   const query = getQuery({ action, filter, ls: { limit, skip: offset } });
