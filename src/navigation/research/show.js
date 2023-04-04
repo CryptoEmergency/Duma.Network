@@ -37,11 +37,11 @@ const mapPoints = {
   },
   tokenomics: {
     name: "Tokenomics",
-    maxPoint: 23,
+    maxPoint: 10,
   },
   utility: {
     name: "Utility and Value",
-    maxPoint: 0,
+    maxPoint: 10,
   },
   team: {
     name: "Team & Advisors",
@@ -69,16 +69,16 @@ const mapPoints = {
   },
   aggregator: {
     name: "Listing on aggregator",
-    maxPoint: 0,
-  },
-  mediaText: {
-    name: "Media",
     maxPoint: 10,
   },
   competitors: {
     name: "Competitors",
     maxPoint: 0,
     noPoints: true,
+  },
+  mediaText: {
+    name: "Media",
+    maxPoint: 10,
   },
   audit: {
     name: "Audit",
@@ -158,10 +158,33 @@ const start = function (data, ID) {
                 </div>
                 <div>
                   <div class="about-project">
-                    <div class="info-bell">
-                      <img src={svg["iconsGreen/bell"]} class="bell"></img>
+                    <div
+                      class="info-bell"
+                      onclick={async () => {
+                        await fn.socket.set({
+                          method: "Bookmarks",
+                          action: "findOneAndUpdate",
+                          params: {
+                            update: { active: !Static.item.bookmarks },
+                            filter: {
+                              projectId: Static.item._id,
+                              author: Variable.myInfo._id,
+                            },
+                          },
+                        });
+                        Static.item.bookmarks = !Static.item.bookmarks;
+                        initReload();
+                      }}
+                    >
+                      {Static.item.bookmarks ? (
+                        <img src={svg.bellGreen} class="bell" />
+                      ) : (
+                        <img src={svg.bellGrey} class="bell" />
+                      )}
                     </div>
-                    <h2>PRE SEED ROUND IS OPEN</h2>
+                    <h2 style="text-transform: uppercase;">
+                      {Static.item.tabs} ROUND IS OPEN
+                    </h2>
                     <p class="text">{Static.item.description}</p>
                     <div class="socials mt-15 mb-15">
                       {(Static.item.socials || []).map((element) => {
@@ -314,7 +337,7 @@ const start = function (data, ID) {
 
                   <div class="scheme-card" id="preSeed">
                     <div class="scheme-sidebar_item text">
-                      <span>Pre-Seed Round</span>
+                      <span>{Static.item.tabs} Round</span>
                     </div>
                     <div class="scheme-card_desc">
                       <span>

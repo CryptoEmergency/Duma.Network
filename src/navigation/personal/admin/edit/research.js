@@ -773,7 +773,147 @@ const start = function (data, ID) {
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>Seed Round</span>
+                      <span>Problem</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.problem
+                            ? Static.item.rankList.problem
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.problem = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.problem",
+                            value: Static.item.rankList.problem,
+                          });
+                        }}
+                      >
+                        {Static.item.rankList.problem}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.problem = this.innerText.trim();
+                        updateValue({
+                          key: "problem",
+                          value: Static.item.problem,
+                        });
+                      }}
+                    >
+                      {Static.item.problem}
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Product</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.product = this.innerText.trim();
+                        updateValue({
+                          key: "product",
+                          value: Static.item.product,
+                        });
+                      }}
+                    >
+                      {Static.item.product}
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Solution</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.solution = this.innerText.trim();
+                        updateValue({
+                          key: "solution",
+                          value: Static.item.solution,
+                        });
+                      }}
+                    >
+                      {Static.item.solution}
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Investors</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.investors
+                            ? Static.item.rankList.investors
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 100) {
+                            this.value = 100;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.investors = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.investors",
+                            value: Static.item.rankList.investors,
+                          });
+                        }}
+                      >
+                        {Static.item.rankList.investors}
+                      </input>
+                      <span class="text-green">Max. 100</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.investors = this.innerText.trim();
+                        updateValue({
+                          key: "investors",
+                          value: Static.item.investors,
+                        });
+                      }}
+                    >
+                      {Static.item.investors}
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>{Static.item.tabs} Round</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -838,6 +978,239 @@ const start = function (data, ID) {
                             </div>
                           );
                         })}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Tokenomics</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.tokenomics
+                            ? Static.item.rankList.tokenomics
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.tokenomics = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.tokenomics",
+                            value: Static.item.rankList.tokenomics,
+                          });
+                        }}
+                      >
+                        {Static.item.rankList.tokenomics}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+
+                    <div class="scheme-card_desc">
+                      <div class="scheme-card_roadmap">
+                        <div class="scheme-card_roadmap-img">
+                          <div
+                            class={[
+                              "add",
+                              "mb-15",
+                              Static.item.tokenomics.image
+                                ? "add-hidden"
+                                : null,
+                            ]}
+                            onclick={() => {
+                              Static.mediaTokenomics.click();
+                            }}
+                          >
+                            +
+                          </div>
+                          <div class="picture">
+                            <input
+                              type="file"
+                              hidden
+                              Element={($el) => {
+                                Static.mediaTokenomics = $el;
+                              }}
+                              onchange={async function (e) {
+                                e.stopPropagation();
+                                Array.from(this.files).forEach((item) => {
+                                  fn.uploadFile({
+                                    file: item,
+                                    onload: async function () {
+                                      if (!this.response) {
+                                        alert("Have some Error. Try again...");
+                                        return;
+                                      }
+                                      let response = JSON.parse(this.response);
+                                      if (response.error || !response.name) {
+                                        alert(
+                                          "Have some Error. Try again... " +
+                                            response.error
+                                        );
+                                        return;
+                                      }
+                                      Static.item.tokenomics.image =
+                                        response.name;
+                                      updateValue({
+                                        key: "tokenomics.image",
+                                        value: Static.item.tokenomics.image,
+                                      });
+                                      initReload();
+                                    },
+                                  });
+                                  return;
+                                });
+                              }}
+                            />
+                            <div class="news-form_gallery-image">
+                              <img
+                                class="roadmap-img"
+                                src={
+                                  Static.item.tokenomics.image
+                                    ? `/assets/upload/${Static.item.tokenomics.image}`
+                                    : images["research/logo-empty"]
+                                }
+                              />
+                              <div
+                                class={["news-form_gallery-delete"]}
+                                onclick={() => {
+                                  Static.item.tokenomics.image = "";
+                                  updateValue({
+                                    key: "roadmap.image",
+                                    value: Static.item.tokenomics.image,
+                                  });
+                                  initReload();
+                                }}
+                              >
+                                <img
+                                  class={
+                                    Static.item.tokenomics.image
+                                      ? null
+                                      : "add-hidden"
+                                  }
+                                  src={svg["delete_icon"]}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="scheme-card_roadmap-desc">
+                          <div
+                            class="scheme-card_desc personal-input text mb-15"
+                            contenteditable="plaintext-only"
+                            oninput={function () {
+                              Static.item.tokenomics.text =
+                                this.innerText.trim();
+                              updateValue({
+                                key: "tokenomics.text",
+                                value: Static.item.tokenomics.text,
+                              });
+                            }}
+                          >
+                            {Static.item.tokenomics?.text}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>Utility and Value</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.utility
+                            ? Static.item.rankList.utility
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.utility = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.utility",
+                            value: Static.item.rankList.utility,
+                          });
+                        }}
+                      >
+                        {Static.item.rankList.utility}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+
+                    <div class="scheme-card_desc">
+                      <div class="scheme-row">
+                        <div>Token Utility</div>
+                        <div
+                          class="text personal-input"
+                          contenteditable="plaintext-only"
+                          oninput={function () {
+                            Static.item.utility.token = this.innerText.trim();
+                            updateValue({
+                              key: "utility",
+                              value: Static.item.utility,
+                            });
+                          }}
+                        >
+                          {Static.item.utility?.token}
+                        </div>
+                      </div>
+                      <div class="scheme-row">
+                        <div>Value capture</div>
+                        <div
+                          class="text personal-input"
+                          contenteditable="plaintext-only"
+                          oninput={function () {
+                            Static.item.utility.capture = this.innerText.trim();
+                            updateValue({
+                              key: "utility",
+                              value: Static.item.utility,
+                            });
+                          }}
+                        >
+                          {Static.item.utility?.capture}
+                        </div>
+                      </div>
+                      <div class="scheme-row">
+                        <div>Value accural</div>
+                        <div
+                          class="text personal-input"
+                          contenteditable="plaintext-only"
+                          oninput={function () {
+                            Static.item.utility.accural = this.innerText.trim();
+                            updateValue({
+                              key: "utility",
+                              value: Static.item.utility,
+                            });
+                          }}
+                        >
+                          {Static.item.utility?.accural}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1059,150 +1432,6 @@ const start = function (data, ID) {
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>Tokenomics</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.tokenomics
-                            ? Static.item.rankList.tokenomics
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.tokenomics = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.tokenomics",
-                            value: Static.item.rankList.tokenomics,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.tokenomics}
-                      </input>
-                      <span class="text-green">Max. 10</span>
-                    </div>
-
-                    <div class="scheme-card_desc">
-                      <div class="scheme-card_roadmap">
-                        <div class="scheme-card_roadmap-img">
-                          <div
-                            class={[
-                              "add",
-                              "mb-15",
-                              Static.item.tokenomics.image
-                                ? "add-hidden"
-                                : null,
-                            ]}
-                            onclick={() => {
-                              Static.mediaTokenomics.click();
-                            }}
-                          >
-                            +
-                          </div>
-                          <div class="picture">
-                            <input
-                              type="file"
-                              hidden
-                              Element={($el) => {
-                                Static.mediaTokenomics = $el;
-                              }}
-                              onchange={async function (e) {
-                                e.stopPropagation();
-                                Array.from(this.files).forEach((item) => {
-                                  fn.uploadFile({
-                                    file: item,
-                                    onload: async function () {
-                                      if (!this.response) {
-                                        alert("Have some Error. Try again...");
-                                        return;
-                                      }
-                                      let response = JSON.parse(this.response);
-                                      if (response.error || !response.name) {
-                                        alert(
-                                          "Have some Error. Try again... " +
-                                            response.error
-                                        );
-                                        return;
-                                      }
-                                      Static.item.tokenomics.image =
-                                        response.name;
-                                      updateValue({
-                                        key: "tokenomics.image",
-                                        value: Static.item.tokenomics.image,
-                                      });
-                                      initReload();
-                                    },
-                                  });
-                                  return;
-                                });
-                              }}
-                            />
-                            <div class="news-form_gallery-image">
-                              <img
-                                class="roadmap-img"
-                                src={
-                                  Static.item.tokenomics.image
-                                    ? `/assets/upload/${Static.item.tokenomics.image}`
-                                    : images["research/logo-empty"]
-                                }
-                              />
-                              <div
-                                class={["news-form_gallery-delete"]}
-                                onclick={() => {
-                                  Static.item.tokenomics.image = "";
-                                  updateValue({
-                                    key: "roadmap.image",
-                                    value: Static.item.tokenomics.image,
-                                  });
-                                  initReload();
-                                }}
-                              >
-                                <img
-                                  class={
-                                    Static.item.tokenomics.image
-                                      ? null
-                                      : "add-hidden"
-                                  }
-                                  src={svg["delete_icon"]}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="scheme-card_roadmap-desc">
-                          <div
-                            class="scheme-card_desc personal-input text mb-15"
-                            contenteditable="plaintext-only"
-                            oninput={function () {
-                              Static.item.tokenomics.text =
-                                this.innerText.trim();
-                              updateValue({
-                                key: "tokenomics.text",
-                                value: Static.item.tokenomics.text,
-                              });
-                            }}
-                          >
-                            {Static.item.tokenomics?.text}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
                       <input
                         class="admin-input text-green"
@@ -1352,16 +1581,15 @@ const start = function (data, ID) {
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>Utility and Value</span>
+                      <span>Documentation</span>
                       <input
-                        // class="form-input personal-input text-green"
                         class="admin-input text-green"
                         type="text"
                         maxlength="2"
                         placeholder="0"
                         value={
-                          Static.item.rankList.utility
-                            ? Static.item.rankList.utility
+                          Static.item.rankList.documentation
+                            ? Static.item.rankList.documentation
                             : "0"
                         }
                         oninput={function () {
@@ -1373,256 +1601,18 @@ const start = function (data, ID) {
                           } else {
                             this.value = value;
                           }
-                          Static.item.rankList.utility = Number(
+                          Static.item.rankList.documentation = Number(
                             // this.innerText.trim()
                             this.value.trim()
                           );
                           updateValue({
-                            key: "rankList.utility",
-                            value: Static.item.rankList.utility,
+                            key: "rankList.documentation",
+                            value: Static.item.rankList.documentation,
                           });
                         }}
                       >
-                        {Static.item.rankList.utility}
-                      </input>
-                      <span class="text-green">Max. 10</span>
-                    </div>
-
-                    <div class="scheme-card_desc">
-                      <div class="scheme-row">
-                        <div>Token Utility</div>
-                        <div
-                          class="text personal-input"
-                          contenteditable="plaintext-only"
-                          oninput={function () {
-                            Static.item.utility.token = this.innerText.trim();
-                            updateValue({
-                              key: "utility",
-                              value: Static.item.utility,
-                            });
-                          }}
-                        >
-                          {Static.item.utility?.token}
-                        </div>
-                      </div>
-                      <div class="scheme-row">
-                        <div>Value capture</div>
-                        <div
-                          class="text personal-input"
-                          contenteditable="plaintext-only"
-                          oninput={function () {
-                            Static.item.utility.capture = this.innerText.trim();
-                            updateValue({
-                              key: "utility",
-                              value: Static.item.utility,
-                            });
-                          }}
-                        >
-                          {Static.item.utility?.capture}
-                        </div>
-                      </div>
-                      <div class="scheme-row">
-                        <div>Value accural</div>
-                        <div
-                          class="text personal-input"
-                          contenteditable="plaintext-only"
-                          oninput={function () {
-                            Static.item.utility.accural = this.innerText.trim();
-                            updateValue({
-                              key: "utility",
-                              value: Static.item.utility,
-                            });
-                          }}
-                        >
-                          {Static.item.utility?.accural}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>Problem</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.problem = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.problem ||
-                            Static.item.rankList.problem >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.problem",
-                              value: Static.item.rankList.problem,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.rankList.problem}
-                      </div>
-                      <span class="text-green">Max. 10</span>
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.problem = this.innerText.trim();
-                        updateValue({
-                          key: "problem",
-                          value: Static.item.problem,
-                        });
-                      }}
-                    >
-                      {Static.item.problem}
-                    </div>
-                  </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>Product</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.product = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.product ||
-                            Static.item.rankList.product >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.product",
-                              value: Static.item.rankList.product,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.rankList.product}
-                      </div>
-                      {/* <span class="text-green">Max. 10</span> */}
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.product = this.innerText.trim();
-                        updateValue({
-                          key: "product",
-                          value: Static.item.product,
-                        });
-                      }}
-                    >
-                      {Static.item.product}
-                    </div>
-                  </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>Solution</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.solution = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.solution ||
-                            Static.item.rankList.solution >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.solution",
-                              value: Static.item.rankList.solution,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.rankList.solution}
-                      </div>
-                      {/* <span class="text-green">Max. 10</span> */}
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.solution = this.innerText.trim();
-                        updateValue({
-                          key: "solution",
-                          value: Static.item.solution,
-                        });
-                      }}
-                    >
-                      {Static.item.solution}
-                    </div>
-                  </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>Investors</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.investors = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.investors ||
-                            Static.item.rankList.investors >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.investors",
-                              value: Static.item.rankList.investors,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.rankList.investors}
-                      </div>
-                      <span class="text-green">Max. 4</span>
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.investors = this.innerText.trim();
-                        updateValue({
-                          key: "investors",
-                          value: Static.item.investors,
-                        });
-                      }}
-                    >
-                      {Static.item.investors}
-                    </div>
-                  </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>Documentation</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.documentation = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.documentation ||
-                            Static.item.rankList.documentation >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.documentation",
-                              value: Static.item.rankList.investors,
-                            });
-                          }
-                        }}
-                      >
                         {Static.item.rankList.documentation}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1643,26 +1633,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Social</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.social
+                            ? Static.item.rankList.social
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.social = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.social ||
-                            Static.item.rankList.social >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.social",
-                              value: Static.item.rankList.social,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.social = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.social",
+                            value: Static.item.rankList.social,
+                          });
                         }}
                       >
                         {Static.item.rankList.social}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1683,26 +1684,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Launchpad</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.launchpad
+                            ? Static.item.rankList.launchpad
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.launchpad = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.launchpad ||
-                            Static.item.rankList.launchpad >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.launchpad",
-                              value: Static.item.rankList.launchpad,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.launchpad = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.launchpad",
+                            value: Static.item.rankList.launchpad,
+                          });
                         }}
                       >
                         {Static.item.rankList.launchpad}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1723,26 +1735,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>CEX/DEX</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.cexDex
+                            ? Static.item.rankList.cexDex
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.cexDex = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.cexDex ||
-                            Static.item.rankList.cexDex >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.cexDex",
-                              value: Static.item.rankList.cexDex,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.cexDex = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.cexDex",
+                            value: Static.item.rankList.cexDex,
+                          });
                         }}
                       >
                         {Static.item.rankList.cexDex}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1763,26 +1786,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Listing on aggregator</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.aggregator
+                            ? Static.item.rankList.aggregator
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.aggregator = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.aggregator ||
-                            Static.item.rankList.aggregator >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.aggregator",
-                              value: Static.item.rankList.aggregator,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.aggregator = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.aggregator",
+                            value: Static.item.rankList.aggregator,
+                          });
                         }}
                       >
                         {Static.item.rankList.aggregator}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1803,27 +1837,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.competitors = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.competitors ||
-                            Static.item.rankList.competitors >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.competitors",
-                              value: Static.item.rankList.competitors,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.rankList.competitors}
-                      </div>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1843,26 +1856,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Media</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.mediaText
+                            ? Static.item.rankList.mediaText
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.mediaText = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.mediaText ||
-                            Static.item.rankList.mediaText >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.mediaText",
-                              value: Static.item.rankList.mediaText,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.mediaText = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.mediaText",
+                            value: Static.item.rankList.mediaText,
+                          });
                         }}
                       >
                         {Static.item.rankList.mediaText}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1883,26 +1907,37 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Audit</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.audit
+                            ? Static.item.rankList.audit
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.audit = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.audit ||
-                            Static.item.rankList.audit >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.audit",
-                              value: Static.item.rankList.audit,
-                            });
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.audit = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.audit",
+                            value: Static.item.rankList.audit,
+                          });
                         }}
                       >
                         {Static.item.rankList.audit}
-                      </div>
+                      </input>
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div
@@ -1940,7 +1975,6 @@ const start = function (data, ID) {
                       >
                         {Static.item.rankList.totalText}
                       </div>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
