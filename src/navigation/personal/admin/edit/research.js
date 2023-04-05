@@ -11,6 +11,111 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
+const categoryList = [
+  {
+    title: "Platform",
+  },
+  {
+    title: "Ecosystem",
+  },
+  {
+    title: "Service",
+  },
+  {
+    title: "Another",
+  },
+  {
+    title: "Art",
+  },
+  {
+    title: "Artificial Intelligence (AI)",
+  },
+  {
+    title: "Blockchain Service",
+  },
+  {
+    title: "Bridge",
+  },
+  {
+    title: "CEX",
+  },
+  {
+    title: "CeFi",
+  },
+  {
+    title: "DAO",
+  },
+  {
+    title: "DAPP",
+  },
+  {
+    title: "DEX",
+  },
+  {
+    title: "DPoS",
+  },
+  {
+    title: "Data Service",
+  },
+  {
+    title: "DeFi",
+  },
+  {
+    title: "Derivatives",
+  },
+  {
+    title: "Digital Identity",
+  },
+  {
+    title: "Education",
+  },
+  {
+    title: "Fan Token",
+  },
+  {
+    title: "GameFi",
+  },
+  {
+    title: "Gaming Guild",
+  },
+  {
+    title: "Governance",
+  },
+  {
+    title: "Inflastructure",
+  },
+  {
+    title: "Launchpad",
+  },
+  {
+    title: "Layer 1 (L1)",
+  },
+  {
+    title: "Layer 2 (L2)",
+  },
+  {
+    title: "Layer 3 (L3)",
+  },
+  {
+    title: "Lending/Borrowing",
+  },
+  {
+    title: "Marketplace",
+  },
+  {
+    title: "Metaverse",
+  },
+  {
+    title: "Mobile",
+  },
+  {
+    title: "Move to Earn (M2E)",
+  },
+  {
+    title: "SocialFi",
+  },
+];
+
 const updateValue = async function ({ key, value }) {
   if (Data.Static.timerChange[key]) {
     clearTimeout(Data.Static.timerChange[key]);
@@ -429,70 +534,26 @@ const start = function (data, ID) {
                             Static.selectList.category = $el;
                           }}
                         >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.category = "Platform";
-                              updateValue({
-                                key: "category",
-                                value: Static.item.category,
-                              });
-                              Static.selectList.category.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Platform
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.category = "Ecosystem";
-                              updateValue({
-                                key: "category",
-                                value: Static.item.category,
-                              });
-                              Static.selectList.category.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Ecosystem
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.category = "Service";
-                              updateValue({
-                                key: "category",
-                                value: Static.item.category,
-                              });
-                              Static.selectList.category.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Service
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.category = "DEX";
-                              updateValue({
-                                key: "category",
-                                value: Static.item.category,
-                              });
-                              Static.selectList.category.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            DEX
-                          </li>
+                          {categoryList.map((item, index) => {
+                            return (
+                              <li
+                                class="dropdown__list-item"
+                                onclick={() => {
+                                  Static.item.category = item.title;
+                                  updateValue({
+                                    key: "category",
+                                    value: Static.item.category,
+                                  });
+                                  Static.selectList.category.classList.remove(
+                                    "dropdown__list--visible"
+                                  );
+                                  initReload();
+                                }}
+                              >
+                                {item.title}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </div>
@@ -1020,107 +1081,102 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
-                      <div class="scheme-card_roadmap">
-                        <div class="scheme-card_roadmap-img">
-                          <div
-                            class={[
-                              "add",
-                              "mb-15",
-                              Static.item.tokenomics.image
-                                ? "add-hidden"
-                                : null,
-                            ]}
-                            onclick={() => {
-                              Static.mediaTokenomics.click();
+                      <div class="scheme-card_roadmap-img mb-15">
+                        <div
+                          class={[
+                            "add",
+                            "mb-15",
+                            Static.item.tokenomics.image ? "add-hidden" : null,
+                          ]}
+                          onclick={() => {
+                            Static.mediaTokenomics.click();
+                          }}
+                        >
+                          +
+                        </div>
+                        <div class="picture">
+                          <input
+                            type="file"
+                            hidden
+                            Element={($el) => {
+                              Static.mediaTokenomics = $el;
                             }}
-                          >
-                            +
-                          </div>
-                          <div class="picture">
-                            <input
-                              type="file"
-                              hidden
-                              Element={($el) => {
-                                Static.mediaTokenomics = $el;
-                              }}
-                              onchange={async function (e) {
-                                e.stopPropagation();
-                                Array.from(this.files).forEach((item) => {
-                                  fn.uploadFile({
-                                    file: item,
-                                    onload: async function () {
-                                      if (!this.response) {
-                                        alert("Have some Error. Try again...");
-                                        return;
-                                      }
-                                      let response = JSON.parse(this.response);
-                                      if (response.error || !response.name) {
-                                        alert(
-                                          "Have some Error. Try again... " +
-                                            response.error
-                                        );
-                                        return;
-                                      }
-                                      Static.item.tokenomics.image =
-                                        response.name;
-                                      updateValue({
-                                        key: "tokenomics.image",
-                                        value: Static.item.tokenomics.image,
-                                      });
-                                      initReload();
-                                    },
-                                  });
-                                  return;
+                            onchange={async function (e) {
+                              e.stopPropagation();
+                              Array.from(this.files).forEach((item) => {
+                                fn.uploadFile({
+                                  file: item,
+                                  onload: async function () {
+                                    if (!this.response) {
+                                      alert("Have some Error. Try again...");
+                                      return;
+                                    }
+                                    let response = JSON.parse(this.response);
+                                    if (response.error || !response.name) {
+                                      alert(
+                                        "Have some Error. Try again... " +
+                                          response.error
+                                      );
+                                      return;
+                                    }
+                                    Static.item.tokenomics.image =
+                                      response.name;
+                                    updateValue({
+                                      key: "tokenomics.image",
+                                      value: Static.item.tokenomics.image,
+                                    });
+                                    initReload();
+                                  },
                                 });
-                              }}
+                                return;
+                              });
+                            }}
+                          />
+                          <div class="news-form_gallery-image">
+                            <img
+                              class="roadmap-img"
+                              src={
+                                Static.item.tokenomics.image
+                                  ? `/assets/upload/${Static.item.tokenomics.image}`
+                                  : images["research/logo-empty"]
+                              }
                             />
-                            <div class="news-form_gallery-image">
+                            <div
+                              class={["news-form_gallery-delete"]}
+                              onclick={() => {
+                                Static.item.tokenomics.image = "";
+                                updateValue({
+                                  key: "roadmap.image",
+                                  value: Static.item.tokenomics.image,
+                                });
+                                initReload();
+                              }}
+                            >
                               <img
-                                class="roadmap-img"
-                                src={
+                                class={
                                   Static.item.tokenomics.image
-                                    ? `/assets/upload/${Static.item.tokenomics.image}`
-                                    : images["research/logo-empty"]
+                                    ? null
+                                    : "add-hidden"
                                 }
+                                src={svg["delete_icon"]}
                               />
-                              <div
-                                class={["news-form_gallery-delete"]}
-                                onclick={() => {
-                                  Static.item.tokenomics.image = "";
-                                  updateValue({
-                                    key: "roadmap.image",
-                                    value: Static.item.tokenomics.image,
-                                  });
-                                  initReload();
-                                }}
-                              >
-                                <img
-                                  class={
-                                    Static.item.tokenomics.image
-                                      ? null
-                                      : "add-hidden"
-                                  }
-                                  src={svg["delete_icon"]}
-                                />
-                              </div>
                             </div>
                           </div>
                         </div>
-                        <div class="scheme-card_roadmap-desc">
-                          <div
-                            class="scheme-card_desc personal-input text mb-15"
-                            contenteditable="plaintext-only"
-                            oninput={function () {
-                              Static.item.tokenomics.text =
-                                this.innerText.trim();
-                              updateValue({
-                                key: "tokenomics.text",
-                                value: Static.item.tokenomics.text,
-                              });
-                            }}
-                          >
-                            {Static.item.tokenomics?.text}
-                          </div>
+                      </div>
+                      <div class="scheme-card_roadmap-desc">
+                        <div
+                          class="scheme-card_desc personal-input text mb-15"
+                          contenteditable="plaintext-only"
+                          oninput={function () {
+                            Static.item.tokenomics.text = this.innerText.trim();
+                            updateValue({
+                              key: "tokenomics.text",
+                              value: Static.item.tokenomics.text,
+                            });
+                          }}
+                        >
+                          {Static.item.tokenomics?.text}
                         </div>
                       </div>
                     </div>

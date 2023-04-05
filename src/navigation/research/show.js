@@ -44,7 +44,7 @@ const mapPoints = {
     maxPoint: 10,
   },
   team: {
-    name: "Team & Advisors",
+    name: "Team and Advisors",
     maxPoint: 10,
   },
   roadmap: {

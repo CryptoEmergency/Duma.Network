@@ -335,6 +335,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     .nums {
       padding-bottom: 0;
@@ -565,7 +566,8 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  align-items: center;
+  // align-items: center;
+  align-items: flex-start;
   .add{
     font-weight: 400;
     font-size: 16px;
@@ -652,16 +654,18 @@
       &.platform {
         background: url(/src/assets/images/personal/elPlatform.png) no-repeat;
         background-position: center center;
-
+        position: relative;
         // background-size: contain;
         .blur {
           background: rgba(48, 52, 55, 0.7);
           backdrop-filter: blur(2.5px);
           border-radius: 20px;
+          position: absolute;
         }
 
         .title-block {
           z-index: 2;
+          align-items: flex-start;
         }
       }
     }
@@ -764,6 +768,7 @@
         .blur {
           border-radius: 20px;
           background: rgba(48, 52, 55, 0.7);
+          position: absolute;
         }
       }
     }

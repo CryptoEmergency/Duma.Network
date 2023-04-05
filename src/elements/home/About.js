@@ -115,15 +115,16 @@ const forExport = function ({ className }) {
               height="255"
               oncanplay={function () {
                 try {
-                  this.muted = true
-                  this.play()
+                  this.muted = true;
+                  this.play();
                 } catch (error) {
-                  console.error(error)
+                  console.error(error);
                 }
               }}
               Element={($el) => {
-                Data.Static.elVideoMain = $el
-              }}>
+                Data.Static.elVideoMain = $el;
+              }}
+            >
               <source src="/assets/video/duma.mp4" type="video/mp4"></source>
             </video>
           </a>
