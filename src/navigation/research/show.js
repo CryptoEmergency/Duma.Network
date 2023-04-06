@@ -92,6 +92,7 @@ const mapPoints = {
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  Static.imgWidth;
   load({
     ID,
     fnLoad: async () => {
@@ -105,6 +106,7 @@ const start = function (data, ID) {
       if (!Static.item.socials || !Static.item.socials[0]) {
         Static.item.socials = [];
       }
+      Static.activeImg = Static.item.gallery[0];
     },
     fn: () => {
       console.log("=0e0048=", Static.item);
@@ -141,14 +143,46 @@ const start = function (data, ID) {
                     <div class="ecosystem">{Static.item.category}</div>
                   </div>
                 </div>
-                <div class="card-project-img">
+                {/* <Elements.Gallery
+                  items={Static.item.gallery}
+                ></Elements.Gallery> */}
+                <div class="gallery">
                   <img
+                    class="gallery-main_img"
                     src={
-                      Static.item.gallery[0]
-                        ? `/assets/upload/${Static.item.gallery[0]}`
+                      Static.activeImg
+                        ? `/assets/upload/${Static.activeImg}`
                         : images[`research/duma}`]
                     }
                   ></img>
+                  <div class="gallery-nav">
+                    <button type="button" class="gallery-prev">
+                      <img src={svg.galleryPrev} />
+                    </button>
+                    <div class="gallery-list">
+                      <div class="gallery-track">
+                        {Static.item.gallery.map((item, index) => {
+                          return (
+                            <div
+                              class="gallery-slide"
+                              onclick={() => {
+                                Static.activeImg = Static.item.gallery[index];
+                                initReload();
+                              }}
+                            >
+                              <img
+                                src={`/assets/upload/${Static.item.gallery[index]}`}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <button type="button" class="gallery-next">
+                      <img src={svg.galleryNext} />
+                    </button>
+                  </div>
                 </div>
                 <div class="project-rang">
                   <span>{Static.item.rank ? Static.item.rank : 0} points</span>
@@ -480,7 +514,7 @@ const start = function (data, ID) {
                         paragraph: true,
                         html: true,
                       })}
-                      <div class="scheme-team">
+                      <div class="scheme-team mt-15">
                         {Static.item.team.records.map((item) => {
                           return (
                             <div>

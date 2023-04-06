@@ -444,3 +444,15 @@ $back in $backCard {
     }
   }
 }
+@media (max-width: 464px){
+  .tabs-controller{
+    min-width: 100%;
+    overflow-x: auto;
+    .tab-item{
+      min-width: 33%;
+    }
+  }
+  .tabs-controller::-webkit-scrollbar {
+    display: none;
+  }
+}

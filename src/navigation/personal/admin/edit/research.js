@@ -141,6 +141,21 @@ const updateRecords = async function (update) {
   // console.log("=a0d3c8=", response);
 };
 
+const countTotalRank = function () {
+  let total = 0;
+  // console.log("=1a70da=", Data.Static.item.rankList);
+  for (let key in Data.Static.item.rankList) {
+    if (key != "totalText") {
+      total += Data.Static.item.rankList[key];
+    }
+  }
+  console.log("=0552f6=", total);
+  updateValue({
+    key: "rankList.totalText",
+    value: total,
+  });
+};
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
 
@@ -350,7 +365,8 @@ const start = function (data, ID) {
                     <div class="form-div">
                       <label>Total rank:</label>
                       <div class="form-input personal-input">
-                        {Static.item.rank} (Auto calculate)
+                        {/* {Static.item.rank} (Auto calculate) */}
+                        {Static.item.rankList.totalText} (Auto calculate)
                       </div>
                     </div>
                   </div>
@@ -862,6 +878,7 @@ const start = function (data, ID) {
                             key: "rankList.problem",
                             value: Static.item.rankList.problem,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.problem}
@@ -1990,6 +2007,7 @@ const start = function (data, ID) {
                             key: "rankList.audit",
                             value: Static.item.rankList.audit,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.audit}
@@ -2013,21 +2031,21 @@ const start = function (data, ID) {
                       <span>TOTAL</span>
                       <div
                         class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.rankList.totalText = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.totalText ||
-                            Static.item.rankList.totalText >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.totalText",
-                              value: Static.item.rankList.totalText,
-                            });
-                          }
-                        }}
+                        // contenteditable="plaintext-only"
+                        // oninput={function () {
+                        //   Static.item.rankList.totalText = Number(
+                        //     this.innerText.trim()
+                        //   );
+                        //   if (
+                        //     Static.item.rankList.totalText ||
+                        //     Static.item.rankList.totalText >= 0
+                        //   ) {
+                        //     updateValue({
+                        //       key: "rankList.totalText",
+                        //       value: Static.item.rankList.totalText,
+                        //     });
+                        //   }
+                        // }}
                       >
                         {Static.item.rankList.totalText}
                       </div>

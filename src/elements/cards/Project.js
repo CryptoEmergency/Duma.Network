@@ -118,7 +118,7 @@ const forExport = function ({ Static, className, items = [] }) {
                   })}
                 </div>
                 <div class="card-text">
-                  <span>SEED ROUND</span>
+                  <span class="ttu">{item.tabs} ROUND</span>
                   {item.seedRound}$
                 </div>
                 <div class="progressBlock">

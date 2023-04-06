@@ -12,31 +12,6 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
-const updateValue = async function ({ key, value }) {
-  if (Data.Static.timerChange[key]) {
-    clearTimeout(Data.Static.timerChange[key]);
-    delete Data.Static.timerChange[key];
-  }
-  Data.Static.timerChange[key] = setTimeout(async () => {
-    let update = {};
-    update[key] = value;
-    updateRecords(update);
-  }, 300);
-};
-
-const updateRecords = async function (update) {
-  let response = await fn.socket.set({
-    method: "Research",
-    action: "findOneAndUpdate",
-    _id: Data.Static.item._id,
-    params: { update },
-  });
-  if (!response || response.error) {
-    console.log("=updateRecords= Error", response);
-  }
-  // console.log("=a0d3c8=", response);
-};
-
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
 
@@ -130,11 +105,15 @@ const start = function (data, ID) {
                                   id={`switch-moderation${index}`}
                                   type="checkbox"
                                   checked={item.moderation}
-                                  onchange={() => {
+                                  onchange={async () => {
                                     item.moderation = !item.moderation;
-                                    updateValue({
-                                      key: "moderation",
-                                      value: item.moderation,
+                                    await fn.socket.set({
+                                      method: "Research",
+                                      action: "findOneAndUpdate",
+                                      _id: item._id,
+                                      params: {
+                                        update: { moderation: item.moderation },
+                                      },
                                     });
                                     initReload();
                                   }}
@@ -146,7 +125,7 @@ const start = function (data, ID) {
                             </div>
                           </div>
 
-                          <p>{item.description}</p>
+                          <p class="text-list">{item.description}</p>
                         </div>
                       </div>
                     </div>

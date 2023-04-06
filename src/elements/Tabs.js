@@ -52,13 +52,26 @@ const forExport = function ({ className, children, varName, items }) {
                   Data.Static.glider.style.left = `${Data.Static.tabWidth}px`;
                 }
                 if (item.name == "public") {
-                  Data.Static.glider.style.left = `${Data.Static.tabWidth * 2}px`;
+                  Data.Static.glider.style.left = `${
+                    Data.Static.tabWidth * 2
+                  }px`;
+                }
+                if (item.name == "pre-seed") {
+                  Data.Static.glider.style.left = `${
+                    Data.Static.tabWidth * 3
+                  }px`;
+                }
+                if (item.name == "strategic") {
+                  Data.Static.glider.style.left = `${
+                    Data.Static.tabWidth * 4
+                  }px`;
                 }
                 if (item.onclick) {
-                  item.onclick()
+                  item.onclick();
                 }
                 initReload();
-              }}>
+              }}
+            >
               {item.title}
             </div>
           );
@@ -71,3 +84,4 @@ const forExport = function ({ className, children, varName, items }) {
 
 export default forExport;
 // 24.03.2023
+// 06.04.2023

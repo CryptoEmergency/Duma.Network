@@ -150,7 +150,7 @@ const start = function (data, ID) {
         // params: { filter: { moderation: true } },
         params: { filter: { moderation: true, tabs: Static.activeTab } },
       });
-
+      // console.log("Variable", Variable.dataUrl.params);
       console.log("=92f11b=", tmp);
 
       if (tmp && tmp[0]) {
@@ -218,6 +218,32 @@ const start = function (data, ID) {
                       initReload();
                     },
                   },
+                  {
+                    title: "Pre-seed",
+                    name: "pre-seed",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "Research",
+                        params: {
+                          filter: { moderation: true, tabs: Static.activeTab },
+                        },
+                      });
+                      initReload();
+                    },
+                  },
+                  {
+                    title: "Strategic",
+                    name: "strategic",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "Research",
+                        params: {
+                          filter: { moderation: true, tabs: Static.activeTab },
+                        },
+                      });
+                      initReload();
+                    },
+                  },
                 ]}
                 Static={Static}
               >
@@ -236,6 +262,18 @@ const start = function (data, ID) {
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "public" ? false : true}
+                >
+                  <Elements.cards.Project items={Static.projects} />
+                </div>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "pre-seed" ? false : true}
+                >
+                  <Elements.cards.Project items={Static.projects} />
+                </div>
+                <div
+                  class="tabs-content"
+                  hidden={Static.activeTab == "strategic" ? false : true}
                 >
                   <Elements.cards.Project items={Static.projects} />
                 </div>
