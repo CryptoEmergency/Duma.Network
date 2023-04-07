@@ -22,6 +22,8 @@ const forExport = function ({ className, children, varName, items }) {
             Data.Static[varName] == "seed" ? "tab0" : null,
             Data.Static[varName] == "private" ? "tab1" : null,
             Data.Static[varName] == "public" ? "tab2" : null,
+            Data.Static[varName] == "pre-seed" ? "tab3" : null,
+            Data.Static[varName] == "strategic" ? "tab4" : null,
           ]}
           Element={($el) => {
             Data.Static.glider = $el;

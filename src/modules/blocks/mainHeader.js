@@ -202,6 +202,22 @@ const mainHeader = async function () {
                         >
                           <a class="menu-sublist_item">Public</a>
                         </li>
+                        <li
+                          onclick={(e) => {
+                            fn.siteLink("/research/pre-seed");
+                            burgerMenu("hide");
+                          }}
+                        >
+                          <a class="menu-sublist_item">Pre-seed</a>
+                        </li>
+                        <li
+                          onclick={(e) => {
+                            fn.siteLink("/research/strategic");
+                            burgerMenu("hide");
+                          }}
+                        >
+                          <a class="menu-sublist_item">Strategic</a>
+                        </li>
                       </ul>
                     </li>
                     <li>

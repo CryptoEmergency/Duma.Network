@@ -17,7 +17,7 @@ const forExport = function ({ className }) {
         </a>
         <a
           target="_blank"
-          href="https://duma-network.gitbook.io/duma.network-eng/"
+          href="https://duma-network.gitbook.io/duma.network-eng2/"
           class="btn btn-green"
         >
           Dataroom

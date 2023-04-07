@@ -92,7 +92,7 @@ const mapPoints = {
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.imgWidth;
+  // Static.imgWidth;
   load({
     ID,
     fnLoad: async () => {
@@ -143,10 +143,10 @@ const start = function (data, ID) {
                     <div class="ecosystem">{Static.item.category}</div>
                   </div>
                 </div>
-                {/* <Elements.Gallery
+                <Elements.Gallery
                   items={Static.item.gallery}
-                ></Elements.Gallery> */}
-                <div class="gallery">
+                ></Elements.Gallery>
+                {/* <div class="gallery">
                   <img
                     class="gallery-main_img"
                     src={
@@ -185,7 +185,7 @@ const start = function (data, ID) {
                       </button>
                     </div>
                   ) : null}
-                </div>
+                </div> */}
                 <div class="project-rang">
                   <span>{Static.item.rank ? Static.item.rank : 0} points</span>
                   <span class="rang">
