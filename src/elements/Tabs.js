@@ -4,6 +4,7 @@ import {
   load,
   initReload,
   Data,
+  setStorage,
 } from "@betarost/cemserver/cem.js";
 
 const forExport = function ({ className, children, varName, items }) {
@@ -47,6 +48,7 @@ const forExport = function ({ className, children, varName, items }) {
               onclick={function () {
                 Data.Static.tabWidth = this.offsetWidth;
                 Data.Static[varName] = item.name;
+                setStorage("filterTabsResearch", item.name);
                 if (item.name == "seed") {
                   Data.Static.glider.style.left = 0;
                 }

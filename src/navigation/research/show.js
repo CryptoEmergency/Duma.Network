@@ -107,6 +107,9 @@ const start = function (data, ID) {
         Static.item.socials = [];
       }
       Static.activeImg = Static.item.gallery[0];
+      Static.imgPosition = 0;
+      Static.currentSlide = 0;
+      Static.slideHidden = Static.item.gallery.length - 4;
     },
     fn: () => {
       console.log("=0e0048=", Static.item);

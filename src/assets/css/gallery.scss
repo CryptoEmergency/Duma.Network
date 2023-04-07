@@ -61,6 +61,7 @@
         top: 0;
         left: 0;
         width: 2000px;
+        transition: .3s ease;
         .gallery-slide{
           transition: .3s ease;
           cursor: pointer;
@@ -72,13 +73,16 @@
           }
           &_active{
             // border: 1px solid var(--green);
-            opacity: .65;
+            // opacity: .65;
+            img{
+              border: 1px solid var(--green);
+            }
           }
         }
-        .gallery-slide:hover{
-          scale: 1.05;
-          opacity: .65;
-        }
+        // .gallery-slide:hover{
+        //   scale: 1.05;
+        //   opacity: .65;
+        // }
       }
 
     }

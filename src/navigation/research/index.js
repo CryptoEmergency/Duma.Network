@@ -4,6 +4,8 @@ import {
   load,
   initReload,
   Variable,
+  setStorage,
+  getStorage,
 } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
@@ -137,7 +139,11 @@ const cardsRecords = [
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+
   Static.activeTab = "seed";
+  if (getStorage("filterTabsResearch")) {
+    Static.activeTab = getStorage("filterTabsResearch");
+  }
   Static.projects = [];
   load({
     ID,
