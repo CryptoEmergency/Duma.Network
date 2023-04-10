@@ -24,14 +24,15 @@ const forExport = function ({ Static, className, items = [] }) {
             <div
               class={["card-item_inner", item.blur ? "card-item_blur" : null]}
             >
-              <img
-                class="card-item_img"
-                src={
-                  item.gallery[0]
-                    ? `/assets/upload/${item.gallery[0]}`
-                    : images[`research/duma}`]
-                }
-              />
+              <div class="card-item_img">
+                <img
+                  src={
+                    item.gallery[0]
+                      ? `/assets/upload/${item.gallery[0]}`
+                      : images[`research/duma}`]
+                  }
+                />
+              </div>
               <div class="info">
                 <div class="company">
                   <img
@@ -133,9 +134,11 @@ const forExport = function ({ Static, className, items = [] }) {
                     class="progressBlock-column"
                   ></div>
                 </div>
-                <span class="summ">
-                  {item.have}$/{item.target}$
-                </span>
+                {item.have || item.target ? (
+                  <span class="summ">
+                    {item.have}$/{item.target}$
+                  </span>
+                ) : null}
                 <button
                   class="btn btn-green"
                   onclick={() => {

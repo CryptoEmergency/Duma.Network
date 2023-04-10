@@ -49,6 +49,7 @@ const start = function (data, ID) {
                       <div class="bookmarks-item">
                         <div class="user-card">
                           <img
+                            class="bookmarks-icon"
                             src={
                               item.projectId.icon
                                 ? `/assets/upload/${item.projectId.icon}`

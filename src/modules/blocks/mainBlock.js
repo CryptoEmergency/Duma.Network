@@ -13,16 +13,16 @@ const mainBlock = async function () {
       // console.log('=16853b=', Variable.listRouter)
       // console.log('=16853b=', Variable.dataUrl)
 
-      // if (
-      //   Variable.dataUrl.adress == "personal" ||
-      //   Variable.dataUrl.category == "personal"
-      // ) {
-      //   Variable.Static.HeaderShow = false;
-      //   Variable.Static.FooterShow = false;
-      // } else {
-      //   Variable.Static.HeaderShow = true;
-      //   Variable.Static.FooterShow = true;
-      // }
+      if (
+        Variable.dataUrl.adress == "personal" ||
+        Variable.dataUrl.category == "personal"
+      ) {
+        Variable.Static.HeaderShow = false;
+        Variable.Static.FooterShow = false;
+      } else {
+        Variable.Static.HeaderShow = true;
+        Variable.Static.FooterShow = true;
+      }
       Variable.Static.HeaderShow = true;
       Variable.Static.FooterShow = true;
       try {

@@ -3,6 +3,26 @@ $backCard: (
   1: var(--back-card-1),
   2: var(--back-card-2),
   3: var(--back-card-3),
+  4: var(--back-card-0),
+  5: var(--back-card-1),
+  6: var(--back-card-2),
+  7: var(--back-card-3),
+  8: var(--back-card-0),
+  9: var(--back-card-1),
+  10: var(--back-card-2),
+  11: var(--back-card-3),
+  12: var(--back-card-0),
+  13: var(--back-card-1),
+  14: var(--back-card-2),
+  15: var(--back-card-3),
+  16: var(--back-card-0),
+  17: var(--back-card-1),
+  18: var(--back-card-2),
+  19: var(--back-card-3),
+  20: var(--back-card-0),
+  21: var(--back-card-1),
+  22: var(--back-card-2),
+  23: var(--back-card-3),
 );
 
 
@@ -26,6 +46,7 @@ $backCard: (
   align-items: center;
   max-height: 20px;
   margin: 15px 0;
+  padding-top: 25px;
 
   .arrow-path {
     margin: 0 15px;
@@ -140,13 +161,25 @@ $back in $backCard {
   flex-direction: column;
   justify-content: space-between;
   backdrop-filter: blur(7px);
+
+  .btn-green{
+    margin-top: 25px;
+  }
     .card-item_inner{
       .card-item_img {
         position: relative;
         top: -2px;
-        width: 100%;
+        overflow: hidden;
         border-top-right-radius: 20px;
         border-top-left-radius: 20px;
+        height: 200px;
+        img{
+          width: 100%;
+          max-width: 100%;
+          height: 100%;
+          // background-position: 0 0;
+          // background-size: auto auto;
+        }
       }
 
       .info {
@@ -156,6 +189,7 @@ $back in $backCard {
         justify-content: space-between;
         // height: 100%;
         grid-gap: 0;
+        // position: relative;
       }
 
       .desc {
@@ -271,19 +305,7 @@ $back in $backCard {
     align-items: flex-end;
   }
 
-  .circle {
-    width: 30px;
-    height: 30px;
-    color: $white;
-    background: $blue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-size: 14px;
-    line-height: 32px;
-    font-weight: 700;
-  }
+
 
   div {
     margin-right: 5px;
@@ -302,16 +324,30 @@ $back in $backCard {
     font-weight: 600;
     line-height: 32px;
   }
-  .rang{
-    font-size: 12px;
-    line-height: 14px;
-    font-weight: 600;
-  }
+
   .ecosystem {
     background: var(--text-main);
     color: var(--black);
   }
 
+}
+.rang{
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+}
+.circle {
+  width: 30px;
+  height: 30px;
+  color: $white;
+  background: $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 32px;
+  font-weight: 700;
 }
 .rang{
   color: var(--orange);
@@ -345,7 +381,7 @@ $back in $backCard {
   font-weight: 600;
   font-size: 16px;
   line-height: 32px;
-  margin: 15px 0;
+  margin-top: 15px;
   text-align: center;
 }
 

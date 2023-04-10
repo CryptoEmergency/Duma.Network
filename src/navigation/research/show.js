@@ -149,46 +149,6 @@ const start = function (data, ID) {
                 <Elements.Gallery
                   items={Static.item.gallery}
                 ></Elements.Gallery>
-                {/* <div class="gallery">
-                  <img
-                    class="gallery-main_img"
-                    src={
-                      Static.activeImg
-                        ? `/assets/upload/${Static.activeImg}`
-                        : images[`research/duma}`]
-                    }
-                  ></img>
-                  {Static.item.gallery.length > 1 ? (
-                    <div class="gallery-nav">
-                      <button type="button" class="gallery-prev">
-                        <img src={svg.galleryPrev} />
-                      </button>
-                      <div class="gallery-list">
-                        <div class="gallery-track">
-                          {Static.item.gallery.map((item, index) => {
-                            return (
-                              <div
-                                class="gallery-slide"
-                                onclick={() => {
-                                  Static.activeImg = Static.item.gallery[index];
-                                  initReload();
-                                }}
-                              >
-                                <img
-                                  src={`/assets/upload/${Static.item.gallery[index]}`}
-                                />
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <button type="button" class="gallery-next">
-                        <img src={svg.galleryNext} />
-                      </button>
-                    </div>
-                  ) : null}
-                </div> */}
                 <div class="project-rang">
                   <span>{Static.item.rank ? Static.item.rank : 0} points</span>
                   <span class="rang">
