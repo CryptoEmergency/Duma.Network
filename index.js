@@ -1,9 +1,4 @@
 import { ServerInit, ServerBuild, ServerStart } from "@betarost/cemserver";
-import { schemaMongo, connectMongo } from "./engine/mongoose/export.js";
-import { startExpress } from "./engine/express/export.js"
-import { startSocket } from "./engine/socket/export.js"
-import { runDebugger, catchError } from "./engine/debugger/export.js";
-
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
@@ -27,38 +22,29 @@ const optionInit = {
   allowedHosts: [target],
   proxy: {
     "/api/v2": {
-      target: "http://127.0.0.1:" + portApi,
-      ws: true
-    }
+      target: `https://${target}`,
+      secure: false,
+      ws: true,
+      changeOrigin: true,
+    },
+    "/assets/upload": {
+      target: `https://${target}`,
+      changeOrigin: true,
+      secure: false,
+    },
+    "/upload": {
+      target: `https://${target}`,
+      changeOrigin: true,
+      secure: false,
+    },
   },
 }
 
 if (process.env.DISABLERELOAD) {
   optionInit.hotReload = false
-  optionInit.proxy["/upload"] = {
-    target: "http://127.0.0.1:" + portExpress,
-    changeOrigin: true,
-    secure: false,
-  }
-} else {
-  optionInit.proxy["/upload"] = {
-    target: `https://${target}`,
-    changeOrigin: true,
-    secure: false,
-  }
-  optionInit.proxy["/assets/upload"] = {
-    target: `https://${target}`,
-    changeOrigin: true,
-    secure: false,
-  }
 }
 
 const start = async function () {
-  runDebugger()
-  await schemaMongo()
-  await connectMongo()
-  await startExpress(portExpress)
-  await startSocket(portApi)
   ServerInit(optionInit);
   ServerBuild({}).then((result) => {
     if (result) ServerStart(result);
@@ -66,4 +52,3 @@ const start = async function () {
 };
 
 start();
-// 27.03.2023

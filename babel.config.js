@@ -18,7 +18,6 @@ export default {
                     "@navigation": "./src/navigation",
                     "@modules": "./src/modules",
                     "@elements": "./src/elements",
-                    "@engine": "./engine"
                 }
             }
         ]
