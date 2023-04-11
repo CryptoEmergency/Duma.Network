@@ -23,9 +23,10 @@ const start = function (data, ID) {
         return;
       }
       Static.records = await fn.socket.get({
-        method: "Research",
-        params: { filter: {} },
+        method: "Marketplace",
+        params: { filter: {}, populate: { path: "projectId" } },
       });
+      console.log("=a07a6c=", Static.records);
     },
     fn: () => {
       if (!Variable.auth || !Variable.myInfo.role) {
@@ -43,15 +44,15 @@ const start = function (data, ID) {
                   items={[
                     { title: "Admin", link: "/personal/admin/" },
                     {
-                      title: "Research lists",
-                      link: "/personal/admin/list/research/",
+                      title: "Marketplace lists",
+                      link: "/personal/admin/list/marketplace/",
                     },
                   ]}
                 />
                 <div class="mb-25 inner-add">
-                  <h2 class="general-title mt-0">Research lists</h2>
+                  <h2 class="general-title mt-0">Marketplace lists</h2>
 
-                  <div
+                  {/* <div
                     class="add"
                     onclick={async () => {
                       let insert = {
@@ -73,7 +74,7 @@ const start = function (data, ID) {
                     }}
                   >
                     +
-                  </div>
+                  </div> */}
                 </div>
                 {Static.records.map((item, index) => {
                   return (
@@ -82,41 +83,25 @@ const start = function (data, ID) {
                         <div class="scheme-img text">
                           <img
                             src={
-                              item.icon
-                                ? `/assets/upload/${item.icon}`
+                              item.projectId.icon
+                                ? `/assets/upload/${item.projectId.icon}`
                                 : images["project/logo/logo"]
                             }
                           ></img>
                         </div>
                         <div class="scheme-card_desc text">
                           <div class="title-research_list mb-15">
-                            <span>{item.name ? item.name : "New record"}</span>
+                            <span>
+                              {item.projectId.name
+                                ? item.projectId.name
+                                : "New record"}
+                            </span>
                             <div class="edit-wrap">
-                              <button
-                                class="btn btn-green"
-                                onclick={async () => {
-                                  await fn.socket.set({
-                                    method: "Marketplace",
-                                    action: "findOneAndUpdate",
-                                    params: {
-                                      update: { active: true },
-                                      filter: {
-                                        projectId: item._id,
-                                      },
-                                    },
-                                  });
-                                  fn.siteLink(
-                                    `/personal/admin/list/marketplace/`
-                                  );
-                                }}
-                              >
-                                Add Marketplace
-                              </button>
                               <img
                                 src={svg.edit}
                                 onclick={async () => {
                                   fn.siteLink(
-                                    `/personal/admin/edit/research/${item._id}`
+                                    `/personal/admin/edit/marketplace/${item._id}`
                                   );
                                 }}
                               />
@@ -128,11 +113,13 @@ const start = function (data, ID) {
                                   onchange={async () => {
                                     item.moderation = !item.moderation;
                                     await fn.socket.set({
-                                      method: "Research",
+                                      method: "Marketplace",
                                       action: "findOneAndUpdate",
                                       _id: item._id,
                                       params: {
-                                        update: { moderation: item.moderation },
+                                        update: {
+                                          moderation: item.moderation,
+                                        },
                                       },
                                     });
                                     initReload();
@@ -145,7 +132,7 @@ const start = function (data, ID) {
                             </div>
                           </div>
 
-                          <p class="text-list">{item.description}</p>
+                          <p class="text-list">{item.projectId.description}</p>
                         </div>
                       </div>
                     </div>

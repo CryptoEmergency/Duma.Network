@@ -130,33 +130,6 @@ const mainHeader = async function () {
                       >
                         MARKETPLACE
                       </a>
-                      <span class="menu-arrow"></span>
-                      <ul class="menu-sublist">
-                        <li
-                          onclick={(e) => {
-                            fn.siteLink("/marketplace/seed");
-                            burgerMenu("hide");
-                          }}
-                        >
-                          <a class="menu-sublist_item">Seed</a>
-                        </li>
-                        <li
-                          onclick={(e) => {
-                            fn.siteLink("/marketplace/private");
-                            burgerMenu("hide");
-                          }}
-                        >
-                          <a class="menu-sublist_item">Private</a>
-                        </li>
-                        <li
-                          onclick={(e) => {
-                            fn.siteLink("/marketplace/public");
-                            burgerMenu("hide");
-                          }}
-                        >
-                          <a class="menu-sublist_item">Public</a>
-                        </li>
-                      </ul>
                     </li>
                     <li
                       onclick={function () {

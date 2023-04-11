@@ -11,7 +11,10 @@
 
 // question
 .question-container{
-  position: relative;
+  // position: relative;
+  position: absolute;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
   
   .question-img{
@@ -378,6 +381,11 @@
   padding: 15px;
   font-family: $inter;
   position: relative;
+
+  .soon-text{
+    width: 100%;
+    text-align: center;
+  }
 
   &.interesting {
     grid-row: 1;
@@ -1012,6 +1020,9 @@
   padding: 10px;
   border: 1px solid var(--text-secondary);
   border-radius: 8px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   cursor: pointer;
   // img{
   //   width: 100%;

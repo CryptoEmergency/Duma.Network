@@ -14,7 +14,7 @@ import Elements from "@src/elements/export.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-
+  Static.activeQuestion = {};
   load({
     ID,
     fnLoad: async () => {
@@ -38,13 +38,36 @@ const start = function (data, ID) {
             <div class="personal-inner">
               <Elements.BlockMenu Static={Static} />
               <div class="personal-main">
-                <Elements.BlockPersonal />
+                <div class="personal-header">
+                  <div class="circle-effect circle-effect1"></div>
+                  <div class="circle-effect circle-effect2"></div>
+                  <div class="user">
+                    <Elements.BlockPersonal />
+                    <span
+                      class="upgrade"
+                      onclick={() => {
+                        fn.modals.Soon({});
+                      }}
+                    >
+                      upgrade
+                    </span>
+                  </div>
+                </div>
+
                 <div class="personal-content">
                   {/* main page */}
                   <section class="main mb-25  ">
                     <h2 class="general-title mt-25">Dashboard</h2>
                     <div class="main-blocks mt-20">
-                      <div class="blocks-item user-profile">
+                      <Elements.BlockBoard
+                        switcher={Static.activeQuestion}
+                        key="t5"
+                        textClue="Main user account information. Their account level and type, a link to verification or confirmed verification. Display of NFTs that are in staking and unlocking access. Daily platform visits and tasks."
+                      >
+                        <Elements.BlockPersonal />
+                      </Elements.BlockBoard>
+
+                      {/* <div class="blocks-item user-profile">
                         <div class="user-icon">
                           <img src={svg["iconsGreen/user"]}></img>
                         </div>
@@ -79,20 +102,17 @@ const start = function (data, ID) {
                           <img src={images["personal/everyDay"]}></img>
                         </div>
                         <button class="btn btn-green mt-10">daily task</button>
-                      </div>
-                      <div class="blocks-item interesting">
-                        <span class="text-category text">
-                          You will be interested
-                        </span>
-                        <div class="user-icon">
-                          <Elements.Question text="A block displaying a list of projects or offers that may be of interest to the user, based on relevance and account type." />
-                        </div>
-                        {Static.projects ? (
-                          <Elements.cards.Small items={Static.projects} />
-                        ) : (
-                          <span class="soon-text">coming soon</span>
-                        )}
-                      </div>
+                      </div> */}
+
+                      <Elements.BlockBoard
+                        className="interesting"
+                        switcher={Static.activeQuestion}
+                        key="t1"
+                        textCategory="Might be interesting"
+                        textClue="A block displaying a list of projects or offers that may be of interest to the user, based on relevance and account type."
+                        items={Static.projects}
+                      />
+
                       <div class="blocks-item bag">
                         <span class="text-category text">Portfolio</span>
                         <div class="user-icon">
@@ -112,12 +132,25 @@ const start = function (data, ID) {
                           ></img>
                         </div>
                       </div>
-                      <div class="blocks-item graph"></div>
-                      <div class="blocks-item circle-graph"></div>
-                      <div class="blocks-item news">
-                        <span class="text-category text">News</span>
-                        <span class="soon-text">coming soon</span>
-                      </div>
+                      <Elements.BlockBoard
+                        className="graph"
+                        switcher={Static.activeQuestion}
+                        key="t2"
+                        textClue="Graphic portfolio PNL. The changes in the graphical display vary depending on the right block, where you can select the asset display type. Additionally, the graphical display changes depending on the timeframe: D / W / M / 6M / 12M/ ALL."
+                      />
+                      <Elements.BlockBoard
+                        className="circle-graph"
+                        switcher={Static.activeQuestion}
+                        key="t3"
+                        textClue="Displaying a pie chart of your portfolio, divided by asset type: 1. Invested and unrealized, 2. in Vesting, 3. Tokens on platform wallet, 4. For sale on Marketplace, 5. Stablecoins, 6. Non-custodial wallet balance."
+                      />
+                      <Elements.BlockBoard
+                        className="news"
+                        switcher={Static.activeQuestion}
+                        key="t4"
+                        textCategory="News and Updates"
+                        textClue="Latest news and updates on the projects that the user is tracking. Updates on sales on the marketplace and changes that have occurred in the projects the user has invested in."
+                      />
                     </div>
                   </section>
                 </div>

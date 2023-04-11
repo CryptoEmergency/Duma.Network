@@ -13,10 +13,7 @@ const forExport = function ({ className, children, varName, items }) {
     <div class="tabs">
       <div class="circle-effect circle-effect1"></div>
       <div class="circle-effect circle-effect2"></div>
-      <div
-        class="tabs-controller"
-        style="z-index:5; position:relative; display:flex;"
-      >
+      <div class="tabs-controller">
         <div
           class={[
             "glider",

@@ -131,7 +131,7 @@ const forExport = function ({ className }) {
         </div>
       </div>
 
-      <div class="ecosystem">
+      <div class="ecosystem-about">
         <img class="polygonSmall polygon" src={svg.polygonSmall}></img>
         <img class="polygonBig polygon" src={svg.polygonBig}></img>
         <h2 class="ecosystem-title" style="display:flex;">
