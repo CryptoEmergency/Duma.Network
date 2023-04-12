@@ -93,7 +93,7 @@ const start = function (data, ID) {
                             <span>{item.name ? item.name : "New record"}</span>
                             <div class="edit-wrap">
                               <button
-                                class="btn btn-green"
+                                class="btn btn-green mr-15"
                                 onclick={async () => {
                                   await fn.socket.set({
                                     method: "Marketplace",

@@ -244,7 +244,7 @@ const start = function (data, ID) {
                     },
                   ]}
                 />
-                <section class="main mb-25 inner-add">
+                <section class="main mY-25 inner-add">
                   <h2 class="general-title mt-0">Edit Research</h2>
                   <label
                     style={
@@ -272,7 +272,7 @@ const start = function (data, ID) {
                 </section>
                 <div class="personal-form">
                   <div class="grid-2">
-                    <div class="form-item wrap-logo">
+                    <div class="wrap-logo">
                       <div class="picture">
                         <input
                           type="file"
@@ -497,6 +497,22 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
+                              Static.item.status = "Research";
+                              updateValue({
+                                key: "status",
+                                value: Static.item.status,
+                              });
+                              Static.selectList.status.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Research
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
                               Static.item.status = "Active";
                               updateValue({
                                 key: "status",
@@ -513,7 +529,7 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.status = "Listing";
+                              Static.item.status = "Upcoming";
                               updateValue({
                                 key: "status",
                                 value: Static.item.status,
@@ -524,7 +540,23 @@ const start = function (data, ID) {
                               initReload();
                             }}
                           >
-                            Listing
+                            Upcoming
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.status = "Past";
+                              updateValue({
+                                key: "status",
+                                value: Static.item.status,
+                              });
+                              Static.selectList.status.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Past
                           </li>
                         </ul>
                       </div>

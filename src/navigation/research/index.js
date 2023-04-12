@@ -141,8 +141,8 @@ const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
 
   Static.activeTab = "seed";
-  if (getStorage("filterTabsResearch")) {
-    Static.activeTab = getStorage("filterTabsResearch");
+  if (getStorage("activeTab")) {
+    Static.activeTab = getStorage("activeTab");
   }
   Static.projects = [];
   load({
@@ -164,6 +164,7 @@ const start = function (data, ID) {
       } else {
         Static.projects = [cardsRecords[4], cardsRecords[5]];
       }
+      console.log("=979382=", Static.activeTab);
     },
     fn: () => {
       if (!Static.projects || !Static.projects[0]) {
@@ -234,6 +235,7 @@ const start = function (data, ID) {
                           filter: { moderation: true, tabs: Static.activeTab },
                         },
                       });
+
                       initReload();
                     },
                   },
@@ -284,6 +286,8 @@ const start = function (data, ID) {
                   <Elements.cards.Project items={Static.projects} />
                 </div>
               </Elements.Tabs>
+              <div class="circle-effect circle-effect1"></div>
+              <div class="circle-effect circle-effect2"></div>
             </div>
           </div>
         </div>

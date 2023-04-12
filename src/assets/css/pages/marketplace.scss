@@ -26,8 +26,20 @@
   overflow: hidden;
   padding: 20px;
   .mCard-item_blur{
-    background: linear-gradient(90deg, rgba(143,143,143,1) 0%, rgba(143,182,142,1) 100%);
-    filter: blur(15px)
+    height: 310px;
+    
+    filter: blur(3px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    img{
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
   }
   .mCards-item-inner{
     z-index: 2;
@@ -64,33 +76,18 @@
 .filter-m{
   display: flex;
   align-items: center;
-  .filter-m-round{
-    display: flex;
-    .round-m-item{
-      // display: inline-block;
-      width: 85px;
-      display: flex;
-      justify-content: center;
-      &.round-m-item_active{
-        border-bottom: 3px solid var(--btn-standart);
-        color: var(--btn-standart);
-      }
-    }
-  }
-  .filter-m-bc{
-    display: flex;
-    .bc-img{
-      margin-right: 10px;
-    }
-  }
+
 }
+
 // filter
 
 // table
 .table-m{
+  position: relative;
   margin-top: 60px;
   border-radius: 10px;
   padding: 20px;
+  height: 530px;
   background: var(--back-secondary);
   // background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
   // .btn{
@@ -103,32 +100,30 @@
   // left: 0;
 }
 // tabs
-.tabs-m-controller{
-  position: relative;
-  border-bottom: 3px solid var(--text-main);
-  .glider-m{
-    width: 85px;
-    height: 5px;
-    background: var(--btn-standart);
-    position: absolute;
-    transition: all 0.3s;
-    bottom: -4px;
-    left: 0;
+.tabs{
+  &.tabs-m{
+    width: 500px;
+    .tabs-controller{
+      border-bottom: 3px solid var(--text-main);
+      .glider{
+        height: 5px;
+        background: var(--btn-standart);
+        // left: 0!important;
+      }
+      .tab-item{
+        font-size: 14px;
+        width: 20%;
+        color: var(--text-main);
+        &.checked{
+          color: var(--btn-standart);
+        }
+      }
+    }
   }
-  .tab-m-item{
-    display: inline-block;
-    width: 85px;
-    transition: all 0.3s;
-    text-align: center;
-    border: none;
-  }
-  
 }
 
 .table-m-content{
-  // padding: 50px 0;
-  padding-bottom: 50px;
-  padding-top: 20px;
+  padding-bottom: 20px;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 15px;
@@ -161,6 +156,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
   .btn{
     width: 300px;
   }

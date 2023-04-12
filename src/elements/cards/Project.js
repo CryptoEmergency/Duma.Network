@@ -84,7 +84,7 @@ const forExport = function ({ Static, className, items = [] }) {
                 <div class="desc">
                   <p class="desc-text">{item.description}</p>
                 </div>
-                <div class="socials mb-15">
+                <div class="socials mY-15">
                   {/* {(item.socials || []).filter(soc => soc.link && soc.link.length > 0).map((element) => {
 										return (
 											<a target="_blank" href={element.link}>
@@ -134,11 +134,13 @@ const forExport = function ({ Static, className, items = [] }) {
                     class="progressBlock-column"
                   ></div>
                 </div>
-                {item.have || item.target ? (
-                  <span class="summ">
-                    {item.have}$/{item.target}$
-                  </span>
-                ) : null}
+
+                <span class="summ">
+                  {item.have || item.target
+                    ? `${item.have}$/${item.target}$`
+                    : null}
+                </span>
+
                 <button
                   class="btn btn-green"
                   onclick={() => {
