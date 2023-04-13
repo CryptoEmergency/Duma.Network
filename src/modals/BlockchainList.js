@@ -24,7 +24,7 @@ const forExport = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      Static.items = await fn.socket.get({ method: "Fonds" });
+      Static.items = await fn.socket.get({ method: "Blockchains" });
       Static.showFonds = Static.items;
     },
     fn: () => {
@@ -71,14 +71,14 @@ const forExport = function (data, ID) {
                   <div
                     class="fondlist-item_img"
                     onclick={() => {
-                      Static.fondMedia.click();
+                      Static.BlockchainMedia.click();
                     }}
                   >
                     <input
                       type="file"
                       hidden
                       Element={($el) => {
-                        Static.fondMedia = $el;
+                        Static.BlockchainMedia = $el;
                       }}
                       onchange={async function (e) {
                         e.stopPropagation();
@@ -98,7 +98,7 @@ const forExport = function (data, ID) {
                                 );
                                 return;
                               }
-                              Static.fondIcon = response.name;
+                              Static.BlockchainIcon = response.name;
                               initReload();
                             },
                           });
@@ -108,8 +108,8 @@ const forExport = function (data, ID) {
                     />
                     <img
                       src={
-                        Static.fondIcon
-                          ? `/assets/upload/${Static.fondIcon}`
+                        Static.BlockchainIcon
+                          ? `/assets/upload/${Static.BlockchainIcon}`
                           : images["research/logo-empty"]
                       }
                     />
@@ -118,30 +118,26 @@ const forExport = function (data, ID) {
                     class="personal-input text"
                     contenteditable="plaintext-only"
                     oninput={function () {
-                      Static.nameFond = this.innerText.trim();
+                      Static.nameBlockchain = this.innerText.trim();
                     }}
                   >
-                    {Static.nameFond}
+                    {Static.nameBlockchain}
                   </div>
                   <button
                     class="btn btn-white ml-15"
                     onclick={async () => {
                       let create = await fn.socket.set({
-                        method: "Fonds",
+                        method: "Blockchains",
                         action: "insert",
                         params: {
                           insert: {
-                            name: Static.nameFond,
-                            icon: Static.fondIcon,
+                            name: Static.nameBlockchain,
+                            icon: Static.BlockchainIcon,
                           },
                         },
                       });
-                      // if (create.error || create) {
-                      //   alert("Error, fund filling");
-                      //   return;
-                      // }
-                      Static.fondIcon = null;
-                      Static.nameFond = "";
+                      Static.BlockchainIcon = null;
+                      Static.nameBlockchain = "";
                       Static.items.push(create);
                       Static.showForAdd = !Static.showForAdd;
                       Static.addNewFond.innerText = "+";
@@ -155,11 +151,11 @@ const forExport = function (data, ID) {
                   <form class="filter-fondlist mb-15">
                     <input
                       Element={($el) => {
-                        Static.fondSearch = $el;
+                        Static.BlockchainSearch = $el;
                       }}
                       type="text"
                       class="filter-fondlist_input form-input"
-                      placeholder="Сhoose a fund"
+                      placeholder="Сhoose a blockchain"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
                         Static.showFonds = Static.items.filter((item) => {

@@ -786,6 +786,38 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
+                  {/* <div class="grid-2">
+                    <button
+                      class="btn btn-green"
+                      onclick={() => {
+                        fn.modals.BlockchainList({
+                          title: "Blockchain list",
+                          listsBlockchains: Static.item.blockchains,
+                          // callback: async (filterFonds) => {
+                          //   console.log("=666583=", filterFonds);
+                          //   Static.item.fonds = filterFonds;
+                          //   if (!filterFonds.length) {
+                          //     return;
+                          //   }
+                          //   await updateRecords({ fonds: Static.item.fonds });
+                          //   let tmp = await fn.socket.get({
+                          //     method: "Research",
+                          //     _id: Variable.dataUrl.params,
+                          //     params: { populate: { path: "fonds" } },
+                          //   });
+                          //   if (tmp.fonds) {
+                          //     Static.item.fonds = tmp.fonds;
+                          //   }
+
+                          //   initReload();
+                          //   return;
+                          // },
+                        });
+                      }}
+                    >
+                      Choose blockchain
+                    </button>
+                  </div> */}
                   <div class="inner-add">
                     <h4>Upload gallery</h4>
                     <div

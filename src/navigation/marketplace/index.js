@@ -2,6 +2,7 @@ import {
   jsx,
   jsxFrag,
   load,
+  Data,
   Variable,
   initReload,
 } from "@betarost/cemserver/cem.js";
@@ -11,9 +12,134 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
+const categoryList = [
+  {
+    title: "Platform",
+  },
+  {
+    title: "Ecosystem",
+  },
+  {
+    title: "Service",
+  },
+  {
+    title: "Another",
+  },
+  {
+    title: "Art",
+  },
+  {
+    title: "Artificial Intelligence (AI)",
+  },
+  {
+    title: "Blockchain Service",
+  },
+  {
+    title: "Bridge",
+  },
+  {
+    title: "CEX",
+  },
+  {
+    title: "CeFi",
+  },
+  {
+    title: "DAO",
+  },
+  {
+    title: "DAPP",
+  },
+  {
+    title: "DEX",
+  },
+  {
+    title: "DPoS",
+  },
+  {
+    title: "Data Service",
+  },
+  {
+    title: "DeFi",
+  },
+  {
+    title: "Derivatives",
+  },
+  {
+    title: "Digital Identity",
+  },
+  {
+    title: "Education",
+  },
+  {
+    title: "Fan Token",
+  },
+  {
+    title: "GameFi",
+  },
+  {
+    title: "Gaming Guild",
+  },
+  {
+    title: "Governance",
+  },
+  {
+    title: "Inflastructure",
+  },
+  {
+    title: "Launchpad",
+  },
+  {
+    title: "Layer 1 (L1)",
+  },
+  {
+    title: "Layer 2 (L2)",
+  },
+  {
+    title: "Layer 3 (L3)",
+  },
+  {
+    title: "Lending/Borrowing",
+  },
+  {
+    title: "Marketplace",
+  },
+  {
+    title: "Metaverse",
+  },
+  {
+    title: "Mobile",
+  },
+  {
+    title: "Move to Earn (M2E)",
+  },
+  {
+    title: "SocialFi",
+  },
+];
+const roundList = [
+  {
+    title: "Seed",
+  },
+  {
+    title: "Public",
+  },
+  {
+    title: "Private",
+  },
+  {
+    title: "Pre-seed",
+  },
+  {
+    title: "Strategic",
+  },
+];
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTabM = "all";
+  Static.listRound = true;
+  Static.listCategory = true;
+  // Static.filter = false;
   // Static.tabWidth = 0;
   load({
     ID,
@@ -43,6 +169,7 @@ const start = function (data, ID) {
         method: "Research",
         params: { filter: { moderation: true }, limit: 5 },
       });
+
       console.log("=6bfe4a=", Static.records);
     },
     fn: () => {
@@ -53,6 +180,244 @@ const start = function (data, ID) {
               <Elements.Bredcrumbs
                 items={[{ title: "Marketplace", link: "/marketplace" }]}
               />
+
+              <div class="side-filters">
+                <div
+                  class={[
+                    "filters-box",
+                    Static.filterContainer ? "filters-box_active" : null,
+                  ]}
+                >
+                  <div class="filters-container">
+                    <div class="filters-header">
+                      <h5 class="filters-title">Filters</h5>
+                      <button
+                        class="button-close button-modal"
+                        onclick={() => {
+                          Static.filterContainer = !Static.filterContainer;
+                          initReload();
+                        }}
+                      >
+                        X
+                      </button>
+                    </div>
+                    <div class="filters-body">
+                      <div class="accordeon">
+                        <div
+                          class="accordeon-item"
+                          onclick={() => {
+                            Static.listRound = !Static.listRound;
+                            initReload();
+                          }}
+                        >
+                          <div class="accordeon-header">
+                            <h5 class="accordeon-header_title">Round</h5>
+                          </div>
+                          <ul
+                            class={[
+                              "accordeon-list",
+                              Static.listRound ? null : "content-show",
+                            ]}
+                          >
+                            {roundList.map((item, index) => {
+                              return <li class="list-item">{item.title}</li>;
+                            })}
+                          </ul>
+                        </div>
+                        <div
+                          class="accordeon-item"
+                          onclick={() => {
+                            Static.listCategory = !Static.listCategory;
+                            initReload();
+                          }}
+                        >
+                          <div class="accordeon-header">
+                            <h5 class="accordeon-header_title">Category</h5>
+                          </div>
+                          <ul
+                            class={[
+                              "accordeon-list",
+                              Static.listCategory ? null : "content-show",
+                            ]}
+                          >
+                            {categoryList.map((item, index) => {
+                              return <li class="list-item">{item.title}</li>;
+                            })}
+                          </ul>
+                        </div>
+                      </div>
+                      {/* <div class="accordeon">
+                        {items.map((item, index) => {
+                          console.log(item.hidden);
+                          return (
+                            <div
+                              class={[
+                                "accordeon-item",
+                                className ? className : null,
+                              ]}
+                              onclick={function () {
+                                item.hidden = !item.hidden;
+                                if (item.onclick) {
+                                  item.onclick();
+                                }
+                                initReload();
+                              }}
+                            >
+                              <div class="accordeon-header">
+                                <h5 class="accordeon-header_title">
+                                  {item.title}
+                                </h5>
+                              </div>
+
+                              <ul
+                                class={[
+                                  "accordeon-list",
+                                  item.hidden ? null : "content-show",
+                                ]}
+                              >
+                                {item.list.map((itemLi, index) => {
+                                  return (
+                                    <li class="list-item">{itemLi.title}</li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          );
+                        })}
+                      </div> */}
+                      {/* <Elements.Accordeon
+                        items={[
+                          {
+                            title: "Round",
+                            list: roindList,
+                            hidden: true,
+                          },
+                          {
+                            title: "Category",
+                            list: categoryList,
+                            hidden: false,
+                          },
+                          // {
+                          //   title: "Blockchain",
+                          // },
+                        ]}
+                        Static={Static}
+                      /> */}
+                      {/* <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.listRound.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          Round
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.listRound = $el;
+                          }}
+                        >
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.listRound.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Active
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.listRound.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Upcoming
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.listRound.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Past
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.listCategory.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          Category
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.listCategory = $el;
+                          }}
+                        >
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.listCategory.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Active
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.listCategory.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Upcoming
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.listCategory.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Past
+                          </li>
+                        </ul>
+                      </div> */}
+                    </div>
+                    <div class="filters-footer">
+                      <button class="btn">Apply</button>
+                      <button class="btn btn-white">
+                        <img class="icon mr-15" src={svg.reset} />
+                        Reset filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div class="slider-mCards">
                 {Static.slides.map((item, index) => {
@@ -156,7 +521,17 @@ const start = function (data, ID) {
               </div>
 
               <div class="filter-m">
-                <button class="btn btn-filter mr-15">Filter</button>
+                <button
+                  class="btn mr-15"
+                  onclick={() => {
+                    Static.filterContainer = !Static.filterContainer;
+                    console.log("filter", Static.filterContainer);
+                    initReload();
+                  }}
+                >
+                  <img class="icon mr-10" src={svg.filter} />
+                  Filter
+                </button>
                 <Elements.Tabs
                   class="tabs-m"
                   varName={"activeTabM"}
@@ -177,22 +552,24 @@ const start = function (data, ID) {
                         initReload();
                       },
                     },
-                    {
-                      title: "Top",
-                      name: "top",
-                      onclick: async () => {
-                        Static.records = await fn.socket.get({
-                          method: "Marketplace",
-                          params: {
-                            filter: {
-                              moderation: true,
-                              "rankList.totalText": 101,
-                            },
-                          },
-                        });
-                        initReload();
-                      },
-                    },
+                    // {
+                    //   title: "Top",
+                    //   name: "top",
+                    //   onclick: async () => {
+                    //     Static.records = await fn.socket.get({
+                    //       method: "Marketplace",
+                    //       params: {
+                    //         filter: {
+                    //           moderation: true,
+                    //           sort: -1,
+                    //           "rankList.totalText": 101,
+                    //         },
+                    //         populate: { path: "projectId" },
+                    //       },
+                    //     });
+                    //     initReload();
+                    //   },
+                    // },
                     {
                       title: "Active",
                       name: "active",
@@ -249,31 +626,184 @@ const start = function (data, ID) {
                 />
               </div>
 
-              <div class="table-m">
-                <div class="table-m-content">
-                  <div class="table-m-item">
-                    <div></div>
-                    <div class="m-active">Project</div>
-                    <div>Round</div>
-                    <div>Type</div>
-                    <div>Category</div>
-                    <div>Price</div>
-                    <div>Collect</div>
-                    <div>Total</div>
-                    <div>BC</div>
-                    <div></div>
-                    <div></div>
-                  </div>
-                  <div
-                    class="table-m-show"
-                    hidden={Static.activeTabM == "all" ? false : true}
-                  >
-                    {Static.records.map((item) => {
-                      // console.log("=e46996=", item.projectId.status);
+              <table class="table-m">
+                <thead class="table-m-header">
+                  <tr class="table-m-item">
+                    <th></th>
+                    <th>Project</th>
+                    <th>Round</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Collect</th>
+                    <th>Total</th>
+                    <th>BC</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
 
+                <tbody
+                  class="table-m-body"
+                  hidden={Static.activeTabM == "all" ? false : true}
+                >
+                  {Static.records.map((item) => {
+                    // console.log("=e46996=", item.projectId.status);
+
+                    return (
+                      <tr class="table-m-item">
+                        <td class="small-logo">
+                          <img
+                            src={
+                              item.projectId.icon
+                                ? `/assets/upload/${item.projectId.icon}`
+                                : images[`research/logo-duma}`]
+                            }
+                          />
+                        </td>
+                        <td>{item.projectId.name}</td>
+                        <td>{item.projectId.tabs}</td>
+                        <td>{item.status}</td>
+                        <td>{item.projectId.category}</td>
+                        <td>
+                          {item.projectId.seedRound
+                            ? `${item.projectId.seedRound}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          {item.projectId.have
+                            ? `${item.projectId.have}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          {item.projectId.target
+                            ? `${item.projectId.target}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          <img src={svg.blockchain} />
+                        </td>
+                        <td>
+                          <button class="btn btn-green">MORE INFO</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-green">RESEARCH</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tbody
+                  class="table-m-body"
+                  hidden={Static.activeTabM == "active" ? false : true}
+                >
+                  {Static.records.map((item) => {
+                    // console.log("=e46996=", item.projectId.status);
+
+                    return (
+                      <tr class="table-m-item">
+                        <td class="small-logo">
+                          <img
+                            src={
+                              item.projectId.icon
+                                ? `/assets/upload/${item.projectId.icon}`
+                                : images[`research/logo-duma}`]
+                            }
+                          />
+                        </td>
+                        <td>{item.projectId.name}</td>
+                        <td>{item.projectId.tabs}</td>
+                        <td>{item.status}</td>
+                        <td>{item.projectId.category}</td>
+                        <td>
+                          {item.projectId.seedRound
+                            ? `${item.projectId.seedRound}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          {item.projectId.have
+                            ? `${item.projectId.have}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          {item.projectId.target
+                            ? `${item.projectId.target}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          <img src={svg.blockchain} />
+                        </td>
+                        <td>
+                          <button class="btn btn-green">MORE INFO</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-green">RESEARCH</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tbody
+                  class="table-m-body"
+                  hidden={Static.activeTabM == "upcoming" ? false : true}
+                >
+                  {Static.records.map((item) => {
+                    // console.log("=e46996=", item.projectId.status);
+
+                    return (
+                      <tr class="table-m-item">
+                        <td class="small-logo">
+                          <img
+                            src={
+                              item.projectId.icon
+                                ? `/assets/upload/${item.projectId.icon}`
+                                : images[`research/logo-duma}`]
+                            }
+                          />
+                        </td>
+                        <td>{item.projectId.name}</td>
+                        <td>{item.projectId.tabs}</td>
+                        <td>{item.status}</td>
+                        <td>{item.projectId.category}</td>
+                        <td>
+                          {item.projectId.seedRound
+                            ? `${item.projectId.seedRound}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          {item.projectId.have
+                            ? `${item.projectId.have}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          {item.projectId.target
+                            ? `${item.projectId.target}$`
+                            : "—"}
+                        </td>
+                        <td>
+                          <img src={svg.blockchain} />
+                        </td>
+                        <td>
+                          <button class="btn btn-green">MORE INFO</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-green">RESEARCH</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                <tbody
+                  class="table-m-body"
+                  hidden={Static.activeTabM == "past" ? false : true}
+                >
+                  {Static.records.length ? (
+                    Static.records.map((item) => {
+                      // console.log("=e46996=", item.projectId.status);
+                      // console.log("past", item);
                       return (
-                        <div class="table-m-item">
-                          <div class="small-logo">
+                        <tr class="table-m-item">
+                          <td class="small-logo">
                             <img
                               src={
                                 item.projectId.icon
@@ -281,125 +811,50 @@ const start = function (data, ID) {
                                   : images[`research/logo-duma}`]
                               }
                             />
-                          </div>
-                          <div>{item.projectId.name}</div>
-                          <div>{item.projectId.tabs}</div>
-                          <div>{item.status}</div>
-                          <div>{item.projectId.category}</div>
-                          <div>{item.projectId.seedRound}$</div>
-                          <div>{item.projectId.have}$</div>
-                          <div>{item.projectId.target}$</div>
-                          <div>
+                          </td>
+                          <td>{item.projectId.name}</td>
+                          <td>{item.projectId.tabs}</td>
+                          <td>{item.status}</td>
+                          <td>{item.projectId.category}</td>
+                          <td>
+                            {item.projectId.seedRound
+                              ? `${item.projectId.seedRound}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.projectId.have
+                              ? `${item.projectId.have}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.projectId.target
+                              ? `${item.projectId.target}$`
+                              : "—"}
+                          </td>
+                          <td>
                             <img src={svg.blockchain} />
-                          </div>
-                          <button class="btn btn-green">MORE INFO</button>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </div>
+                          </td>
+                          <td>
+                            <button class="btn btn-green">MORE INFO</button>
+                          </td>
+                          <td>
+                            <button class="btn btn-green">RESEARCH</button>
+                          </td>
+                        </tr>
                       );
-                    })}
-                  </div>
-                  <div
-                    class="table-m-show"
-                    hidden={Static.activeTabM == "active" ? false : true}
-                  >
-                    {Static.records.map((item) => {
-                      console.log(item);
-                      return (
-                        <div class="table-m-item">
-                          <div class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </div>
-                          <div>{item.projectId.name}</div>
-                          <div>{item.projectId.tabs}</div>
-                          <div>{item.status}</div>
-                          <div>{item.projectId.category}</div>
-                          <div>{item.projectId.seedRound}$</div>
-                          <div>{item.projectId.have}$</div>
-                          <div>{item.projectId.target}$</div>
-                          <div>
-                            <img src={svg.blockchain} />
-                          </div>
-                          <button class="btn btn-green">MORE INFO</button>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div
-                    class="table-m-show"
-                    hidden={Static.activeTabM == "upcoming" ? false : true}
-                  >
-                    {Static.records.map((item) => {
-                      return (
-                        <div class="table-m-item">
-                          <div class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </div>
-                          <div>{item.projectId.name}</div>
-                          <div>{item.projectId.tabs}</div>
-                          <div>{item.status}</div>
-                          <div>{item.projectId.category}</div>
-                          <div>{item.projectId.seedRound}$</div>
-                          <div>{item.projectId.have}$</div>
-                          <div>{item.projectId.target}$</div>
-                          <div>
-                            <img src={svg.blockchain} />
-                          </div>
-                          <button class="btn btn-green">MORE INFO</button>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div
-                    class="table-m-show"
-                    hidden={Static.activeTabM == "past" ? false : true}
-                  >
-                    {Static.records.map((item) => {
-                      return (
-                        <div class="table-m-item">
-                          <div class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </div>
-                          <div>{item.projectId.name}</div>
-                          <div>{item.projectId.tabs}</div>
-                          <div>{item.status}</div>
-                          <div>{item.projectId.category}</div>
-                          <div>{item.projectId.seedRound}$</div>
-                          <div>{item.projectId.have}$</div>
-                          <div>{item.projectId.target}$</div>
-                          <div>
-                            <img src={svg.blockchain} />
-                          </div>
-                          <button class="btn btn-green">MORE INFO</button>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                    })
+                  ) : (
+                    <div class="notFound">
+                      <span>Records not found in table</span>
+                      <img src={svg.notFound} />
+                    </div>
+                  )}
+                </tbody>
+
                 <div class="btn-block">
                   <button class="btn btn-green">VIEW ALL PROJECTS</button>
                 </div>
-              </div>
+              </table>
 
               <h2 class="general-title mY-25">Almost done</h2>
 
