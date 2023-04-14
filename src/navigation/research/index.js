@@ -156,15 +156,14 @@ const start = function (data, ID) {
         // params: { filter: { moderation: true } },
         params: { filter: { moderation: true, tabs: Static.activeTab } },
       });
-      // console.log("Variable", Variable.dataUrl.params);
-      console.log("=92f11b=", tmp);
+      // console.log("=92f11b=", tmp);
 
       if (tmp && tmp[0]) {
         Static.projects = tmp;
       } else {
         Static.projects = [cardsRecords[4], cardsRecords[5]];
       }
-      console.log("=979382=", Static.activeTab);
+      // console.log("=979382=", Static.activeTab);
     },
     fn: () => {
       if (!Static.projects || !Static.projects[0]) {

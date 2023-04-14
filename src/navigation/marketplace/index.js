@@ -134,13 +134,17 @@ const roundList = [
   },
 ];
 
+const makeFilters = function (records) {
+  console.log("=96ff96=", records);
+  return;
+};
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeTabM = "all";
-  Static.listRound = true;
-  Static.listCategory = true;
-  // Static.filter = false;
-  // Static.tabWidth = 0;
+  Static.selectedRounds = [];
+  Static.selectedCategories = [];
+  Static.selectedBlockchains = [];
   load({
     ID,
     fnLoad: async () => {
@@ -169,12 +173,19 @@ const start = function (data, ID) {
         method: "Research",
         params: { filter: { moderation: true }, limit: 5 },
       });
-
-      console.log("=6bfe4a=", Static.records);
+      Static.blockchain_list = await fn.socket.get({
+        method: "Blockchains",
+      });
     },
     fn: () => {
       return (
-        <div class="back-market main-back">
+        <div
+          class={[
+            "back-market",
+            "main-back",
+            Static.filterContainer ? "notScroll" : null,
+          ]}
+        >
           <div class="wrapper">
             <div class="main-inner">
               <Elements.Bredcrumbs
@@ -203,213 +214,253 @@ const start = function (data, ID) {
                     </div>
                     <div class="filters-body">
                       <div class="accordeon">
-                        <div
-                          class="accordeon-item"
-                          onclick={() => {
-                            Static.listRound = !Static.listRound;
-                            initReload();
-                          }}
-                        >
-                          <div class="accordeon-header">
-                            <h5 class="accordeon-header_title">Round</h5>
+                        <div class="accordeon-item">
+                          <div
+                            class="accordeon-header"
+                            onclick={() => {
+                              Static.listRound.classList.toggle("content-show");
+                              initReload();
+                            }}
+                          >
+                            <h5 class="accordeon-header_title">
+                              Round
+                              {Static.selectedRounds.length ? (
+                                <span>{Static.selectedRounds.length}</span>
+                              ) : null}
+                            </h5>
                           </div>
                           <ul
-                            class={[
-                              "accordeon-list",
-                              Static.listRound ? null : "content-show",
-                            ]}
+                            class="accordeon-list"
+                            Element={($el) => {
+                              Static.listRound = $el;
+                            }}
                           >
                             {roundList.map((item, index) => {
-                              return <li class="list-item">{item.title}</li>;
+                              return (
+                                <li
+                                  class={[
+                                    "list-item",
+                                    Static.selectedRounds.includes(item)
+                                      ? "list-item_active"
+                                      : null,
+                                  ]}
+                                  onclick={() => {
+                                    if (Static.selectedRounds.includes(item)) {
+                                      Static.selectedRounds.splice(
+                                        Static.selectedRounds.indexOf(index),
+                                        1
+                                      );
+                                    } else {
+                                      Static.selectedRounds.push(item);
+                                    }
+                                    initReload();
+                                  }}
+                                >
+                                  {item.title}
+                                </li>
+                              );
                             })}
                           </ul>
+                          {Static.selectedRounds.length ? (
+                            <div class="selected-items">
+                              {Static.selectedRounds.map((item, index) => {
+                                return (
+                                  <div class="selected-item">
+                                    {item.title}
+                                    <button
+                                      class="delete-item"
+                                      onclick={() => {
+                                        Static.selectedRounds.splice(index, 1);
+                                        initReload();
+                                      }}
+                                    >
+                                      X
+                                    </button>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : null}
                         </div>
-                        <div
-                          class="accordeon-item"
-                          onclick={() => {
-                            Static.listCategory = !Static.listCategory;
-                            initReload();
-                          }}
-                        >
-                          <div class="accordeon-header">
-                            <h5 class="accordeon-header_title">Category</h5>
+                        <div class="accordeon-item">
+                          <div
+                            class="accordeon-header"
+                            onclick={() => {
+                              Static.listCategory.classList.toggle(
+                                "content-show"
+                              );
+                              initReload();
+                            }}
+                          >
+                            <h5 class="accordeon-header_title">
+                              Category
+                              {Static.selectedCategories.length ? (
+                                <span>{Static.selectedCategories.length}</span>
+                              ) : null}
+                            </h5>
                           </div>
                           <ul
-                            class={[
-                              "accordeon-list",
-                              Static.listCategory ? null : "content-show",
-                            ]}
+                            class="accordeon-list"
+                            Element={($el) => {
+                              Static.listCategory = $el;
+                            }}
                           >
                             {categoryList.map((item, index) => {
-                              return <li class="list-item">{item.title}</li>;
+                              return (
+                                <li
+                                  class={[
+                                    "list-item",
+                                    Static.selectedCategories.includes(item)
+                                      ? "list-item_active"
+                                      : null,
+                                  ]}
+                                  onclick={() => {
+                                    if (
+                                      Static.selectedCategories.includes(item)
+                                    ) {
+                                      Static.selectedCategories.splice(
+                                        Static.selectedCategories.indexOf(
+                                          index
+                                        ),
+                                        1
+                                      );
+                                    } else {
+                                      Static.selectedCategories.push(item);
+                                    }
+                                    initReload();
+                                  }}
+                                >
+                                  {item.title}
+                                </li>
+                              );
                             })}
                           </ul>
+                          {Static.selectedCategories.length ? (
+                            <div class="selected-items">
+                              {Static.selectedCategories.map((item, index) => {
+                                return (
+                                  <div class="selected-item">
+                                    {item.title}
+                                    <button
+                                      class="delete-item"
+                                      onclick={() => {
+                                        Static.selectedCategories.splice(
+                                          index,
+                                          1
+                                        );
+                                        initReload();
+                                      }}
+                                    >
+                                      X
+                                    </button>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : null}
+                        </div>
+                        <div class="accordeon-item">
+                          <div
+                            class="accordeon-header"
+                            onclick={() => {
+                              Static.listBlockchain.classList.toggle(
+                                "content-show"
+                              );
+                              initReload();
+                            }}
+                          >
+                            <h5 class="accordeon-header_title">
+                              Blockchain
+                              {Static.selectedBlockchains.length ? (
+                                <span>{Static.selectedBlockchains.length}</span>
+                              ) : null}
+                            </h5>
+                          </div>
+                          <ul
+                            class="accordeon-list"
+                            Element={($el) => {
+                              Static.listBlockchain = $el;
+                            }}
+                          >
+                            {Static.blockchain_list.map((item, index) => {
+                              return (
+                                <li
+                                  class={[
+                                    "list-item",
+                                    Static.selectedBlockchains.includes(
+                                      item.name
+                                    )
+                                      ? "list-item_active"
+                                      : null,
+                                  ]}
+                                  onclick={() => {
+                                    if (
+                                      Static.selectedBlockchains.includes(
+                                        item.name
+                                      )
+                                    ) {
+                                      Static.selectedBlockchains.splice(
+                                        Static.selectedBlockchains.indexOf(
+                                          index
+                                        ),
+                                        1
+                                      );
+                                    } else {
+                                      Static.selectedBlockchains.push(
+                                        item.name
+                                      );
+                                    }
+                                    initReload();
+                                  }}
+                                >
+                                  <img
+                                    class="blockchain mr-15"
+                                    src={
+                                      item?.icon
+                                        ? `/assets/upload/${item.icon}`
+                                        : svg.binance
+                                    }
+                                  />
+                                  {item.name}
+                                </li>
+                              );
+                            })}
+                          </ul>
+                          {Static.selectedBlockchains.length ? (
+                            <div class="selected-items">
+                              {Static.selectedBlockchains.map((item, index) => {
+                                return (
+                                  <div class="selected-item">
+                                    {item}
+                                    <button
+                                      class="delete-item"
+                                      onclick={() => {
+                                        Static.selectedBlockchains.splice(
+                                          index,
+                                          1
+                                        );
+                                        initReload();
+                                      }}
+                                    >
+                                      X
+                                    </button>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : null}
                         </div>
                       </div>
-                      {/* <div class="accordeon">
-                        {items.map((item, index) => {
-                          console.log(item.hidden);
-                          return (
-                            <div
-                              class={[
-                                "accordeon-item",
-                                className ? className : null,
-                              ]}
-                              onclick={function () {
-                                item.hidden = !item.hidden;
-                                if (item.onclick) {
-                                  item.onclick();
-                                }
-                                initReload();
-                              }}
-                            >
-                              <div class="accordeon-header">
-                                <h5 class="accordeon-header_title">
-                                  {item.title}
-                                </h5>
-                              </div>
-
-                              <ul
-                                class={[
-                                  "accordeon-list",
-                                  item.hidden ? null : "content-show",
-                                ]}
-                              >
-                                {item.list.map((itemLi, index) => {
-                                  return (
-                                    <li class="list-item">{itemLi.title}</li>
-                                  );
-                                })}
-                              </ul>
-                            </div>
-                          );
-                        })}
-                      </div> */}
-                      {/* <Elements.Accordeon
-                        items={[
-                          {
-                            title: "Round",
-                            list: roindList,
-                            hidden: true,
-                          },
-                          {
-                            title: "Category",
-                            list: categoryList,
-                            hidden: false,
-                          },
-                          // {
-                          //   title: "Blockchain",
-                          // },
-                        ]}
-                        Static={Static}
-                      /> */}
-                      {/* <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.listRound.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          Round
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.listRound = $el;
-                          }}
-                        >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.listRound.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Active
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.listRound.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Upcoming
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.listRound.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Past
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.listCategory.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          Category
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.listCategory = $el;
-                          }}
-                        >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.listCategory.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Active
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.listCategory.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Upcoming
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.listCategory.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Past
-                          </li>
-                        </ul>
-                      </div> */}
                     </div>
                     <div class="filters-footer">
-                      <button class="btn">Apply</button>
+                      <button
+                        class="btn"
+                        onclick={() => {
+                          makeFilters(Static.records);
+                        }}
+                      >
+                        Apply
+                      </button>
                       <button class="btn btn-white">
                         <img class="icon mr-15" src={svg.reset} />
                         Reset filters
@@ -525,7 +576,6 @@ const start = function (data, ID) {
                   class="btn mr-15"
                   onclick={() => {
                     Static.filterContainer = !Static.filterContainer;
-                    console.log("filter", Static.filterContainer);
                     initReload();
                   }}
                 >
@@ -681,7 +731,14 @@ const start = function (data, ID) {
                             : "—"}
                         </td>
                         <td>
-                          <img src={svg.blockchain} />
+                          <img
+                            class="blockchain"
+                            src={
+                              item?.projectId.blockchains?.icon
+                                ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                : svg.binance
+                            }
+                          />
                         </td>
                         <td>
                           <button class="btn btn-green">MORE INFO</button>
@@ -731,7 +788,14 @@ const start = function (data, ID) {
                             : "—"}
                         </td>
                         <td>
-                          <img src={svg.blockchain} />
+                          <img
+                            class="blockchain"
+                            src={
+                              item?.blockchains?.icon
+                                ? `/assets/upload/${item.blockchains.icon}`
+                                : svg.binance
+                            }
+                          />
                         </td>
                         <td>
                           <button class="btn btn-green">MORE INFO</button>
@@ -781,7 +845,14 @@ const start = function (data, ID) {
                             : "—"}
                         </td>
                         <td>
-                          <img src={svg.blockchain} />
+                          <img
+                            class="blockchain"
+                            src={
+                              item?.blockchains?.icon
+                                ? `/assets/upload/${item.blockchains.icon}`
+                                : svg.binance
+                            }
+                          />
                         </td>
                         <td>
                           <button class="btn btn-green">MORE INFO</button>
@@ -832,7 +903,14 @@ const start = function (data, ID) {
                               : "—"}
                           </td>
                           <td>
-                            <img src={svg.blockchain} />
+                            <img
+                              class="blockchain"
+                              src={
+                                item?.blockchains?.icon
+                                  ? `/assets/upload/${item.blockchains.icon}`
+                                  : svg.binance
+                              }
+                            />
                           </td>
                           <td>
                             <button class="btn btn-green">MORE INFO</button>

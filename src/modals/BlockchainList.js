@@ -14,18 +14,18 @@ import images from "@assets/images/index.js";
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.showForAdd = false;
-  Static.fond_list = [];
-  if (Static.listsFonds) {
-    for (let item of Static.listsFonds) {
-      Static.fond_list.push(item._id);
-    }
-  }
-
+  Static.blockchains_list;
+  // if (Static.listsBlockchains) {
+  //   for (let item of Static.listsFonds) {
+  //     Static.blockchains_list.push(item._id);
+  //   }
+  // }
+  // console.log("=09601a=", Static.listsBlockchains);
   load({
     ID,
     fnLoad: async () => {
       Static.items = await fn.socket.get({ method: "Blockchains" });
-      Static.showFonds = Static.items;
+      Static.showBlockchains = Static.items;
     },
     fn: () => {
       return (
@@ -158,7 +158,7 @@ const forExport = function (data, ID) {
                       placeholder="Сhoose a blockchain"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
-                        Static.showFonds = Static.items.filter((item) => {
+                        Static.showBlockchains = Static.items.filter((item) => {
                           if (item.name.toLowerCase().includes(searchText)) {
                             return true;
                           }
@@ -169,11 +169,11 @@ const forExport = function (data, ID) {
                     <span
                       class="input-delete"
                       Element={($el) => {
-                        Static.fondSearchDel = $el;
+                        Static.BlockchainsSearchDel = $el;
                       }}
                       onclick={() => {
-                        Static.showFonds = Static.items;
-                        Static.fondSearch.value = "";
+                        Static.showBlockchains = Static.items;
+                        Static.BlockchainSearch.value = "";
                         initReload("modals");
                       }}
                     >
@@ -182,24 +182,25 @@ const forExport = function (data, ID) {
                   </form>
                 </div>
                 <div class="fondlist-wrap">
-                  {Static.showFonds.map((item) => {
+                  {Static.showBlockchains.map((item) => {
                     return (
                       <div
                         class={[
                           "fondlist-item",
-                          Static.fond_list.includes(item._id)
+                          Static.blockchains_list == item
                             ? "fondlist-item_active"
                             : null,
                         ]}
                         onclick={() => {
-                          if (Static.fond_list.includes(item._id)) {
-                            Static.fond_list.splice(
-                              Static.fond_list.indexOf(item._id),
-                              1
-                            );
+                          console.log("=64bd17=", item);
+                          if (Static.blockchains_list == item) {
+                            Static.blockchains_list = {};
                           } else {
-                            Static.fond_list.push(item._id);
+                            Static.blockchains_list = item;
                           }
+                          // Static.blockchains_list == item;
+                          console.log("=64bd17=", Static.blockchains_list);
+
                           initReload("modals");
                         }}
                       >
@@ -223,7 +224,7 @@ const forExport = function (data, ID) {
                   class="btn btn-white"
                   onclick={() => {
                     if (Static.callback) {
-                      Static.callback(Static.fond_list);
+                      Static.callback(Static.blockchains_list);
                     }
                     fn.modals.close(ID);
                   }}

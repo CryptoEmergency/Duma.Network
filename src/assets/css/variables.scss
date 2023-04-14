@@ -153,3 +153,9 @@ $indent in $indents {
   border-radius: 8px;
   border: 1px solid $back-primary;
 }
+// ?  не работает
+.notScroll{
+  &::-webkit-scrollbar{
+    display: none;
+  }
+}

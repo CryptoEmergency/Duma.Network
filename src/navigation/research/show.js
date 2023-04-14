@@ -112,7 +112,7 @@ const start = function (data, ID) {
       Static.slideHidden = Static.item.gallery.length - 4;
     },
     fn: () => {
-      console.log("=0e0048=", Static.item);
+      // console.log("=0e0048=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }
@@ -140,7 +140,14 @@ const start = function (data, ID) {
                   </div>
                   <div class="statuses">
                     <div class="icon">
-                      <img src={svg.binance}></img>
+                      <img
+                        class="blockchain"
+                        src={
+                          Static.item?.blockchains?.icon
+                            ? `/assets/upload/${Static.item.blockchains.icon}`
+                            : svg.binance
+                        }
+                      />
                     </div>
                     <div class="status">{Static.item.status}</div>
                     <div class="ecosystem">{Static.item.category}</div>

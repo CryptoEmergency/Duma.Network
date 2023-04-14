@@ -46,6 +46,9 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: 20px;
+        max-height: 80%;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
       .filters-footer{
         display: grid;

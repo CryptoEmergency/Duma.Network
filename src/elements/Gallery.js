@@ -82,7 +82,7 @@ const forExport = function ({ className, children, varName, items }) {
                 return;
               }
               Data.Static.slideHidden--;
-              console.log("=faba73=", Data.Static.slideHidden);
+              // console.log("=faba73=", Data.Static.slideHidden);
               Data.Static.imgPosition += Data.Static.widthImg;
               Data.Static.track.style.left = `-${Data.Static.imgPosition}px`;
               Data.Static.activeImg = items[Data.Static.currentSlide + 1];

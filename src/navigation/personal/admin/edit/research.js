@@ -208,6 +208,10 @@ const start = function (data, ID) {
           Static.item.tokenomics = {};
         }
 
+        if (!Static.item.blockchains) {
+          Static.item.blockchains = {};
+        }
+
         for (let item of Static.item.socials) {
           Static.forms.socials[item.name] = item;
         }
@@ -215,6 +219,7 @@ const start = function (data, ID) {
         if (!Static.item.team) {
           Static.item.team = {};
         }
+        console.log("=Static.item.blockchains=", Static.item.blockchains);
       }
     },
     fn: () => {
@@ -372,7 +377,7 @@ const start = function (data, ID) {
                   </div>
                   <div class="grid-3">
                     <div class="form-div">
-                      <label>Tabs:</label>
+                      <label>Round:</label>
                       <div class="dropdown">
                         <button
                           class="dropdown__button"
@@ -786,38 +791,65 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-                  {/* <div class="grid-2">
+                  <div class="grid-2">
                     <button
                       class="btn btn-green"
                       onclick={() => {
                         fn.modals.BlockchainList({
                           title: "Blockchain list",
                           listsBlockchains: Static.item.blockchains,
-                          // callback: async (filterFonds) => {
-                          //   console.log("=666583=", filterFonds);
-                          //   Static.item.fonds = filterFonds;
-                          //   if (!filterFonds.length) {
-                          //     return;
-                          //   }
-                          //   await updateRecords({ fonds: Static.item.fonds });
-                          //   let tmp = await fn.socket.get({
-                          //     method: "Research",
-                          //     _id: Variable.dataUrl.params,
-                          //     params: { populate: { path: "fonds" } },
-                          //   });
-                          //   if (tmp.fonds) {
-                          //     Static.item.fonds = tmp.fonds;
-                          //   }
+                          callback: async (filterBlockchains) => {
+                            Static.item.blockchains = filterBlockchains;
+                            await updateRecords({
+                              blockchains: Static.item.blockchains,
+                            });
+                            let tmp = await fn.socket.get({
+                              method: "Research",
+                              _id: Variable.dataUrl.params,
+                              params: { populate: { path: "blockchains" } },
+                            });
+                            if (tmp.blockchains) {
+                              Static.item.blockchains = tmp.blockchains;
+                            }
 
-                          //   initReload();
-                          //   return;
-                          // },
+                            initReload();
+                            return;
+                          },
                         });
                       }}
                     >
                       Choose blockchain
                     </button>
-                  </div> */}
+                    <div class="fondlist-wrap">
+                      {Object.keys(Static.item.blockchains).length ? (
+                        <div class="fondlist-item">
+                          <img
+                            class="icon-delete"
+                            src={svg["delete_icon"]}
+                            onclick={() => {
+                              Static.item.blockchains = {};
+                              updateRecords({
+                                blockchains: Static.item.blockchains,
+                              });
+                              initReload();
+                            }}
+                          ></img>
+                          <div class="fondlist-item_img">
+                            <img
+                              src={
+                                Static.item.blockchains.icon
+                                  ? `/assets/upload/${Static.item.blockchains.icon}`
+                                  : images["research/logo-empty"]
+                              }
+                            />
+                          </div>
+                          <span class="fondlist-item_desc">
+                            {Static.item.blockchains.name}
+                          </span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
                   <div class="inner-add">
                     <h4>Upload gallery</h4>
                     <div

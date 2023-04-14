@@ -32,7 +32,7 @@ const start = function (data, ID) {
       Static.slideHidden = Static.item.gallery.length - 4;
     },
     fn: () => {
-      console.log("=0e0048=", Static.item);
+      // console.log("=0e0048=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }

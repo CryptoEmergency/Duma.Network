@@ -41,7 +41,7 @@ const forExport = function ({ Static, className, items = [] }) {
                         ? `/assets/upload/${item.icon}`
                         : images[`research/logo-duma}`]
                     }
-                  ></img>
+                  />
                   <div class="company-title">
                     <span>{item.name}</span>
                   </div>
@@ -72,7 +72,14 @@ const forExport = function ({ Static, className, items = [] }) {
                 </div>
                 <div class="statuses">
                   <div class="icon">
-                    <img src={svg.binance}></img>
+                    <img
+                      class="blockchain"
+                      src={
+                        item?.blockchains?.icon
+                          ? `/assets/upload/${item.blockchains.icon}`
+                          : svg.binance
+                      }
+                    />
                   </div>
                   <div class="status">{item.status}</div>
                   <div class="ecosystem">{item.category}</div>
