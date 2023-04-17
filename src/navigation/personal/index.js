@@ -108,9 +108,8 @@ const start = function (data, ID) {
                         className="interesting"
                         switcher={Static.activeQuestion}
                         key="t1"
-                        textCategory="Might be interesting"
-                        textClue="A block displaying a list of projects or offers that may be of interest to the user, based on relevance and account type."
-                        items={Static.projects}
+                        textCategory="News and Update"
+                        textClue="Latest news and updates on the projects that the user is tracking. Updates on sales on the marketplace and changes that have occurred in the projects the user has invested in."
                       />
 
                       <div class="blocks-item bag">
@@ -148,8 +147,9 @@ const start = function (data, ID) {
                         className="news"
                         switcher={Static.activeQuestion}
                         key="t4"
-                        textCategory="News and Updates"
-                        textClue="Latest news and updates on the projects that the user is tracking. Updates on sales on the marketplace and changes that have occurred in the projects the user has invested in."
+                        textCategory="Might be interesting"
+                        textClue="A block displaying a list of projects or offers that may be of interest to the user, based on relevance and account type"
+                        items={Static.projects}
                       />
                     </div>
                   </section>

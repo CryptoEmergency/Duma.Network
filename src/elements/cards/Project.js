@@ -66,7 +66,7 @@ const forExport = function ({ Static, className, items = [] }) {
                     {item.bookmarks ? (
                       <img src={svg.bellGreen} class="bell" />
                     ) : (
-                      <img src={svg.bellGrey} class="bell" />
+                      <img src={svg.bellWhite} class="bell" />
                     )}
                   </div>
                 </div>

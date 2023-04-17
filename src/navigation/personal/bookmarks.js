@@ -51,21 +51,21 @@ const start = function (data, ID) {
                           <img
                             class="bookmarks-icon"
                             src={
-                              item.projectId.icon
+                              item.projectId?.icon
                                 ? `/assets/upload/${item.projectId.icon}`
                                 : images["personal/logoProject"]
                             }
                           />
-                          <span>{item.projectId.name}</span>
+                          <span>{item.projectId?.name}</span>
                         </div>
                         <div class="round">round</div>
                         <div class="price">price token</div>
                         <div class="price">
-                          {item.projectId.have}$/{item.projectId.target}$
+                          {item.projectId?.have}$/{item.projectId?.target}$
                         </div>
                         <div>date tge</div>
                         <div class="text-underline">lead investor</div>
-                        <div>{item.projectId.category}</div>
+                        <div>{item.projectId?.category}</div>
                         <button class="btn btn-transparent">more</button>
                       </div>
                     );

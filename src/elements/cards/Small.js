@@ -28,43 +28,45 @@ const forExport = function ({ Static, className, items = [] }) {
               fn.siteLink("/research/show/" + item._id);
             }}
           >
-            {/* <img
-              class="small-img"
-              src={
-                item.gallery[0]
-                  ? `/assets/upload/${item.gallery[0]}`
-                  : images[`research/duma}`]
-              }
-            /> */}
-            <div class="small-header">
-              <div class="small-logo">
-                <img
-                  src={
-                    item.icon
-                      ? `/assets/upload/${item.icon}`
-                      : images[`research/logo-duma}`]
-                  }
-                />
-              </div>
-
-              <div>
-                <span class="rang">
-                  {item.rank < 100 ? "low rank" : "medium rank"}
-                </span>
-                <span class="circle">{item.rank ? item.rank : 0}</span>
-              </div>
+            <div class="mCard-item_blur">
+              <img
+                src={
+                  item.gallery[0]
+                    ? `/assets/upload/${item.gallery[0]}`
+                    : images["research/logo-empty"]
+                }
+              ></img>
             </div>
-            <div class="small-body">
-              <h5 class="small-body_title">{item.name}</h5>
-            </div>
-            <div class="small-footer">
-              <div class="card-text">
-                <span class="ttu">{item.tabs} ROUND</span>
-                {/* {item.seedRound}$ */}
-                {item.seedRound}
-              </div>
+            <div class="mCards-item-inner" style="z-index:5;">
+              <div class="small-header">
+                <div class="small-logo">
+                  <img
+                    src={
+                      item.icon
+                        ? `/assets/upload/${item.icon}`
+                        : images[`research/logo-duma}`]
+                    }
+                  />
+                </div>
 
-              {/* <span class="text-green percent">70%</span>
+                <div>
+                  <span class="rang">
+                    {item.rank < 100 ? "low rank" : "medium rank"}
+                  </span>
+                  <span class="circle">{item.rank ? item.rank : 0}</span>
+                </div>
+              </div>
+              <div class="small-body">
+                <h5 class="small-body_title">{item.name}</h5>
+              </div>
+              <div class="small-footer">
+                <div class="card-text">
+                  <span class="ttu">{item.tabs} ROUND</span>
+                  {/* {item.seedRound}$ */}
+                  {item.seedRound}
+                </div>
+
+                {/* <span class="text-green percent">70%</span>
               <div>
                 <span class="summ">
                   {item.have}$/{item.target}$
@@ -83,6 +85,7 @@ const forExport = function ({ Static, className, items = [] }) {
                   class="progressBlock-column"
                 ></div>
               </div> */}
+              </div>
             </div>
           </div>
         );

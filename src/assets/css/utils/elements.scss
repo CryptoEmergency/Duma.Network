@@ -1,3 +1,9 @@
 .icon{
   width: 20px;
 }
+.text-more{
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

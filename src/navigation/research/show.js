@@ -110,6 +110,7 @@ const start = function (data, ID) {
       Static.imgPosition = 0;
       Static.currentSlide = 0;
       Static.slideHidden = Static.item.gallery.length - 4;
+      Static.slideHiddenMobile = Static.item.gallery.length - 1;
     },
     fn: () => {
       // console.log("=0e0048=", Static.item);
@@ -185,7 +186,7 @@ const start = function (data, ID) {
                       {Static.item.bookmarks ? (
                         <img src={svg.bellGreen} class="bell" />
                       ) : (
-                        <img src={svg.bellGrey} class="bell" />
+                        <img src={svg.bellWhite} class="bell" />
                       )}
                     </div>
                     <h2 style="text-transform: uppercase;">

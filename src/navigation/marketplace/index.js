@@ -139,8 +139,15 @@ const makeFilters = function (records) {
   return;
 };
 
+let x1 = null;
+let y1 = null;
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  // slider
+  Static.imgPosition = 0;
+  Static.slider = Static.slides;
+
   Static.activeTabM = "all";
   Static.selectedRounds = [];
   Static.selectedCategories = [];
@@ -165,7 +172,7 @@ const start = function (data, ID) {
         method: "Marketplace",
         params: {
           filter: { moderation: true },
-          limit: 3,
+          limit: 9,
           populate: { path: "projectId" },
         },
       });
@@ -176,6 +183,24 @@ const start = function (data, ID) {
       Static.blockchain_list = await fn.socket.get({
         method: "Blockchains",
       });
+      Static.slideHidden = Static.slides.length - 3;
+      console.log("=088dfb=", Static.records);
+
+      setInterval(() => {
+        if (Static.slideHidden == 0) {
+          Static.imgPosition = 0;
+          Static.slideHidden = Static.slides.length - 3;
+          Static.lineSlider.style.left = Static.imgPosition + "px";
+
+          initReload();
+          return;
+        }
+
+        Static.slideHidden--;
+        Static.imgPosition = Static.imgPosition - 430;
+        Static.lineSlider.style.left = Static.imgPosition + "px";
+        initReload();
+      }, 3500);
     },
     fn: () => {
       return (
@@ -471,79 +496,133 @@ const start = function (data, ID) {
               </div>
 
               <div class="slider-mCards">
-                {Static.slides.map((item, index) => {
-                  return (
-                    <div
-                      class="mCards-item"
-                      style={
-                        item.projectId.gallery[0]
-                          ? `background-image: url('/assets/upload/${item.projectId.gallery[0]}');`
-                          : images[`research/duma}`]
-                      }
-                    >
-                      <div class="mCard-item_blur">
-                        <img
-                          src={
-                            item.projectId.gallery[0]
-                              ? `/assets/upload/${item.projectId.gallery[0]}`
-                              : images["research/logo-empty"]
-                          }
-                        ></img>
-                      </div>
-                      <div class="mCards-item-inner" style="z-index:5;">
-                        <div class="mCards-info">
-                          <div class="company">
-                            <div class="small-logo">
-                              <img
-                                src={
-                                  item.projectId.icon
-                                    ? `/assets/upload/${item.projectId.icon}`
-                                    : images[`research/logo-duma}`]
-                                }
-                              />
-                            </div>
+                {/* <span class="counter-slider">{Static.slides.length}</span> */}
+                <div
+                  class="line"
+                  Element={($el) => {
+                    Static.lineSlider = $el;
+                  }}
+                  onmousestart={function (event) {
+                    x1 = event.clientX;
+                    y1 = event.clientY;
+                    console.log("=f631aa=", x1, y1);
+                  }}
+                  onmousemove={function (event) {
+                    const firstMove = event;
+                    // console.log("=260761=", event);
+                  }}
+                >
+                  {Static.slides.map((item, index) => {
+                    return (
+                      <div
+                        class="mCards-item"
+                        style={
+                          item.projectId.gallery[0]
+                            ? `background-image: url('/assets/upload/${item.projectId.gallery[0]}');`
+                            : images[`research/duma}`]
+                        }
+                      >
+                        <div class="mCard-item_blur">
+                          <img
+                            src={
+                              item.projectId.gallery[0]
+                                ? `/assets/upload/${item.projectId.gallery[0]}`
+                                : images["research/logo-empty"]
+                            }
+                          ></img>
+                        </div>
+                        <div class="mCards-item-inner" style="z-index:5;">
+                          <div class="mCards-info">
+                            <div>
+                              <div class="company">
+                                <div class="small-logo">
+                                  <img
+                                    src={
+                                      item.projectId.icon
+                                        ? `/assets/upload/${item.projectId.icon}`
+                                        : images[`research/logo-duma}`]
+                                    }
+                                  />
+                                </div>
 
-                            <span class="company-title">
-                              {item.projectId.name}
-                            </span>
-                          </div>
-                          <div class="mCards-info_status">
-                            <div class="info-bell-m">
-                              <img src={svg.bellGrey} class="bell" />
-                            </div>
-                            <div style="display: flex; align-items:center;">
-                              <div class="icon mr-15">
-                                <img src={svg.blockchain} />
+                                <span class="company-title ml-15">
+                                  {item.projectId.name}
+                                </span>
                               </div>
-                              <div class="status">{item.projectId.status}</div>
+                              <div class="statuses">
+                                <span class="circle mr-15">
+                                  {item.rank ? item.rank : 0}
+                                </span>
+                                <span class="rang">
+                                  {item.projectId.rank < 100
+                                    ? "low rank"
+                                    : "medium rank"}
+                                </span>
+                              </div>
                             </div>
-                            <div class="ecosystem mt-10">
-                              {item.projectId.category}
+
+                            <div class="mCards-info_status">
+                              <div
+                                class="info-bell-m"
+                                onclick={async () => {
+                                  await fn.socket.set({
+                                    method: "Bookmarks",
+                                    action: "findOneAndUpdate",
+                                    params: {
+                                      update: { active: !item.bookmarks },
+                                      filter: {
+                                        projectId: item._id,
+                                        author: Variable.myInfo._id,
+                                      },
+                                    },
+                                  });
+                                  item.bookmarks = !item.bookmarks;
+                                  initReload();
+                                }}
+                              >
+                                {item.bookmarks ? (
+                                  <img src={svg.bellGreen} class="bell" />
+                                ) : (
+                                  <img src={svg.bellWhite} class="bell" />
+                                )}
+                              </div>
+                              <div style="display: flex; align-items:center;">
+                                <div class="icon">
+                                  {/* <img src={svg.blockchain} /> */}
+                                  <img
+                                    class="blockchain"
+                                    width="30"
+                                    src={
+                                      item.projectId.blockchains?.icon
+                                        ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                        : svg.blockchain
+                                    }
+                                  />
+                                </div>
+                                {item.projectId.status ? (
+                                  <div class="status ml-15">
+                                    {item.projectId.status}
+                                  </div>
+                                ) : null}
+                              </div>
+                              <div class="ecosystem mt-10">
+                                {item.projectId.category}
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="statuses">
-                          <span class="circle mr-15">
-                            {item.rank ? item.rank : 0}
-                          </span>
-                          <span class="rang">
-                            {item.projectId.rank < 100
-                              ? "low rank"
-                              : "medium rank"}
-                          </span>
-                        </div>
-                        <p class="text">{item.projectId.description}</p>
-                        <div class="card-text">
-                          <span class="ttu">
-                            {item.projectId.tabs}/ seed round is open
-                          </span>
-                          {item.projectId.have}$
+                          <p class="text-more">{item.projectId.description}</p>
+                          <div class="card-text">
+                            <span class="ttu">
+                              {item.projectId.tabs}/ seed round is open
+                            </span>
+                            {item.projectId.have}$
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
 
               <div class="m-search">

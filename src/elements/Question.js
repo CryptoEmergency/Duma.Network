@@ -16,7 +16,6 @@ const forExport = function ({
   switcher,
   key,
 }) {
-  console.log("=e3eeeb=", switcher, key);
   if (switcher && !switcher[key]) {
     switcher[key] = false;
   }
