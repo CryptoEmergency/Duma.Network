@@ -427,10 +427,15 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-green"
                         onclick={() => {
-                          fn.modals.Transaction({
-                            title: "Deposit",
-                            text: "Replenishment amount",
-                          });
+                          if (Variable.myInfo.role) {
+                            fn.modals.Transaction({
+                              title: "Deposit",
+                              text: "Replenishment amount",
+                              type: "deposit",
+                            });
+                          } else {
+                            fn.modals.Soon({});
+                          }
                         }}
                       >
                         <span>DEPOSIT</span>
@@ -439,10 +444,15 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-bordo"
                         onclick={() => {
-                          fn.modals.Transaction({
-                            title: "Withdraw",
-                            text: "Withdrawal amount",
-                          });
+                          if (Variable.myInfo.role) {
+                            fn.modals.Transaction({
+                              title: "Withdraw",
+                              text: "Withdrawal amount",
+                              type: "withdraw",
+                            });
+                          } else {
+                            fn.modals.Soon({});
+                          }
                         }}
                       >
                         <span>WITHDRAW</span>
@@ -460,9 +470,9 @@ const mainHeader = async function () {
                       <img src={images.user}></img>
                     </button>
                   )}
-                  <span class="lang" onclick={function () {}}>
+                  {/* <span class="lang" onclick={function () {}}>
                     ENG
-                  </span>
+                  </span> */}
 
                   {/* <span
                     style="margin-left: 20px;cursor: pointer; width:15px; height: 15px; background: #73993B;border-radius: 50%;"

@@ -262,17 +262,26 @@
 
 .user {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 0.5fr 2fr 2fr;
   grid-gap: 25px;
   align-items: center;
+  .setting{
+    img{
+      max-height: 40px;
+    }
+  }
 }
 
 .user-card {
   display: flex;
+
   .user-picture{
     img {
       margin-right: 15px;
       max-height: 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
   }
   
@@ -594,6 +603,7 @@
 
         img {
           justify-self: center;
+          width: 100%;
         }
       }
 

@@ -24,10 +24,14 @@ const forExport = function ({ className }) {
           href="/"
           onclick={async (e) => {
             fn.siteLink(e);
-            // let tmp = await fn.socket.get({ method: "Research" })
-            // console.log('=c7f06a=', tmp)
-            // let tmp2 = await fn.socket.set({ method: "Research", _id: "6419af420463545678c163b8", params: { update: { test: "Привет!!!!!" } } })
-            // console.log('=58001c=', tmp2)
+            // let tmp = await fn.socket.get({ method: "Users" });
+            // console.log("=c7f06a=", tmp);
+            // let tmp2 = await fn.socket.set({
+            //   method: "Users",
+            //   _id: "640b50260485741932a21a72",
+            //   params: { update: { icon: "Привет!!!!!" } },
+            // });
+            // console.log("=58001c=", tmp2);
             // let tmp = await fn.socket.get({
             //   method: "Fonds",
             //   params: { filter: { icon: "icon3.png" } },

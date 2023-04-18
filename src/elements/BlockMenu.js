@@ -10,11 +10,11 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
-const forExport = function ({ Static, onclick, className }) {
+const forExport = function ({ Static, onclick, className, item }) {
   return (
     <div class="sidebar">
       <div class="nums">
-        <span class="num_big">0,00</span>
+        <span class="num_big">{item?.balance ? item.balance : "0,00"}$</span>
         <span class="num_small">+0$</span>
         <span class="num_small"> +0,00%</span>
       </div>

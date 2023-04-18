@@ -219,7 +219,6 @@ const start = function (data, ID) {
         if (!Static.item.team) {
           Static.item.team = {};
         }
-        console.log("=Static.item.blockchains=", Static.item.blockchains);
       }
     },
     fn: () => {

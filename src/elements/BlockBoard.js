@@ -29,7 +29,10 @@ const forExport = function ({
 
       <Elements.Question textClue={textClue} switcher={switcher} key={key} />
       {items ? (
-        <Elements.cards.Small items={items} className="cards-small" />
+        <div>
+          <Elements.cards.Small items={items} className="cards-small" />
+          <div>{children}</div>
+        </div>
       ) : (
         <span class="soon-text">coming soon</span>
       )}

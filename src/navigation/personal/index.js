@@ -15,6 +15,7 @@ import Elements from "@src/elements/export.js";
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.activeQuestion = {};
+  Static.dailyCounter = 0;
   load({
     ID,
     fnLoad: async () => {
@@ -22,9 +23,18 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
+      Static.user = await fn.socket.get({
+        method: "Users",
+        _id: Variable.myInfo._id,
+        // action: findOne,
+        // params: { filter: { _id: Variable.myInfo._id } },
+      });
       Static.projects = await fn.socket.get({
         method: "Research",
-        params: { filter: { moderation: true }, limit: 3 },
+        params: {
+          filter: { moderation: true },
+          limit: 3,
+        },
       });
     },
     fn: () => {
@@ -36,13 +46,81 @@ const start = function (data, ID) {
         <div class="back-secondary">
           <div class="wrapper">
             <div class="personal-inner">
-              <Elements.BlockMenu Static={Static} />
+              <Elements.BlockMenu Static={Static} item={Static.user} />
               <div class="personal-main">
                 <div class="personal-header">
                   <div class="circle-effect circle-effect1"></div>
                   <div class="circle-effect circle-effect2"></div>
                   <div class="user">
-                    <Elements.BlockPersonal />
+                    <div class="setting">
+                      <input
+                        type="file"
+                        hidden
+                        Element={($el) => {
+                          Data.Static.userIcon = $el;
+                        }}
+                        onchange={async function (e) {
+                          e.stopPropagation();
+                          Array.from(this.files).forEach((item) => {
+                            fn.uploadFile({
+                              file: item,
+                              onload: async function () {
+                                if (!this.response) {
+                                  alert("Have some Error. Try again...");
+                                  return;
+                                }
+                                let response = JSON.parse(this.response);
+                                if (response.error || !response.name) {
+                                  alert(
+                                    "Have some Error. Try again... " +
+                                      response.error
+                                  );
+                                  return;
+                                }
+                                Static.user = response.name;
+
+                                await fn.socket.set({
+                                  method: "Users",
+                                  action: "findOneAndUpdate",
+                                  _id: Variable.myInfo._id,
+                                  params: {
+                                    update: { icon: Static.user },
+                                  },
+                                });
+                                initReload();
+                              },
+                              onprogress: async function (e) {
+                                let contentLength;
+                                if (e.lengthComputable) {
+                                  contentLength = e.total;
+                                } else {
+                                  contentLength = parseInt(
+                                    e.target.getResponseHeader(
+                                      "x-decompressed-content-length"
+                                    ),
+                                    10
+                                  );
+                                }
+                                // console.log("onprogress", e.loaded, contentLength);
+                              },
+                            });
+                            initReload();
+                            return;
+                          });
+                        }}
+                      />
+                      <img
+                        src={svg.setting}
+                        onclick={() => {
+                          Data.Static.userIcon.click();
+                          initReload();
+                        }}
+                      />
+                    </div>
+                    <Elements.BlockPersonal
+                      Static={Static}
+                      item={Static.user}
+                    />
                     <span
                       class="upgrade"
                       onclick={() => {
@@ -59,15 +137,16 @@ const start = function (data, ID) {
                   <section class="main mb-25  ">
                     <h2 class="general-title mt-25">Dashboard</h2>
                     <div class="main-blocks mt-20">
-                      <Elements.BlockBoard
+                      {/* <Elements.BlockBoard
+                        className="userBlock"
                         switcher={Static.activeQuestion}
                         key="t5"
                         textClue="Main user account information. Their account level and type, a link to verification or confirmed verification. Display of NFTs that are in staking and unlocking access. Daily platform visits and tasks."
                       >
-                        <Elements.BlockPersonal />
-                      </Elements.BlockBoard>
 
-                      {/* <div class="blocks-item user-profile">
+                      </Elements.BlockBoard> */}
+
+                      <div class="blocks-item user-profile">
                         <div class="user-icon">
                           <img src={svg["iconsGreen/user"]}></img>
                         </div>
@@ -99,10 +178,39 @@ const start = function (data, ID) {
                           <img src={images["personal/4"]}></img>
                         </div>
                         <div class="daily-progress mt-15">
-                          <img src={images["personal/everyDay"]}></img>
+                          {/* <img src={images["personal/everyDay"]}></img> */}
+                          <div class="daily-line"></div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span>mn</span>
+                          </div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span>tu</span>
+                          </div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span class="mt-5">we</span>
+                          </div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span>th</span>
+                          </div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span>fr</span>
+                          </div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span>sa</span>
+                          </div>
+                          <div class="daily-item">
+                            <span class="daily-circle"></span>
+                            <span>su</span>
+                          </div>
                         </div>
                         <button class="btn btn-green mt-10">daily task</button>
-                      </div> */}
+                      </div>
 
                       <Elements.BlockBoard
                         className="interesting"

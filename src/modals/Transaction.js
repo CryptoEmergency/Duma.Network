@@ -12,6 +12,7 @@ import svg from "@assets/svg/index.js";
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  Static.valueMoney;
 
   load({
     ID,
@@ -38,8 +39,20 @@ const forExport = function (data, ID) {
                   </label>
                   <input
                     id="summ"
+                    type="text"
                     class="form-input personal-input"
                     placeholder={data.text}
+                    oninput={function () {
+                      let value = this.value.replace(/[^0-9]/g, "");
+                      Static.valueMoney = Number(
+                        // this.innerText.trim()
+                        value.trim()
+                      );
+                      if (data.type === "withdraw") {
+                        Static.valueMoney = -Static.valueMoney;
+                      }
+                      console.log("=92d0be=", Static.valueMoney);
+                    }}
                   ></input>
                 </div>
 
@@ -82,8 +95,35 @@ const forExport = function (data, ID) {
                   <label for="switch-1"></label>
                 </div>
               </main>
-              <footer class="footer-modal">
-                <button class="btn btn-white">Confirm</button>
+              <footer
+                class={["footer-modal", Variable.myInfo.role ? "grid-2" : null]}
+              >
+                <button
+                  class="btn btn-white"
+                  onclick={() => {
+                    fn.modals.close(ID);
+                  }}
+                >
+                  Confirm
+                </button>
+                {Variable.myInfo.role ? (
+                  <button
+                    class="btn btn-standart ml-15"
+                    onclick={async function () {
+                      await fn.socket.send({
+                        method: "Deposit",
+                        params: {
+                          _id: Variable.myInfo._id,
+                          balance: Static.valueMoney,
+                          type: data.type,
+                        },
+                      });
+                      initReload();
+                    }}
+                  >
+                    Deposit
+                  </button>
+                ) : null}
               </footer>
             </div>
           </div>
