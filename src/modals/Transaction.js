@@ -43,15 +43,11 @@ const forExport = function (data, ID) {
                     class="form-input personal-input"
                     placeholder={data.text}
                     oninput={function () {
-                      let value = this.value.replace(/[^0-9]/g, "");
-                      Static.valueMoney = Number(
-                        // this.innerText.trim()
-                        value.trim()
-                      );
+                      this.value = this.value.replace(/[^0-9]/g, "");
+                      Static.valueMoney = Number(this.value.trim());
                       if (data.type === "withdraw") {
                         Static.valueMoney = -Static.valueMoney;
                       }
-                      console.log("=92d0be=", Static.valueMoney);
                     }}
                   ></input>
                 </div>
@@ -102,6 +98,7 @@ const forExport = function (data, ID) {
                   class="btn btn-white"
                   onclick={() => {
                     fn.modals.close(ID);
+                    initReload();
                   }}
                 >
                   Confirm
@@ -118,7 +115,7 @@ const forExport = function (data, ID) {
                           type: data.type,
                         },
                       });
-                      initReload();
+                      initReload("modals");
                     }}
                   >
                     Deposit

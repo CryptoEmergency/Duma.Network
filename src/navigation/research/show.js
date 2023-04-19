@@ -111,9 +111,12 @@ const start = function (data, ID) {
       Static.currentSlide = 0;
       Static.slideHidden = Static.item.gallery.length - 4;
       Static.slideHiddenMobile = Static.item.gallery.length - 1;
+      Static.invest;
+      Static.investCommission;
+      Static.totalInvest;
     },
     fn: () => {
-      // console.log("=0e0048=", Static.item);
+      console.log("=71c0ea=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }
@@ -234,12 +237,79 @@ const start = function (data, ID) {
                       {Static.item.have}$/{Static.item.target}$
                     </span>
                     <div class="card-btns">
-                      <button class="btn btn-black">
-                        min. {Static.item.seedRound}$
+                      <input
+                        class="admin-input"
+                        placeholder={`min. ${Static.item.seedRound}$`}
+                        Element={($el) => {
+                          Static.investInput = $el;
+                        }}
+                        oninput={function () {
+                          this.value = this.value.replace(/[^0-9]/g, "");
+                          // if (value < Static.item.seedRound) {
+                          //   this.value = Static.item.seedRound;
+                          // } else {
+                          //   this.value = value;
+                          // }
+                          Static.invest = Number(this.value.trim());
+                          Static.investCommission = (Static.invest / 100) * 15;
+                          Static.totalInvest = `-${
+                            Static.invest + Static.investCommission
+                          }`;
+                          console.log("=889435=", Static.totalInvest);
+                          initReload();
+                        }}
+                      />
+                      <button class="btn btn-black" style="cursor:default;">
+                        {Static.totalInvest
+                          ? `${Static.totalInvest}$`
+                          : `with commission 15%`}
                       </button>
-                      <button class="btn btn-black">without comission</button>
                     </div>
-                    <button class="btn btn-green mt-10">
+                    <button
+                      class={[
+                        "btn",
+                        "btn-green",
+                        "mt-10",
+                        Static.totalInvest &&
+                        Static.totalInvest <= Variable.myInfo.balance
+                          ? null
+                          : "btn-disabled",
+                      ]}
+                      onclick={async function () {
+                        if (!Variable.auth) {
+                          fn.modals.Login({});
+                          return;
+                        }
+                        if (
+                          Variable.myInfo.balance < Static.invest ||
+                          Static.invest == "undefined"
+                        ) {
+                          fn.modals.Soon({});
+                          return;
+                        }
+                        if (Static.totalInvest > Variable.myInfo.balance) {
+                          fn.modals.Soon({});
+                          return;
+                        }
+                        await fn.socket.send({
+                          method: "Invest",
+                          params: {
+                            projectId: Static.item._id,
+                            sum: Static.invest,
+                            commission: Static.investCommission,
+                            total: Static.totalInvest,
+                            type: "investing",
+                            userId: Variable.myInfo._id,
+                          },
+                        });
+                        Static.item.have += Static.invest;
+                        Static.investInput.value = "";
+                        Static.invest = "";
+                        Static.investCommission = "";
+                        Static.totalInvest = "";
+                        initReload();
+                      }}
+                    >
                       BECOME OUR PARTNER
                     </button>
                   </div>

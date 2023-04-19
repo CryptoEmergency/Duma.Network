@@ -7,3 +7,25 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+// buttons active
+// неактивная кнопка
+.btn-disabled{
+  cursor: default;
+  opacity: 0.7;
+}
+.btn-black{
+  background-color: var(--btn-black);
+}
+// buttons end
+// inputs
+.admin-input{
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 10px;
+  background: $back-primary;
+  color: var(--text-main);
+  width: 100%;
+  text-align: center;
+}
+// inputs

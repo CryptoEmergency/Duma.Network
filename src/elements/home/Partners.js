@@ -1,4 +1,4 @@
-import { jsx, jsxFrag } from "@betarost/cemserver/cem.js";
+import { Variable, jsx, jsxFrag } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
@@ -27,9 +27,16 @@ const forExport = function ({ className }) {
             // let tmp = await fn.socket.get({ method: "Users" });
             // console.log("=c7f06a=", tmp);
             // let tmp2 = await fn.socket.set({
-            //   method: "Users",
-            //   _id: "640b50260485741932a21a72",
-            //   params: { update: { icon: "Привет!!!!!" } },
+            //   method: "History",
+            //   // _id: "640b50260485741932a21a72",
+            //   action: "insert",
+            //   params: {
+            //     insert: {
+            //       sum: 1000,
+            //       idUser: Variable.myInfo._id,
+            //       type: "withdraw",
+            //     },
+            //   },
             // });
             // console.log("=58001c=", tmp2);
             // let tmp = await fn.socket.get({
