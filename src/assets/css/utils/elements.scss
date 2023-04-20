@@ -1,24 +1,79 @@
-.icon{
+.icon {
   width: 20px;
 }
-.text-more{
+
+.text-more {
   -webkit-line-clamp: 3;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+// флексбоксы
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 // buttons active
+// главная кнопка по умолчанию синего цвета
+.btn {
+  text-transform: uppercase;
+  font-weight: 600;
+  // font-size: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  color: var(--text-main);
+  background: var(--btn-standart);
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  height: 40px;
+}
+
 // неактивная кнопка
-.btn-disabled{
+.btn-disabled {
   cursor: default;
   opacity: 0.7;
 }
-.btn-black{
+
+.btn-green {
+  background: var(--btn-green);
+}
+
+.btn-black {
   background-color: var(--btn-black);
 }
+
+.btn-gradient {
+  background: var(--btn-gradient);
+  text-align: center;
+
+  img {
+    display: none;
+  }
+}
+
+.btn-bordo {
+  background: $bordo;
+  border: 1px solid $pink;
+}
+
+.btn-passive {
+  background: $grey-dark;
+  border: 1px solid $grey;
+  cursor: default;
+}
+
 // buttons end
 // inputs
-.admin-input{
+.admin-input {
   border: none;
   outline: none;
   border-radius: 8px;
@@ -28,4 +83,5 @@
   width: 100%;
   text-align: center;
 }
+
 // inputs

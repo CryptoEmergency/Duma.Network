@@ -20,22 +20,33 @@ const forExport = function ({
   items,
   switcher,
   key,
+  news,
 }) {
   return (
     <div class={["blocks-item", className ? className : null]}>
-      {textCategory ? (
-        <span class="text-category text">{textCategory}</span>
-      ) : null}
-
+      {textCategory ? <span class="text-category text">{textCategory}</span> : null}
       <Elements.Question textClue={textClue} switcher={switcher} key={key} />
-      {items ? (
+      {/* <span class="soon-text">coming soon</span> */}
+      {items ? 
         <div>
           <Elements.cards.Small items={items} className="cards-small" />
           <div>{children}</div>
+        </div> : null
+      }
+
+       { news ? 
+        <div class="list-news">
+          {news.map((item)=>{
+            return(
+              <div class="new">
+                <span class="text-green">{item.title}:</span>
+                <span class="bounding-text">{item.text}</span>
+              </div>
+            )
+          }) }
         </div>
-      ) : (
-        <span class="soon-text">coming soon</span>
-      )}
+        : null}
+      
     </div>
   );
 };

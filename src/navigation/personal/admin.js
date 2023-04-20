@@ -61,6 +61,16 @@ const start = function (data, ID) {
                     Marketplace Lists
                   </button>
                 </div>
+                <div class="mb-10">
+                  <button
+                    class="btn btn-green"
+                    onclick={() => {
+                      fn.siteLink("/personal/admin/list/news/");
+                    }}
+                  >
+                    News Lists
+                  </button>
+                </div>
               </div>
             </div>
           </div>

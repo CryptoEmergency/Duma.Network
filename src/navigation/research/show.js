@@ -73,8 +73,7 @@ const mapPoints = {
   },
   competitors: {
     name: "Competitors",
-    maxPoint: 0,
-    noPoints: true,
+    maxPoint: 10,
   },
   mediaText: {
     name: "Media",
@@ -747,6 +746,13 @@ const start = function (data, ID) {
                   <div class="scheme-card" id="competitors">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
+                      <span class="text-green">
+                        {Static.item.rankList.competitors}
+                        {mapPoints.competitors.maxPoint
+                          ? `/${mapPoints.competitors.maxPoint}`
+                          : null}{" "}
+                        points
+                      </span>
                     </div>
                     <div class="scheme-card_desc text">
                       {fn.editText(Static.item.competitors, {

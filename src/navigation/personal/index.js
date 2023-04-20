@@ -26,8 +26,6 @@ const start = function (data, ID) {
       Static.user = await fn.socket.get({
         method: "Users",
         _id: Variable.myInfo._id,
-        // action: findOne,
-        // params: { filter: { _id: Variable.myInfo._id } },
       });
       Static.projects = await fn.socket.get({
         method: "Research",
@@ -36,6 +34,14 @@ const start = function (data, ID) {
           limit: 3,
         },
       });
+      Static.news = await fn.socket.get({
+        method: "News",
+        params: {
+          filter: { moderation: true },
+          limit: 3,
+        },
+      });
+      console.log('=b96092=',Static.news)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -218,39 +224,50 @@ const start = function (data, ID) {
                         key="t1"
                         textCategory="News and Update"
                         textClue="Latest news and updates on the projects that the user is tracking. Updates on sales on the marketplace and changes that have occurred in the projects the user has invested in."
+                        news={Static.news}
                       />
 
-                      <div class="blocks-item bag">
-                        <span class="text-category text">Portfolio</span>
-                        <div class="user-icon">
-                          <img src={svg["iconsGreen/bag"]}></img>
-                        </div>
-                        <div class="bag-value">
-                          <span class="text">Nums</span>
-                          <img class="arrow arr-left" src={svg.arrowLeft}></img>
-                          <div class="nums">
-                            <span class="num_big">0,00</span>
-                            <span class="num_small">+0$</span>
-                            <span class="num_small"> +0,00%</span>
-                          </div>
-                          <img
-                            class="arrow arr-right"
-                            src={svg.arrowRight}
-                          ></img>
-                        </div>
-                      </div>
+                      <Elements.Diagram 
+                        switcher={Static.activeQuestion}
+                        textCategory="Portfolio"
+                        key="t3"
+                        textClue="Displaying a pie chart of your portfolio, divided by asset type: 1. Invested and unrealized, 2. in Vesting, 3. Tokens on platform wallet, 4. For sale on Marketplace, 5. Stablecoins, 6. Non-custodial wallet balance."
+                      />
+
+
                       <Elements.BlockBoard
                         className="graph"
                         switcher={Static.activeQuestion}
                         key="t2"
                         textClue="Graphic portfolio PNL. The changes in the graphical display vary depending on the right block, where you can select the asset display type. Additionally, the graphical display changes depending on the timeframe: D / W / M / 6M / 12M/ ALL."
                       />
-                      <Elements.BlockBoard
-                        className="circle-graph"
-                        switcher={Static.activeQuestion}
-                        key="t3"
-                        textClue="Displaying a pie chart of your portfolio, divided by asset type: 1. Invested and unrealized, 2. in Vesting, 3. Tokens on platform wallet, 4. For sale on Marketplace, 5. Stablecoins, 6. Non-custodial wallet balance."
-                      />
+                      
+                      <div class="blocks-item refferal">
+                        <span class="text-category text">Refferal earning</span>
+                        <Elements.Question 
+                          textClue="Referral earnings block. With key metrics of attracted users and your profit." 
+                          switcher={Static.activeQuestion} 
+                          key="t5" 
+                        />
+                        <div class="refferal-inner">
+                          <div>
+                            <span class="ref-sum">2811$</span>
+                            <p><span class="text-green mr-15">+1500$</span>Total</p>
+                            <p><span class="text-green mr-15">+89,17$</span>Per 1 day</p>
+                          </div>
+                          <div class="grid-2 mt-15">
+                            <div class="flex-col">
+                              <span class="ref-sum">41</span>
+                              <span>Total refferals</span>
+                            </div>
+                            <div class="flex-col">
+                              <span class="ref-sum">41</span>
+                              <span>Confirmed</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <Elements.BlockBoard
                         className="news"
                         switcher={Static.activeQuestion}

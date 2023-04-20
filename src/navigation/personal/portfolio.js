@@ -46,7 +46,13 @@ const start = function (data, ID) {
                         <span class="num_small">+0$</span>
                         <span class="num_small"> +0,00%</span>
                       </div>
-                      <img src={images["personal/circleGraph"]}></img>
+                      <Elements.Diagram 
+                        className="clear-block"
+                        switcher={Static.activeQuestion}
+                        textCategory="Portfolio"
+                        key="t3"
+                        textClue="Displaying a pie chart of your portfolio, divided by asset type: 1. Invested and unrealized, 2. in Vesting, 3. Tokens on platform wallet, 4. For sale on Marketplace, 5. Stablecoins, 6. Non-custodial wallet balance."
+                      />
                       <button class="btn btn-white mt-10">More</button>
                     </div>
                     <div class="blocks-item">

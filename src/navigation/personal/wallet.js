@@ -138,7 +138,7 @@ const start = function (data, ID) {
                         </div>
                       </div>
                     </div>
-                    <div class="blocks-item news">
+                    <div class="blocks-item news" style="height: 400px;">
                       <span class="text-category text">NFT</span>
                       <span class="soon-text">coming soon</span>
                     </div>

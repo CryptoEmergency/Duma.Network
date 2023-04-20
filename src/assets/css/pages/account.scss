@@ -1,8 +1,10 @@
-.daily-progress{
+// прогресс выполнения ежедненых заданий
+.daily-progress {
   display: flex;
   justify-content: space-between;
   position: relative;
-  .daily-line{
+
+  .daily-line {
     position: absolute;
     top: 2px;
     left: 0;
@@ -11,11 +13,13 @@
     background: #303437;
     z-index: 0;
   }
-  .daily-item{
+
+  .daily-item {
     font-size: 12px;
     color: var(--text-main);
     z-index: 1;
-    .daily-circle{
+
+    .daily-circle {
       background: #303437;
       width: 7px;
       height: 7px;
@@ -23,12 +27,111 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      &_active{
+
+      &_active {
         width: 12px;
         height: 12px;
         background: var(--green);
       }
     }
   }
-  
+
+}
+
+// список новостей
+.list-news {
+  // display: grid;
+  // grid-template-columns: 1fr;
+  // grid-gap: 1px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+
+  .new {
+    // display: flex;
+
+    // grid-template-columns: repeat(2, 1fr);
+    .text-green {
+      width: fit-content;
+    }
+
+    .bounding-text {
+      -webkit-line-clamp: 1;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+// круговая диаграмма
+.canvas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .bag-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .nums {
+      padding-bottom: 20px;
+    }
+
+    .num_big {
+      font-size: 38px;
+    }
+
+    .arr-left {
+      left: -60%;
+    }
+
+    .arr-right {
+      right: -60%;
+    }
+  }
+}
+
+@keyframes render {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.unit {
+  fill: none;
+  stroke-width: 3;
+  cursor: pointer;
+
+  animation-name: render;
+  animation-duration: 1.5s;
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+.unit:hover,
+.hovered {
+  opacity: 0.8;
+  stroke-width: 4;
+}
+
+.unit:nth-child(1) {
+  stroke: var(--blue);
+  stroke-dasharray: 33.3 100;
+  // stroke-dashoffset: -33.3;
+}
+
+.unit:nth-child(2) {
+  stroke: var(--green);
+  stroke-dasharray: 33.3 100;
+  stroke-dashoffset: -33.3;
+}
+
+.unit:nth-child(3) {
+  stroke: var(--orange);
+  stroke-dasharray: 33.3 100;
+  stroke-dashoffset: -66.6;
 }

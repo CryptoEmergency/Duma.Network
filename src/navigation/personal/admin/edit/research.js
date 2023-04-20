@@ -173,6 +173,7 @@ const start = function (data, ID) {
     telegram: {},
     github: {},
     linkedin: {},
+    site: {},
   };
   load({
     ID,
@@ -1700,9 +1701,6 @@ const start = function (data, ID) {
                                 class="news-form_gallery-delete"
                                 onclick={() => {
                                   Static.item.roadmap.image = "";
-                                  // updateRecords({
-                                  //   gallery: Static.item.gallery,
-                                  // });
                                   updateValue({
                                     key: "roadmap.image",
                                     value: Static.item.roadmap.image,
@@ -2005,6 +2003,38 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="2"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.competitors
+                            ? Static.item.rankList.competitors
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.competitors = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.competitors",
+                            value: Static.item.rankList.competitors,
+                          });
+                        }}
+                      >
+                        {Static.item.rankList.competitors}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
