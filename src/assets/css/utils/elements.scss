@@ -84,4 +84,25 @@
   text-align: center;
 }
 
+.input-password {
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 10px;
+  background: $back-primary;
+  color: var(--text-main);
+  width: 100%;
+  position: relative;
+}
+
+
+
 // inputs
+
+
+// временная смена пароля
+.block-change {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 15px;
+}

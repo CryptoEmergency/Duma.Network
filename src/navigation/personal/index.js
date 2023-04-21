@@ -5,6 +5,7 @@ import {
   Data,
   Variable,
   setStorage,
+  getStorage,
   initReload,
 } from "@betarost/cemserver/cem.js";
 import { fn } from "@src/functions/export.js";
@@ -41,6 +42,8 @@ const start = function (data, ID) {
           limit: 3,
         },
       });
+
+
       console.log('=b96092=',Static.news)
     },
     fn: () => {
@@ -49,10 +52,11 @@ const start = function (data, ID) {
         return <div></div>;
       }
       return (
-        <div class="back-secondary">
+        <div>
+        {/* // <div class="back-secondary"> */}
           <div class="wrapper">
             <div class="personal-inner">
-              <Elements.BlockMenu Static={Static} item={Static.user} />
+              <Elements.BlockMenu Static={Static} />
               <div class="personal-main">
                 <div class="personal-header">
                   <div class="circle-effect circle-effect1"></div>
@@ -123,10 +127,7 @@ const start = function (data, ID) {
                         }}
                       />
                     </div>
-                    <Elements.BlockPersonal
-                      Static={Static}
-                      item={Static.user}
-                    />
+                    <Elements.BlockPersonal Static={Static}/>
                     <span
                       class="upgrade"
                       onclick={() => {
@@ -143,14 +144,6 @@ const start = function (data, ID) {
                   <section class="main mb-25  ">
                     <h2 class="general-title mt-25">Dashboard</h2>
                     <div class="main-blocks mt-20">
-                      {/* <Elements.BlockBoard
-                        className="userBlock"
-                        switcher={Static.activeQuestion}
-                        key="t5"
-                        textClue="Main user account information. Their account level and type, a link to verification or confirmed verification. Display of NFTs that are in staking and unlocking access. Daily platform visits and tasks."
-                      >
-
-                      </Elements.BlockBoard> */}
 
                       <div class="blocks-item user-profile">
                         <div class="user-icon">

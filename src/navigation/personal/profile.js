@@ -22,6 +22,11 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
+      Static.user = await fn.socket.get({
+        method: "Users",
+        _id: Variable.myInfo._id,
+      });
+
     },
     fn: () => {
       if (!Variable.auth) {
@@ -43,7 +48,9 @@ const start = function (data, ID) {
                       <span>Personal data</span>
                       <div class="profile-inner">
                         <div>
-                          <div class="user-card mt-15">
+                          <Elements.BlockPersonal Static={Static}/>
+
+                          {/* <div class="user-card mt-15">
                             <img src={images["personal/user"]}></img>
                             <div class="user-name">
                               <span class="user-name_name">
@@ -52,7 +59,7 @@ const start = function (data, ID) {
                               </span>
                               <span class="text">Name Surname</span>
                             </div>
-                          </div>
+                          </div> */}
                           <div class="userDate mt-10">
                             <span>{Variable.myInfo.email}</span>
                             <span>pipe number</span>
@@ -62,11 +69,31 @@ const start = function (data, ID) {
                           <button class="btn btn-white mt-10">
                             change password
                           </button>
+
+                          {/* <div class="block-change mt-15">
+                            <input
+                              placeholder="Введите старый пароль" 
+                              class="input-password"
+                              oninput={function(){
+                                if(this.value.trim() === Static.user.password){
+                                  console.log('=2c59d9=',"пароль совпадает")
+                                }else{
+                                  console.log('=4f2d68=',"пароль не совпадает")
+                                }
+                              }}
+                            ></input>
+                            <input 
+                              placeholder="Введите новый пароль" 
+                              class="input-password"
+                            ></input>
+                            <button class="btn btn-standart">Apply</button>
+                          </div> */}
+
                         </div>
                         <div class="dailyReward">
                           <span>Daily Reward</span>
                           <div class="nums">
-                            <span class="num_big">0,00</span>
+                            <span class="num_big">{Variable.myInfo.balance}$</span>
                           </div>
                           <img
                             class="mb-20"

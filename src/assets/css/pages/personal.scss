@@ -1,6 +1,6 @@
 .personal-inner {
-  display: grid;
-  grid-template-columns: 2fr 8fr;
+  display: flex;
+  // grid-template-columns: 2fr 8fr;
   grid-gap: 25px;
   // height: 100vh;
   margin: 0 15px;
@@ -113,14 +113,172 @@
 // another elements
 
 // sidebar
+@keyframes swing {
+
+  0%,
+  30%,
+  50%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(10deg);
+  }
+
+  40% {
+    transform: rotate(-10deg);
+  }
+
+  60% {
+    transform: rotate(5deg);
+  }
+
+  80% {
+    transform: rotate(-5deg);
+  }
+}
+
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  background: var(--back-primary);
-  padding: 30px 20px;
-  overflow-y: scroll;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  height: 100%;
+  width: 280px;
+  min-width: 280px;
+  transition: width, left, right, 0.5s;
+  overflow-x: hidden;
+  position: relative;
+
+  .btn-collapser {
+    position: absolute;
+    left: 245px;
+    top: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(50%);
+    transition: left, right, 0.5s;
+    z-index: 100;
+    background-color: var(--green);
+    box-shadow: 1px 1px 4px #0c1e35;
+    cursor: pointer;
+
+    img {
+      max-height: 15px;
+    }
+  }
+
+  &_closed {
+    width: 35px;
+    min-width: 35px;
+
+    .btn-collapser {
+      // left: 60px;
+      left: -7px;
+      top: 10px;
+
+
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+    .sidebar-header {
+      visibility: hidden;
+    }
+
+    .btn-empty {
+      border: none;
+
+      &:hover .sidebar-icon {
+        img {
+          filter: $filterOlive;
+          animation: swing ease-in-out 0.5s 1 alternate;
+        }
+      }
+    }
+
+  }
+
+  .sidebar-layout {
+    height: auto;
+    min-height: 100%;
+    // position: relative;
+    background-color: var(--back-primary);
+    position: fixed;
+    top: 80px;
+    // position: sticky;
+    // top: 0;
+    width: 280px;
+    min-width: 280px;
+
+    &_closed {
+      width: 35px;
+      min-width: 35px;
+
+    }
+
+    // z-index: 2;
+
+    .sidebar-header {
+      .num_big {
+        font-size: 48px;
+      }
+    }
+
+    .sidebar-content {
+      position: relative;
+
+      .sidebar-title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex-grow: 1;
+        transition: color 0.5s;
+        overflow: hidden;
+      }
+
+      .sidebar-out {
+        margin: 20px 0;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+
+        &:hover .sidebar-icon {
+          img {
+            animation: swing ease-in-out 0.5s 1 alternate;
+          }
+
+        }
+      }
+
+    }
+
+    .sidebar-icon {
+      width: 35px;
+      margin-right: 15px;
+      transition: color 0.3s;
+
+      img {
+        height: 25px;
+      }
+    }
+
+    .sidebar-item:hover .sidebar-icon {
+      filter: $filterOlive;
+
+      img {
+        animation: swing ease-in-out 0.5s 1 alternate;
+      }
+    }
+
+  }
 }
 
 // scrollbar for sidebar
@@ -188,19 +346,10 @@
 .sidebar-item a {
   display: flex;
   align-items: center;
-  padding: 15px 0;
+  padding: 10px 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-}
-
-.sidebar-icon {
-  margin-right: 15px;
-  max-height: 20px;
-}
-
-.sidebar-item:hover .sidebar-icon {
-  filter: $filterOlive;
 }
 
 .sidebar-item:hover {
@@ -213,30 +362,6 @@
   .sidebar-icon {
     filter: $filterOlive;
   }
-}
-
-.sidebar-out {
-  margin: 35px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
-  cursor: pointer;
-
-  img {
-    margin-left: 10px;
-  }
-}
-
-.sidebar-out:hover {
-  color: $olive;
-}
-
-.sidebar-out:hover img {
-  filter: $filterOlive;
 }
 
 .sidebar-btns {
@@ -354,6 +479,7 @@
   position: relative;
   padding-top: 20px;
   z-index: 1;
+  width: 100%;
 
   .circle-effect {
     position: absolute;
@@ -646,6 +772,12 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
 }
 
 .project-logo {
@@ -788,6 +920,12 @@
 }
 
 .block-table {
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+
   .block-table_row {
     display: grid;
     grid-template-columns: 0.5fr 0.5fr 1.5fr 0.5fr 1fr 1fr 0.5fr;
@@ -813,6 +951,11 @@
 .bookmarks-inner {
   display: grid;
   grid-gap: 15px;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
 }
 
 .bookmarks-item {
@@ -1136,9 +1279,9 @@
     grid-template-columns: 3fr 7fr;
   }
 
-  .sidebar {
-    padding: 15px;
-  }
+  // .sidebar {
+  //   padding: 15px;
+  // }
 
   .sidebar-item a {
     padding: 10px 0;
@@ -1180,22 +1323,30 @@
 
 @media(max-width: 600px) {
 
-  // sidebar
+
+
+  // sidebar 
+
   .sidebar {
-    width: fit-content;
+    .sidebar-layout {
+      .sidebar-header {
+        .nums {
+          padding-bottom: 20px;
+
+          .num_big {
+            font-size: 36px;
+            line-height: 48px;
+          }
+        }
+      }
+    }
   }
 
-  .nums {
-    display: none;
-  }
+
 
   .sidebar-icon {
     height: 30px;
     margin-right: 0;
-  }
-
-  .sidebar-item a span {
-    display: none;
   }
 
   .sidebar-btns {
@@ -1207,6 +1358,65 @@
   }
 
   // sidebar
+  // dashboard
+  .main-blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .blocks-item {
+
+    &.interesting,
+    &.news,
+    &.wallet,
+    &.reward,
+    &.lock {
+      grid-row: auto;
+      grid-column: auto;
+    }
+
+    &.graph {
+      height: 270px;
+    }
+
+    &.news {
+      .cards-small {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  .main-blocks {
+    &.portfolio {
+
+      .blocks-item:first-child,
+      .blocks-item:nth-child(2),
+      .blocks-item:nth-child(4) {
+        grid-row: auto;
+        grid-column: auto;
+      }
+    }
+
+    &.referral {
+
+      .blocks-item:first-child,
+      .blocks-item:nth-child(2),
+      .blocks-item:nth-child(3),
+      .blocks-item.platform {
+        grid-row: auto;
+        grid-column: auto;
+      }
+    }
+
+    &.profile {
+      .blocks-item {
+        .profile-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+
+  // dashboard
 }
 
 @media(max-width: 464px) {}

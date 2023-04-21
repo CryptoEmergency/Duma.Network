@@ -68,7 +68,7 @@ const start = function (data, ID) {
                       <div class="grid-3 pb-20">
                         <div>
                           <div class="nums-col">
-                            <span class="num_big">0,00</span>
+                            <span class="num_big">{Variable.myInfo.balance}$</span>
                             <span class="num_small">+0$</span>
                             <span class="num_small"> +0,00%</span>
                           </div>
@@ -78,7 +78,14 @@ const start = function (data, ID) {
                           <span class="num_big">1280</span>
                           <span>Total number of referrals</span>
                         </div>
-                        <img src={images["personal/circleGraph"]}></img>
+                        {/* <img src={images["personal/circleGraph"]}></img> */}
+                        <div class="canvas">
+                          <svg class="chart" width="150" height="150" viewBox="0 0 40 40">
+                            <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+                            <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+                            <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+                          </svg>
+                        </div>
                       </div>
                       <div class="block-table">
                         <div class="block-table_row subtitle">
