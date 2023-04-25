@@ -3,9 +3,10 @@
   --text-secondary: #97999B;
   --btn-standart: #0B78B5;
   --btn-gradient: linear-gradient(268.2deg, #0056D8 -24.95%, rgba(170, 255, 98, 0) 162.48%), #6CAC10;
-  --btn-green: linear-gradient(270deg, rgba(146, 218, 24, 0.76) -17.91%, rgba(0, 139, 255, 0) 117.19%), #73993B;;
-  --btn-black:#191E21;
-  --back-primary:#191E21;
+  --btn-green: linear-gradient(270deg, rgba(146, 218, 24, 0.76) -17.91%, rgba(0, 139, 255, 0) 117.19%), #73993B;
+  ;
+  --btn-black: #191E21;
+  --back-primary: #191E21;
   --back-secondary: #303437;
   --back-light: #F1F1F1;
   --green: #99CD41;
@@ -18,7 +19,7 @@
   --back-card-1: linear-gradient(180deg, rgba(155, 52, 255, 0.2) 0%, rgba(42, 16, 207, 0.05) 100%);
   --back-card-2: linear-gradient(180deg, rgba(247, 242, 171, 0.3) 100%, #F4B6E7 100%);
   --back-card-3: linear-gradient(180deg, #81D37E -170%, rgba(53, 60, 53, 0.39) 100%);
-  --back-blur:linear-gradient(180deg, rgba(255, 255, 255, 0.25) 12.55%, rgba(255, 255, 255, 0.2) 33.51%, rgba(255, 255, 255, 0.2) 59.66%);
+  --back-blur: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 12.55%, rgba(255, 255, 255, 0.2) 33.51%, rgba(255, 255, 255, 0.2) 59.66%);
 }
 
 :root[theme='test'] {
@@ -47,7 +48,8 @@ $back1: linear-gradient(180deg, rgba(255, 153, 0, 0.25) 0%, rgba(255, 204, 0, 0.
 $back2: linear-gradient(180deg, rgba(158, 66, 247, 0.17) 0%, rgba(255, 119, 0, 0.3) 100%);
 $back3: linear-gradient(180deg, rgba(4, 141, 255, 0.38) 0%, rgba(255, 0, 0, 0.12) 110.87%);
 $back4: linear-gradient(180deg, rgba(94, 157, 64, 0.24) 0%, rgba(83, 57, 157, 0.42) 96.87%);
-$back5: linear-gradient(180deg, rgba(4, 255, 165, 0.2136) 0%, rgba(96, 44, 208, 0.18) 0.01%, rgba(0, 255, 240, 0.2) 100%);;
+$back5: linear-gradient(180deg, rgba(4, 255, 165, 0.2136) 0%, rgba(96, 44, 208, 0.18) 0.01%, rgba(0, 255, 240, 0.2) 100%);
+;
 $back6: linear-gradient(180deg, rgba(115, 255, 5, 0.07) 0%, rgba(154, 210, 57, 0.12) 99.48%);
 $back7: linear-gradient(180deg, rgba(4, 141, 255, 0.122) 0%, rgba(255, 255, 255, 0.078) 42.34%, rgba(4, 141, 255, 0.13) 100%);
 $back8: linear-gradient(180deg, rgba(255, 0, 199, 0.062) -25.21%, rgba(255, 0, 0, 0.064) 130.58%);
@@ -84,40 +86,52 @@ $indent in $indents {
   .mt-#{$index} {
     margin-top: $indent !important;
   }
-  .mb-#{$index}{
+
+  .mb-#{$index} {
     margin-bottom: $indent !important;
   }
-  .mr-#{$index}{
+
+  .mr-#{$index} {
     margin-right: $indent !important;
   }
-  .ml-#{$index}{
+
+  .ml-#{$index} {
     margin-left: $indent !important;
   }
-  .mY-#{$index}{
-    margin: $indent 0!important;
+
+  .mY-#{$index} {
+    margin: $indent 0 !important;
   }
-  .mX-#{$index}{
-    margin: 0 $indent!important;
+
+  .mX-#{$index} {
+    margin: 0 $indent !important;
   }
+
   .pt-#{$index} {
     padding-top: $indent !important;
   }
-  .pb-#{$index}{
+
+  .pb-#{$index} {
     padding-bottom: $indent !important;
   }
-  .pr-#{$index}{
+
+  .pr-#{$index} {
     padding-right: $indent !important;
   }
-  .pl-#{$index}{
+
+  .pl-#{$index} {
     padding-left: $indent !important;
   }
-  .pY-#{$index}{
-    padding: $indent 0!important;
+
+  .pY-#{$index} {
+    padding: $indent 0 !important;
   }
-  .pX-#{$index}{
-    padding: 0 $indent!important;
+
+  .pX-#{$index} {
+    padding: 0 $indent !important;
   }
 }
+
 // style general
 .general-title {
   font-weight: 600;
@@ -127,7 +141,8 @@ $indent in $indents {
   text-align: center;
   margin-top: 100px;
 }
-.general-text{
+
+.general-text {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -136,9 +151,7 @@ $indent in $indents {
 .bold {
   font-weight: 700;
 }
-.ttu{
-  text-transform: uppercase;
-}
+
 // style general
 ::-webkit-scrollbar {
   width: 5px;
@@ -153,9 +166,10 @@ $indent in $indents {
   border-radius: 8px;
   border: 1px solid $back-primary;
 }
+
 // ?  не работает
-.notScroll{
-  &::-webkit-scrollbar{
+.notScroll {
+  &::-webkit-scrollbar {
     display: none;
   }
 }

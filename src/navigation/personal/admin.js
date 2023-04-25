@@ -71,6 +71,17 @@ const start = function (data, ID) {
                     News Lists
                   </button>
                 </div>
+                <div class="mb-10">
+                  <button
+                    class="btn btn-green"
+                    onclick={() => {
+                      // fn.siteLink("/personal/admin/list/news/");
+                      fn.siteLink(`/personal/admin/edit/status`);
+                    }}
+                  >
+                    Edit statuses for user
+                  </button>
+                </div>
               </div>
             </div>
           </div>

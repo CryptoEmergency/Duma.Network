@@ -15,6 +15,7 @@ import Elements from "@src/elements/export.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  Static.activeQuestion = {};
   load({
     ID,
     fnLoad: async () => {
@@ -22,6 +23,13 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
+      Static.userRefs = await fn.socket.get({
+        method: "Users",
+        params: {
+          filter: { ref: Variable.myInfo._id },
+          limit: 5,
+        },
+      });
     },
     fn: () => {
       if (!Variable.auth) {
@@ -33,51 +41,135 @@ const start = function (data, ID) {
           <div class="personal-inner">
             <Elements.BlockMenu />
             <div class="personal-main">
+              <div class="circle-effect circle-effect1"></div>
+              <div class="circle-effect circle-effect2"></div>
               <Elements.BlockPersonal />
               <div class="personal-content">
                 {/* main page */}
                 <section class="main mb-25  ">
                   <h2 class="general-title mt-25">Referral</h2>
                   <div class="main-blocks referral mt-20">
-                    <div class="blocks-item">
-                      <span class="title-block pb-15">Offer</span>
-                      <div class="row-block">
-                        <span>ID</span>
-                        <span class="cY">
-                          123234<img class="ml-10" src={svg.copy}></img>
-                        </span>
+                    <div class="blocks-item">                     
+                      <span class="text-category text">Referral data</span>
+                      <div class="referral-invite">
+                        
+                        <div class="row-block mb-10">
+                          <span>ID</span>
+                          <div class="cY">
+                            <span 
+                              class="ref-link"
+                              Element={($el)=>{
+                                Static.copyId = $el;
+                              }}
+                            >{Variable.myInfo._id}</span>
+                            <div class="copy-link">
+                              <img 
+                                class="ml-10" 
+                                src={svg.copy}
+                                onclick={function(){
+                                  window.navigator.clipboard.writeText(Static.copyId.textContent)
+                                  Static.copySuccessId.hidden = false;
+                                  setTimeout(()=>{
+                                    Static.copySuccessId.hidden = true
+                                  }, 1000)
+                                  initReload();
+                                }}
+                              />
+                              <div
+                                class="copy-success"
+                                hidden={true}
+                                Element={($el)=>{
+                                  Static.copySuccessId = $el;
+                                }}
+                              >
+                                Successfully copied
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row-block">
+                          <span>Link</span>
+                          <div class="cY">
+                            <span 
+                              class="ref-link"
+                              Element={($el)=>{
+                                Static.copyRefLink = $el;
+                              }}
+                            >
+                              https://duma.network/ref/{Variable.myInfo._id}
+                            </span>
+                            <div class="copy-link">
+                              <img 
+                                class="ml-10" 
+                                src={svg.copy}
+                                onclick={function(){
+                                  window.navigator.clipboard.writeText(Static.copyRefLink.textContent)
+                                  Static.copySuccessLink.hidden = false;
+                                  setTimeout(()=>{
+                                    Static.copySuccessLink.hidden = true
+                                  }, 1000)
+                                  initReload();
+                                }}
+                              />
+                              <div
+                                class="copy-success"
+                                hidden={true}
+                                Element={($el)=>{
+                                  Static.copySuccessLink = $el;
+                                }}
+                              >
+                                Successfully copied
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <button class="btn btn-white mY-10">
+                          invite friends
+                        </button>
+                        <span class="text">Link to the description</span>
+                        
+                        
                       </div>
-                      <div class="row-block">
-                        <span>Link</span>
-                        <span class="cY">
-                          12323432<img class="ml-10" src={svg.copy}></img>
-                        </span>
-                      </div>
-                      <button class="btn btn-white mt-10">
-                        invite friends
-                      </button>
-                      <span class="text">referral program</span>
+
                     </div>
                     <div class="blocks-item">
-                      <span class="title-block pb-15">
+                      <Elements.Question 
+                        textClue="Graphic display of referral accruals." 
+                        switcher={Static.activeQuestion} 
+                        key="r2" 
+                      />
+                      <span class="text-category text">
                         Block of graphical display of accruals
                       </span>
                     </div>
                     <div class="blocks-item">
-                      <span class="title-block pb-15">Referral accruals</span>
-                      <div class="grid-3 pb-20">
+                      <Elements.Question 
+                        textClue="Referral Earnings block for users actively developing the platform and having an audience. In the block, you can find information about each investor, the number of projects they invested in, and the amount they invested." 
+                        switcher={Static.activeQuestion} 
+                        key="r3" 
+                      />
+                      <span class="text-category text">Referral accruals</span>
+                      <div class="grid-3 pY-20">
                         <div>
                           <div class="nums-col">
-                            <span class="num_big">{Variable.myInfo.balance}$</span>
+                            <span class="num_big">{Variable.myInfo.balance.toFixed(2)}$</span>
                             <span class="num_small">+0$</span>
                             <span class="num_small"> +0,00%</span>
                           </div>
-                          <button class="btn btn-white">more</button>
+                          <button class="btn btn-white mt-15">more</button>
                         </div>
-                        <div class="ref-general">
-                          <span class="num_big">1280</span>
-                          <span>Total number of referrals</span>
+                        <div class="grid-2">
+                          <div class="ref-general">
+                            <span class="num_big">{Static.userRefs.length}</span>
+                            <span class="text">Total refferals</span>
+                          </div>
+                          <div class="ref-general">
+                            <span class="num_big">0</span>
+                            <span class="text">Confirmed</span>
+                          </div>
                         </div>
+                        
                         {/* <img src={images["personal/circleGraph"]}></img> */}
                         <div class="canvas">
                           <svg class="chart" width="150" height="150" viewBox="0 0 40 40">
@@ -97,7 +189,22 @@ const start = function (data, ID) {
                           <span>Total amount</span>
                           <span>Referral</span>
                         </div>
-                        <div class="block-table_row">
+                        {
+                          Static.userRefs.map((item, index)=>{
+                            return(
+                              <div class="block-table_row">
+                                <span>{index + 1}</span>
+                                <span>15%</span>
+                                <span>{item.email}</span>
+                                <span>123</span>
+                                <span>344$</span>
+                                <span>1500$</span>
+                                <span>1234</span>
+                              </div>
+                            )
+                          })
+                        }
+                        {/* <div class="block-table_row">
                           <span>1</span>
                           <span>15%</span>
                           <span>person2@ya.ru</span>
@@ -105,41 +212,14 @@ const start = function (data, ID) {
                           <span>344$</span>
                           <span>1500$</span>
                           <span>1234</span>
-                        </div>
-                        <div class="block-table_row">
-                          <span>2</span>
-                          <span>1%</span>
-                          <span>person1@mail.com</span>
-                          <span>123</span>
-                          <span>244$</span>
-                          <span>1500$</span>
-                          <span>1234</span>
-                        </div>
-                        <div class="block-table_row">
-                          <span>3</span>
-                          <span>12%</span>
-                          <span>person2@ya.ru</span>
-                          <span>123</span>
-                          <span>230$</span>
-                          <span>1500$</span>
-                          <span>123</span>
-                        </div>
-                        <div class="block-table_row">
-                          <span>4</span>
-                          <span>14%</span>
-                          <span>person1@mail.com</span>
-                          <span>123</span>
-                          <span>235$</span>
-                          <span>1454$</span>
-                          <span>123</span>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div class="blocks-item platform">
                       <div class="blur">
                         <h2>coming soon</h2>
                       </div>
-                      <span class="title-block">
+                      <span class="text-category text">
                         Closed sections of the platform that can be opened for
                         referral accruals
                       </span>

@@ -43,12 +43,14 @@ $back in $backAdvance {
   }
 }
 
-.circle1,.circle2{
+.circle1,
+.circle2 {
   position: absolute;
   border-radius: 50%;
   box-shadow: 0 0 200px 125px #1E6978;
   z-index: 0;
 }
+
 // ======================================
 .c-main {
   margin-top: 72px;
@@ -82,6 +84,7 @@ $back in $backAdvance {
 .team-inner {
   padding-top: 50px;
 }
+
 // about
 .intro-inner {
   display: flex;
@@ -94,9 +97,11 @@ $back in $backAdvance {
 .intro-desc {
   align-self: flex-start;
 }
-.device{
+
+.device {
   position: relative;
-  .device-video{
+
+  .device-video {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -127,20 +132,23 @@ $back in $backAdvance {
   grid-gap: 25px;
 }
 
-.ecosystem-about{
+.ecosystem-about {
   position: relative;
-  .polygonSmall{
+
+  .polygonSmall {
     bottom: -135px;
     right: 220px;
     z-index: 0;
   }
-  .polygonBig{
+
+  .polygonBig {
     bottom: -105px;
     right: -50px;
     z-index: 0;
   }
 }
-.polygon{
+
+.polygon {
   position: absolute;
 }
 
@@ -193,18 +201,21 @@ $back in $backAdvance {
   padding-top: 15px;
   max-width: 610px;
 }
+
 // about
 
 // section investing
-.advantages{
+.advantages {
   position: relative;
-  .circle1{
+
+  .circle1 {
     top: 50%;
     right: 30%;
     box-shadow: 0px 0px 235px 125px #1E6978;
   }
 }
-.investing{
+
+.investing {
   padding-top: 50px;
 }
 
@@ -258,7 +269,8 @@ $back in $backAdvance {
   align-items: center;
   position: relative;
   z-index: 1;
-  .btn{
+
+  .btn {
     width: 370px;
     height: 50px;
   }
@@ -271,7 +283,8 @@ $back in $backAdvance {
 .contract-desc {
   display: flex;
   align-items: center;
-  span{
+
+  span {
     padding-left: 80px;
     padding-right: 80px;
   }
@@ -286,13 +299,15 @@ $back in $backAdvance {
 // section opportunities
 .opportunities {
   position: relative;
-  .polygonSmall{
+
+  .polygonSmall {
     bottom: -140px;
     right: 170px;
     width: 88px;
     z-index: 0;
   }
-  .polygonBig{
+
+  .polygonBig {
     bottom: -190px;
     right: -50px;
     width: 157px;
@@ -300,7 +315,7 @@ $back in $backAdvance {
   }
 }
 
-.opportunities .circle1{
+.opportunities .circle1 {
   top: 45%;
   left: 30%;
 }
@@ -345,15 +360,17 @@ $back in $backAdvance {
 // section opportunities
 
 // section partners
-.parthers{
+.parthers {
   position: relative;
-  .polygonBig{
+
+  .polygonBig {
     top: -30px;
     left: -125px;
     width: 157px;
     z-index: 0;
   }
-  .polygonSmall{
+
+  .polygonSmall {
     bottom: -30px;
     left: -40px;
     width: 75px;
@@ -382,18 +399,21 @@ $back in $backAdvance {
 // section partners
 
 // section roadmap
-.roadmap{
+.roadmap {
   position: relative;
-  .circle1{
+
+  .circle1 {
     top: 10%;
     right: 20%;
     box-shadow: 0 0 150px 80px #1E6978;
   }
-  .circle2{
+
+  .circle2 {
     bottom: 30%;
     left: 30%;
   }
 }
+
 .roadmap-inner {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -403,7 +423,7 @@ $back in $backAdvance {
 .roadmap-item {
   padding: 15px 30px;
   position: relative;
-  background: rgba(39,44,49,0.7);
+  background: rgba(39, 44, 49, 0.7);
   border-radius: 18px;
   transition: .5s ease;
 
@@ -428,32 +448,33 @@ $back in $backAdvance {
 
 }
 
-.text-green {
-  color: #92DA18;
-}
 
 // section roadmap
 
 // section team
-.team{
+.team {
   position: relative;
-  .polygonSmall{
+
+  .polygonSmall {
     top: -70px;
     left: 50px;
     width: 88px;
     z-index: 0;
   }
-  .polygonBig{
+
+  .polygonBig {
     top: -75px;
     left: 240px;
     width: 157px;
     z-index: 0;
   }
-  .circle1{
+
+  .circle1 {
     bottom: 30%;
     left: 30%;
   }
 }
+
 .team-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -512,30 +533,35 @@ $back in $backAdvance {
   padding: 65px;
   position: relative;
   z-index: 2;
-  .info{
+
+  .info {
     padding-right: 170px;
   }
-  .polygonSmall{
+
+  .polygonSmall {
     top: -125px;
     right: 240px;
     width: 88px;
     z-index: -1;
   }
-  .polygonBig{
+
+  .polygonBig {
     top: -100px;
     right: -20px;
     width: 157px;
     z-index: -1;
   }
 }
-.backDown{
+
+.backDown {
   position: absolute;
   bottom: -100px;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 1;
 }
-.info-social_item{
+
+.info-social_item {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 15px;
@@ -547,90 +573,107 @@ $back in $backAdvance {
 
 
 
-.social{
-  h2{
+.social {
+  h2 {
     font-size: 36px;
     line-height: 44px
   }
-  span{
+
+  span {
     font-size: 18px;
     font-weight: 400;
   }
 }
+
 .social-inner {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
-  a{
+
+  a {
     display: flex;
     justify-content: center;
     align-items: center;
-    img{
+
+    img {
       background-size: contain;
       max-height: 35px;
     }
   }
 }
+
 // section info-social
 
 // error
-.error{
+.error {
   position: relative;
   height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  .left{
+
+  .left {
     left: 0;
   }
-  .right{
+
+  .right {
     right: 0;
   }
-  .title-error{
+
+  .title-error {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 1;
-    h1{
+
+    h1 {
       font-size: 70px;
     }
   }
-  .btn{
+
+  .btn {
     width: 300px;
   }
-  .circle1{
+
+  .circle1 {
     left: 20%;
     top: 40%;
     z-index: 0;
   }
-  .circle2{
+
+  .circle2 {
     right: 20%;
     bottom: 40%;
     z-index: 0;
   }
 }
+
 // error
 
 // media
 @media(max-width: 992px) {
+
   // investing
   .invest-item {
     padding: 15px;
   }
 
   // error
-  .error{
-    .polygon{
+  .error {
+    .polygon {
       width: 350px;
     }
-    .left{
+
+    .left {
       top: 5%;
     }
-    .right{
+
+    .right {
       bottom: 5%;
     }
   }
+
   // error
 }
 
@@ -647,18 +690,20 @@ $back in $backAdvance {
     padding-bottom: 0;
   }
 
-  .device{
+  .device {
     padding: 10px 10px 3px 10px;
     border-radius: 8px;
     background: var(--black);
-    .device-video{
+
+    .device-video {
       position: relative;
       top: auto;
       right: auto;
       width: 100%;
       height: auto;
     }
-    img{
+
+    img {
       display: none;
     }
   }
@@ -720,19 +765,22 @@ $back in $backAdvance {
   // investing
 
   // contract
-  .contract{
+  .contract {
     padding: 20px;
-    .btn{
+
+    .btn {
       max-width: 150px;
       width: 100%;
     }
   }
-  .contract-desc{
-    span{
+
+  .contract-desc {
+    span {
       padding: 0 15px;
       font-size: 14px;
     }
   }
+
   // contract
 
   // advantages 
@@ -747,9 +795,10 @@ $back in $backAdvance {
   // .parthers-inner{
   //   grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
   // }
-  .parther-img{
+  .parther-img {
     max-height: 70px;
   }
+
   // partners
 
   // roadmap 
@@ -764,57 +813,71 @@ $back in $backAdvance {
   .team-inner {
     grid-template-columns: repeat(2, 1fr);
   }
+
   // team 
 
   // info-social
-  .backDown{
+  .backDown {
     bottom: -170px;
   }
-  .info-social{
+
+  .info-social {
     padding: 35px 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 45px;
-    .info{
+
+    .info {
       padding-right: 0;
     }
-    .btn{
+
+    .btn {
       width: 100%;
     }
   }
-  .social{
-    h2{
+
+  .social {
+    h2 {
       font-size: 26px;
     }
-    span{
+
+    span {
       font-size: 14px;
     }
-    .social-inner{
-      a{
+
+    .social-inner {
+      a {
         justify-content: flex-start;
-        img{
+
+        img {
           max-height: 25px;
         }
       }
     }
   }
+
   // info-social
 
 }
-@media(max-width: 550px){
+
+@media(max-width: 550px) {
+
   // error
-  .error{
-    .polygon{
+  .error {
+    .polygon {
       width: 300px;
     }
-    .title-error{
-      h1{
+
+    .title-error {
+      h1 {
         font-size: 56px;
       }
     }
   }
+
   // error
 }
+
 @media(max-width: 464px) {
   .general-title {
     margin-top: 25px;
@@ -830,7 +893,7 @@ $back in $backAdvance {
     padding-top: 25px;
   }
 
-  .ecosystem-title{
+  .ecosystem-title {
     font-size: 20px;
   }
 
@@ -844,26 +907,32 @@ $back in $backAdvance {
   }
 
   // contract
-  .contract{
+  .contract {
     flex-direction: column;
-    .btn{
+
+    .btn {
       margin-top: 15px;
       max-width: 100%;
     }
   }
-  .contract-desc{
-    span{
+
+  .contract-desc {
+    span {
       font-size: 14px;
     }
   }
+
   // contract
   // opportunities
   .advantages-inner {
     grid-template-columns: 1fr;
   }
-  .opportunities .circle1, .opportunities .circle2{
+
+  .opportunities .circle1,
+  .opportunities .circle2 {
     box-shadow: 0 0 160px 100px #1E6978;
   }
+
   .advance {
     grid-gap: 15px;
   }
@@ -875,9 +944,10 @@ $back in $backAdvance {
   .advance-item:hover {
     scale: 1;
   }
+
   // opportunities
 
-  .parthers-inner{
+  .parthers-inner {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -915,15 +985,18 @@ $back in $backAdvance {
   .team-text {
     font-size: 14px;
   }
+
   // social
-  .backDown{
+  .backDown {
     bottom: -45px;
   }
-  .info-social{
-    .info{
+
+  .info-social {
+    .info {
       padding-right: 0;
     }
   }
+
   .info-social {
     display: grid;
     grid-template-columns: 1fr;
@@ -940,72 +1013,84 @@ $back in $backAdvance {
   }
 
   // polygon element
-  .ecosystem{
-    .polygonBig{
+  .ecosystem {
+    .polygonBig {
       bottom: 18px;
       right: -10px;
       width: 125px;
     }
-    .polygonSmall{
+
+    .polygonSmall {
       bottom: -90px;
       right: 1%;
       width: 75px;
     }
   }
-  .opportunities{
-    .polygonBig{
+
+  .opportunities {
+    .polygonBig {
       top: -80px;
       right: -45px;
       width: 125px;
     }
-    .polygonSmall{
+
+    .polygonSmall {
       left: 0;
       top: -45px;
       width: 70px;
     }
   }
-  .parthers{
-    .polygonBig{
+
+  .parthers {
+    .polygonBig {
       top: -5px;
       left: -35px;
       width: 130px;
     }
-    .polygonSmall{
+
+    .polygonSmall {
       right: -25px;
       bottom: -50px;
       left: auto;
     }
   }
-  .team{
-    .polygonBig{
+
+  .team {
+    .polygonBig {
       top: 10px;
       right: -15px;
       left: auto;
       width: 125px;
     }
-    .polygonSmall{
+
+    .polygonSmall {
       top: -15px;
       left: 20px;
       width: 75px;
     }
   }
+
   // polygon element
 }
-@media(max-width: 400px){
-  .error{
-    .polygon{
+
+@media(max-width: 400px) {
+  .error {
+    .polygon {
       width: 270px;
     }
-    .title-error{
-      h2{
+
+    .title-error {
+      h2 {
         margin-bottom: 15px;
       }
-      h1{
+
+      h1 {
         font-size: 36px;
         margin-bottom: 15px;
       }
     }
-    .btn{
+
+    .btn {
       width: 150px;
     }
   }

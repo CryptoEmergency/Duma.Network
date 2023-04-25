@@ -129,9 +129,13 @@ const start = function (data, ID) {
                     </div>
                     <Elements.BlockPersonal Static={Static}/>
                     <span
-                      class="upgrade"
+                      class="btn btn-transparent"
                       onclick={() => {
-                        fn.modals.Soon({});
+                        if (Variable.myInfo.role) {
+                          fn.modals.Status({});
+                        } else {
+                          fn.modals.Soon({});
+                        }
                       }}
                     >
                       upgrade
@@ -151,13 +155,20 @@ const start = function (data, ID) {
                         </div>
                         <div class="user">
                           <div class="user-card">
-                            <div class="user-picture">
-                              <img src={images["personal/user"]}></img>
+                            <div class="user-picture mr-15">
+                              <img
+                                src={
+                                  Variable.myInfo.icon
+                                    ? `/assets/upload/${Variable.myInfo.icon}`
+                                    : svg.user
+                                }
+                              />
+                              <div class="user-status">{Variable.myInfo.status}</div>
                             </div>
-                            <div class="user-name">
-                              <span class="user-name_name">
+                            <div class="user-info">
+                              <span class="user-name">
                                 {Variable.myInfo.firstName}
-                                <span class="notice">5</span>
+                                <span class="level">{Variable.myInfo.level}</span>
                               </span>
                               <span
                                 class="text-underline"
@@ -170,7 +181,7 @@ const start = function (data, ID) {
                             </div>
                           </div>
                         </div>
-                        <div class="user-images pt-10">
+                        <div class="user-images pt-20">
                           <img src={images["personal/1"]}></img>
                           <img src={images["personal/2"]}></img>
                           <img src={images["personal/3"]}></img>

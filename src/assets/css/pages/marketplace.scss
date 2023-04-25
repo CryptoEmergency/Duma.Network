@@ -1,17 +1,18 @@
-.back-market{
+.back-market {
   background-image: url(../svg/marketBack.svg);
   background-position: center -650px;
 }
 
 // elements
-.m-active{
+.m-active {
   color: var(--btn-standart);
 }
+
 // element
 
 // filter
-.side-filters{
-  .filters-box{
+.side-filters {
+  .filters-box {
     position: fixed;
     z-index: 950;
     left: 100%;
@@ -25,26 +26,31 @@
     border-radius: 25px 0px 0px 25px;
     // background-color: rgba(0, 0, 0, 0.2);
     background-color: rgba(0, 0, 0, 0.8);
-    
-    &_active{
+
+    &_active {
       transform: translateX(-100%);
       width: 500px;
-      @media(max-width: 464px){
+
+      @media(max-width: 464px) {
         width: 100%;
       }
     }
-    .filters-container{
+
+    .filters-container {
       padding: 20px;
       border-radius: 25px 0px 0px 25px;
       position: relative;
       height: 100%;
-      .filters-title{
+
+      .filters-title {
         font-size: 30px;
       }
-      .dropdown__button{
+
+      .dropdown__button {
         width: 100%;
       }
-      .filters-body{
+
+      .filters-body {
         margin: 20px 0;
         display: grid;
         grid-template-columns: 1fr;
@@ -53,7 +59,8 @@
         overflow-x: hidden;
         overflow-y: auto;
       }
-      .filters-footer{
+
+      .filters-footer {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 25px;
@@ -65,7 +72,7 @@
 }
 
 // slider cards 
-.slider-mCards{
+.slider-mCards {
   // height: 335px;
   height: 310px;
   width: 100%;
@@ -73,7 +80,8 @@
   transition: 0.5s ease;
   overflow: hidden;
   position: relative;
-  .counter-slider{
+
+  .counter-slider {
     position: relative;
     top: 0;
     right: 0;
@@ -83,7 +91,8 @@
     color: var(--text-main);
   }
 }
-.line{
+
+.line {
   // margin-top: 25px;
   display: flex;
   grid-gap: 25px;
@@ -93,14 +102,15 @@
   transition: 0.5s ease;
 
   width: 3654px;
-  &::after{
+
+  &::after {
     content: "";
     display: block;
     clear: both;
   }
 }
 
-.mCards-item{
+.mCards-item {
   // background-image: url(../images/back.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -112,8 +122,8 @@
   border-radius: 20px;
   overflow: hidden;
   padding: 20px;
-  
-  .mCards-item-inner{
+
+  .mCards-item-inner {
     z-index: 2;
     position: absolute;
     top: 0;
@@ -122,52 +132,59 @@
     bottom: 0;
     padding: 20px;
     background: rgba(48, 52, 55, 0.6);
-    
-    .card-text{
+
+    .card-text {
       position: absolute;
       bottom: 15px;
       left: 20px;
     }
   }
-  .mCards-info{
+
+  .mCards-info {
     display: flex;
     justify-content: space-between;
   }
-  .mCards-info_status{
+
+  .mCards-info_status {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    .blockchain{
+
+    .blockchain {
       width: 30px;
     }
   }
 }
-.mCard-item_blur{
+
+.mCard-item_blur {
   height: 310px;
-  
+
   filter: blur(3px);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  img{
+
+  img {
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
   }
 }
-.m-search{
+
+.m-search {
   position: relative;
   max-width: 830px;
 }
 
 // filter
-.filter-m{
+.filter-m {
   display: flex;
   align-items: center;
-  @media(max-width: 464px){
+
+  @media(max-width: 464px) {
     flex-direction: column;
     align-items: inherit;
   }
@@ -176,7 +193,7 @@
 // filter
 
 // table
-.table-m{
+.table-m {
   position: relative;
   margin-top: 60px;
   border-radius: 10px;
@@ -188,60 +205,51 @@
   // .btn{
   //   margin: 0 auto;
   // }
-  .notFound{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    span{
-      font-size: 24px;
-      font-family: $conthrax;
-    }
-    img{
-      width: 200px;
-      height: 200px;
-    }
-  }
 }
-.table-m-sort{
+
+.table-m-sort {
   display: flex;
   // position: relative;
   // left: 0;
 }
+
 // tabs
-.tabs{
-  &.tabs-m{
+.tabs {
+  &.tabs-m {
     width: 500px;
-    .tabs-controller{
+
+    .tabs-controller {
       border-bottom: 3px solid var(--text-main);
-      .glider{
+
+      .glider {
         height: 5px;
         background: var(--btn-standart);
         // left: 0!important;
       }
-      .tab-item{
+
+      .tab-item {
         font-size: 14px;
         // width: 20%;
         width: 25%;
         color: var(--text-main);
-        @media(max-width: 464px){
+
+        @media(max-width: 464px) {
           min-width: 25%;
         }
-        &.checked{
+
+        &.checked {
           color: var(--btn-standart);
         }
       }
     }
-    @media(max-width: 464px){
+
+    @media(max-width: 464px) {
       width: 100%;
     }
   }
 }
 
-.table-m-content{
+.table-m-content {
   padding-bottom: 20px;
   display: grid;
   grid-template-columns: 1fr;
@@ -249,33 +257,38 @@
 
 
 }
-.table-m-item{
+
+.table-m-item {
   display: grid;
   grid-template-columns: 0.5fr 1.5fr 1fr 1fr 1fr 0.5fr 1fr 1fr 0.5fr 1fr 1fr;
   grid-gap: 10px;
   align-items: center;
   border-radius: 10px;
   padding: 5px 10px;
-  td{
+
+  td {
     text-align: center;
   }
 }
+
 .table-m-item:nth-child(2n) {
   background: var(--back-blur);
 }
+
 // table
 // small cards
-.mCards-small{
+.mCards-small {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 15px;
-  @media(max-width: 464px){
+
+  @media(max-width: 464px) {
     grid-template-columns: 1fr;
   }
 }
 
 // перепиши нормально
-.btn-block{
+.btn-block {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -283,7 +296,8 @@
   bottom: 20px;
   left: 50%;
   transform: translate(-50%, 0);
-  .btn{
+
+  .btn {
     width: 300px;
   }
 }

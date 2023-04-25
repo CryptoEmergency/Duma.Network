@@ -388,89 +388,10 @@
 // sidebar
 
 // header
-.personal-header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.user {
-  display: grid;
-  grid-template-columns: 0.5fr 2fr 2fr;
-  grid-gap: 25px;
-  align-items: center;
-
-  .setting {
-    img {
-      max-height: 40px;
-      cursor: pointer;
-    }
-  }
-}
-
-.user-card {
-  display: flex;
-
-  .user-picture {
-    img {
-      margin-right: 15px;
-      max-height: 40px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-  }
 
 
-  .user-name {
-    display: flex;
-    flex-direction: column;
 
-    .user-name_wel {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 16px;
-      color: $olive;
-    }
 
-    .user-name_name {
-      font-family: $inter;
-      font-weight: 600;
-      font-size: 20px;
-      position: relative;
-    }
-
-    .notice {
-      width: 20px;
-      height: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 12px;
-      background: var(--blue);
-      position: absolute;
-      top: 0;
-      right: -25px;
-      border-radius: 50%;
-    }
-  }
-}
-
-.text-underline {
-  text-decoration: underline var(--text-main);
-}
-
-.upgrade {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  border: 1px solid $grey;
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: uppercase;
-}
 
 // header
 
@@ -857,101 +778,13 @@
 
 // portfolio
 
-// refferal
-.main-blocks {
-  &.referral {
-    .blocks-item {
-      display: grid;
-
-      &:first-child {
-        grid-row: 1;
-        grid-column: 1;
-      }
-
-      &:nth-child(2) {
-        grid-row: 1;
-        grid-column: 2 / span 3;
-      }
-
-      &:nth-child(3) {
-        grid-row: 2 / span 3;
-        grid-column: 1 / span 3;
-
-        img {
-          width: 175px;
-          height: 175px;
-          justify-self: center;
-        }
-      }
-
-      &:nth-child(4) {
-        grid-row: 5;
-        grid-column: 1 / span 3;
-        height: 400px;
-      }
-
-      &.platform {
-        background: url(/src/assets/images/personal/elPlatform.png) no-repeat;
-        background-position: center center;
-        position: relative;
-
-        // background-size: contain;
-        .blur {
-          background: rgba(48, 52, 55, 0.7);
-          backdrop-filter: blur(2.5px);
-          border-radius: 20px;
-          position: absolute;
-        }
-
-        .title-block {
-          z-index: 2;
-          align-items: flex-start;
-        }
-      }
-    }
-  }
-}
-
-.ref-general {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-}
-
-.block-table {
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-    height: 3px;
-  }
-
-  .block-table_row {
-    display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1.5fr 0.5fr 1fr 1fr 0.5fr;
-    grid-gap: 10px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    justify-items: center;
-
-    &:nth-child(2n) {
-      background: var(--back-blur);
-    }
-
-    & span:first-child {
-      justify-self: flex-start;
-    }
-  }
-
-}
-
-// refferal
-
 // bookmarks
 .bookmarks-inner {
   display: grid;
   grid-gap: 15px;
   overflow-x: auto;
+  position: relative;
+  height: 325px;
 
   &::-webkit-scrollbar {
     height: 3px;

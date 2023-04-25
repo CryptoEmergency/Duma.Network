@@ -15,12 +15,6 @@ const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.showForAdd = false;
   Static.blockchains_list;
-  // if (Static.listsBlockchains) {
-  //   for (let item of Static.listsFonds) {
-  //     Static.blockchains_list.push(item._id);
-  //   }
-  // }
-  // console.log("=09601a=", Static.listsBlockchains);
   load({
     ID,
     fnLoad: async () => {

@@ -38,7 +38,7 @@ const forExport = function ({
         <div class="bag-value">
           <img class="arrow arr-left" src={svg.arrowLeft}></img>
           <div class="nums">
-            <span class="num_big">{Variable.myInfo.balance}$</span>
+            <span class="num_big">{Variable.myInfo.balance.toFixed(2)}$</span>
             <span class="num_small">+0$</span>
             <span class="num_small"> +0,00%</span>
           </div>

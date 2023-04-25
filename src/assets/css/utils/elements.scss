@@ -2,6 +2,7 @@
   width: 20px;
 }
 
+// текстовые модификаторы
 .text-more {
   -webkit-line-clamp: 3;
   display: -webkit-box;
@@ -9,12 +10,52 @@
   overflow: hidden;
 }
 
+.text-underline {
+  text-decoration: underline var(--text-main);
+}
+
+.text-green {
+  color: var(--green);
+}
+
+.ttu {
+  text-transform: uppercase;
+}
+
+// текстовые модификаторы
+
+// фигуры, линии, круги
+.line-green {
+  border-right: 2px solid var(--green);
+  padding-right: 15px;
+  margin-right: 15px;
+}
+
+// фигуры, линии, круги
+
 // флексбоксы
 .flex-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
+// флексбоксы
+
+// grid
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+
+// grid
 
 // buttons active
 // главная кнопка по умолчанию синего цвета
@@ -95,9 +136,31 @@
   position: relative;
 }
 
-
-
 // inputs
+
+// заглушка нет записей
+.notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-size: 24px;
+    font-family: $conthrax;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+// заглушка нет записей
+
 
 
 // временная смена пароля

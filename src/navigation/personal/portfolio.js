@@ -42,7 +42,7 @@ const start = function (data, ID) {
                     <div class="blocks-item">
                       <span class="title-block pb-10">Capitalization</span>
                       <div class="nums">
-                        <span class="num_big">{Variable.myInfo.balance}$</span>
+                        <span class="num_big">{Variable.myInfo.balance.toFixed(2)}$</span>
                         <span class="num_small">+0$</span>
                         <span class="num_small"> +0,00%</span>
                       </div>

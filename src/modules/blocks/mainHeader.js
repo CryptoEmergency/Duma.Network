@@ -416,6 +416,7 @@ const mainHeader = async function () {
                         class="btn btn-reg"
                         onclick={() => {
                           fn.modals.Login({});
+
                         }}
                       >
                         <span>Login</span>

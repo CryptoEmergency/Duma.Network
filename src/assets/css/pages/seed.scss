@@ -80,7 +80,7 @@ $backCard: (
   position: relative;
   border-bottom: 1px solid $grey-dark;
 
-  .tab-item{
+  .tab-item {
     width: 15%;
     transition: all 0.3s;
     text-align: center;
@@ -97,7 +97,7 @@ $backCard: (
     margin-bottom: 0.5px;
     cursor: pointer;
 
-    &.checked{
+    &.checked {
       color: var(--text-main);
     }
   }
@@ -140,19 +140,22 @@ $backCard: (
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 25px;
 }
+
 @each $index,
 $back in $backCard {
   .card-item_#{$index} {
     background: $back;
   }
 }
-.card-item_blur{
+
+.card-item_blur {
   filter: blur(10px);
   background: rgba(48, 52, 55, 0.5);
   backdrop-filter: blur(10px);
   position: relative;
 
 }
+
 .card-item {
   border-radius: 20px;
   position: relative;
@@ -162,65 +165,68 @@ $back in $backCard {
   justify-content: space-between;
   backdrop-filter: blur(7px);
 
-  .btn-green{
+  .btn-green {
     margin-top: 25px;
   }
-    .card-item_inner{
-      .card-item_img {
-        position: relative;
-        top: -2px;
-        overflow: hidden;
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
-        height: 200px;
-        img{
-          width: 100%;
-          max-width: 100%;
-          height: 100%;
-          // background-position: 0 0;
-          // background-size: auto auto;
-        }
-      }
 
-      .info {
-        padding: 25px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        // height: 100%;
-        grid-gap: 0;
-        // position: relative;
-      }
+  .card-item_inner {
+    .card-item_img {
+      position: relative;
+      top: -2px;
+      overflow: hidden;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+      height: 200px;
 
-      .desc {
-        font-size: 16px;
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        // background-position: 0 0;
+        // background-size: auto auto;
       }
-
-      .desc-title {
-        font-weight: 600;
-      }
-
-      .socials {
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        grid-gap: 15px;
-        justify-content: center;
-        max-width: 300px;
-        height: 70px;
-      }
-
-      .desc-text {
-        font-weight: 600;
-        -webkit-line-clamp: 4;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        height: 96px;
-      }
-     
     }
-  .soon-text{
+
+    .info {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      // height: 100%;
+      grid-gap: 0;
+      // position: relative;
+    }
+
+    .desc {
+      font-size: 16px;
+    }
+
+    .desc-title {
+      font-weight: 600;
+    }
+
+    .socials {
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      grid-gap: 15px;
+      justify-content: center;
+      max-width: 300px;
+      height: 70px;
+    }
+
+    .desc-text {
+      font-weight: 600;
+      -webkit-line-clamp: 4;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 96px;
+    }
+
+  }
+
+  .soon-text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -232,15 +238,12 @@ $back in $backCard {
 
 }
 
-.card-text{
+.card-text {
   font-weight: 400;
   font-size: 14px;
   line-height: 32px;
-  span{
-    border-right: 2px solid var(--green);
-    padding-right: 15px;
-    margin-right: 15px;
-  }
+
+
 }
 
 .info-bell {
@@ -301,6 +304,7 @@ $back in $backCard {
   display: flex;
   padding: 15px 0;
   align-items: center;
+
   .icon {
     height: 100%;
     width: auto;
@@ -318,9 +322,11 @@ $back in $backCard {
 
 
 }
-.blockchain{
+
+.blockchain {
   width: 35px;
 }
+
 .status,
 .ecosystem {
   background: $green-light;
@@ -339,11 +345,13 @@ $back in $backCard {
   background: var(--text-main);
   color: var(--black);
 }
-.rang{
+
+.rang {
   font-size: 12px;
   line-height: 14px;
   font-weight: 600;
 }
+
 .circle {
   width: 30px;
   height: 30px;
@@ -357,7 +365,8 @@ $back in $backCard {
   line-height: 32px;
   font-weight: 700;
 }
-.rang{
+
+.rang {
   color: var(--orange);
   font-family: $conthrax;
 
@@ -403,11 +412,11 @@ $back in $backCard {
 
 @media (max-width: 767px) {
   .tabs-controller {
-    .tab-item{
+    .tab-item {
       width: 32%;
       font-size: 18px;
     }
-    
+
   }
 
   // .tabs-controller .glider {
@@ -489,14 +498,17 @@ $back in $backCard {
     }
   }
 }
-@media (max-width: 464px){
-  .tabs-controller{
+
+@media (max-width: 464px) {
+  .tabs-controller {
     min-width: 100%;
     overflow-x: auto;
-    .tab-item{
+
+    .tab-item {
       min-width: 33%;
     }
   }
+
   .tabs-controller::-webkit-scrollbar {
     display: none;
   }

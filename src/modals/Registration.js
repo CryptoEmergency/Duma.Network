@@ -5,6 +5,7 @@ import {
   Data,
   initReload,
   Variable,
+  getStorage,
 } from "@betarost/cemserver/cem.js";
 
 import { fn } from "@src/functions/export.js";
@@ -49,9 +50,12 @@ const formCheck = function () {
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID, initData: "registration" });
+  Static.refId = getStorage("ref");
   load({
     ID,
     fn: () => {
+      console.log('=f3c144=',getStorage("ref"))
+      console.log('=5963b7=',Static.refId)
       return (
         <div class="wrap">
           <div class="wrap-body">
@@ -147,6 +151,7 @@ const forExport = function (data, ID) {
                         email: Static.email.trim(),
                         pass: Static.pass.trim(),
                         firstName: Static.firstName.trim(),
+                        ref: getStorage("ref"),
                       },
                     });
 

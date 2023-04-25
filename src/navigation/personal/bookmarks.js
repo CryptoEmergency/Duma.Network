@@ -43,34 +43,42 @@ const start = function (data, ID) {
               {/* main page */}
               <section class="bookmarks main">
                 <h2 class="general-title mt-25">Bookmarks</h2>
-                <div class="bookmarks-inner mt-25">
-                  {Static.tmp.map((item) => {
-                    return (
-                      <div class="bookmarks-item">
-                        <div class="user-card">
-                          <img
-                            class="bookmarks-icon"
-                            src={
-                              item.projectId?.icon
-                                ? `/assets/upload/${item.projectId.icon}`
-                                : images["personal/logoProject"]
-                            }
-                          />
-                          <span>{item.projectId?.name}</span>
-                        </div>
-                        <div class="round">round</div>
-                        <div class="price">price token</div>
-                        <div class="price">
-                          {item.projectId?.have}$/{item.projectId?.target}$
-                        </div>
-                        <div>date tge</div>
-                        <div class="text-underline">lead investor</div>
-                        <div>{item.projectId?.category}</div>
-                        <button class="btn btn-transparent">more</button>
+                
+                {/* <div class="bookmarks-inner mt-25">
+                  
+                  {Static.tmp.length ?
+                      Static.tmp.map((item) => {
+                        return (
+                          <div class="bookmarks-item">
+                            <div class="user-card">
+                              <img
+                                class="bookmarks-icon"
+                                src={
+                                  item.projectId?.icon
+                                    ? `/assets/upload/${item.projectId.icon}`
+                                    : images["personal/logoProject"]
+                                }
+                              />
+                              <span>{item.projectId?.name}</span>
+                            </div>
+                            <div class="round">round</div>
+                            <div class="price">price token</div>
+                            <div class="price">
+                              {item.projectId?.have}$/{item.projectId?.target}$
+                            </div>
+                            <div>date tge</div>
+                            <div class="text-underline">lead investor</div>
+                            <div>{item.projectId?.category}</div>
+                            <button class="btn btn-transparent">more</button>
+                          </div>
+                        );
+                      }) : 
+                      <div class="notFound">
+                        <span>Records not found in table</span>
+                        <img src={svg.notFound} />
                       </div>
-                    );
-                  })}
-                </div>
+                  }
+                </div> */}
               </section>
             </div>
           </div>

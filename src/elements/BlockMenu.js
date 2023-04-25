@@ -42,16 +42,13 @@ const isMobile = {
 
 
 // Data.Static.sidebarShow = false;
-if (getStorage("sidebarShow")) {
-  Data.Static.sidebarShow = getStorage("sidebarShow");
-}
+
 
 const forExport = function ({ Static, onclick, className, }) {
+  if (getStorage("sidebarShow")) {
+    Data.Static.sidebarShow = getStorage("sidebarShow");
+  }
   console.log('=1d98f1=',Data.Static.sidebarShow)
-  // if(isMobile.any()){
-  //   Data.Static.sidebarShow = true;
-  //   initReload()
-  // }
   return (
     <aside 
       class={["sidebar", 
@@ -73,7 +70,7 @@ const forExport = function ({ Static, onclick, className, }) {
         </span>
         <div class="sidebar-header">
           <div class="nums">
-            <span class="num_big">{Variable.myInfo.balance}$</span>
+            <span class="num_big">{Variable.myInfo.balance.toFixed(2)}$</span>
             <span class="num_small">+0$</span>
             <span class="num_small"> +0,00%</span>
           </div>

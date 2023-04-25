@@ -1,0 +1,78 @@
+.personal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 2fr;
+  grid-gap: 25px;
+  align-items: center;
+
+  .setting {
+    img {
+      max-height: 40px;
+      cursor: pointer;
+    }
+  }
+}
+
+.user-card {
+  display: flex;
+
+  .user-picture {
+    position: relative;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .user-status {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      background: #303437;
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 500;
+      padding: 5px;
+      border-radius: 6px;
+    }
+  }
+
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+
+    .text-green {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+
+    .user-name {
+      font-family: $inter;
+      font-weight: 600;
+      font-size: 20px;
+      position: relative;
+    }
+
+    .level {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      background: var(--blue);
+      position: absolute;
+      top: 0;
+      right: -25px;
+      border-radius: 50%;
+    }
+  }
+}

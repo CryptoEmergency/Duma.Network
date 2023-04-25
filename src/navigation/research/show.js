@@ -105,6 +105,7 @@ const start = function (data, ID) {
       if (!Static.item.socials || !Static.item.socials[0]) {
         Static.item.socials = [];
       }
+
       Static.activeImg = Static.item.gallery[0];
       Static.imgPosition = 0;
       Static.currentSlide = 0;
@@ -129,7 +130,7 @@ const start = function (data, ID) {
                   { title: Static.item.name },
                 ]}
               />
-              <section class="card-project">
+              <section class="card-project" id="cardProject">
                 <div class="project-name">
                   <div class="company">
                     <img
@@ -139,7 +140,7 @@ const start = function (data, ID) {
                           : images[`research/logo-duma}`]
                       }
                     ></img>
-                    <span class="company-title">{Static.item.name}</span>
+                    <h2 class="company-title">{Static.item.name}</h2>
                   </div>
                   <div class="statuses">
                     <div class="icon">
@@ -191,9 +192,12 @@ const start = function (data, ID) {
                         <img src={svg.bellWhite} class="bell" />
                       )}
                     </div>
-                    <h2 style="text-transform: uppercase;">
-                      {Static.item.tabs} ROUND IS OPEN
+                    <h2>
+                      <span class="ttu line-green">{Static.item.tabs} ROUND IS OPEN</span>
+                      {Static.item.seedRound ? `${Static.item.seedRound}$` : null}
                     </h2>
+                    
+
                     <p class="text">{Static.item.description}</p>
                     <div class="socials mt-15 mb-15">
                       {(Static.item.socials || []).map((element) => {
@@ -244,17 +248,11 @@ const start = function (data, ID) {
                         }}
                         oninput={function () {
                           this.value = this.value.replace(/[^0-9]/g, "");
-                          // if (value < Static.item.seedRound) {
-                          //   this.value = Static.item.seedRound;
-                          // } else {
-                          //   this.value = value;
-                          // }
                           Static.invest = Number(this.value.trim());
                           Static.investCommission = (Static.invest / 100) * 15;
-                          Static.totalInvest = `-${
-                            Static.invest + Static.investCommission
-                          }`;
-                          console.log("=889435=", Static.totalInvest);
+                          Static.totalInvest = `-${Static.invest + Static.investCommission}`;
+                          Static.balanceRef = (Static.invest / 100) * 5;
+                          console.log("=889435=", Static.balanceRef);
                           initReload();
                         }}
                       />
@@ -298,7 +296,7 @@ const start = function (data, ID) {
                             commission: Static.investCommission,
                             total: Static.totalInvest,
                             type: "investing",
-                            userId: Variable.myInfo._id,
+                            balanceRef: Static.balanceRef,
                           },
                         });
                         Static.item.have += Static.invest;
@@ -820,7 +818,16 @@ const start = function (data, ID) {
                   </div>
 
                   <center class="el-bottom mt-70">
-                    <button class="btn btn-green mb-15">
+                    <button 
+                      class="btn btn-green mb-15"
+                      onclick={() => {
+                        window.scrollTo({
+                          top: document.querySelector("#cardProject").offsetTop - 72,
+                          behavior: "smooth",
+                        });
+                        Static.investInput.focus();
+                      }}  
+                    >
                       Contributing is currently unavailable
                     </button>
                     <div class="project-rang-vertical">

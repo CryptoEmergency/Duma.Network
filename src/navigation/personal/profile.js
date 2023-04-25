@@ -93,7 +93,7 @@ const start = function (data, ID) {
                         <div class="dailyReward">
                           <span>Daily Reward</span>
                           <div class="nums">
-                            <span class="num_big">{Variable.myInfo.balance}$</span>
+                            <span class="num_big">{Variable.myInfo.balance.toFixed(2)}$</span>
                           </div>
                           <img
                             class="mb-20"

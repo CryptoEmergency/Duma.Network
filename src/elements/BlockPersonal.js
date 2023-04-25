@@ -13,18 +13,19 @@ import images from "@assets/images/index.js";
 const forExport = function ({ Static, onclick, className, item }) {
   return (
     <div class="user-card">
-      <div class="user-picture">
+      <div class="user-picture mr-15">
         <img
           src={
             Variable.myInfo.icon
               ? `/assets/upload/${Variable.myInfo.icon}`
-              : images["personal/user"]
+              : svg.user
           }
         />
+        <div class="user-status">{Variable.myInfo.status}</div>
       </div>
-      <div class="user-name">
-        <span class="user-name_wel">Welcome</span>
-        <span class="user-name_name">{Variable.myInfo.firstName}</span>
+      <div class="user-info">
+        <span class="text-green">Welcome</span>
+        <span class="user-name">{Variable.myInfo.firstName}</span>
       </div>
     </div>
   );
