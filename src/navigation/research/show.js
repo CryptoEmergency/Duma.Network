@@ -116,7 +116,7 @@ const start = function (data, ID) {
       Static.totalInvest;
     },
     fn: () => {
-      console.log("=71c0ea=", Static.item);
+      // console.log("=71c0ea=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }
@@ -250,9 +250,7 @@ const start = function (data, ID) {
                           this.value = this.value.replace(/[^0-9]/g, "");
                           Static.invest = Number(this.value.trim());
                           Static.investCommission = (Static.invest / 100) * 15;
-                          Static.totalInvest = `-${Static.invest + Static.investCommission}`;
-                          Static.balanceRef = (Static.invest / 100) * 5;
-                          console.log("=889435=", Static.balanceRef);
+                          Static.totalInvest = Static.invest + Static.investCommission;
                           initReload();
                         }}
                       />
@@ -268,7 +266,7 @@ const start = function (data, ID) {
                         "btn-green",
                         "mt-10",
                         Static.totalInvest &&
-                        Static.totalInvest <= Variable.myInfo.balance
+                        Static.totalInvest < Variable.myInfo.balance
                           ? null
                           : "btn-disabled",
                       ]}
@@ -293,10 +291,10 @@ const start = function (data, ID) {
                           params: {
                             projectId: Static.item._id,
                             sum: Static.invest,
-                            commission: Static.investCommission,
-                            total: Static.totalInvest,
-                            type: "investing",
-                            balanceRef: Static.balanceRef,
+                            // commission: Static.investCommission,
+                            // total: Static.totalInvest,
+                            // type: "investing",
+                            // balanceRef: Static.balanceRef,
                           },
                         });
                         Static.item.have += Static.invest;

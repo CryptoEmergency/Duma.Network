@@ -14,36 +14,21 @@ import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
 
-const statuses = [
-  {
-    name: "Investor",
-    price: "20",
-    icon: svg.investor,
-    question: "Investor status allows you to invest in projects.",
-  },
-  {
-    name: "Partner",
-    price: "50",
-    icon: svg.partner,
-    question: "Partner status means that you are a partner.",
-  },
-  {
-    name: "VIP",
-    price: "100",
-    icon: svg.vip,
-    question: "VIP status means that you are omnipotent.",
-  }
-];
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.selectedStatus = "Investor";
-  Static.selectedSum = "20";
+
   load({
     ID,
-    // fnLoad: async () => {
-
-    // },
+    fnLoad: async () => {
+      Static.statuses = await fn.socket.get({
+        method: "Statuses",
+        // _id: Variable.dataUrl.params,
+      });
+      Static.selectedStatus = Static.statuses[0].title;
+      Static.selectedSum = Static.statuses[0].price;
+      Static.statusId = Static.statuses[0]._id;
+    },
     fn: () => {
       return (
         <div class="wrap">
@@ -63,16 +48,18 @@ const forExport = function (data, ID) {
               <main class="main-modal">
                   <div class="grid-3">
                     {
-                      statuses.map((item, index)=>{
+                      Static.statuses.map((item, index)=>{
                         return(
                           <div 
-                            class={["statuses-item", Static.selectedStatus == item.name ? "statuses-item_active" : null]}
+                            class={["statuses-item", "statuses-item_hover", Static.selectedStatus == item.title ? "statuses-item_active" : null]}
                             onclick={function(){
-                              if(Static.selectedStatus == item.name){
+                              if(Static.selectedStatus == item.title){
                                 this.classList.toggle('statuses-item_active');
                               }else{
-                                Static.selectedStatus = item.name;
+                                Static.selectedStatus = item.title;
                                 Static.selectedSum = item.price;
+                                Static.statusId = item._id;
+                                console.log(Static.statusId);
                               }
                               initReload();
                             }}  
@@ -83,9 +70,9 @@ const forExport = function (data, ID) {
                               key={`s${index}`}
                             />
                             <div class="status-img">
-                              <img src={item.icon} />
+                              <img src={item.icon ? `/assets/upload/${item.icon}` : null} />
                             </div>
-                            <span class="status-text status-name">{item.name}</span>
+                            <span class="status-text status-name">{item.title}</span>
                             <span class="status-text status-price">{item.price}$</span>
                           </div>
                         )
@@ -100,9 +87,8 @@ const forExport = function (data, ID) {
                     fn.modals.close(ID);
                     fn.modals.Sure({
                       title: "Are you sure you want to pay for a subscription?",
-                      // type: "subscribe",
                       type: Static.selectedStatus,
-                      // comment: `${Static.selectedStatus} status`, 
+                      idStatus: Static.statusId,
                       sum: Static.selectedSum,
                     });
                   }}

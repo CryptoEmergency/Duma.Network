@@ -127,7 +127,7 @@ const start = function (data, ID) {
                       <div class="blur">
                         <h2>coming soon</h2>
                       </div>
-                      <span class="title-block">
+                      <span class="text text-category">
                         Block with connection of a non-custodial wallet
                       </span>
                     </div>

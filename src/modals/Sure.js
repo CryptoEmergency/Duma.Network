@@ -16,6 +16,7 @@ const forExport = function (data, ID) {
   load({
     ID,
     fn: () => {
+      console.log('=e18a85=',data.idStatus)
       return (
         <div class="wrap">
           <div class="wrap-body">
@@ -38,12 +39,13 @@ const forExport = function (data, ID) {
                   onclick={async() => {
                     fn.modals.close(ID);
                     if(data.sum < Variable.myInfo.balance){
-                      // await fn.socket.send({
-                      //   method: "Subscribe",
-                      //   params: {
-                      //     type: "subscribe",
-                      //   },
-                      // });
+                      await fn.socket.send({
+                        method: "Subscribe",
+                        params: {
+                          type: "subscribe",
+                          idStatus: data.idStatus,
+                        },
+                      });
                       fn.modals.Success({
                         title: "You have been assigned investor status"
                       })

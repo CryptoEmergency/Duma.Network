@@ -408,15 +408,15 @@
   justify-items: center;
   padding: 10px;
   border-radius: 8px;
-  cursor: pointer;
   position: relative;
-
-  &:hover {
-    background: rgba(39, 44, 49, 0.7);
-  }
 
   &_active {
     background: rgba(39, 44, 49, 0.7);
+  }
+
+  &_admin {
+    justify-items: stretch;
+    padding: 20px;
   }
 
   .status-text {
@@ -429,11 +429,28 @@
       font-size: 20px;
     }
   }
+
+  .icon-delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.statuses-item_hover:hover {
+  cursor: pointer;
+  background: rgba(39, 44, 49, 0.7);
 }
 
 .status-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   img {
     width: 150px;
+    cursor: pointer;
+    border-radius: 8px;
   }
 }
 

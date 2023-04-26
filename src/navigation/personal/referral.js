@@ -23,6 +23,10 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
+      Static.myUserInfo = await fn.socket.get({
+        method: "Users",
+        params: { filter: { _id: Variable.myInfo._id } },
+      });
       Static.userRefs = await fn.socket.get({
         method: "Users",
         params: {
@@ -30,6 +34,22 @@ const start = function (data, ID) {
           limit: 5,
         },
       });
+      Static.tmp = await fn.socket.get({
+        method: "History",
+        params: {
+          populate: { path: "idUser" },
+          filter: { type: "investing",  },
+          // limit: 5
+        },
+      });
+      Static.myRef=[];
+      Static.tmp.forEach((item)=>{
+        if(item.idUser.ref == Variable.myInfo._id){
+          Static.myRef.push(item);
+        }
+      });
+      console.log('=те, кто инвестировал=',Static.tmp)
+      console.log('=history=',Static.myRef)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -153,7 +173,7 @@ const start = function (data, ID) {
                       <div class="grid-3 pY-20">
                         <div>
                           <div class="nums-col">
-                            <span class="num_big">{Variable.myInfo.balance.toFixed(2)}$</span>
+                            <span class="num_big">{Static.myUserInfo[0].balanceRef.toFixed(2)}$</span>
                             <span class="num_small">+0$</span>
                             <span class="num_small"> +0,00%</span>
                           </div>
@@ -165,7 +185,7 @@ const start = function (data, ID) {
                             <span class="text">Total refferals</span>
                           </div>
                           <div class="ref-general">
-                            <span class="num_big">0</span>
+                            <span class="num_big">{Static.myRef.length}</span>
                             <span class="text">Confirmed</span>
                           </div>
                         </div>
@@ -186,7 +206,7 @@ const start = function (data, ID) {
                           <span>E-mail</span>
                           <span>Projects</span>
                           <span>Average amount</span>
-                          <span>Total amount</span>
+                          <span>Total sum</span>
                           <span>Referral</span>
                         </div>
                         {

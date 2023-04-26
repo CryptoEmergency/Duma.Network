@@ -111,7 +111,6 @@ const start = function (data, ID) {
                                     10
                                   );
                                 }
-                                // console.log("onprogress", e.loaded, contentLength);
                               },
                             });
                             initReload();
@@ -128,18 +127,23 @@ const start = function (data, ID) {
                       />
                     </div>
                     <Elements.BlockPersonal Static={Static}/>
-                    <span
-                      class="btn btn-transparent"
-                      onclick={() => {
-                        if (Variable.myInfo.role) {
-                          fn.modals.Status({});
-                        } else {
-                          fn.modals.Soon({});
-                        }
-                      }}
-                    >
-                      upgrade
-                    </span>
+                    {Variable.myInfo.level != 0 ? 
+                      null
+                      :
+                      <span
+                        class="btn btn-transparent"
+                        onclick={() => {
+                          if (Variable.myInfo.role) {
+                            fn.modals.Status({});
+                          } else {
+                            fn.modals.Soon({});
+                          }
+                        }}
+                      >
+                        upgrade
+                      </span>
+                    }
+                    
                   </div>
                 </div>
 

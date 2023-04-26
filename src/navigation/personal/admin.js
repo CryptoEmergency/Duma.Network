@@ -41,7 +41,7 @@ const start = function (data, ID) {
                 <section class="main mb-25  ">
                   <h2 class="general-title mt-25">Admin Action</h2>
                 </section>
-                <div class="mb-10">
+                <div class="grid-3">
                   <button
                     class="btn btn-green"
                     onclick={() => {
@@ -50,8 +50,6 @@ const start = function (data, ID) {
                   >
                     Research Lists
                   </button>
-                </div>
-                <div class="mb-10">
                   <button
                     class="btn btn-green"
                     onclick={() => {
@@ -60,8 +58,6 @@ const start = function (data, ID) {
                   >
                     Marketplace Lists
                   </button>
-                </div>
-                <div class="mb-10">
                   <button
                     class="btn btn-green"
                     onclick={() => {
@@ -70,13 +66,11 @@ const start = function (data, ID) {
                   >
                     News Lists
                   </button>
-                </div>
-                <div class="mb-10">
                   <button
                     class="btn btn-green"
-                    onclick={() => {
+                    onclick={async() => {
                       // fn.siteLink("/personal/admin/list/news/");
-                      fn.siteLink(`/personal/admin/edit/status`);
+                      fn.siteLink(`/personal/admin/edit/status/`);
                     }}
                   >
                     Edit statuses for user

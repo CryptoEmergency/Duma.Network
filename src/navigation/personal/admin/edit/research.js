@@ -1541,9 +1541,7 @@ const start = function (data, ID) {
                                               );
                                               return;
                                             }
-                                            Static.item.team.records[
-                                              index
-                                            ].image = response.name;
+                                            Static.item.team.records[index].image = response.name;
                                             updateValue({
                                               key: "team.records",
                                               value: Static.item.team.records,
