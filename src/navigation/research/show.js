@@ -291,17 +291,17 @@ const start = function (data, ID) {
                           params: {
                             projectId: Static.item._id,
                             sum: Static.invest,
-                            // commission: Static.investCommission,
-                            // total: Static.totalInvest,
-                            // type: "investing",
-                            // balanceRef: Static.balanceRef,
                           },
                         });
+                        
                         Static.item.have += Static.invest;
                         Static.investInput.value = "";
                         Static.invest = "";
                         Static.investCommission = "";
                         Static.totalInvest = "";
+                        fn.modals.Success({
+                          title: `You have successfully invested in the project ${Static.item.name}`
+                        })
                         initReload();
                       }}
                     >

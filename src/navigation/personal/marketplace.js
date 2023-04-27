@@ -22,11 +22,12 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
-      Static.tmp = await fn.socket.get({
-        method: "Bookmarks",
-        params: { populate: { path: "projectId" } },
+      Static.tokens = await fn.socket.get({
+        method: "Tokens",
+        idUser: Variable.myInfo._id,
+        params: { populate: { path: "projectId",  } },
       });
-      console.log("=65766d=", Static.tmp);
+      console.log('=table tokens=',Static.tokens);
     },
     fn: () => {
       if (!Variable.auth) {
@@ -39,17 +40,17 @@ const start = function (data, ID) {
             <Elements.BlockMenu />
             <div class="personal-main">
               <Elements.BlockPersonal />
-
-              {/* main page */}
-              <section class="bookmarks main">
-                <h2 class="general-title mt-25">Bookmarks</h2>
+              <div class="personal-content">
+                {/* main page */}
+                <section class="bookmarks main">
+                <h2 class="general-title mt-25">Marketplace</h2>
                 
                 <div class="bookmarks-inner mt-25">
                   
-                  {Static.tmp.length ?
-                      Static.tmp.map((item) => {
+                  {Static.tokens.length ?
+                      Static.tokens.map((item) => {
                         return (
-                          <div class="bookmarks-item">
+                          <div class="bookmarks-item bookmarks-item_token">
                             <div class="user-card">
                               <img
                                 class="bookmarks-icon"
@@ -62,20 +63,27 @@ const start = function (data, ID) {
                               <span>{item.projectId?.name}</span>
                             </div>
                             <div class="round">{item.projectId?.tabs}</div>
+                            <div class="round">{item.tokens}</div>
                             <div class="price">{item.projectId?.seedRound}$</div>
                             <div class="price">
                               {item.projectId?.have}$/{item.projectId?.target}$
                             </div>
-                            {/* <div>date tge</div> */}
-                            {/* <div class="text-underline">lead investor</div> */}
-                            <div>{item.projectId?.category}</div>
+
                             <button
                               class="btn btn-transparent"
-                              onclick={(e)=>{
-                                fn.siteLink("/research/show/" + item.projectId._id);
+                              onclick={()=>{
+                                if(Variable.myInfo.status == "User"){
+                                  fn.modals.Status({});
+                                }else{
+                                  fn.modals.AddMarket({
+                                    project: item.projectId.name,
+                                    sumTokens: item.tokens,
+                                    projectId: item.projectId._id
+                                  });
+                                }
                               }}   
                             >
-                              more
+                              send marketplace
                             </button>
                           </div>
                         );
@@ -87,6 +95,7 @@ const start = function (data, ID) {
                   }
                 </div>
               </section>
+              </div>
             </div>
           </div>
         </div>

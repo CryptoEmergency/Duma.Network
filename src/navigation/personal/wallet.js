@@ -22,6 +22,12 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
+      Static.tokens = await fn.socket.get({
+        method: "Tokens",
+        idUser: Variable.myInfo._id,
+        params: { populate: { path: "projectId" } },
+      });
+      console.log('=table tokens=',Static.tokens);
     },
     fn: () => {
       if (!Variable.auth) {
@@ -139,8 +145,47 @@ const start = function (data, ID) {
                       </div>
                     </div>
                     <div class="blocks-item news" style="height: 400px;">
-                      <span class="text-category text">NFT</span>
-                      <span class="soon-text">coming soon</span>
+                      <span class="text-category text">Tokens</span>
+                      <div class="bookmarks-inner mt-25">
+                  
+                        {Static.tokens.length ?
+                          Static.tokens.map((item) => {
+                            return (
+                              <div class="bookmarks-item bookmarks-item_token">
+                                <div class="user-card">
+                                  <img
+                                    class="bookmarks-icon"
+                                    src={
+                                      item.projectId?.icon
+                                        ? `/assets/upload/${item.projectId.icon}`
+                                        : images["personal/logoProject"]
+                                    }
+                                  />
+                                  <span>{item.projectId?.name}</span>
+                                </div>
+                                <div class="round">{item.projectId?.tabs}</div>
+                                <div class="price">{item.tokens}</div>
+                                <div class="price">{item.projectId.seedRound}$</div>
+                                <div>{item.projectId?.have}$/{item.projectId?.target}$</div>
+                                {/* <div class="text-underline">lead investor</div> */}
+                                {/* <div>{item.projectId?.category}</div> */}
+                                <button
+                                  onclick={(e)=>{
+                                    fn.siteLink("/research/show/" + item.projectId._id);
+                                  }}   
+                                  class="btn btn-transparent">
+                                    more
+                                </button>
+                              </div>
+                            );
+                          }) : 
+                          <div class="notFound">
+                            <span>Records not found in table</span>
+                            <img src={svg.notFound} />
+                          </div>
+                        }
+                      </div>
+
                     </div>
                   </div>
                 </section>

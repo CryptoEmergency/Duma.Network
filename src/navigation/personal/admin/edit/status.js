@@ -110,8 +110,9 @@ const start = function (data, ID) {
                         <div class="statuses-item statuses-item_admin">
                           <img
                             onclick={async() => {
-                              Static.statuses.splice(Static.statuses.indexOf(item.title), 1);
-                              Static.statusId=Static.statuses[index]._id;
+                              console.log('=443074=',(Static.statuses[index]))
+                              // Static.statuses.splice(Static.statuses.indexOf(item.title), 1);
+                              // Static.statusId=Static.statuses[index]._id;
                               updateValue({
                                 key: "Static.statuses[index].active",
                                 value: false,

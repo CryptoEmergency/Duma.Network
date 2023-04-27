@@ -784,7 +784,7 @@
   grid-gap: 15px;
   overflow-x: auto;
   position: relative;
-  height: 325px;
+  // height: 325px;
 
   &::-webkit-scrollbar {
     height: 3px;
@@ -793,12 +793,17 @@
 
 .bookmarks-item {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  // grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
   justify-items: center;
   align-items: center;
   border-radius: 10px;
   padding: 5px 8px;
+
+  &_token {
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
+  }
 
   &:nth-child(2n) {
     background: var(--back-blur);

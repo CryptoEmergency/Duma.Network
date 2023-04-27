@@ -133,6 +133,7 @@ const start = function (data, ID) {
                       <span
                         class="btn btn-transparent"
                         onclick={() => {
+
                           if (Variable.myInfo.role) {
                             fn.modals.Status({});
                           } else {
