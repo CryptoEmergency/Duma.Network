@@ -4,8 +4,10 @@ import {
   load,
   Data,
   Variable,
+  setStorage,
   initReload,
 } from "@betarost/cemserver/cem.js";
+
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
@@ -124,7 +126,7 @@ const updateValue = async function ({ key, value }) {
 
 const updateRecords = async function (update) {
   let response = await fn.socket.set({
-    method: "Research",
+    method: "Projects",
     action: "findOneAndUpdate",
     _id: Data.Static.item._id,
     params: { update },
@@ -134,24 +136,10 @@ const updateRecords = async function (update) {
   }
 };
 
-const countTotalRank = function () {
-  let total = 0;
-  // console.log("=1a70da=", Data.Static.item.rankList);
-  for (let key in Data.Static.item.rankList) {
-    if (key != "totalText") {
-      total += Data.Static.item.rankList[key];
-    }
-  }
-  console.log("=0552f6=", total);
-  updateValue({
-    key: "rankList.totalText",
-    value: total,
-  });
-};
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-
+  Static.nameProject = "";
   Static.fondList = [];
   Static.forms = {};
   Static.forms.socials = {
@@ -168,19 +156,22 @@ const start = function (data, ID) {
     linkedin: {},
     site: {},
   };
+
   load({
     ID,
     fnLoad: async () => {
-      if (!Variable.auth || !Variable.myInfo.role) {
+      if (!Variable.auth) {
         fn.siteLink("/");
         return;
       }
       if (Variable.dataUrl.params) {
         Static.item = await fn.socket.get({
-          method: "Research",
+          method: "Projects",
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds" } },
         });
+        console.log("=9ebbf7=", Static.item);
+
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -215,59 +206,42 @@ const start = function (data, ID) {
       }
     },
     fn: () => {
-      if (!Variable.auth || !Variable.myInfo.role) {
+      if (!Variable.auth) {
         fn.siteLink("/");
         return <div></div>;
-      }
-      if (!Static.item || !Static.item._id) {
-        return <div>Not found</div>;
       }
       return (
         <div class="wrapper">
           <div class="personal-inner">
             <Elements.BlockMenu />
             <div class="personal-main">
+              <div class="circle-effect circle-effect1"></div>
+              <div class="circle-effect circle-effect2"></div>
               <Elements.BlockPersonal />
               <div class="personal-content">
                 <Elements.Bredcrumbs
                   items={[
-                    { title: "Admin", link: "/personal/admin/" },
                     {
-                      title: "Research lists",
-                      link: "/personal/admin/list/research/",
+                      title: "Projects list",
+                      link: "/personal/projects/",
                     },
                     {
-                      title: Static.item.name ? Static.item.name : "New record",
+                      title: "New project",
                     },
                   ]}
                 />
-                <section class="main mY-25 inner-add">
-                  <h2 class="general-title mt-0">Edit Research</h2>
-                  <label
-                    style={
-                      Static.item.moderation ? "color:green;" : "color:red;"
-                    }
-                  >
-                    {Static.item.moderation ? "Show" : "Hidden"}
-                  </label>
-                  <div class="switcher mt-0 ">
-                    <input
-                      id="switch-moderation"
-                      type="checkbox"
-                      checked={Static.item.moderation}
-                      onchange={() => {
-                        Static.item.moderation = !Static.item.moderation;
-                        updateValue({
-                          key: "moderation",
-                          value: Static.item.moderation,
-                        });
-                        initReload();
-                      }}
-                    ></input>
-                    <label for="switch-moderation"></label>
-                  </div>
-                </section>
-                <div class="personal-form">
+                <div class="main mb-25  ">
+                  <h2 class="general-title mt-25">Project verification</h2>
+
+                </div>
+                <section class="personal-form">
+                  <div
+                    Element={($el) => {
+                      Static.elError = $el;
+                    }}
+                    style="display:none;"
+                    class="error-text"
+                  ></div>
                   <div class="grid-2">
                     <div class="wrap-logo">
                       <div class="picture">
@@ -275,7 +249,7 @@ const start = function (data, ID) {
                           type="file"
                           hidden
                           Element={($el) => {
-                            Static.elAddIcon = $el;
+                            Static.addIcon = $el;
                           }}
                           onchange={async function (e) {
                             e.stopPropagation();
@@ -336,7 +310,7 @@ const start = function (data, ID) {
                           width="50"
                           height="50"
                           onclick={() => {
-                            Static.elAddIcon.click();
+                            Static.addIcon.click();
                           }}
                         ></img>
                       </div>
@@ -344,6 +318,10 @@ const start = function (data, ID) {
                         <div
                           class="form-input personal-input"
                           contenteditable="plaintext-only"
+                          onchange = {function(){
+                            Static.nameProject = this.value;
+                            console.log('=16fd02=',Static.nameProject)
+                          }}
                           oninput={function () {
                             Static.item.name = this.innerText.trim();
                             updateValue({
@@ -356,206 +334,6 @@ const start = function (data, ID) {
                             ? Static.item?.name
                             : "Name research"}
                         </div>
-                      </div>
-                    </div>
-
-                    <div class="form-div">
-                      <label>Total rank:</label>
-                      <div class="form-input personal-input">
-                        {/* {Static.item.rank} (Auto calculate) */}
-                        {Static.item.rankList.totalText} (Auto calculate)
-                      </div>
-                    </div>
-                  </div>
-                  <div class="grid-3">
-                    <div class="form-div">
-                      <label>Round:</label>
-                      <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.selectList.tabs.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          {Static.item.tabs}
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.selectList.tabs = $el;
-                          }}
-                        >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.tabs = "seed";
-                              updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
-                              });
-                              Static.selectList.tabs.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            seed
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.tabs = "pre-seed";
-                              updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
-                              });
-                              Static.selectList.tabs.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            pre-seed
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.tabs = "strategic";
-                              updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
-                              });
-                              Static.selectList.tabs.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            strategic
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.tabs = "public";
-                              updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
-                              });
-                              Static.selectList.tabs.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            public
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.tabs = "private";
-                              updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
-                              });
-                              Static.selectList.tabs.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            private
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Status:</label>
-                      <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.selectList.status.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          {Static.item?.status
-                            ? Static.item.status
-                            : "Select status"}
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.selectList.status = $el;
-                          }}
-                        >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Research";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Research
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Active";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Active
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Upcoming";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Upcoming
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Past";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Past
-                          </li>
-                        </ul>
                       </div>
                     </div>
                     <div class="form-div">
@@ -603,44 +381,26 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-                  <div class="form-item">
-                    <label>Description:</label>
-                    <div
-                      style="min-height:100px;"
-                      class="form-input personal-input"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.description = this.innerText.trim();
-                        updateValue({
-                          key: "description",
-                          value: Static.item.description,
-                        });
-                      }}
-                    >
-                      {Static.item.description}
-                    </div>
-                  </div>
-
                   <div class="grid-3">
                     <div class="form-div">
-                      <label>Seed round:</label>
+                      <label>Price per token:</label>
                       <div
                         class="form-input personal-input"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.seedRound = Number(this.innerText.trim());
+                          Static.item.priceToken = Number(this.innerText.trim());
                           if (
-                            Static.item.seedRound ||
-                            Static.item.seedRound >= 0
+                            Static.item.priceToken ||
+                            Static.item.priceToken >= 0
                           ) {
                             updateValue({
-                              key: "seedRound",
-                              value: Static.item.seedRound,
+                              key: "priceToken",
+                              value: Static.item.priceToken,
                             });
                           }
                         }}
                       >
-                        {Static.item.seedRound}
+                        {Static.item.priceToken}
                       </div>
                     </div>
                     <div class="form-div">
@@ -680,7 +440,23 @@ const start = function (data, ID) {
                       </div>
                     </div>
                   </div>
-
+                  <div class="form-item">
+                    <label>Description:</label>
+                    <div
+                      style="min-height:100px;"
+                      class="form-input personal-input"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.description = this.innerText.trim();
+                        updateValue({
+                          key: "description",
+                          value: Static.item.description,
+                        });
+                      }}
+                    >
+                      {Static.item.description}
+                    </div>
+                  </div>
                   <div class="" style="display:flex;">
                     {Object.keys(Static.forms.socials).map((item) => {
                       return (
@@ -734,55 +510,6 @@ const start = function (data, ID) {
                       });
                     }}
                   ></div>
-
-                  <div class="grid-2">
-                    <div class="form-div">
-                      <label>Start date:</label>
-                      <div class="form-input personal-input">
-                        <input
-                          type="date"
-                          max="9999-12-31T23:59"
-                          value={
-                            !Static.item.startDate
-                              ? fn.moment().format("YYYY-MM-DD")
-                              : fn
-                                  .moment(Static.item.startDate)
-                                  .format("YYYY-MM-DD")
-                          }
-                          oninput={function (e) {
-                            Static.item.startDate = this.value;
-                            updateValue({
-                              key: "startDate",
-                              value: Static.item.startDate,
-                            });
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>End date:</label>
-                      <div class="form-input personal-input">
-                        <input
-                          type="date"
-                          max="9999-12-31T23:59"
-                          value={
-                            !Static.item.endDate
-                              ? fn.moment().format("YYYY-MM-DD")
-                              : fn
-                                  .moment(Static.item.endDate)
-                                  .format("YYYY-MM-DD")
-                          }
-                          oninput={function (e) {
-                            Static.item.endDate = this.value;
-                            updateValue({
-                              key: "endDate",
-                              value: Static.item.endDate,
-                            });
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
                   <div class="grid-2">
                     <button
                       class="btn btn-green"
@@ -796,7 +523,7 @@ const start = function (data, ID) {
                               blockchains: Static.item.blockchains,
                             });
                             let tmp = await fn.socket.get({
-                              method: "Research",
+                              method: "Projects",
                               _id: Variable.dataUrl.params,
                               params: { populate: { path: "blockchains" } },
                             });
@@ -813,7 +540,7 @@ const start = function (data, ID) {
                       Choose blockchain
                     </button>
                     <div class="fondlist-wrap">
-                      {Object.keys(Static.item.blockchains).length ? (
+                      {Object.keys(Static.item?.blockchains).length ? (
                         <div class="fondlist-item">
                           <img
                             class="icon-delete"
@@ -866,13 +593,11 @@ const start = function (data, ID) {
                           fn.uploadFile({
                             file: item,
                             onload: async function () {
-                              // console.log('=81bde2=', "onload")
                               if (!this.response) {
                                 alert("Have some Error. Try again...");
                                 return;
                               }
                               let response = JSON.parse(this.response);
-                              // console.log('=35f155=', response)
                               if (response.error || !response.name) {
                                 alert(
                                   "Have some Error. Try again... " +
@@ -885,7 +610,6 @@ const start = function (data, ID) {
                                 key: "gallery",
                                 value: Static.item.gallery,
                               });
-                              // let tmp = await fn.socket.set({ method: "Research", action: "findOneAndUpdate", _id: Static.item._id, params: { update: { gallery: Static.item.gallery } } })
                               initReload();
                             },
                             onprogress: async function (e) {
@@ -939,39 +663,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.problem
-                            ? Static.item.rankList.problem
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.problem = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.problem",
-                            value: Static.item.rankList.problem,
-                          });
-                          countTotalRank();
-                        }}
-                      >
-                        {Static.item.rankList.problem}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1029,38 +720,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Investors</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="3"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.investors
-                            ? Static.item.rankList.investors
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 100) {
-                            this.value = 100;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.investors = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.investors",
-                            value: Static.item.rankList.investors,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.investors}
-                      </input>
-                      <span class="text-green">Max. 100</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1079,7 +738,7 @@ const start = function (data, ID) {
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>{Static.item.tabs} Round</span>
+                      <span>Choose funds</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1090,14 +749,13 @@ const start = function (data, ID) {
                             title: "Fund list",
                             listsFonds: Static.item.fonds,
                             callback: async (filterFonds) => {
-                              console.log("=666583=", filterFonds);
                               Static.item.fonds = filterFonds;
                               if (!filterFonds.length) {
                                 return;
                               }
                               await updateRecords({ fonds: Static.item.fonds });
                               let tmp = await fn.socket.get({
-                                method: "Research",
+                                method: "Projects",
                                 _id: Variable.dataUrl.params,
                                 params: { populate: { path: "fonds" } },
                               });
@@ -1116,6 +774,7 @@ const start = function (data, ID) {
 
                       <div class="fondlist-wrap">
                         {(Static.item.fonds || []).map((item, index) => {
+                          console.log('=ed9328=', Static.item.fonds)
                           return (
                             <div class="fondlist-item">
                               <img
@@ -1151,38 +810,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Tokenomics</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.tokenomics
-                            ? Static.item.rankList.tokenomics
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.tokenomics = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.tokenomics",
-                            value: Static.item.rankList.tokenomics,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.tokenomics}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1290,38 +917,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Utility and Value</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.utility
-                            ? Static.item.rankList.utility
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.utility = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.utility",
-                            value: Static.item.rankList.utility,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.utility}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1379,38 +974,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.team
-                            ? Static.item.rankList.team
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.team = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.team",
-                            value: Static.item.rankList.team,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.team}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1592,38 +1155,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.roadmap
-                            ? Static.item.rankList.roadmap
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.roadmap = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.roadmap",
-                            value: Static.item.rankList.roadmap,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.roadmap}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1738,38 +1269,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Documentation</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.documentation
-                            ? Static.item.rankList.documentation
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.documentation = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.documentation",
-                            value: Static.item.rankList.documentation,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.documentation}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1789,38 +1288,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Social</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.social
-                            ? Static.item.rankList.social
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.social = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.social",
-                            value: Static.item.rankList.social,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.social}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1840,38 +1307,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Launchpad</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.launchpad
-                            ? Static.item.rankList.launchpad
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.launchpad = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.launchpad",
-                            value: Static.item.rankList.launchpad,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.launchpad}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1891,38 +1326,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>CEX/DEX</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.cexDex
-                            ? Static.item.rankList.cexDex
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.cexDex = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.cexDex",
-                            value: Static.item.rankList.cexDex,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.cexDex}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1942,38 +1345,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Listing on aggregator</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.aggregator
-                            ? Static.item.rankList.aggregator
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.aggregator = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.aggregator",
-                            value: Static.item.rankList.aggregator,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.aggregator}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1993,38 +1364,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.competitors
-                            ? Static.item.rankList.competitors
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.competitors = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.competitors",
-                            value: Static.item.rankList.competitors,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.competitors}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -2044,38 +1383,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Media</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.mediaText
-                            ? Static.item.rankList.mediaText
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.mediaText = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.mediaText",
-                            value: Static.item.rankList.mediaText,
-                          });
-                        }}
-                      >
-                        {Static.item.rankList.mediaText}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -2095,39 +1402,6 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Audit</span>
-                      <input
-                        class="admin-input text-green"
-                        type="text"
-                        maxlength="2"
-                        placeholder="0"
-                        value={
-                          Static.item.rankList.audit
-                            ? Static.item.rankList.audit
-                            : "0"
-                        }
-                        oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
-                          if (value < 0) {
-                            this.value = 0;
-                          } else if (value > 10) {
-                            this.value = 10;
-                          } else {
-                            this.value = value;
-                          }
-                          Static.item.rankList.audit = Number(
-                            // this.innerText.trim()
-                            this.value.trim()
-                          );
-                          updateValue({
-                            key: "rankList.audit",
-                            value: Static.item.rankList.audit,
-                          });
-                          countTotalRank();
-                        }}
-                      >
-                        {Static.item.rankList.audit}
-                      </input>
-                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -2140,46 +1414,64 @@ const start = function (data, ID) {
                       {Static.item.audit}
                     </div>
                   </div>
-
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>TOTAL</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        // contenteditable="plaintext-only"
-                        // oninput={function () {
-                        //   Static.item.rankList.totalText = Number(
-                        //     this.innerText.trim()
-                        //   );
-                        //   if (
-                        //     Static.item.rankList.totalText ||
-                        //     Static.item.rankList.totalText >= 0
-                        //   ) {
-                        //     updateValue({
-                        //       key: "rankList.totalText",
-                        //       value: Static.item.rankList.totalText,
-                        //     });
-                        //   }
-                        // }}
+                  <center class="el-bottom mt-70">
+                    <div class="card-btns">
+                      <button 
+                        class={["btn", "btn-green", "mb-15" ]}
+                        onclick={async function(){
+      
+                          await fn.socket.set({
+                            method: "Projects",
+                            action: "findOneAndUpdate",
+                            params: {
+                              update: { status: "Accepted" },
+                              filter: {
+                                _id: Static.item._id,
+                              }
+                            },
+                          });
+      
+                          fn.modals.Success({
+                            title: "The project is accepted"
+                          });
+                          fn.siteLink(
+                            `/personal/admin/list/projects/`
+                          );
+                          initReload();
+                        }}  
                       >
-                        {Static.item.rankList.totalText}
-                      </div>
+                        Accepted
+                      </button>
+                      <button 
+                        class="btn btn-bordo"
+                        onclick={async function(){
+      
+                          await fn.socket.set({
+                            method: "Projects",
+                            action: "findOneAndUpdate",
+                            params: {
+                              update: { status: "Refused" },
+                              filter: {
+                                _id: Static.item._id,
+                              }
+                            },
+                          });
+      
+                          fn.modals.Success({
+                            title: "The project was rejected"
+                          });
+                          fn.siteLink(
+                            `/personal/admin/list/projects/`
+                          );
+                          initReload();
+                        }}  
+                      >
+                        Refused
+                      </button>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.totalText = this.innerText.trim();
-                        updateValue({
-                          key: "totalText",
-                          value: Static.item.totalText,
-                        });
-                      }}
-                    >
-                      {Static.item.totalText}
-                    </div>
-                  </div>
-                </div>
+                    
+                  </center>
+                </section>
               </div>
             </div>
           </div>

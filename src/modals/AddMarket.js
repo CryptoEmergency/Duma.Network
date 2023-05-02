@@ -95,6 +95,11 @@ const forExport = function (data, ID) {
                         price: Static.priceToken,
                       },
                     });
+                    fn.modals.close(ID);
+                    fn.modals.Success({
+                      title: "You have been assigned investor status"
+                    })
+                    initReload();
                   }}
                 >
                   public

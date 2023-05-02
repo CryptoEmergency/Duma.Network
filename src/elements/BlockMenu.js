@@ -48,7 +48,7 @@ const forExport = function ({ Static, onclick, className, }) {
   if (getStorage("sidebarShow")) {
     Data.Static.sidebarShow = getStorage("sidebarShow");
   }
-  console.log('=1d98f1=',Data.Static.sidebarShow)
+  
   return (
     <aside 
       class={["sidebar", 
@@ -168,6 +168,19 @@ const forExport = function ({ Static, onclick, className, }) {
                     <img src={svg["personal/icons/marketplace"]}/>
                   </span>
                   <span class="sidebar-title">Marketplace</span>
+                </a>
+              </li>
+              <li class={["sidebar-item",
+                  Variable.dataUrl.category == "projects" ? "sidebar-item_active" : null]}>
+                <a
+                  onclick={() => {
+                    fn.siteLink("/personal/projects/");
+                  }}
+                >
+                  <span class="sidebar-icon">
+                    <img src={svg["personal/icons/project"]}/>
+                  </span>
+                  <span class="sidebar-title">My projects</span>
                 </a>
               </li>
               {Variable.myInfo.role ? 

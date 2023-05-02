@@ -54,8 +54,6 @@ const forExport = function (data, ID) {
   load({
     ID,
     fn: () => {
-      console.log('=f3c144=',getStorage("ref"))
-      console.log('=5963b7=',Static.refId)
       return (
         <div class="wrap">
           <div class="wrap-body">

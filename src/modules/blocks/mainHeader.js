@@ -193,6 +193,24 @@ const mainHeader = async function () {
                         </li>
                       </ul>
                     </li>
+                    <li
+                      onclick={function () {
+                        if (isMobile.any()) {
+                          this.classList.toggle("active");
+                        }
+                      }}
+                    >
+                      <a
+                        href="/projects"
+                        class="header-list_item"
+                        onclick={(e) => {
+                          fn.siteLink(e);
+                          burgerMenu("hide");
+                        }}
+                      >
+                        PROJECTS
+                      </a>
+                    </li>
                     <li>
                       <a
                         href="/academy"
@@ -428,15 +446,20 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-green"
                         onclick={() => {
-                          if (Variable.myInfo.role) {
-                            fn.modals.Transaction({
-                              title: "Deposit",
-                              text: "Replenishment amount",
-                              type: "deposit",
-                            });
-                          } else {
-                            fn.modals.Soon({});
-                          }
+                          fn.modals.Transaction({
+                            title: "Deposit",
+                            text: "Replenishment amount",
+                            type: "deposit",
+                          });
+                          // if (Variable.myInfo.role) {
+                          //   fn.modals.Transaction({
+                          //     title: "Deposit",
+                          //     text: "Replenishment amount",
+                          //     type: "deposit",
+                          //   });
+                          // } else {
+                          //   fn.modals.Soon({});
+                          // }
                         }}
                       >
                         <span>DEPOSIT</span>
@@ -445,15 +468,20 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-bordo"
                         onclick={() => {
-                          if (Variable.myInfo.role) {
-                            fn.modals.Transaction({
-                              title: "Withdraw",
-                              text: "Withdrawal amount",
-                              type: "withdraw",
-                            });
-                          } else {
-                            fn.modals.Soon({});
-                          }
+                          fn.modals.Transaction({
+                            title: "Withdraw",
+                            text: "Withdrawal amount",
+                            type: "withdraw",
+                          });
+                          // if (Variable.myInfo.role) {
+                          //   fn.modals.Transaction({
+                          //     title: "Withdraw",
+                          //     text: "Withdrawal amount",
+                          //     type: "withdraw",
+                          //   });
+                          // } else {
+                          //   fn.modals.Soon({});
+                          // }
                         }}
                       >
                         <span>WITHDRAW</span>

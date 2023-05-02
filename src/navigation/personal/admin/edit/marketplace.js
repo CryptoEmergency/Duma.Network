@@ -52,7 +52,6 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "projectId" } },
         });
-        console.log("=9ebbf7=", Static.item);
       }
     },
     fn: () => {

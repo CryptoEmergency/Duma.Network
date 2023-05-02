@@ -13,32 +13,32 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
-const countTotalSum = function(item, infoRef){
-  // console.log('=2c31cd=',infoRef)
-  let total = 0;
+// const countTotalSum = function(item, infoRef){
+//   // console.log('=2c31cd=',infoRef)
+//   let total = 0;
 
-  infoRef.forEach((el)=>{
-    if(item._id == el.idUser._id){
-      total += el.sum;
-    }
-  })
-  // console.log('=b9b809=',countInvestRef)
-  return total;
-}
+//   infoRef.forEach((el)=>{
+//     if(item._id == el.idUser._id){
+//       total += el.sum;
+//     }
+//   })
+//   // console.log('=b9b809=',countInvestRef)
+//   return total;
+// }
 
-const countTotalProjects = function(item, infoRef){
-  let totalProjects = 0;
-  console.log('=9d6d13=',item)
+// const countTotalProjects = function(item, infoRef){
+//   let totalProjects = 0;
+//   console.log('=9d6d13=',item)
 
-  infoRef.forEach((el)=>{
-    console.log('=486778=',el)
-    if(item._id == el.idUser._id){
-      total += el.sum;
+//   infoRef.forEach((el)=>{
+//     console.log('=486778=',el)
+//     if(item._id == el.idUser._id){
+//       total += el.sum;
 
-    }
-  })
-  return totalProjects
-}
+//     }
+//   })
+//   return totalProjects
+// }
 
 
 const start = function (data, ID) {
@@ -54,7 +54,7 @@ const start = function (data, ID) {
       Static.myUserInfo = await fn.socket.get({
         method: "Users",
         params: { filter: { _id: Variable.myInfo._id } },
-      });
+      });  
       Static.myRef = await fn.socket.get({
         method: "Users",
         params: {
@@ -64,36 +64,33 @@ const start = function (data, ID) {
       });
       Static.invests = await fn.socket.get({
         method: "Investing",
-        params: {
-          populate: { path: "author" },
-        },
-      });
-      Static.tmp = await fn.socket.get({
-        method: "History",
-        params: {
-          populate: { path: "idUser" },
-        },
-      });
-      Static.infoRef = [];
-      Static.refId = [];
-      Static.refInvest = [];
-      // Static.myRef=[];
-      Static.tmp.forEach((item)=>{
-        if(item.idUser?.ref == Variable.myInfo._id && item.type == "investing"){
-          Static.infoRef.push(item);
-        }
+        // params: {
+        //   populate: { path: "author" },
+        // },
+        // filter: {  }
       });
 
-      for(let i = 0; i < Static.infoRef.length; i++){
-        let item = Static.infoRef[i];
-        console.log('=ae622d=',item)
-        if(!Static.refInvest.includes(item.idUser._id)){
-          Static.refInvest.push(item);
-          // Static.refId.push()
-        }
-      }
-      console.log('=10281a=',Static.refInvest , Static.infoRef)
-      console.log('=1f7193=',Static.refInvest)
+
+      // Static.infoRef = [];
+      // Static.refId = [];
+      // Static.refInvest = [];
+      // Static.myRef=[];
+      // Static.tmp.forEach((item)=>{
+      //   if(item.idUser?.ref == Variable.myInfo._id && item.type == "investing"){
+      //     Static.infoRef.push(item);
+      //   }
+      // });
+
+      // for(let i = 0; i < Static.infoRef.length; i++){
+      //   let item = Static.infoRef[i];
+      //   console.log('=ae622d=',item)
+      //   if(!Static.refInvest.includes(item.idUser._id)){
+      //     Static.refInvest.push(item);
+      //     // Static.refId.push()
+      //   }
+      // }
+      // console.log('=10281a=',Static.refInvest , Static.infoRef)
+      console.log('=1f7193=',Static.invests)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -204,7 +201,7 @@ const start = function (data, ID) {
                         key="r2" 
                       />
                       <span class="text-category text">
-                        Block of graphical display of accruals
+                        Graphical PNL
                       </span>
                     </div>
                     <div class="blocks-item">
@@ -230,9 +227,8 @@ const start = function (data, ID) {
                           </div>
                           <div class="ref-general">
                             <span class="num_big">
-                              {
-                                Static.refInvest.length
-                              }
+                              {/* {Static.refInvest.length} */}
+                              0
                             </span>
                             <span class="text">Confirmed</span>
                           </div>
@@ -266,9 +262,11 @@ const start = function (data, ID) {
                                 <span>
                                   {item.email}
                                 </span>
-                                <span>{countTotalProjects(item, Static.infoRef)}</span>
+                                {/* <span>{countTotalProjects(item, Static.infoRef)}</span> */}
+                                <span>0</span>
                                 <span>344$</span>
-                                <span>{countTotalSum(item, Static.infoRef)}$</span>
+                                {/* <span>{countTotalSum(item, Static.infoRef)}$</span> */}
+                                <span>0</span>
                                 <span>1234</span>
                               </div>
                             )

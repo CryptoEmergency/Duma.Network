@@ -32,7 +32,7 @@ const forExport = function ({ className, children, varName, items }) {
             <div
               class={[
                 "tab-item",
-                `tab-item-${index}`,
+                `tab-item-${activeIndex}`,
                 Data.Static[varName] == item.name ? "checked" : null,
               ]}
               After={($el) => {

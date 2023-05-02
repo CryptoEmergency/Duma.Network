@@ -52,7 +52,7 @@ const forExport = function (data, ID) {
                   ></input>
                 </div>
 
-                <div class="form-group mt-15">
+                {/* <div class="form-group mt-15">
                   <div class="dropdown">
                     <button
                       class="dropdown__button"
@@ -89,12 +89,12 @@ const forExport = function (data, ID) {
                 <div class="switcher mt-15">
                   <input id="switch-1" type="checkbox"></input>
                   <label for="switch-1"></label>
-                </div>
+                </div> */}
               </main>
               <footer
-                class={["footer-modal", Variable.myInfo.role ? "grid-2" : null]}
+                class={["footer-modal"]}
               >
-                <button
+                {/* <button
                   class="btn btn-white"
                   onclick={() => {
                     fn.modals.close(ID);
@@ -102,25 +102,29 @@ const forExport = function (data, ID) {
                   }}
                 >
                   Confirm
+                </button> */}
+                
+                <button
+                  class="btn btn-standart ml-15"
+                  onclick={async function () {
+                    await fn.socket.send({
+                      method: "Deposit",
+                      params: {
+                        _id: Variable.myInfo._id,
+                        balance: Static.valueMoney,
+                        type: data.type,
+                      },
+                    });
+                    fn.modals.close(ID);
+                    fn.modals.Success({
+                      title: `You have successfully replenished the balance by ${Static.valueMoney}$`
+                    })
+                    initReload("modals");
+                  }}
+                >
+                  Deposit
                 </button>
-                {Variable.myInfo.role ? (
-                  <button
-                    class="btn btn-standart ml-15"
-                    onclick={async function () {
-                      await fn.socket.send({
-                        method: "Deposit",
-                        params: {
-                          _id: Variable.myInfo._id,
-                          balance: Static.valueMoney,
-                          type: data.type,
-                        },
-                      });
-                      initReload("modals");
-                    }}
-                  >
-                    Deposit
-                  </button>
-                ) : null}
+              
               </footer>
             </div>
           </div>

@@ -85,7 +85,12 @@ const forExport = function ({ Static, className, items = [] }) {
                   <div class="ecosystem">{item.category}</div>
                   <div class="circle">{item.rank ? item.rank : 0}</div>
                   <div class="rang">
-                    {item.rank < 100 ? "low rank" : "medium rank"}
+                    {/* {item.rank < 100 ? "low rank" : "medium rank"} */}
+                    {
+                      item.rank < 50 ? "low rank" : 
+                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                      (item.rank >= 100) ? "high rank" : null
+                    }
                   </div>
                 </div>
                 <div class="desc">

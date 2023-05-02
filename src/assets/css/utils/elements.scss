@@ -139,6 +139,11 @@
 // inputs
 
 // заглушка нет записей
+.list-notFound {
+  position: relative;
+  height: 300px;
+}
+
 .notFound {
   position: absolute;
   top: 50%;

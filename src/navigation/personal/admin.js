@@ -69,11 +69,18 @@ const start = function (data, ID) {
                   <button
                     class="btn btn-green"
                     onclick={async() => {
-                      // fn.siteLink("/personal/admin/list/news/");
                       fn.siteLink(`/personal/admin/edit/status/`);
                     }}
                   >
                     Edit statuses for user
+                  </button>
+                  <button
+                    class="btn btn-green"
+                    onclick={async() => {
+                      fn.siteLink(`/personal/admin/list/projects/`);
+                    }}
+                  >
+                    List projects
                   </button>
                 </div>
               </div>

@@ -24,8 +24,13 @@ const start = function (data, ID) {
       }
       Static.tokens = await fn.socket.get({
         method: "Tokens",
-        idUser: Variable.myInfo._id,
-        params: { populate: { path: "projectId" } },
+        
+        params: { 
+          populate: { path: "projectId" },
+          filter:  {
+            idUser: Variable.myInfo._id,
+          }
+        },
       });
       console.log('=table tokens=',Static.tokens);
     },

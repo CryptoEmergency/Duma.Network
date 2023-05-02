@@ -186,7 +186,6 @@ const forExport = function (data, ID) {
                             : null,
                         ]}
                         onclick={() => {
-                          console.log("=64bd17=", item);
                           if (Static.blockchains_list == item) {
                             Static.blockchains_list = {};
                           } else {

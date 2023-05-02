@@ -21,6 +21,15 @@
     z-index: 2;
     position: relative;
     border-radius: 50%;
+
+
+  }
+
+  .moreInfo {
+    width: 35px;
+    height: 35px;
+    z-index: 2;
+    position: relative;
   }
 
   .question-img:hover,
@@ -28,7 +37,8 @@
     background-color: rgba(153, 205, 65, 0.2);
   }
 
-  .more-info {
+  .more-info,
+  .more-list {
     border-radius: 8px;
     box-shadow: 0px 0px 4px 4px rgba(44, 44, 44, 0.16);
     padding: 10px;
@@ -46,13 +56,29 @@
     z-index: 1;
   }
 
+  .more-list {
+    max-width: 170px;
+    right: 15px;
+
+    &-item {
+      padding: 10px 0;
+      transition: 0.3s ease;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+
+  }
+
   &.active {
     .question-img {
       -webkit-animation: onePulse 0.6s forwards linear;
       animation: onePulse 0.6s forwards linear;
     }
 
-    .more-info {
+    .more-info,
+    .more-list {
       opacity: 1;
       transform: scale(1);
       font-size: 14px;
@@ -230,6 +256,9 @@
 
     .sidebar-content {
       position: relative;
+      height: 425px;
+      overflow-y: auto;
+      margin-bottom: 20px;
 
       .sidebar-title {
         text-overflow: ellipsis;
@@ -463,13 +492,14 @@
 
   &.news {
     grid-row: 3;
-    grid-column: 1 / span 3;
+    grid-column: 1 / span 4;
   }
 
   &.refferal {
     display: flex;
     // justify-content: center;
     align-items: center;
+    grid-column: 3 / span4;
 
     .refferal-inner {
       padding-top: 25px;
@@ -682,7 +712,7 @@
 
       &:nth-child(4) {
         grid-row: 4;
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 4;
         // height: 400px;
       }
     }
@@ -784,10 +814,21 @@
   grid-gap: 15px;
   overflow-x: auto;
   position: relative;
-  // height: 325px;
+  height: 325px;
+
+  &.market-inner {
+    height: 250px;
+  }
 
   &::-webkit-scrollbar {
     height: 3px;
+  }
+}
+
+// временные стили для маркетплейс в лк
+.market {
+  .general-title {
+    font-size: 26px;
   }
 }
 
@@ -795,6 +836,7 @@
   display: grid;
   // grid-template-columns: repeat(8, 1fr);
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 50px;
   grid-gap: 10px;
   justify-items: center;
   align-items: center;

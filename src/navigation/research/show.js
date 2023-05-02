@@ -279,11 +279,19 @@ const start = function (data, ID) {
                           Variable.myInfo.balance < Static.invest ||
                           Static.invest == "undefined"
                         ) {
-                          fn.modals.Soon({});
+                          fn.modals.Transaction({
+                            title: "Deposit",
+                            text: "Replenishment amount",
+                            type: "deposit",
+                          });
                           return;
                         }
                         if (Static.totalInvest > Variable.myInfo.balance) {
-                          fn.modals.Soon({});
+                          fn.modals.Transaction({
+                            title: "Deposit",
+                            text: "Replenishment amount",
+                            type: "deposit",
+                          });
                           return;
                         }
                         await fn.socket.send({
