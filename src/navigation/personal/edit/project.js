@@ -266,9 +266,9 @@ const start = function (data, ID) {
                     },
                   ]}
                 />
-                <div class="main mb-25  ">
-                  <h2 class="general-title mt-25">Fill out your project</h2>
-
+                <div class="main mb-25  inner-add">
+                  <h2 class="general-title mt-0">Fill out your project</h2>
+                  <span>Status project: {Static.item.status}</span>
                 </div>
                 <section class="personal-form">
                   <div

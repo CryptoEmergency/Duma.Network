@@ -554,9 +554,14 @@ const start = function (data, ID) {
                                   {item.rank ? item.rank : 0}
                                 </span>
                                 <span class="rang">
-                                  {item.projectId.rank < 100
+                                  {/* {item.projectId.rank < 100
                                     ? "low rank"
-                                    : "medium rank"}
+                                    : "medium rank"} */}
+                                  {
+                                    item.projectId.rank < 50 ? "low rank" : 
+                                    (item.projectId.rank >= 50 && item.projectId.rank < 100) ? " medium rank" :
+                                    (item.projectId.rank >= 100) ? "high rank" : null
+                                  }
                                 </span>
                               </div>
                             </div>

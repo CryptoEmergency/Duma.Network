@@ -97,17 +97,6 @@ const forExport = function ({ Static, className, items = [] }) {
                   <p class="desc-text">{item.description}</p>
                 </div>
                 <div class="socials mY-15">
-                  {/* {(item.socials || []).filter(soc => soc.link && soc.link.length > 0).map((element) => {
-										return (
-											<a target="_blank" href={element.link}>
-												<img
-													alt={element.name}
-													src={svg[`socials/${element.name}`]}
-													class="icon-green"
-												></img>
-											</a>
-										);
-									})} */}
                   {(item.socials || []).map((element) => {
                     if (element.link && element.link.length > 0) {
                       return (

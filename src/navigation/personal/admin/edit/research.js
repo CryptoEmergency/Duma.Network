@@ -941,8 +941,11 @@ const start = function (data, ID) {
                       <span>Problem</span>
                       <input
                         class="admin-input text-green"
+                        // type="number"
                         type="text"
-                        maxlength="2"
+                        // step="any"
+                        pattern="^[0-9]*[.,][0-9]+$"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.problem
@@ -950,7 +953,14 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          // let value = this.value.replace (/\D/);
+                          // let value = this.value.!(/^[А-Яа-яA-Za-z ]$/.test(e.key))
+                          // this.value = this.value.replace(/[^\d\.,]/g, "");
+                          // this.value = this.value.replace(/,/g, ".");
+                          // if(this.value.match(/\./g).length > 1) {
+                          //     this.value = this.value.substr(0, this.value.lastIndexOf("."));
+                          // }
+                          let value = this.value;
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -959,7 +969,6 @@ const start = function (data, ID) {
                             this.value = value;
                           }
                           Static.item.rankList.problem = Number(
-                            // this.innerText.trim()
                             this.value.trim()
                           );
                           updateValue({
@@ -1040,7 +1049,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 100) {
@@ -1154,7 +1163,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.tokenomics
@@ -1162,7 +1171,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1293,7 +1302,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.utility
@@ -1301,7 +1310,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1382,7 +1391,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.team
@@ -1390,7 +1399,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1595,7 +1604,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.roadmap
@@ -1603,7 +1612,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1741,7 +1750,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.documentation
@@ -1749,7 +1758,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1792,7 +1801,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.social
@@ -1800,7 +1809,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1843,7 +1852,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.launchpad
@@ -1851,7 +1860,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1894,7 +1903,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.cexDex
@@ -1902,7 +1911,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1945,7 +1954,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.aggregator
@@ -1953,7 +1962,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -1996,7 +2005,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.competitors
@@ -2004,7 +2013,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -2047,7 +2056,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.mediaText
@@ -2055,7 +2064,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -2098,7 +2107,7 @@ const start = function (data, ID) {
                       <input
                         class="admin-input text-green"
                         type="text"
-                        maxlength="2"
+                        maxlength="3"
                         placeholder="0"
                         value={
                           Static.item.rankList.audit
@@ -2106,7 +2115,7 @@ const start = function (data, ID) {
                             : "0"
                         }
                         oninput={function () {
-                          let value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace (/\D/, '');
                           if (value < 0) {
                             this.value = 0;
                           } else if (value > 10) {
@@ -2146,21 +2155,21 @@ const start = function (data, ID) {
                       <span>TOTAL</span>
                       <div
                         class="form-input personal-input text-green"
-                        // contenteditable="plaintext-only"
-                        // oninput={function () {
-                        //   Static.item.rankList.totalText = Number(
-                        //     this.innerText.trim()
-                        //   );
-                        //   if (
-                        //     Static.item.rankList.totalText ||
-                        //     Static.item.rankList.totalText >= 0
-                        //   ) {
-                        //     updateValue({
-                        //       key: "rankList.totalText",
-                        //       value: Static.item.rankList.totalText,
-                        //     });
-                        //   }
-                        // }}
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.rankList.totalText = Number(
+                            this.innerText.trim()
+                          );
+                          if (
+                            Static.item.rankList.totalText ||
+                            Static.item.rankList.totalText >= 0
+                          ) {
+                            updateValue({
+                              key: "rankList.totalText",
+                              value: Static.item.rankList.totalText,
+                            });
+                          }
+                        }}
                       >
                         {Static.item.rankList.totalText}
                       </div>

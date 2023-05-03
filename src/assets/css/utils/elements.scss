@@ -174,3 +174,40 @@
   grid-template-columns: 1fr;
   grid-gap: 15px;
 }
+
+// выпадающий список с заголовком
+.thema-dropdown {
+  // padding: 10px;
+  background: var(--back-primary);
+  border-radius: 8px;
+  display: flex;
+
+  .accordeon-item {
+    margin-bottom: 0;
+    width: 100%;
+
+    .accordeon-header {
+      background: transparent;
+      border: none;
+    }
+
+    .accordeon-list {
+      position: absolute;
+      top: 100%;
+      background: var(--back-primary);
+      box-shadow: none;
+
+      // .list-item:first-child {
+      //   border-top: 1px solid #474c5a;
+      // }
+    }
+  }
+}
+
+.title-thema {
+  padding: 10px;
+  border-right: 1px solid #474c5a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

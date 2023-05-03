@@ -221,16 +221,26 @@ const forExport = function ({ Static, onclick, className, }) {
             <button
               class="btn-empty"
               onclick={() => {
-                fn.modals.Suggestions({ title: "Suggest an idea" });
+                fn.modals.Suggestions({ 
+                  title: "Contact us",
+                  items: [
+                    {
+                      title: "Suggest an idea"
+                    },
+                    {
+                      title: "Found an error"
+                    }
+                  ] 
+                });
               }}
             >
               {Data.Static.sidebarShow ? 
                 <span class="sidebar-icon">
                   <img src={svg.idea}/> 
                 </span>
-                : "Suggest an idea" }
+                : "Contact us" }
             </button>
-            <button
+            {/* <button
               class="btn-empty"
               onclick={() => {
                 fn.modals.Suggestions({ title: "Bug report" });
@@ -241,18 +251,28 @@ const forExport = function ({ Static, onclick, className, }) {
                   <img src={svg.errorIcon}/> 
                 </span>
                 : "Bug report" }
-            </button>
+            </button> */}
             <button
               class="btn-empty"
               onclick={() => {
-                fn.modals.Suggestions({ title: "I want team" });
+                fn.modals.Suggestions({ 
+                  title: "Cooperation",  
+                  items: [
+                    {
+                      title: "Become our team"
+                    },
+                    {
+                      title: "Become a foundation"
+                    }
+                  ]
+                });
               }}
             >
               {Data.Static.sidebarShow ? 
                 <span class="sidebar-icon">
                   <img src={svg.team}/> 
                 </span>
-                : "I want team" }
+                : "Cooperation" }
             </button>
           </div>  
         </div>

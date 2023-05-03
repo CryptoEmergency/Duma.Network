@@ -121,14 +121,14 @@ const mainHeader = async function () {
                       }}
                     >
                       <a
-                        href="/marketplace"
+                        href="/projects"
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
                           burgerMenu("hide");
                         }}
                       >
-                        MARKETPLACE
+                        PROJECTS
                       </a>
                     </li>
                     <li
@@ -201,14 +201,14 @@ const mainHeader = async function () {
                       }}
                     >
                       <a
-                        href="/projects"
+                        href="/marketplace"
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);
                           burgerMenu("hide");
                         }}
                       >
-                        PROJECTS
+                        MARKETPLACE
                       </a>
                     </li>
                     <li>
@@ -387,7 +387,7 @@ const mainHeader = async function () {
                             PitchDeck
                           </a>
                         </li>
-                        <li>
+                        {/* <li>
                           <a
                             class="menu-sublist_item"
                             onclick={() => {
@@ -397,7 +397,7 @@ const mainHeader = async function () {
                           >
                             LitePaper
                           </a>
-                        </li>
+                        </li> */}
                         <li>
                           <a
                             target="_blank"

@@ -12,7 +12,7 @@ import svg from "@assets/svg/index.js";
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-
+  Static.themaTitle = "Subject of the letter"
   load({
     ID,
     fn: () => {
@@ -33,6 +33,50 @@ const forExport = function (data, ID) {
                 </button>
               </header>
               <main class="main-modal">
+                {/* <div class="form-input form-item mb-15">
+                  <div>Thema: </div>
+
+                </div> */}
+                <div class="thema-dropdown mb-15">
+                  <span class="title-thema">Thema: </span>
+                  <div class="accordeon-item">
+                    <div
+                      class="accordeon-header"
+                      onclick={() => {
+                        Static.themaContact.classList.toggle("content-show");
+                        initReload();
+                      }}
+                    >
+                      <h5 class="accordeon-header_title">
+                        {Static.themaTitle}
+                      </h5>
+                    </div>
+                    <ul
+                      class="accordeon-list"
+                      Element={($el) => {
+                        Static.themaContact = $el;
+                      }}
+                    >
+
+                      {
+                        data.items.map((item, index)=>{
+                          return(
+                            <li
+                              class={["list-item",]}
+                              onclick={() => {
+                                Static.themaTitle = "Suggest an idea";
+                                Static.themaContact.classList.toggle("content-show");
+                                initReload();
+                              }}
+                            >
+                              {item.title}
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </div>
+                </div>
                 <div class="form-item">
                   <textarea
                     rows="5"
@@ -77,7 +121,14 @@ const forExport = function (data, ID) {
                 </div>
               </main>
               <footer class="footer-modal">
-                <button class="btn btn-white">send</button>
+                <button 
+                  onclick={()=>{
+                    Static.themaTitle = "Subject of the letter"
+                    fn.modals.close(ID);
+                  }}
+                  class="btn btn-white">
+                    send
+                </button>
               </footer>
             </div>
           </div>

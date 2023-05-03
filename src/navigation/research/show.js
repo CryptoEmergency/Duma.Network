@@ -163,7 +163,11 @@ const start = function (data, ID) {
                 <div class="project-rang">
                   <span>{Static.item.rank ? Static.item.rank : 0} points</span>
                   <span class="rang">
-                    {Static.item.rank < 100 ? "low rank" : "medium rank"}
+                    {
+                      Static.item.rank < 50 ? "low rank" : 
+                      (Static.item.rank >= 50 && Static.item.rank < 100) ? " medium rank" :
+                      (Static.item.rank >= 100) ? "high rank" : null
+                    }
                   </span>
                 </div>
                 <div>
@@ -841,7 +845,11 @@ const start = function (data, ID) {
                         {Static.item.rank ? Static.item.rank : 0} points
                       </span>
                       <span class="rang">
-                        {Static.item.rank < 100 ? "low rank" : "medium rank"}
+                        {
+                          Static.item.rank < 50 ? "low rank" : 
+                          (Static.item.rank >= 50 && Static.item.rank < 100) ? " medium rank" :
+                          (Static.item.rank >= 100) ? "high rank" : null
+                        }
                       </span>
                     </div>
                   </center>

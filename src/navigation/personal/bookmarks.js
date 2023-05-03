@@ -44,7 +44,7 @@ const start = function (data, ID) {
               <section class="bookmarks main">
                 <h2 class="general-title mt-25">Bookmarks</h2>
                 
-                <div class="bookmarks-inner mt-25">
+                <div class={["bookmarks-inner", "mt-25", Static.tmp.length ? null : "list-notFound"]}>
                   
                   {Static.tmp.length ?
                       Static.tmp.map((item) => {

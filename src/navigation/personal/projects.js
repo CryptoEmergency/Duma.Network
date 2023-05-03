@@ -86,7 +86,7 @@ const start = function (data, ID) {
                           <div class="scheme-card">
                             <div
                               class={[
-                                "question-container",
+                                "question-container ml-15",
                               ]}
                               onclick={function(){
                                 console.log('=cb8aa4=',Static[`moreList${index}`])
@@ -107,7 +107,7 @@ const start = function (data, ID) {
                                         method: "Projects",
                                         action: "findOneAndUpdate",
                                         params: {
-                                          update: { publish: true },
+                                          update: { publish: !item.publish },
                                           filter: {
                                             _id: item._id
                                           }
@@ -119,12 +119,28 @@ const start = function (data, ID) {
                                     }else{
                                       fn.modals.Status({});
                                     }
-
+                                    initReload();
                                     
                                   }}
                                 >
-                                  Publish</li>
-                                <li class="more-list-item">Change project</li>
+                                  <img class="more-list-item_icon mr-5" src={svg.publish} />
+                                  {
+                                    item.publish ? 
+                                   <span>Unpublished</span> : <span>Publish</span> 
+                                  }
+                                   
+                                </li>
+                                <li 
+                                  class="more-list-item"
+                                  onclick={async () => {
+                                    fn.siteLink(
+                                      `/personal/edit/project/${item._id}`
+                                    );
+                                  }}
+                                >
+                                  <img class="more-list-item_icon mr-5" src={svg.edit} />
+                                  <span>Change project</span>
+                                </li>
                               </ul>
                             </div>
                             <div class="scheme-img text">
@@ -140,26 +156,16 @@ const start = function (data, ID) {
                               <div class="title-research_list mb-15">
                                 <span>{item.name ? item.name : "New record"}</span>
                                 <div class="edit-wrap mr-20">
-                                  {item.publish ? 
-                                    <span class="text-green mr-15">Publish</span> : null
+                                  {item?.publish ? 
+                                    <img src={svg.publish} /> : null
                                   }
-                                  <span 
-                                    class={[
-                                      item.status == "Draft" ? "text-red" : null, 
-
-                                    ]}
-                                  >
-                                    {item.status}
-                                  </span>
-                                  <img
-                                    class="ml-20"
-                                    src={svg.edit}
-                                    onclick={async () => {
-                                      fn.siteLink(
-                                        `/personal/edit/project/${item._id}`
-                                      );
-                                    }}
-                                  />
+                                  <img src={
+                                    item.status == "Accepted" ? svg['iconsGreen/doneSend'] 
+                                    : item.status == "Submitted for moderation" ? svg.process 
+                                    : item.status == "Draft" ? svg.draft 
+                                    : item.status == "Refused" ? svg.denied : null
+                                    
+                                  }/>
                                 </div>
                               </div>
     

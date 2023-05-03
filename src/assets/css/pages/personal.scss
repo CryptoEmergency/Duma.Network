@@ -63,9 +63,19 @@
     &-item {
       padding: 10px 0;
       transition: 0.3s ease;
+      display: flex;
+      align-items: center;
 
       &:hover {
         opacity: 0.5;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--text-secondary);
+      }
+
+      &_icon {
+        width: 25px;
       }
     }
 
@@ -190,6 +200,7 @@
     background-color: var(--green);
     box-shadow: 1px 1px 4px #0c1e35;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
     img {
       max-height: 15px;
@@ -230,15 +241,15 @@
 
   .sidebar-layout {
     height: auto;
-    min-height: 100%;
-    // position: relative;
+    min-height: calc(100% - 200px);
     background-color: var(--back-primary);
     position: fixed;
     top: 80px;
-    // position: sticky;
-    // top: 0;
     width: 280px;
     min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &_closed {
       width: 35px;
@@ -370,6 +381,7 @@
 
 .sidebar-item {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sidebar-item a {
@@ -814,7 +826,6 @@
   grid-gap: 15px;
   overflow-x: auto;
   position: relative;
-  height: 325px;
 
   &.market-inner {
     height: 250px;

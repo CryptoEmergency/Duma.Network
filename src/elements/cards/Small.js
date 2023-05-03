@@ -51,7 +51,11 @@ const forExport = function ({ Static, className, items = [] }) {
 
                 <div>
                   <span class="rang">
-                    {item.rank < 100 ? "low rank" : "medium rank"}
+                    {
+                      item.rank < 50 ? "low rank" : 
+                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                      (item.rank >= 100) ? "high rank" : null
+                    }
                   </span>
                   <span class="circle">{item.rank ? item.rank : 0}</span>
                 </div>
