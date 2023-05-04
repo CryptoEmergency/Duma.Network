@@ -258,31 +258,31 @@ const start = function (data, ID) {
                   class="tabs-content"
                   hidden={Static.activeTab == "seed" ? false : true}
                 >
-                  <Elements.cards.Project items={Static.projects} />
+                  <Elements.cards.CardResearch items={Static.projects} />
                 </div>
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "private" ? false : true}
                 >
-                  <Elements.cards.Project items={Static.projects} />
+                  <Elements.cards.CardResearch items={Static.projects} />
                 </div>
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "public" ? false : true}
                 >
-                  <Elements.cards.Project items={Static.projects} />
+                  <Elements.cards.CardResearch items={Static.projects} />
                 </div>
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "pre-seed" ? false : true}
                 >
-                  <Elements.cards.Project items={Static.projects} />
+                  <Elements.cards.CardResearch items={Static.projects} />
                 </div>
                 <div
                   class="tabs-content"
                   hidden={Static.activeTab == "strategic" ? false : true}
                 >
-                  <Elements.cards.Project items={Static.projects} />
+                  <Elements.cards.CardResearch items={Static.projects} />
                 </div>
               </Elements.Tabs>
               <div class="circle-effect circle-effect1"></div>

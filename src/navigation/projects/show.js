@@ -97,12 +97,13 @@ const start = function (data, ID) {
     fnLoad: async () => {
       if (Variable.dataUrl.params) {
         Static.item = await fn.socket.get({
-          method: "Research",
+          method: "Projects",
           _id: Variable.dataUrl.params,
-          params: { populate: { path: "fonds" } },
+          params: { populate: { path: "author" } },
         });
         console.log('=64d179=',Static.item)
       }
+      console.log('=d1a96d=',Variable.dataUrl.params)
       if (!Static.item.socials || !Static.item.socials[0]) {
         Static.item.socials = [];
       }
@@ -127,7 +128,7 @@ const start = function (data, ID) {
             <div class="main-inner">
               <Elements.Bredcrumbs
                 items={[
-                  { title: "Research", link: "/research" },
+                  { title: "Project", link: "/projects" },
                   { title: Static.item.name },
                 ]}
               />
@@ -154,7 +155,6 @@ const start = function (data, ID) {
                         }
                       />
                     </div>
-                    <div class="status">{Static.item.status}</div>
                     <div class="ecosystem">{Static.item.category}</div>
                   </div>
                 </div>
@@ -162,14 +162,14 @@ const start = function (data, ID) {
                   items={Static.item.gallery}
                 ></Elements.Gallery>
                 <div class="project-rang">
-                  <span>{Static.item.rank ? Static.item.rank : 0} points</span>
+                  {/* <span>{Static.item.rank ? Static.item.rank : 0} points</span>
                   <span class="rang">
                     {
                       Static.item.rank < 50 ? "low rank" : 
                       (Static.item.rank >= 50 && Static.item.rank < 100) ? " medium rank" :
                       (Static.item.rank >= 100) ? "high rank" : null
                     }
-                  </span>
+                  </span> */}
                 </div>
                 <div>
                   <div class="about-project">
@@ -197,11 +197,21 @@ const start = function (data, ID) {
                         <img src={svg.bellWhite} class="bell" />
                       )}
                     </div>
-                    <h2>
-                      <span class="ttu line-green">{Static.item.tabs} ROUND IS OPEN</span>
-                      {Static.item.seedRound ? `${Static.item.seedRound}$` : null}
-                    </h2>
                     
+                    {/* <Elements.BlockPersonal Static={Static}></Elements.BlockPersonal> */}
+                    <div class="user-card mb-15">
+                        <div class="user-picture mr-15">
+                          <img src={Static.item.author?.icon ? 
+                            `/assets/upload/${Static.item.author?.icon}` : svg.user} />
+                          <div class="user-status">
+                            {Static.item.author?.status}
+                          </div>
+                        </div>
+                        <div class="user-info">
+                          <span class="text-green">Author</span>
+                          <div class="user-name">{Static.item.author?.firstName}</div>
+                        </div>
+                    </div>
 
                     <p class="text">{Static.item.description}</p>
                     <div class="socials mt-15 mb-15">
@@ -227,44 +237,7 @@ const start = function (data, ID) {
                         }
                       })}
                     </div>
-                    <div class="progressBlock">
-                      <div
-                        style={
-                          !Static.item.have || !Static.item.target
-                            ? `width: calc(0%)`
-                            : Static.item.have >= Static.item.target
-                            ? `width: calc(100%)`
-                            : `width: calc(100% * ${
-                                Static.item.have / Static.item.target
-                              })`
-                        }
-                        class="progressBlock-column"
-                      ></div>
-                    </div>
-                    <span class="summ">
-                      {Static.item.have}$/{Static.item.target}$
-                    </span>
-                    <div class="card-btns">
-                      <input
-                        class="admin-input"
-                        placeholder={`min. ${Static.item.seedRound}$`}
-                        Element={($el) => {
-                          Static.investInput = $el;
-                        }}
-                        oninput={function () {
-                          this.value = this.value.replace(/[^0-9]/g, "");
-                          Static.invest = Number(this.value.trim());
-                          Static.investCommission = (Static.invest / 100) * 15;
-                          Static.totalInvest = Static.invest + Static.investCommission;
-                          initReload();
-                        }}
-                      />
-                      <button class="btn btn-black" style="cursor:default;">
-                        {Static.totalInvest
-                          ? `${Static.totalInvest}$`
-                          : `with commission 15%`}
-                      </button>
-                    </div>
+
                     <button
                       class={[
                         "btn",
@@ -856,6 +829,8 @@ const start = function (data, ID) {
                   </center>
                 </div>
               </section>
+
+
             </div>
           </div>
         </div>

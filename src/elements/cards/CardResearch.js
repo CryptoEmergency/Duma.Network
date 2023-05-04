@@ -10,22 +10,12 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
-const countResearches = function(id, array){
-  let sum = 0;
-  let total = array.reduce(function(count, item, index){
-    if(item.projectId === id){
-      sum++;
-    }
-    return sum;
-  }, 0);
-  return total;
-} 
-
-const forExport = function ({ Static, className, itemsProjects = [], itemsResearches = [] }) {
+const forExport = function ({ Static, className, items = [] }) {
+  // let [Static] = fn.GetParams({ data, ID });
   return (
     <div class="cards">
-      {itemsProjects.map((item, index) => {
-        console.log("=item id=", item._id);
+      {items.map((item, index) => {
+        // console.log("=ad7907=", item);
         return (
           <div class={["card-item", `card-item_${index}`]}>
             {item.blur ? (
@@ -91,12 +81,22 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                       }
                     />
                   </div>
+                  <div class="status">{item.status}</div>
                   <div class="ecosystem">{item.category}</div>
+                  <div class="circle">{item.rank ? item.rank : 0}</div>
+                  <div class="rang">
+                    {/* {item.rank < 100 ? "low rank" : "medium rank"} */}
+                    {
+                      item.rank < 50 ? "low rank" : 
+                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                      (item.rank >= 100) ? "high rank" : null
+                    }
+                  </div>
                 </div>
                 <div class="desc">
                   <p class="desc-text">{item.description}</p>
                 </div>
-                <div class="socials">
+                <div class="socials mY-15">
                   {(item.socials || []).map((element) => {
                     if (element.link && element.link.length > 0) {
                       return (
@@ -119,23 +119,40 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                     }
                   })}
                 </div>
-
-                <div class="card-text mt-15">
-                  <span class="ttu line-green">
-                    Researches: 
-                  </span> 
-                  {countResearches(item._id, itemsResearches)}
+                <div class="card-text">
+                  <span class="ttu line-green">{item.tabs} ROUND</span>
+                  {item.seedRound}$
                 </div>
+                <div class="progressBlock">
+                  <div
+                    style={
+                      !item.have || !item.target
+                        ? `width: calc(0%)`
+                        : item.have >= item.target
+                        ? `width: calc(100%)`
+                        : `width: calc(100% * ${item.have / item.target})`
+                    }
+                    class="progressBlock-column"
+                  ></div>
+                </div>
+
+                <span class="summ">
+                  {item.have || item.target
+                    ? `${item.have}$/${item.target}$`
+                    : null}
+                </span>
 
                 <button
                   class="btn btn-green"
                   onclick={() => {
-                    
-                      fn.siteLink("/projects/show/" + item._id);
-                    
+                    if (!item.blur) {
+                      fn.siteLink("/research/show/" + item._id);
+                    }
                   }}
                 >
-                  about project
+                  {!item.partners
+                    ? "RESEARCH ABOUT THE Project"
+                    : "Become a partners"}
                 </button>
               </div>
             </div>

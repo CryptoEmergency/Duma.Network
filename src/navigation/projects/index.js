@@ -24,7 +24,12 @@ const start = function (data, ID) {
         method: "Projects",
         params: { filter: { moderation: true, publish: true } },
       });
+      Static.researches = await fn.socket.get({
+        method: "ResearchAnalyst",
+        // params: { filter: { moderation: true, publish: true } },
+      });
       console.log('=2b5c3c=', Static.projects);
+      console.log('=research analysts=',Static.researches)
     },
     fn: () => {
       return (
@@ -41,7 +46,7 @@ const start = function (data, ID) {
                 Projects
               </h2>
               <div class="tabs-content">
-                <Elements.cards.Project items={Static.projects} />
+                <Elements.cards.Project itemsProjects={Static.projects} itemsResearches = {Static.researches} />
               </div>
               <div class="circle-effect circle-effect1"></div>
               <div class="circle-effect circle-effect2"></div>

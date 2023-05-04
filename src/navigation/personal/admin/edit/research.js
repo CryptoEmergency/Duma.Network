@@ -623,7 +623,7 @@ const start = function (data, ID) {
 
                   <div class="grid-3">
                     <div class="form-div">
-                      <label>Seed round:</label>
+                      <label>Price per token:</label>
                       <div
                         class="form-input personal-input"
                         contenteditable="plaintext-only"
