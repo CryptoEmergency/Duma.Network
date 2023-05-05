@@ -53,6 +53,20 @@
   .rang {
     padding-left: 15px;
   }
+
+  .research-user {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+  }
+}
+
+.list-news {
+  .project-rang {
+    font-size: 14px;
+    align-items: center;
+  }
 }
 
 .project-rang-vertical {
@@ -177,6 +191,8 @@
     }
   }
 
+
+
   .title-research_list {
     display: flex;
     justify-content: space-between;
@@ -195,6 +211,27 @@
         }
       }
     }
+
+
+
+  }
+
+  .details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width: 100%;
+    width: fit-content;
+    padding: 10px;
+    border: 2px solid var(--green);
+    border-radius: 10px;
+
+    .project-rang {
+      font-size: 14px;
+      align-items: center;
+    }
+
+
   }
 
   .edit-wrap {

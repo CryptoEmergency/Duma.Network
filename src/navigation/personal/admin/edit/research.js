@@ -136,17 +136,14 @@ const updateRecords = async function (update) {
 
 const countTotalRank = function () {
   let total = 0;
-  // console.log("=1a70da=", Data.Static.item.rankList);
   for (let key in Data.Static.item.rankList) {
-    if (key != "totalText") {
-      total += Data.Static.item.rankList[key];
-    }
+    total += Data.Static.item.rankList[key];
   }
-  console.log("=0552f6=", total);
   updateValue({
-    key: "rankList.totalText",
+    key: "rank",
     value: total,
   });
+  // return total;
 };
 
 const start = function (data, ID) {
@@ -181,6 +178,7 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds" } },
         });
+        console.log('=55a4b6=',Static.item)
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -362,8 +360,8 @@ const start = function (data, ID) {
                     <div class="form-div">
                       <label>Total rank:</label>
                       <div class="form-input personal-input">
-                        {/* {Static.item.rank} (Auto calculate) */}
-                        {Static.item.rankList.totalText} (Auto calculate)
+                        {Static.item.rank} (Auto calculate)
+                        {/* {Static.item.rankList.totalText} (Auto calculate) */}
                       </div>
                     </div>
                   </div>
@@ -1065,6 +1063,7 @@ const start = function (data, ID) {
                             key: "rankList.investors",
                             value: Static.item.rankList.investors,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.investors}
@@ -1187,6 +1186,7 @@ const start = function (data, ID) {
                             key: "rankList.tokenomics",
                             value: Static.item.rankList.tokenomics,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.tokenomics}
@@ -1326,6 +1326,7 @@ const start = function (data, ID) {
                             key: "rankList.utility",
                             value: Static.item.rankList.utility,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.utility}
@@ -1415,6 +1416,7 @@ const start = function (data, ID) {
                             key: "rankList.team",
                             value: Static.item.rankList.team,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.team}
@@ -1628,6 +1630,7 @@ const start = function (data, ID) {
                             key: "rankList.roadmap",
                             value: Static.item.rankList.roadmap,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.roadmap}
@@ -1774,6 +1777,7 @@ const start = function (data, ID) {
                             key: "rankList.documentation",
                             value: Static.item.rankList.documentation,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.documentation}
@@ -1825,6 +1829,7 @@ const start = function (data, ID) {
                             key: "rankList.social",
                             value: Static.item.rankList.social,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.social}
@@ -1876,6 +1881,7 @@ const start = function (data, ID) {
                             key: "rankList.launchpad",
                             value: Static.item.rankList.launchpad,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.launchpad}
@@ -1927,6 +1933,7 @@ const start = function (data, ID) {
                             key: "rankList.cexDex",
                             value: Static.item.rankList.cexDex,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.cexDex}
@@ -2029,6 +2036,7 @@ const start = function (data, ID) {
                             key: "rankList.competitors",
                             value: Static.item.rankList.competitors,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.competitors}
@@ -2080,6 +2088,7 @@ const start = function (data, ID) {
                             key: "rankList.mediaText",
                             value: Static.item.rankList.mediaText,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.mediaText}
@@ -2153,26 +2162,41 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>TOTAL</span>
-                      <div
-                        class="form-input personal-input text-green"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        pattern="^[0-9]*[.,][0-9]+$"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.totalText
+                            ? Static.item.rankList.totalText
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.rankList.totalText = Number(
-                            this.innerText.trim()
-                          );
-                          if (
-                            Static.item.rankList.totalText ||
-                            Static.item.rankList.totalText >= 0
-                          ) {
-                            updateValue({
-                              key: "rankList.totalText",
-                              value: Static.item.rankList.totalText,
-                            });
+                          // let value = this.value.replace (/\D/, '');
+                          let value = this.value;
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
                           }
+                          Static.item.rankList.totalText = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.totalText",
+                            value: Static.item.rankList.totalText,
+                          });
+                          countTotalRank()
                         }}
                       >
                         {Static.item.rankList.totalText}
-                      </div>
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"

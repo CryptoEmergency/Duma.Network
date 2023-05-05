@@ -22,6 +22,10 @@
   text-transform: uppercase;
 }
 
+.bold {
+  font-weight: 700;
+}
+
 // текстовые модификаторы
 
 // фигуры, линии, круги
@@ -56,6 +60,18 @@
 }
 
 // grid
+
+// различные иконки
+.icon-status {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 25px;
+  height: 25px;
+}
+
+// различные иконки
 
 // buttons active
 // главная кнопка по умолчанию синего цвета

@@ -136,42 +136,16 @@ const updateRecords = async function (update) {
   }
 };
 
-// const showError = function (text) {
-//   Data.Static.elError.style.display = "block";
-//   Data.Static.elError.innerHTML = text;
-//   setTimeout(() => {
-//     Data.Static.elError.style.display = "none";
-//   }, 5000);
-// };
-
-// const formCheck = function () {
-//   if (!Data.Static.nameProject.length) {
-//     showError("Enter the Name Project");
-//     return false;
-//   }
-
-//   // if (!fn.validator.isEmail(Data.MStatic.email)) {
-//   //   showError("Enter the correct Email address");
-//   //   return false;
-//   // }
-
-//   // if (!Data.MStatic.pass.length) {
-//   //   showError("Enter the password");
-//   //   return false;
-//   // }
-
-//   // if (!Data.MStatic.repass.length) {
-//   //   showError("Enter the password repeat");
-//   //   return false;
-//   // }
-
-//   // if (Data.MStatic.pass != Data.MStatic.repass) {
-//   //   showError("Passwords don't match");
-//   //   return false;
-//   // }
-
-//   return true;
-// };
+const countTotalRank = function () {
+  let total = 0;
+  for (let key in Data.Static.item.rankList) {
+    total += Data.Static.item.rankList[key];
+  }
+  updateValue({
+    key: "rank",
+    value: total,
+  });
+};
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
@@ -611,8 +585,8 @@ const start = function (data, ID) {
                     <div class="form-div">
                       <label>Total rank:</label>
                       <div class="form-input personal-input">
-                        {/* {Static.item.rank} (Auto calculate) */}
-                        {Static.item.rankList.totalText} (Auto calculate)
+                        {Static.item.rank} (Auto calculate)
+                        {/* {Static.item.rankList.totalText} (Auto calculate) */}
                       </div>
                     </div>
                   </div>
@@ -929,6 +903,7 @@ const start = function (data, ID) {
                             key: "rankList.problem",
                             value: Static.item.rankList.problem,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.problem}
@@ -1072,6 +1047,7 @@ const start = function (data, ID) {
                             key: "rankList.investors",
                             value: Static.item.rankList.investors,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.investors}
@@ -1196,6 +1172,7 @@ const start = function (data, ID) {
                             key: "rankList.tokenomics",
                             value: Static.item.rankList.tokenomics,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.tokenomics}
@@ -1350,6 +1327,7 @@ const start = function (data, ID) {
                             key: "rankList.utility",
                             value: Static.item.rankList.utility,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.utility}
@@ -1455,6 +1433,7 @@ const start = function (data, ID) {
                             key: "rankList.team",
                             value: Static.item.rankList.team,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.team}
@@ -1687,6 +1666,7 @@ const start = function (data, ID) {
                             key: "rankList.roadmap",
                             value: Static.item.rankList.roadmap,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.roadmap}
@@ -1835,6 +1815,7 @@ const start = function (data, ID) {
                             key: "rankList.documentation",
                             value: Static.item.rankList.documentation,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.documentation}
@@ -1888,6 +1869,7 @@ const start = function (data, ID) {
                             key: "rankList.social",
                             value: Static.item.rankList.social,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.social}
@@ -1941,6 +1923,7 @@ const start = function (data, ID) {
                             key: "rankList.launchpad",
                             value: Static.item.rankList.launchpad,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.launchpad}
@@ -1994,6 +1977,7 @@ const start = function (data, ID) {
                             key: "rankList.cexDex",
                             value: Static.item.rankList.cexDex,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.cexDex}
@@ -2047,6 +2031,7 @@ const start = function (data, ID) {
                             key: "rankList.aggregator",
                             value: Static.item.rankList.aggregator,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.aggregator}
@@ -2100,6 +2085,7 @@ const start = function (data, ID) {
                             key: "rankList.competitors",
                             value: Static.item.rankList.competitors,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.competitors}
@@ -2153,6 +2139,7 @@ const start = function (data, ID) {
                             key: "rankList.mediaText",
                             value: Static.item.rankList.mediaText,
                           });
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.mediaText}
@@ -2206,7 +2193,7 @@ const start = function (data, ID) {
                             key: "rankList.audit",
                             value: Static.item.rankList.audit,
                           });
-                          // countTotalRank();
+                          countTotalRank();
                         }}
                       >
                         {Static.item.rankList.audit}
@@ -2227,20 +2214,73 @@ const start = function (data, ID) {
                       {Static.item.projectId.audit}
                     </div>
                   </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>TOTAL</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        pattern="^[0-9]*[.,][0-9]+$"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.totalText
+                            ? Static.item.rankList.totalText
+                            : "0"
+                        }
+                        oninput={function () {
+                          // let value = this.value.replace (/\D/, '');
+                          let value = this.value;
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.totalText = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.totalText",
+                            value: Static.item.rankList.totalText,
+                          });
+                          countTotalRank();
+                        }}
+                      >
+                        {Static.item.rankList.totalText}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.totalText = this.innerText.trim();
+                        updateValue({
+                          key: "totalText",
+                          value: Static.item.totalText,
+                        });
+                      }}
+                    >
+                      {Static.item.totalText}
+                    </div>
+                  </div>
+
                   <center class="el-bottom mt-70">
                     <button 
                       class={["btn", "btn-green", "mb-15" ]}
                       onclick={async function(){
+                        let insert = {
+                          projectId: Static.item.projectId._id,
+                        };
                         await fn.socket.set({
-                          method: "Projects",
-                          action: "findOneAndUpdate",
-                          params: {
-                            update: { status: "Submitted for moderation" },
-                            filter: {
-                              _id: Static.item._id,
-                              author: Variable.myInfo._id,
-                            }
-                          },
+                          
+                          method: "ResearchAnalyst",
+                          action: "insert",
+                          params: { insert },
                         });
     
                         fn.modals.Success({

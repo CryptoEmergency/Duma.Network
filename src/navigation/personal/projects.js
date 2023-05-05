@@ -18,7 +18,7 @@ const start = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      if (!Variable.auth || !Variable.myInfo.role) {
+      if (!Variable.auth) {
         fn.siteLink("/");
         return;
       }
@@ -29,7 +29,7 @@ const start = function (data, ID) {
       console.log('=981423=',Static.records)
     },
     fn: () => {
-      if (!Variable.auth || !Variable.myInfo.role) {
+      if (!Variable.auth) {
         fn.siteLink("/");
         return <div></div>;
       }

@@ -18,18 +18,23 @@ const start = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      if (!Variable.auth || !Variable.myInfo.role) {
+      if (!Variable.auth) {
         fn.siteLink("/");
         return;
       }
       Static.records = await fn.socket.get({
         method: "ResearchAnalyst",
-        params: { populate: { path: "projectId",  } }, 
+        params: { 
+          filter: {
+            author: Variable.myInfo._id,
+          },
+          populate: { path: "projectId",  }
+        }, 
       });
       console.log('=981423=',Static.records);
     },
     fn: () => {
-      if (!Variable.auth || !Variable.myInfo.role) {
+      if (!Variable.auth) {
         fn.siteLink("/");
         return <div></div>;
       }
@@ -54,23 +59,6 @@ const start = function (data, ID) {
                     onclick={() => {
                       fn.modals.ProjectsList({
                         title: "Projects list",
-                        // callback: async (chooseProject) => {
-                        //   Static.item.blockchains = filterBlockchains;
-                        //   await updateRecords({
-                        //     blockchains: Static.item.blockchains,
-                        //   });
-                        //   let tmp = await fn.socket.get({
-                        //     method: "Projects",
-                        //     _id: Variable.dataUrl.params,
-                        //     params: { populate: { path: "blockchains" } },
-                        //   });
-                        //   if (tmp.blockchains) {
-                        //     Static.item.blockchains = tmp.blockchains;
-                        //   }
-
-                        //   initReload();
-                        //   return;
-                        // },
                       });
                     }}
                   >
