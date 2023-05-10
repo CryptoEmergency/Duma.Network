@@ -282,7 +282,7 @@ const start = function (data, ID) {
                         }
                         if (
                           Variable.myInfo.balance < Static.invest ||
-                          Static.invest == "undefined"
+                          typeof(Static.invest) === "undefined"
                         ) {
                           fn.modals.Transaction({
                             title: "Deposit",

@@ -56,7 +56,6 @@ const start = function (data, ID) {
           method: "Research",
           params: { filter: { moderation: true } },
         });
-        console.log("=9ebbf7=", Static.item);
       }
     },
     fn: () => {

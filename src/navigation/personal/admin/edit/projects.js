@@ -168,9 +168,10 @@ const start = function (data, ID) {
         Static.item = await fn.socket.get({
           method: "Projects",
           _id: Variable.dataUrl.params,
-          params: { populate: { path: "fonds" } },
+          params: { populate: { path: "fonds author" } },
         });
-        console.log("=9ebbf7=", Static.item);
+        console.log('=486295=',Static.item)
+
 
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
@@ -715,7 +716,6 @@ const start = function (data, ID) {
 
                       <div class="fondlist-wrap">
                         {(Static.item.fonds || []).map((item, index) => {
-                          console.log('=ed9328=', Static.item.fonds)
                           return (
                             <div class="fondlist-item">
                               <img
@@ -1391,6 +1391,14 @@ const start = function (data, ID) {
                               }
                             },
                           });
+                          await fn.socket.send({
+                            method: "BankToken",
+                            params: {
+                              projectId: Static.item._id, // id проекта в табл проджект
+                              author: Static.item.author
+                            },
+                          });
+
       
                           fn.modals.Success({
                             title: "The project is accepted"

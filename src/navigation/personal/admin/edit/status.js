@@ -51,7 +51,7 @@ const start = function (data, ID) {
       //     method: "Statuses",
       //     // _id: Variable.dataUrl.params,
       //   });
-      //   console.log("=9ebbf7=", Static.item);
+
       // }
       Static.statuses = await fn.socket.get({
         method: "Statuses",

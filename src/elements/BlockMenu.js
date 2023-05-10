@@ -277,6 +277,9 @@ const forExport = function ({ Static, onclick, className, }) {
                     },
                     {
                       title: "Become a foundation"
+                    },
+                    {
+                      title: "Become a partner"
                     }
                   ]
                 });

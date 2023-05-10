@@ -180,7 +180,7 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "projectId" } },
         });
-        console.log("=9ebbf7=", Static.item);
+        console.log('=18356f=', Static.item)
 
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
@@ -591,65 +591,6 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="grid-3">
-                    <div class="form-div">
-                      <label>Price per token:</label>
-                      <div
-                        class="form-input personal-input"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.seedRound = Number(this.innerText.trim());
-                          if (
-                            Static.item.seedRound ||
-                            Static.item.seedRound >= 0
-                          ) {
-                            updateValue({
-                              key: "seedRound",
-                              value: Static.item.seedRound,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.seedRound}
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Invest:</label>
-                      <div
-                        class="form-input personal-input"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.have = Number(this.innerText.trim());
-                          if (Static.item.have || Static.item.have >= 0) {
-                            updateValue({
-                              key: "have",
-                              value: Static.item.have,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.have}
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Target invest:</label>
-                      <div
-                        class="form-input personal-input"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.target = Number(this.innerText.trim());
-                          if (Static.item.target || Static.item.target >= 0) {
-                            updateValue({
-                              key: "target",
-                              value: Static.item.target,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.target}
-                      </div>
-                    </div>
-                  </div>
 
                   <div class="form-item">
                     <label>Description:</label>
@@ -872,6 +813,22 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.problem = Static.item.projectId.problem
+                        updateValue({
+                          key: "problem",
+                          value: Static.item.problem,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
                       <input
@@ -916,74 +873,98 @@ const start = function (data, ID) {
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.problem = this.innerText.trim();
+                          Static.item.problem = this.innerText.trim();
                           updateValue({
                             key: "problem",
-                            value: Static.item.projectId.problem,
+                            value: Static.item.problem,
                           });
                         }}
                       >
-                        {Static.item.projectId.problem}
+                        {Static.item.problem}
                       </div>
-                      <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.projectId.problemLink = this.innerText.trim();
-                          updateValue({
-                            key: "problemLink",
-                            value: Static.item.projectId.problemLink,
-                          });
-                        }}
-                      >
-                        {Static.item.projectId?.problemLink}
-                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.problem}
+                        >
+                          {Static.item?.projectId.linkList?.problem}
+                        </a> 
+                      </p>
                     </div>
                     
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.product = Static.item.projectId.product
+                        updateValue({
+                          key: "product",
+                          value: Static.item.product,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Product</span>
                     </div>
                     <div class="scheme-card_desc">
+                      <span class="text">Describe your product:</span>
                       <div
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.product = this.innerText.trim();
+                          Static.item.product = this.innerText.trim();
                           updateValue({
                             key: "product",
-                            value: Static.item.projectId.product,
+                            value: Static.item.product,
                           });
                         }}
                       >
-                        {Static.item.projectId.product}
+                        {Static.item.product}
                       </div>
-                      <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.projectId.productLink = this.innerText.trim();
-                          updateValue({
-                            key: "productLink",
-                            value: Static.item.projectId.productLink,
-                          });
-                        }}
-                      >
-                        {Static.item.projectId.productLink}
-                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.product}
+                        >
+                          {Static.item?.projectId.linkList?.product}
+                        </a> 
+                      </p>
                     </div>
                     
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.solution = Static.item.projectId.solution
+                        updateValue({
+                          key: "solution",
+                          value: Static.item.solution,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Solution</span>
                     </div>
                     <div class="scheme-card_desc">
+                      <span class="text">Describe the solution to the problem:</span>
                       <div
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
@@ -997,25 +978,36 @@ const start = function (data, ID) {
                       >
                         {Static.item.solution}
                       </div>
-                      <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.projectId.solutionLink = this.innerText.trim();
-                          updateValue({
-                            key: "solutionLink",
-                            value: Static.item.projectId.solutionLink,
-                          });
-                        }}
-                      >
-                        {Static.item.projectId.solutionLink}
-                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.solution}
+                        >
+                          {Static.item?.projectId.linkList?.solution}
+                        </a> 
+                      </p>
                     </div>
                     
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.investors = Static.item.projectId.investors
+                        updateValue({
+                          key: "investors",
+                          value: Static.item.investors,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Investors</span>
                       <input
@@ -1055,33 +1047,29 @@ const start = function (data, ID) {
                       <span class="text-green">Max. 100</span>
                     </div>
                     <div class="scheme-card_desc">
+                      <span class="text">About investors</span>
                       <div
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.investors = this.innerText.trim();
+                          Static.item.investors = this.innerText.trim();
                           updateValue({
                             key: "investors",
-                            value: Static.item.projectId.investors,
+                            value: Static.item.investors,
                           });
                         }}
                       >
-                        {Static.item.projectId.investors}
+                        {Static.item.investors}
                       </div>
-                      <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.projectId.investorsLink = this.innerText.trim();
-                          updateValue({
-                            key: "investorsLink",
-                            value: Static.item.projectId.investorsLink,
-                          });
-                        }}
-                      >
-                        {Static.item.projectId.investorsLink}
-                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.investors}
+                        >
+                          {Static.item?.projectId.linkList?.investors}
+                        </a> 
+                      </p>
                     </div>
                     
                   </div>
@@ -1123,24 +1111,20 @@ const start = function (data, ID) {
                           );
                         })}
                       </div>
-                      {/* <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.investorsLink = this.innerText.trim();
-                          updateValue({
-                            key: "investorsLink",
-                            value: Static.item.investorsLink,
-                          });
-                        }}
-                      >
-                        {Static.item.investorsLink}
-                      </div> */}
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.fonds}
+                        >
+                          {Static.item?.projectId.linkList?.fonds}
+                        </a> 
+                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
+                    
                     <div class="scheme-sidebar_item text">
                       <span>Tokenomics</span>
                       <input
@@ -1264,33 +1248,44 @@ const start = function (data, ID) {
                         </div>
                       </div>
                       <div class="scheme-card_roadmap-desc">
-                        <div
-                          class="scheme-card_desc personal-input text mb-15"
-                          contenteditable="plaintext-only"
-                          oninput={function () {
-                            Static.item.projectId.tokenomics.text = this.innerText.trim();
+                        <img 
+                          class="user-icon" 
+                          src={svg.duplicate} 
+                          width='20' 
+                          height='20'
+                          title="Duplicate content from a project"
+                          style="cursor: pointer;"
+                          onclick={()=>{
+                            Static.item.tokenomics.text = Static.item.projectId.tokenomics.text
                             updateValue({
                               key: "tokenomics.text",
-                              value: Static.item.projectId.tokenomics.text,
+                              value: Static.item.tokenomics.text,
                             });
+                            initReload();
                           }}
-                        >
-                          {Static.item.projectId.tokenomics?.text}
-                        </div>
-                        <span class="text">Enter the link confirming the information:</span>
+                        />
                         <div
                           class="scheme-card_desc personal-input text mb-15"
                           contenteditable="plaintext-only"
                           oninput={function () {
-                            Static.item.projectId.tokenomics.link = this.innerText.trim();
+                            Static.item.tokenomics.text = this.innerText.trim();
                             updateValue({
-                              key: "tokenomics.link",
-                              value: Static.item.projectId.tokenomics.link,
+                              key: "tokenomics.text",
+                              value: Static.item.tokenomics.text,
                             });
                           }}
                         >
-                          {Static.item.projectId.tokenomics?.link}
+                          {Static.item.tokenomics?.text}
                         </div>
+                        <p class="text">Enter the link confirming the information: 
+                          <a 
+                            class="link-modal text-green"
+                            target="_blank"
+                            href={Static.item?.projectId.linkList?.tokenomics}
+                          >
+                            {Static.item?.projectId.linkList?.tokenomics}
+                          </a> 
+                        </p>
                       </div>
 
                     </div>
@@ -1384,24 +1379,35 @@ const start = function (data, ID) {
                           {Static.item.projectId.utility?.accural}
                         </div>
                       </div>
-                      <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.projectId.utility.link = this.innerText.trim();
-                          updateValue({
-                            key: "utility.link",
-                            value: Static.item.projectId.utility.link,
-                          });
-                        }}
-                      >
-                        {Static.item.projectId.utility?.link}
-                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.utility}
+                        >
+                          {Static.item?.projectId.linkList?.utility}
+                        </a> 
+                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.team.text = Static.item.projectId.team.text
+                        updateValue({
+                          key: "team.text",
+                          value: Static.item.team.text,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>
                       <input
@@ -1447,14 +1453,14 @@ const start = function (data, ID) {
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.team.text = this.innerText.trim();
+                          Static.item.team.text = this.innerText.trim();
                           updateValue({
                             key: "team.text",
-                            value: Static.item.projectId.team.text,
+                            value: Static.item.team.text,
                           });
                         }}
                       >
-                        {Static.item.projectId.team?.text}
+                        {Static.item.team?.text}
                       </div>
                       {/* поля для заполнения текста ^ */}
                       <div
@@ -1617,24 +1623,40 @@ const start = function (data, ID) {
                           }
                         )}
                       </div>
-                      <span class="text">Enter the link confirming the information:</span>
-                      <div
-                        class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.team.link = this.innerText.trim();
-                          updateValue({
-                            key: "team.link",
-                            value: Static.item.team.link,
-                          });
-                        }}
-                      >
-                        {Static.item.team?.link}
-                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.team}
+                        >
+                          {Static.item?.projectId.linkList?.team}
+                        </a> 
+                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.roadmap.text = Static.item.projectId.roadmap.text
+                        updateValue({
+                          key: "roadmap.text",
+                          value: Static.item.roadmap.text,
+                        });
+                        Static.item.roadmap.link = Static.item.projectId.roadmap.link
+                        updateValue({
+                          key: "roadmap.link",
+                          value: Static.item.roadmap.link,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
                       <input
@@ -1675,7 +1697,7 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
-                      <div class="scheme-card_roadmap">
+                      <div class="scheme-card_roadmap mt-20">
                         <div class="scheme-card_roadmap-img">
                           <div
                             class={[
@@ -1756,34 +1778,59 @@ const start = function (data, ID) {
                             class="scheme-card_desc personal-input text mb-15"
                             contenteditable="plaintext-only"
                             oninput={function () {
-                              Static.item.projectId.roadmap.text = this.innerText.trim();
+                              Static.item.roadmap.text = this.innerText.trim();
                               updateValue({
                                 key: "roadmap.text",
-                                value: Static.item.projectId.roadmap.text,
+                                value: Static.item.roadmap.text,
                               });
                             }}
                           >
-                            {Static.item.projectId.roadmap?.text}
+                            {Static.item.roadmap?.text}
                           </div>
                           <div
                             class="scheme-card_desc personal-input text"
                             contenteditable="plaintext-only"
                             oninput={function () {
-                              Static.item.projectId.roadmap.link = this.innerText.trim();
+                              Static.item.roadmap.link = this.innerText.trim();
                               updateValue({
                                 key: "roadmap.link",
-                                value: Static.item.projectId.roadmap.link,
+                                value: Static.item.roadmap.link,
                               });
                             }}
                           >
-                            {Static.item.projectId.roadmap?.link}
+                            {Static.item.roadmap?.link}
                           </div>
                         </div>
                       </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.roadmap}
+                        >
+                          {Static.item?.projectId.linkList?.roadmap}
+                        </a> 
+                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.documentation = Static.item.projectId.documentation
+                        updateValue({
+                          key: "documentation",
+                          value: Static.item.documentation,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Documentation</span>
                       <input
@@ -1822,22 +1869,51 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.documentation = this.innerText.trim();
-                        updateValue({
-                          key: "documentation",
-                          value: Static.item.projectId.documentation,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.documentation}
+                    <div class="scheme-card_desc">
+                      <span class="text">Describe your documentation: </span>
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.documentation = this.innerText.trim();
+                          updateValue({
+                            key: "documentation",
+                            value: Static.item.documentation,
+                          });
+                        }}
+                      >
+                        {Static.item.documentation}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.documentation}
+                        >
+                          {Static.item?.projectId.linkList?.documentation}
+                        </a> 
+                      </p>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.social = Static.item.projectId.social
+                        updateValue({
+                          key: "social",
+                          value: Static.item.social,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Social</span>
                       <input
@@ -1876,22 +1952,53 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.social = this.innerText.trim();
-                        updateValue({
-                          key: "social",
-                          value: Static.item.projectId.social,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.social}
+
+                    <div class="scheme-card_desc">
+                      <span class="text">Information about social:</span>
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.social = this.innerText.trim();
+                          updateValue({
+                            key: "social",
+                            value: Static.item.social,
+                          });
+                        }}
+                      >
+                        {Static.item.social}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.social}
+                        >
+                          {Static.item?.projectId.linkList?.social}
+                        </a> 
+                      </p>
                     </div>
+
+                    
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.launchpad = Static.item.projectId.launchpad
+                        updateValue({
+                          key: "launchpad",
+                          value: Static.item.launchpad,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Launchpad</span>
                       <input
@@ -1930,19 +2037,34 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.launchpad = this.innerText.trim();
-                        updateValue({
-                          key: "launchpad",
-                          value: Static.item.projectId.launchpad,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.launchpad}
+
+                    <div class="scheme-card_desc">
+                      <span class="text">Describe the launcher</span>
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.launchpad = this.innerText.trim();
+                          updateValue({
+                            key: "launchpad",
+                            value: Static.item.launchpad,
+                          });
+                        }}
+                      >
+                        {Static.item.launchpad}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.launchpad}
+                        >
+                          {Static.item?.projectId.linkList?.launchpad}
+                        </a> 
+                      </p>
                     </div>
+
+                    
                   </div>
 
                   <div class="scheme-card">
@@ -1984,19 +2106,33 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.cexDex = this.innerText.trim();
-                        updateValue({
-                          key: "cexDex",
-                          value: Static.item.projectId.cexDex,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.cexDex}
+
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.projectId.cexDex = this.innerText.trim();
+                          updateValue({
+                            key: "cexDex",
+                            value: Static.item.projectId.cexDex,
+                          });
+                        }}
+                      >
+                        {Static.item.projectId.cexDex}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.cexDex}
+                        >
+                          {Static.item?.projectId.linkList?.cexDex}
+                        </a> 
+                      </p>
                     </div>
+
+                    
                   </div>
 
                   <div class="scheme-card">
@@ -2038,19 +2174,31 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.aggregator = this.innerText.trim();
-                        updateValue({
-                          key: "aggregator",
-                          value: Static.item.projectId.aggregator,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.aggregator}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.projectId.aggregator = this.innerText.trim();
+                          updateValue({
+                            key: "aggregator",
+                            value: Static.item.projectId.aggregator,
+                          });
+                        }}
+                      >
+                        {Static.item.projectId.aggregator}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.aggregator}
+                        >
+                          {Static.item?.projectId.linkList?.aggregator}
+                        </a> 
+                      </p>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
@@ -2092,19 +2240,33 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.competitors = this.innerText.trim();
-                        updateValue({
-                          key: "competitors",
-                          value: Static.item.projectId.competitors,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.competitors}
+
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.projectId.competitors = this.innerText.trim();
+                          updateValue({
+                            key: "competitors",
+                            value: Static.item.projectId.competitors,
+                          });
+                        }}
+                      >
+                        {Static.item.projectId.competitors}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.competitors}
+                        >
+                          {Static.item?.projectId.linkList?.competitors}
+                        </a> 
+                      </p>
                     </div>
+
+                    
                   </div>
 
                   <div class="scheme-card">
@@ -2146,19 +2308,34 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.mediaText = this.innerText.trim();
-                        updateValue({
-                          key: "mediaText",
-                          value: Static.item.projectId.mediaText,
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.mediaText}
+
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.projectId.mediaText = this.innerText.trim();
+                          updateValue({
+                            key: "mediaText",
+                            value: Static.item.projectId.mediaText,
+                          });
+                        }}
+                      >
+                        {Static.item.projectId.mediaText}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.mediaText}
+                        >
+                          {Static.item?.projectId.linkList?.mediaText}
+                        </a> 
+                      </p>
                     </div>
+
+
+                    
                   </div>
 
                   <div class="scheme-card">
@@ -2200,19 +2377,33 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.projectId.audit = this.innerText.trim();
-                        updateValue({ 
-                          key: "audit", 
-                          value: Static.item.projectId.audit 
-                        });
-                      }}
-                    >
-                      {Static.item.projectId.audit}
+
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.projectId.audit = this.innerText.trim();
+                          updateValue({ 
+                            key: "audit", 
+                            value: Static.item.projectId.audit 
+                          });
+                        }}
+                      >
+                        {Static.item.projectId.audit}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.audit}
+                        >
+                          {Static.item?.projectId.linkList?.audit}
+                        </a> 
+                      </p>
                     </div>
+
+                    
                   </div>
 
                   <div class="scheme-card">

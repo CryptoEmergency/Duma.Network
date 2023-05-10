@@ -206,7 +206,6 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds" } },
         });
-        console.log("=9ebbf7=", Static.item);
 
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
@@ -326,11 +325,7 @@ const start = function (data, ID) {
                                       10
                                     );
                                   }
-                                  console.log(
-                                    "onprogress",
-                                    e.loaded,
-                                    contentLength
-                                  );
+
                                 },
                               });
                               return;
@@ -601,11 +596,6 @@ const start = function (data, ID) {
                                   10
                                 );
                               }
-                              console.log(
-                                "onprogress",
-                                e.loaded,
-                                contentLength
-                              );
                             },
                           });
                           return;
@@ -661,14 +651,14 @@ const start = function (data, ID) {
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.problemLink = this.innerText.trim();
+                          Static.item.linkList.problem = this.innerText.trim();
                           updateValue({
-                            key: "problemLink",
-                            value: Static.item.problemLink,
+                            key: "linkList.problem",
+                            value: Static.item.linkList.problem,
                           });
                         }}
                       >
-                        {Static.item?.problemLink}
+                        {Static.item?.linkList?.problem}
                       </div>
                     </div>
                     
@@ -697,14 +687,14 @@ const start = function (data, ID) {
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.productLink = this.innerText.trim();
+                          Static.item.linkList.product = this.innerText.trim();
                           updateValue({
-                            key: "productLink",
-                            value: Static.item.productLink,
+                            key: "linkList.product",
+                            value: Static.item.linkList.product,
                           });
                         }}
                       >
-                        {Static.item.productLink}
+                        {Static.item?.linkList?.product}
                       </div>
                     </div>
                     
@@ -733,14 +723,14 @@ const start = function (data, ID) {
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.solutionLink = this.innerText.trim();
+                          Static.item.linkList.solution = this.innerText.trim();
                           updateValue({
-                            key: "solutionLink",
-                            value: Static.item.solutionLink,
+                            key: "linkList.solution",
+                            value: Static.item.linkList.solution,
                           });
                         }}
                       >
-                        {Static.item.solutionLink}
+                        {Static.item.linkList?.solution}
                       </div>
                     </div>
                     
@@ -769,14 +759,14 @@ const start = function (data, ID) {
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.investorsLink = this.innerText.trim();
+                          Static.item.linkList.investors = this.innerText.trim();
                           updateValue({
-                            key: "investorsLink",
-                            value: Static.item.investorsLink,
+                            key: "linkList.investors",
+                            value: Static.item.linkList.investors,
                           });
                         }}
                       >
-                        {Static.item.investorsLink}
+                        {Static.item.linkList?.investors}
                       </div>
                     </div>
                     
@@ -784,7 +774,7 @@ const start = function (data, ID) {
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>Choose funds</span>
+                      <span>Choose fonds</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -820,7 +810,6 @@ const start = function (data, ID) {
 
                       <div class="fondlist-wrap">
                         {(Static.item.fonds || []).map((item, index) => {
-                          console.log('=ed9328=', Static.item.fonds)
                           return (
                             <div class="fondlist-item">
                               <img
@@ -850,20 +839,20 @@ const start = function (data, ID) {
                           );
                         })}
                       </div>
-                      {/* <span class="text">Enter the link confirming the information:</span>
+                      <span class="text">Enter the link confirming the information:</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.investorsLink = this.innerText.trim();
+                          Static.item.linkList.fonds = this.innerText.trim();
                           updateValue({
-                            key: "investorsLink",
-                            value: Static.item.investorsLink,
+                            key: "linkList.fonds",
+                            value: Static.item.linkList.fonds,
                           });
                         }}
                       >
-                        {Static.item.investorsLink}
-                      </div> */}
+                        {Static.item.linkList?.fonds}
+                      </div>
                     </div>
                   </div>
 
@@ -969,22 +958,22 @@ const start = function (data, ID) {
                         >
                           {Static.item.tokenomics?.text}
                         </div>
-                        <span class="text">Enter the link confirming the information:</span>
-                        <div
-                          class="scheme-card_desc personal-input text mb-15"
-                          contenteditable="plaintext-only"
-                          oninput={function () {
-                            Static.item.tokenomics.link = this.innerText.trim();
-                            updateValue({
-                              key: "tokenomics.link",
-                              value: Static.item.tokenomics.link,
-                            });
-                          }}
-                        >
-                          {Static.item.tokenomics?.link}
-                        </div>
+                        
                       </div>
-
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.team.link = this.innerText.trim();
+                          updateValue({
+                            key: "team.link",
+                            value: Static.item.team.link,
+                          });
+                        }}
+                      >
+                        {Static.item.team?.link}
+                      </div>
                     </div>
                   </div>
 
@@ -1368,6 +1357,20 @@ const start = function (data, ID) {
                           </div>
                         </div>
                       </div>
+                      <span class="text mt-15">Enter the link confirming the information:</span>
+                      <div
+                        class="scheme-card_desc personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.roadmap = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.roadmap",
+                            value: Static.item.linkList.roadmap,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.roadmap}
+                      </div>
                     </div>
                   </div>
 
@@ -1375,149 +1378,285 @@ const start = function (data, ID) {
                     <div class="scheme-sidebar_item text">
                       <span>Documentation</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.documentation = this.innerText.trim();
-                        updateValue({
-                          key: "documentation",
-                          value: Static.item.documentation,
-                        });
-                      }}
-                    >
-                      {Static.item.documentation}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.documentation = this.innerText.trim();
+                          updateValue({
+                            key: "documentation",
+                            value: Static.item.documentation,
+                          });
+                        }}
+                      >
+                        {Static.item.documentation}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.documentation = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.documentation",
+                            value: Static.item.linkList.documentation,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.documentation}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Social</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.social = this.innerText.trim();
-                        updateValue({
-                          key: "social",
-                          value: Static.item.social,
-                        });
-                      }}
-                    >
-                      {Static.item.social}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.social = this.innerText.trim();
+                          updateValue({
+                            key: "social",
+                            value: Static.item.social,
+                          });
+                        }}
+                      >
+                        {Static.item.social}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.social = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.social",
+                            value: Static.item.linkList.social,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.social}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Launchpad</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.launchpad = this.innerText.trim();
-                        updateValue({
-                          key: "launchpad",
-                          value: Static.item.launchpad,
-                        });
-                      }}
-                    >
-                      {Static.item.launchpad}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.launchpad = this.innerText.trim();
+                          updateValue({
+                            key: "launchpad",
+                            value: Static.item.launchpad,
+                          });
+                        }}
+                      >
+                        {Static.item.launchpad}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.launchpad = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.launchpad",
+                            value: Static.item.linkList.launchpad,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.launchpad}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>CEX/DEX</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.cexDex = this.innerText.trim();
-                        updateValue({
-                          key: "cexDex",
-                          value: Static.item.cexDex,
-                        });
-                      }}
-                    >
-                      {Static.item.cexDex}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.cexDex = this.innerText.trim();
+                          updateValue({
+                            key: "cexDex",
+                            value: Static.item.cexDex,
+                          });
+                        }}
+                      >
+                        {Static.item.cexDex}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.cexDex = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.cexDex",
+                            value: Static.item.linkList.cexDex,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.cexDex}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Listing on aggregator</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.aggregator = this.innerText.trim();
-                        updateValue({
-                          key: "aggregator",
-                          value: Static.item.aggregator,
-                        });
-                      }}
-                    >
-                      {Static.item.aggregator}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.aggregator = this.innerText.trim();
+                          updateValue({
+                            key: "aggregator",
+                            value: Static.item.aggregator,
+                          });
+                        }}
+                      >
+                        {Static.item.aggregator}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.aggregator = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.aggregator",
+                            value: Static.item.linkList.aggregator,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.aggregator}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.competitors = this.innerText.trim();
-                        updateValue({
-                          key: "competitors",
-                          value: Static.item.competitors,
-                        });
-                      }}
-                    >
-                      {Static.item.competitors}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.competitors = this.innerText.trim();
+                          updateValue({
+                            key: "competitors",
+                            value: Static.item.competitors,
+                          });
+                        }}
+                      >
+                        {Static.item.competitors}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.competitors = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.competitors",
+                            value: Static.item.linkList.competitors,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.competitors}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Media</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.mediaText = this.innerText.trim();
-                        updateValue({
-                          key: "mediaText",
-                          value: Static.item.mediaText,
-                        });
-                      }}
-                    >
-                      {Static.item.mediaText}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.mediaText = this.innerText.trim();
+                          updateValue({
+                            key: "mediaText",
+                            value: Static.item.mediaText,
+                          });
+                        }}
+                      >
+                        {Static.item.mediaText}
+                      </div>
+                      <span>Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.mediaText = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.mediaText",
+                            value: Static.item.linkList.mediaText,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.mediaText}
+                      </div>
                     </div>
+                    
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Audit</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.audit = this.innerText.trim();
-                        updateValue({ key: "audit", value: Static.item.audit });
-                      }}
-                    >
-                      {Static.item.audit}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.audit = this.innerText.trim();
+                          updateValue({ key: "audit", value: Static.item.audit });
+                        }}
+                      >
+                        {Static.item.audit}
+                      </div>
+                      <span class="text">Enter the link confirming the information:</span>
+                      <div
+                        class="personal-input text mb-15"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.linkList.audit = this.innerText.trim();
+                          updateValue({
+                            key: "linkList.audit",
+                            value: Static.item.linkList.audit,
+                          });
+                        }}
+                      >
+                        {Static.item.linkList?.audit}
+                      </div>
                     </div>
+                    
                   </div>
                   <center class="el-bottom mt-70">
                     <button 

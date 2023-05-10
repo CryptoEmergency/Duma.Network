@@ -26,7 +26,7 @@ const start = function (data, ID) {
         method: "Projects",
         params: { populate: { path: "author" } },
       });
-      console.log('=0df672=', Static.records)
+      console.log('=28583e=',Static.records)
     },
     fn: () => {
       if (!Variable.auth || !Variable.myInfo.role) {
@@ -52,7 +52,7 @@ const start = function (data, ID) {
                 <div class="mb-25 inner-add">
                   <h2 class="general-title mt-0">Projects list</h2>
 
-                  <div
+                  {/* <div
                     class="add"
                     onclick={async () => {
                       let insert = {
@@ -73,7 +73,7 @@ const start = function (data, ID) {
                     }}
                   >
                     +
-                  </div>
+                  </div> */}
                 </div>
                 {Static.records.map((item, index) => {
                   return (

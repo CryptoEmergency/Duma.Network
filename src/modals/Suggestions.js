@@ -64,7 +64,7 @@ const forExport = function (data, ID) {
                             <li
                               class={["list-item",]}
                               onclick={() => {
-                                Static.themaTitle = "Suggest an idea";
+                                Static.themaTitle = item.title;
                                 Static.themaContact.classList.toggle("content-show");
                                 initReload();
                               }}
