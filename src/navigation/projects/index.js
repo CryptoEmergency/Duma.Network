@@ -22,7 +22,7 @@ const start = function (data, ID) {
     fnLoad: async () => {
       Static.projects = await fn.socket.get({
         method: "Projects",
-        params: { filter: { moderation: true, publish: true } },
+        params: { filter: { moderation: true } },
       });
       Static.researches = await fn.socket.get({
         method: "ResearchAnalyst",

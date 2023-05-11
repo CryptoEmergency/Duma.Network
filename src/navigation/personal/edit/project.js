@@ -136,46 +136,88 @@ const updateRecords = async function (update) {
   }
 };
 
-// const showError = function (text) {
-//   Data.Static.elError.style.display = "block";
-//   Data.Static.elError.innerHTML = text;
-//   setTimeout(() => {
-//     Data.Static.elError.style.display = "none";
-//   }, 5000);
-// };
+const showError = function (text) {
+  Data.Static.errWrap.style.display = "block";
+  Data.Static.elError.innerHTML = text;
+  setTimeout(() => {
+    Data.Static.errWrap.style.display = "none";
+  }, 3000);
+};
 
-// const formCheck = function () {
-//   if (!Data.Static.nameProject.length) {
-//     showError("Enter the Name Project");
-//     return false;
-//   }
-
-//   // if (!fn.validator.isEmail(Data.MStatic.email)) {
-//   //   showError("Enter the correct Email address");
-//   //   return false;
-//   // }
-
-//   // if (!Data.MStatic.pass.length) {
-//   //   showError("Enter the password");
-//   //   return false;
-//   // }
-
-//   // if (!Data.MStatic.repass.length) {
-//   //   showError("Enter the password repeat");
-//   //   return false;
-//   // }
-
-//   // if (Data.MStatic.pass != Data.MStatic.repass) {
-//   //   showError("Passwords don't match");
-//   //   return false;
-//   // }
-
-//   return true;
-// };
+const formCheck = function () {
+  if (!Data.Static.item.name.length) {
+    showError("Enter the Name Project");
+    return false;
+  }
+  if (!Data.Static.item.description.length) {
+    showError("Enter the description project");
+    return false;
+  }
+  if (!Data.Static.item.problem.length) {
+    showError("Enter the problem project");
+    return false;
+  }
+  if (!Data.Static.item.product.length) {
+    showError("Enter the product project");
+    return false;
+  }
+  if (!Data.Static.item.solution.length) {
+    showError("Enter the solution project");
+    return false;
+  }
+  if (!Data.Static.item.investors.length) {
+    showError("Enter the investors project");
+    return false;
+  }
+  if (!Data.Static.item.tokenomics.text.length) {
+    showError("Enter the tokenomics project");
+    return false;
+  }
+  if (!Data.Static.item.team.text.length) {
+    showError("Enter the team project");
+    return false;
+  }
+  if (!Data.Static.item.roadmap.text.length) {
+    showError("Enter the roadmap project");
+    return false;
+  }
+  if (!Data.Static.item.documentation.length) {
+    showError("Enter the documentation project");
+    return false;
+  }
+  if (!Data.Static.item.social.length) {
+    showError("Enter the social project");
+    return false;
+  }
+  if (!Data.Static.item.launchpad.length) {
+    showError("Enter the launchpad project");
+    return false;
+  }
+  if (!Data.Static.item.cexDex.length) {
+    showError("Enter the CEX/DEX project");
+    return false;
+  }
+  if (!Data.Static.item.aggregator.length) {
+    showError("Enter the aggregator project");
+    return false;
+  }
+  if (!Data.Static.item.competitors.length) {
+    showError("Enter the competitors project");
+    return false;
+  }
+  if (!Data.Static.item.mediaText.length) {
+    showError("Enter the media project");
+    return false;
+  }
+  if (!Data.Static.item.audit.length) {
+    showError("Enter the audit project");
+    return false;
+  }
+  return true;
+};
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.nameProject = "";
   Static.fondList = [];
   Static.forms = {};
   Static.forms.socials = {
@@ -206,7 +248,7 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds" } },
         });
-
+        console.log('=5b914d=',Static.item.status)
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -252,6 +294,24 @@ const start = function (data, ID) {
             <div class="personal-main">
               <div class="circle-effect circle-effect1"></div>
               <div class="circle-effect circle-effect2"></div>
+              <div 
+                class="wrap-error"
+                Element={($el)=>{
+                  Static.errWrap = $el
+                }}
+                style="display: none;"
+                >
+                <div class="wrap-error_body">
+                  <div class="wrap-error_content">
+                    <div
+                      Element={($el) => {
+                        Static.elError = $el;
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              
               <Elements.BlockPersonal />
               <div class="personal-content">
                 <Elements.Bredcrumbs
@@ -270,13 +330,7 @@ const start = function (data, ID) {
                   <span>Status project: {Static.item.status}</span>
                 </div>
                 <section class="personal-form">
-                  <div
-                    Element={($el) => {
-                      Static.elError = $el;
-                    }}
-                    style="display:none;"
-                    class="error-text"
-                  ></div>
+                  
                   <div class="grid-2">
                     <div class="wrap-logo">
                       <div class="picture">
@@ -363,7 +417,7 @@ const start = function (data, ID) {
                         >
                           {Static.item?.name
                             ? Static.item?.name
-                            : "Name research"}
+                            : "Name project"}
                         </div>
                       </div>
                     </div>
@@ -415,6 +469,7 @@ const start = function (data, ID) {
                   <div class="form-item">
                     <label>Description:</label>
                     <div
+                      // Element={()}
                       style="min-height:100px;"
                       class="form-input personal-input"
                       contenteditable="plaintext-only"
@@ -965,14 +1020,14 @@ const start = function (data, ID) {
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.team.link = this.innerText.trim();
+                          Static.item.linkList.tokenomics = this.innerText.trim();
                           updateValue({
-                            key: "team.link",
-                            value: Static.item.team.link,
+                            key: "linkList.tokenomics",
+                            value: Static.item.linkList.tokenomics,
                           });
                         }}
                       >
-                        {Static.item.team?.link}
+                        {Static.item.linkList?.tokenomics}
                       </div>
                     </div>
                   </div>
@@ -1036,14 +1091,14 @@ const start = function (data, ID) {
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.utility.link = this.innerText.trim();
+                          Static.item.linkList.utility = this.innerText.trim();
                           updateValue({
-                            key: "utility.link",
-                            value: Static.item.utility.link,
+                            key: "linkList.utility",
+                            value: Static.item.linkList.utility,
                           });
                         }}
                       >
-                        {Static.item.utility?.link}
+                        {Static.item.linkList.utility}
                       </div>
                     </div>
                   </div>
@@ -1234,14 +1289,14 @@ const start = function (data, ID) {
                         class="personal-input text mb-15"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.team.link = this.innerText.trim();
+                          Static.item.linkList.team = this.innerText.trim();
                           updateValue({
-                            key: "team.link",
-                            value: Static.item.team.link,
+                            key: "linkList.team",
+                            value: Static.item.linkList.team,
                           });
                         }}
                       >
-                        {Static.item.team?.link}
+                        {Static.item.linkList.team}
                       </div>
                     </div>
                   </div>
@@ -1660,13 +1715,18 @@ const start = function (data, ID) {
                   </div>
                   <center class="el-bottom mt-70">
                     <button 
-                      class={["btn", "btn-green", "mb-15" ]}
+                      disabled={Static.item.status == "Submitted for moderation"}
+                      class={["btn", "btn-green", "mb-15",
+                      Static.item.status == "Submitted for moderation" ? "btn-disabled" : null ]}
                       onclick={async function(){
-
+                        this.disabled = true;
                         
+                        if (!formCheck()) {
+                          this.disabled = false;
+                          return;
+                        }
 
-
-                        await fn.socket.set({
+                        let response = await fn.socket.set({
                           method: "Projects",
                           action: "findOneAndUpdate",
                           params: {
@@ -1678,6 +1738,12 @@ const start = function (data, ID) {
                           },
                         });
     
+                        if (response.error) {
+                          showError(response.error[1]);
+                          this.disabled = false;
+                          return;
+                        }
+
                         fn.modals.Success({
                           title: "Your project has been submitted for moderation"
                         });

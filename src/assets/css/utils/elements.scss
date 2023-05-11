@@ -26,6 +26,40 @@
   font-weight: 700;
 }
 
+// сообщение об ошибке незаполненной формы
+.wrap-error {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+
+
+  .wrap-error_body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    .wrap-error_content {
+      background-blend-mode: overlay;
+      border-radius: 20px;
+      max-width: 475px;
+      width: 100%;
+      position: relative;
+      padding: 35px;
+      background: rgba(227, 52, 52, 0.5);
+      color: red;
+      font-size: 30px;
+      border: 1px solid red;
+    }
+
+  }
+}
+
 // текстовые модификаторы
 
 // фигуры, линии, круги

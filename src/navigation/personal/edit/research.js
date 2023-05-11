@@ -2039,7 +2039,7 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
-                      <span class="text">Describe the launcher</span>
+                      <span class="text">Describe the launcher:</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
@@ -2068,8 +2068,24 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.cexDex = Static.item.projectId.cexDex
+                        updateValue({
+                          key: "cexDex",
+                          value: Static.item.cexDex,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
-                      <span>CEX/DEX</span>
+                      <span>CEX/DEX:</span>
                       <input
                         class="admin-input text-green"
                         type="text"
@@ -2108,18 +2124,19 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
+                      <span class="text">CEX/DEX</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.cexDex = this.innerText.trim();
+                          Static.item.cexDex = this.innerText.trim();
                           updateValue({
                             key: "cexDex",
-                            value: Static.item.projectId.cexDex,
+                            value: Static.item.cexDex,
                           });
                         }}
                       >
-                        {Static.item.projectId.cexDex}
+                        {Static.item.cexDex}
                       </div>
                       <p class="text">Enter the link confirming the information: 
                         <a 
@@ -2136,6 +2153,22 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.aggregator = Static.item.projectId.aggregator
+                        updateValue({
+                          key: "aggregator",
+                          value: Static.item.aggregator,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Listing on aggregator</span>
                       <input
@@ -2175,18 +2208,19 @@ const start = function (data, ID) {
                       <span class="text-green">Max. 10</span>
                     </div>
                     <div class="scheme-card_desc">
+                      <span class="text">Listing on aggregator:</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.aggregator = this.innerText.trim();
+                          Static.item.aggregator = this.innerText.trim();
                           updateValue({
                             key: "aggregator",
-                            value: Static.item.projectId.aggregator,
+                            value: Static.item.aggregator,
                           });
                         }}
                       >
-                        {Static.item.projectId.aggregator}
+                        {Static.item?.aggregator}
                       </div>
                       <p class="text">Enter the link confirming the information: 
                         <a 
@@ -2202,6 +2236,22 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.competitors = Static.item.projectId.competitors
+                        updateValue({
+                          key: "competitors",
+                          value: Static.item.competitors,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
                       <input
@@ -2246,14 +2296,14 @@ const start = function (data, ID) {
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.competitors = this.innerText.trim();
+                          Static.item.competitors = this.innerText.trim();
                           updateValue({
                             key: "competitors",
-                            value: Static.item.projectId.competitors,
+                            value: Static.item.competitors,
                           });
                         }}
                       >
-                        {Static.item.projectId.competitors}
+                        {Static.item.competitors}
                       </div>
                       <p class="text">Enter the link confirming the information: 
                         <a 

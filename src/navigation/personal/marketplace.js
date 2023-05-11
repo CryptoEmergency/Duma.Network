@@ -32,6 +32,16 @@ const start = function (data, ID) {
           filter: { idUser: Variable.myInfo._id } 
         },
       });
+      // Static.investP = await fn.socket.get({
+      //   method: "",
+      //   // idUser: Variable.myInfo._id,
+      //   params: { 
+      //     populate: { 
+      //       path: "projectId",  
+      //     },
+      //     filter: { idUser: Variable.myInfo._id } 
+      //   },
+      // });
       Static.market = await fn.socket.get({
         method: "MarketUser", 
         params: {
@@ -41,8 +51,8 @@ const start = function (data, ID) {
           filter: { author: Variable.myInfo._id } 
         }
       })
-      console.log('=table tokens=',Static.tokens);
-      console.log('=table marketUsers=',Static.market);
+      // console.log('=table tokens=',Static.tokens);
+      // console.log('=table marketUsers=',Static.market);
     },
     fn: () => {
       if (!Variable.auth) {
