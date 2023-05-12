@@ -212,6 +212,21 @@ const forExport = function ({ Static, onclick, className, }) {
                 </a>
               </li>
               : null}
+              {Variable.myInfo._id == '6454ef0ef4baaaecaff06672' ? 
+              <li class={["sidebar-item",
+                  Variable.dataUrl.category == "moderation" ? "sidebar-item_active" : null]}>
+                <a
+                  onclick={() => {
+                    fn.siteLink("/personal/moderation/");
+                  }}
+                >
+                  <span class="sidebar-icon">
+                    <img src={svg["personal/icons/moderation"]}/>
+                  </span>
+                  <span class="sidebar-title">Moderation</span>
+                </a>
+              </li>
+              : null}
             </ul>
           </nav>
           <div

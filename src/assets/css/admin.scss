@@ -1,14 +1,34 @@
-.scheme-card_roadmap-img{
+.scheme-card_roadmap-img {
   width: fit-content;
-  img{
+
+  img {
     max-width: 450px;
     background-size: cover;
     border-radius: 20px;
   }
 }
-.text-list{
+
+.text-list {
   -webkit-line-clamp: 3;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.accordeon-list {
+  .list-item {
+    &.list-item_project {
+      display: grid;
+      grid-template-columns: 1fr 8fr;
+      grid-gap: 20px;
+      position: relative;
+
+    }
+  }
+
+  &.accordeon-list_project {
+    &.content-show {
+      max-height: 1000px;
+    }
+  }
 }

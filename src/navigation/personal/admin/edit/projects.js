@@ -160,7 +160,7 @@ const start = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      if (!Variable.auth) {
+      if (!Variable.auth || !Variable.myInfo.role) {
         fn.siteLink("/");
         return;
       }

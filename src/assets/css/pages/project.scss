@@ -191,49 +191,6 @@
     }
   }
 
-
-
-  .title-research_list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .switcher {
-      width: 4rem;
-      height: 2rem;
-
-      label {
-        height: 2rem;
-
-        &::after {
-          width: 1.5rem;
-          height: 1.5rem;
-        }
-      }
-    }
-
-
-
-  }
-
-  .details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // width: 100%;
-    width: fit-content;
-    padding: 10px;
-    border: 2px solid var(--green);
-    border-radius: 10px;
-
-    .project-rang {
-      font-size: 14px;
-      align-items: center;
-    }
-
-
-  }
-
   .edit-wrap {
     display: flex;
     justify-content: flex-end;
@@ -251,6 +208,23 @@
   }
 }
 
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 100%;
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid var(--green);
+  border-radius: 10px;
+
+  .project-rang {
+    font-size: 14px;
+    align-items: center;
+  }
+
+}
+
 .fondlist-item {
   position: relative;
 
@@ -260,6 +234,29 @@
     right: 10px;
     transform: translate(0, -50%);
   }
+}
+
+.title-research_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .switcher {
+    width: 4rem;
+    height: 2rem;
+
+    label {
+      height: 2rem;
+
+      &::after {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
+
+
 }
 
 .tokenomic {

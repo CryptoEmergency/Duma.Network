@@ -133,12 +133,12 @@ const start = function (data, ID) {
                       <span
                         class="btn btn-transparent"
                         onclick={() => {
-
-                          if (Variable.myInfo.role) {
-                            fn.modals.Status({});
-                          } else {
-                            fn.modals.Soon({});
-                          }
+                          fn.modals.Status({});
+                        //   if (Variable.myInfo.role) {
+                        //     
+                        //   } else {
+                        //     fn.modals.Soon({});
+                        //   }
                         }}
                       >
                         upgrade

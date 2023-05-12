@@ -43,7 +43,6 @@ const start = function (data, ID) {
                 <Elements.Bredcrumbs
                   items={[
                     { title: "My projects", link: "/personal/projects/" },
-
                   ]}
                 />
                 <p class="text">
@@ -125,14 +124,15 @@ const start = function (data, ID) {
                               <div class="title-research_list mb-15">
                                 <span>{item.name ? item.name : "New record"}</span>
                                 <div class="edit-wrap mr-20">
-                                  {item?.moderation ? 
+                                  {item.moderation ? 
                                     <img src={svg.publish} /> : null
                                   }
                                   <img src={
                                     item.status == "Accepted" ? svg['iconsGreen/doneSend'] 
                                     : item.status == "Submitted for moderation" ? svg.process 
                                     : item.status == "Draft" ? svg.draft 
-                                    : item.status == "Refused" ? svg.denied : null
+                                    : item.status == "Refused" ? svg.denied 
+                                    : item.status == "Modify" ? svg.edit : null
                                     
                                   }/>
                                 </div>
