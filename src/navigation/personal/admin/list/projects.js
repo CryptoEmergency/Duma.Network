@@ -97,6 +97,7 @@ const start = function (data, ID) {
                               }
                               <span class="mr-15">{item.status}</span>
                               <img
+                                class="edit-wrap_img"
                                 src={svg.edit}
                                 onclick={async () => {
                                   fn.siteLink(

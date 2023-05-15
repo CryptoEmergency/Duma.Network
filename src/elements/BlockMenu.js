@@ -227,6 +227,21 @@ const forExport = function ({ Static, onclick, className, }) {
                 </a>
               </li>
               : null}
+              {Variable.myInfo._id == '6461b5b1179f315ed7fc65ce' ? 
+              <li class={["sidebar-item",
+                  Variable.dataUrl.category == "finance" ? "sidebar-item_active" : null]}>
+                <a
+                  onclick={() => {
+                    fn.siteLink("/personal/finance/");
+                  }}
+                >
+                  <span class="sidebar-icon">
+                    <img src={svg["personal/icons/finance"]}/>
+                  </span>
+                  <span class="sidebar-title">Finance</span>
+                </a>
+              </li>
+              : null}
             </ul>
           </nav>
           <div

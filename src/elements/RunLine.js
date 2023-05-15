@@ -10,15 +10,40 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
 
+
 const forExport = function ({ className, children, count, records }) {
-  Data.Static.widthImg;
+  Data.Static.items = [];
+  Data.Static.speed = 1;
+  Data.Static.x = 0;
+  Data.Static.x2 = Data.Static.widthList;
+
+
+
+  //  = Data.Static.carouselList.style.width;
+  console.log('=af21c2=', Data.Static.x2)
+  // records.map((item, index)=>{
+  //   console.log('=0a094b=',records[index].name)
+  //   Data.Static.items[index].item.push(item)
+  //   console.log('=0e17cb=',Data.Static.items)
+  // })
   return (
-    <div class="line-wrap">
+    <div 
+      Element={($el)=>{
+        Data.Static.carouselSlider = $el;
+        console.log('=2eb369=',Data.Static.carouselSlider)
+      }}
+      class="line-wrap"
+    >
       <div 
         class="line-track"
-        // Element={function(){
-        //   Data.Static.line=this.offsetWidth;
-        // }}  
+
+        Element={function($el){
+          Data.Static.carouselList=$el;
+        }}  
+        After={($el)=>{
+          Data.Static.widthList = $el.offsetWidth;
+          console.log('=fd7525=',Data.Static.widthList)
+        }}
       >
         {
           records.map((item, index)=>{
@@ -26,7 +51,36 @@ const forExport = function ({ className, children, count, records }) {
               <div 
                 class="line-item"
                 Element={($el)=>{
-                  Data.Static.courseEl = $el;
+                  // Data.Static.courseEl = $el;
+                  Data.Static[`carousel_item${index}`] = $el;
+                }}  
+              >
+                <span class="item-text">{item.name}</span>
+                <span class="item-price">{item.price}</span>
+              </div>
+            )
+          })
+        }
+      </div>
+      <div 
+        class="line-track"
+
+        Element={function($el){
+          Data.Static.carouselList=$el;
+        }}  
+        After={($el)=>{
+          Data.Static.widthList = $el.offsetWidth;
+          console.log('=fd7525=',Data.Static.widthList)
+        }}
+      >
+        {
+          records.map((item, index)=>{
+            return(
+              <div 
+                class="line-item"
+                Element={($el)=>{
+                  // Data.Static.courseEl = $el;
+                  Data.Static[`carousel_item${index}`] = $el;
                 }}  
               >
                 <span class="item-text">{item.name}</span>

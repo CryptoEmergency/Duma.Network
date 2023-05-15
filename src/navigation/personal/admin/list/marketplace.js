@@ -23,8 +23,14 @@ const start = function (data, ID) {
         return;
       }
       Static.records = await fn.socket.get({
-        method: "Marketplace",
-        params: { filter: {}, populate: { path: "projectId" } },
+        method: "MarketUser",
+        params: {
+          filter: {  },
+          // limit: 20,
+          populate: {
+            path: "projectId",
+          },
+        },
       });
       console.log("=a07a6c=", Static.records);
     },
@@ -51,30 +57,6 @@ const start = function (data, ID) {
                 />
                 <div class="mb-25 inner-add">
                   <h2 class="general-title mt-0">Marketplace lists</h2>
-
-                  {/* <div
-                    class="add"
-                    onclick={async () => {
-                      let insert = {
-                        tabs: "seed",
-                      };
-                      let response = await fn.socket.set({
-                        method: "Research",
-                        action: "insert",
-                        params: { insert },
-                      });
-                      if (!response || !response._id) {
-                        alert("error");
-                        return;
-                      }
-                      fn.siteLink(
-                        `/personal/admin/edit/research/${response._id}`
-                      );
-                      // fn.siteLink("/personal/admin/list/research/");
-                    }}
-                  >
-                    +
-                  </div> */}
                 </div>
                 {Static.records.map((item, index) => {
                   return (
@@ -97,14 +79,31 @@ const start = function (data, ID) {
                                 : "New record"}
                             </span>
                             <div class="edit-wrap">
-                              <img
-                                src={svg.edit}
-                                onclick={async () => {
-                                  fn.siteLink(
-                                    `/personal/admin/edit/marketplace/${item._id}`
-                                  );
-                                }}
-                              />
+                              <div class="checkbox mr-15">
+                                <input
+                                  id={`checkbox-${index}`}
+                                  type="checkbox"
+                                  checked={item.preferred}
+                                  onchange={async () => {
+                                    item.preferred = !item.preferred;
+                                    await fn.socket.set({
+                                      // method: "Marketplace",
+                                      method: "MarketUser",
+                                      action: "findOneAndUpdate",
+                                      _id: item._id,
+                                      params: {
+                                        update: {
+                                          preferred: item.preferred,
+                                        },
+                                      },
+                                    });
+                                    initReload();
+                                  }}
+                                ></input>
+                                <label for={`checkbox-${index}`}>
+                                  <img class="icon-done" src={svg.done}></img>
+                                </label>
+                              </div>
                               <div class="switcher mt-0 ">
                                 <input
                                   id={`switch-moderation${index}`}
@@ -113,7 +112,8 @@ const start = function (data, ID) {
                                   onchange={async () => {
                                     item.moderation = !item.moderation;
                                     await fn.socket.set({
-                                      method: "Marketplace",
+                                      // method: "Marketplace",
+                                      method: "MarketUser",
                                       action: "findOneAndUpdate",
                                       _id: item._id,
                                       params: {

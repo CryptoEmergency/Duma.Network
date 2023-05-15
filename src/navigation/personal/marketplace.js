@@ -32,27 +32,26 @@ const start = function (data, ID) {
           filter: { idUser: Variable.myInfo._id } 
         },
       });
-      // Static.investP = await fn.socket.get({
-      //   method: "",
-      //   // idUser: Variable.myInfo._id,
-      //   params: { 
-      //     populate: { 
-      //       path: "projectId",  
-      //     },
-      //     filter: { idUser: Variable.myInfo._id } 
-      //   },
-      // });
+      console.log('=6003d9=', Static.tokens)
       Static.market = await fn.socket.get({
         method: "MarketUser", 
         params: {
           populate: {
             path: "projectId",
           },
-          filter: { author: Variable.myInfo._id } 
+          filter: { owner: Variable.myInfo._id } 
+        }
+      })
+      Static.myMarket = [];
+      Static.market.forEach((item, index)=>{
+        console.log('=92b665=',item)
+        if(item.projectId.owner == Variable.myInfo._id){
+          Static.myMarket.push(item)
         }
       })
       // console.log('=table tokens=',Static.tokens);
-      // console.log('=table marketUsers=',Static.market);
+      console.log('=table marketUsers=', Static.market);
+      console.log('=my market=', Static.myMarket)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -124,8 +123,8 @@ const start = function (data, ID) {
                 <h2 class="general-title mt-25">Listed projects for sale in the marketplace</h2>
                 <div class="bookmarks-inner market-inner mt-25">
                   
-                  {Static.market.length != 0 ?
-                      Static.market.map((item) => {
+                  {Static.myMarket.length != 0 ?
+                      Static.myMarket.map((item) => {
                         return (
                           <div class="bookmarks-item bookmarks-item_token">
                             <div class="user-card">

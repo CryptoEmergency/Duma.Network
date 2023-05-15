@@ -124,6 +124,10 @@ const start = function (data, ID) {
                               <div class="title-research_list mb-15">
                                 <span>{item.name ? item.name : "New record"}</span>
                                 <div class="edit-wrap mr-20">
+                                  {
+                                    item.owner == Variable.myInfo._id ?
+                                    <img src={svg.owner} /> : null
+                                  }
                                   {item.moderation ? 
                                     <img src={svg.publish} /> : null
                                   }

@@ -67,7 +67,7 @@ const forExport = function (data, ID) {
                             <Elements.Question 
                               textClue={item.question} 
                               switcher={Static.activeQuestion} 
-                              key={`s${index}`}
+                              key={`s$`}
                             />
                             <div class="status-img">
                               <img src={item.icon ? `/assets/upload/${item.icon}` : null} />

@@ -11,6 +11,12 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
+const sendEnter = function(e){
+  if(e.keyCode == '13'){
+    Data.MStatic.btnSubmit.click();
+  }
+}
+
 const showError = function (text) {
   Data.MStatic.elError.style.display = "block";
   Data.MStatic.elError.innerHTML = text;
@@ -86,6 +92,7 @@ const forExport = function (data, ID) {
                       class="form-input"
                       type="text"
                       placeholder="Enter your name..."
+                      onkeydown={sendEnter}
                       onchange={function () {
                         Static.firstName = this.value;
                       }}
@@ -99,6 +106,7 @@ const forExport = function (data, ID) {
                       class="form-input"
                       type="email"
                       placeholder="email@xyz.com"
+                      onkeydown={sendEnter}
                       onchange={function () {
                         Static.email = this.value;
                       }}
@@ -112,6 +120,7 @@ const forExport = function (data, ID) {
                       class="form-input"
                       type="password"
                       placeholder="xxxxxxxxxx"
+                      onkeydown={sendEnter}
                       onchange={function () {
                         Static.pass = this.value;
                       }}
@@ -125,6 +134,7 @@ const forExport = function (data, ID) {
                       class="form-input"
                       type="password"
                       placeholder="xxxxxxxxxx"
+                      onkeydown={sendEnter}
                       onchange={function () {
                         Static.repass = this.value;
                       }}
@@ -135,6 +145,9 @@ const forExport = function (data, ID) {
               <footer class="footer-modal">
                 <button
                   class="btn btn-modal"
+                  Element={($el)=>{
+                    Static.btnSubmit = $el;
+                  }}
                   onclick={async function () {
                     this.disabled = true;
 

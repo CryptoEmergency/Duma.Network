@@ -122,6 +122,12 @@
 .main-modal {
   position: relative;
   padding-top: 20px;
+
+  &.owner-modal {
+    overflow-y: auto;
+    max-height: 500px;
+    padding-right: 10px;
+  }
 }
 
 .error-text {

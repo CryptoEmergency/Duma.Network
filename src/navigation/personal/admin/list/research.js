@@ -73,6 +73,7 @@ const start = function (data, ID) {
                             
                             <div class="edit-wrap">
                               <img
+                                class="edit-wrap_img"
                                 src={svg.edit}
                                 onclick={async () => {
                                   fn.siteLink(
@@ -192,6 +193,7 @@ const start = function (data, ID) {
                                 Add Marketplace
                               </button>
                               <img
+                                class="edit-wrap_img"
                                 src={svg.edit}
                                 onclick={async () => {
                                   fn.siteLink(

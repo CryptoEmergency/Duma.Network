@@ -42,9 +42,6 @@ const start = function (data, ID) {
           limit: 3,
         },
       });
-
-
-      console.log('=b96092=',Static.news)
     },
     fn: () => {
       if (!Variable.auth) {

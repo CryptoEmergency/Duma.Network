@@ -159,7 +159,7 @@ const start = function (data, ID) {
         Static.activeTabM = Variable.dataUrl.params;
       }
       Static.records = await fn.socket.get({
-        method: "Marketplace",
+        method: "MarketUser",
         params: {
           filter: { moderation: true },
           limit: 20,
@@ -168,14 +168,19 @@ const start = function (data, ID) {
           },
         },
       });
+
       Static.slides = await fn.socket.get({
-        method: "Marketplace",
+        // method: "Marketplace",
+        // method: "Research",
+        method: "MarketUser",
         params: {
-          filter: { moderation: true },
+          filter: { moderation: true, preferred: true },
           limit: 9,
           populate: { path: "projectId" },
         },
       });
+      console.log('=slides=', Static.slides)
+
       Static.projects = await fn.socket.get({
         method: "Research",
         params: { filter: { moderation: true }, limit: 5 },
@@ -184,7 +189,6 @@ const start = function (data, ID) {
         method: "Blockchains",
       });
       Static.slideHidden = Static.slides.length - 3;
-      console.log("=088dfb=", Static.records);
 
       setInterval(() => {
         if (Static.slideHidden == 0) {
@@ -551,7 +555,7 @@ const start = function (data, ID) {
                               </div>
                               <div class="statuses">
                                 <span class="circle mr-15">
-                                  {item.rank ? item.rank : 0}
+                                  {item.projectId.rank ? item.projectId.rank : 0}
                                 </span>
                                 <span class="rang">
                                   {/* {item.projectId.rank < 100
@@ -585,7 +589,7 @@ const start = function (data, ID) {
                                   initReload();
                                 }}
                               >
-                                {item.bookmarks ? (
+                                {item.projectId.bookmarks ? (
                                   <img src={svg.bellGreen} class="bell" />
                                 ) : (
                                   <img src={svg.bellWhite} class="bell" />
@@ -675,7 +679,7 @@ const start = function (data, ID) {
                       name: "all",
                       onclick: async () => {
                         Static.records = await fn.socket.get({
-                          method: "Marketplace",
+                          method: "MarketUser",
                           params: {
                             filter: {
                               moderation: true,
@@ -686,30 +690,12 @@ const start = function (data, ID) {
                         initReload();
                       },
                     },
-                    // {
-                    //   title: "Top",
-                    //   name: "top",
-                    //   onclick: async () => {
-                    //     Static.records = await fn.socket.get({
-                    //       method: "Marketplace",
-                    //       params: {
-                    //         filter: {
-                    //           moderation: true,
-                    //           sort: -1,
-                    //           "rankList.totalText": 101,
-                    //         },
-                    //         populate: { path: "projectId" },
-                    //       },
-                    //     });
-                    //     initReload();
-                    //   },
-                    // },
                     {
                       title: "Active",
                       name: "active",
                       onclick: async () => {
                         Static.records = await fn.socket.get({
-                          method: "Marketplace",
+                          method: "MarketUser",
                           params: {
                             filter: {
                               moderation: true,
@@ -726,7 +712,7 @@ const start = function (data, ID) {
                       name: "upcoming",
                       onclick: async () => {
                         Static.records = await fn.socket.get({
-                          method: "Marketplace",
+                          method: "MarketUser",
                           params: {
                             filter: {
                               moderation: true,
@@ -743,7 +729,7 @@ const start = function (data, ID) {
                       name: "past",
                       onclick: async () => {
                         Static.records = await fn.socket.get({
-                          method: "Marketplace",
+                          method: "MarketUser",
                           params: {
                             filter: {
                               moderation: true,
@@ -781,172 +767,208 @@ const start = function (data, ID) {
                   class="table-m-body"
                   hidden={Static.activeTabM == "all" ? false : true}
                 >
-                  {Static.records.map((item) => {
-                    // console.log("=e46996=", item.projectId.status);
-
-                    return (
-                      <tr class="table-m-item">
-                        <td class="small-logo">
-                          <img
-                            src={
-                              item.projectId.icon
-                                ? `/assets/upload/${item.projectId.icon}`
-                                : images[`research/logo-duma}`]
-                            }
-                          />
-                        </td>
-                        <td>{item.projectId.name}</td>
-                        <td>{item.projectId.tabs}</td>
-                        <td>{item.status}</td>
-                        <td>{item.projectId.category}</td>
-                        <td>
-                          {item.projectId.seedRound
-                            ? `${item.projectId.seedRound}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          {item.projectId.have
-                            ? `${item.projectId.have}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          {item.projectId.target
-                            ? `${item.projectId.target}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          <img
-                            class="blockchain"
-                            src={
-                              item?.projectId.blockchains?.icon
-                                ? `/assets/upload/${item.projectId.blockchains.icon}`
-                                : svg.binance
-                            }
-                          />
-                        </td>
-                        <td>
-                          <button class="btn btn-green">MORE INFO</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {Static.records.length ? (
+                    Static.records.map((item) => {
+                      // console.log("=e46996=", item.projectId.status);
+                      // console.log("past", item);
+                      return (
+                        <tr class="table-m-item">
+                          <td class="small-logo">
+                            <img
+                              src={
+                                item.projectId.icon
+                                  ? `/assets/upload/${item.projectId.icon}`
+                                  : images[`research/logo-duma}`]
+                              }
+                            />
+                          </td>
+                          <td>{item.projectId.name}</td>
+                          <td>{item.projectId.tabs}</td>
+                          <td>{item.projectId.status}</td>
+                          <td>{item.projectId.category}</td>
+                          <td>
+                            {item.projectId.seedRound
+                              ? `${item.projectId.seedRound}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.priceToken
+                              ? `${item.priceToken}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.tokens
+                              ? `${item.tokens}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            <img
+                              class="blockchain"
+                              src={
+                                item.projectId.blockchains?.icon
+                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                  : svg.binance
+                              }
+                            />
+                          </td>
+                          <td>
+                            <button 
+                              onclick={()=>{
+                                fn.siteLink("/marketplace/show/" + item._id);
+                              }}
+                              class="btn btn-green">
+                                MORE INFO
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              onclick={()=>{
+                                if(Variable.myInfo.status === "User"){
+                                  fn.modals.Status({});
+                                }
+                                fn.siteLink("/researchA/show/" + item.projectId._id);
+                              }}
+                              class="btn btn-green">
+                              RESEARCH
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <div class="notFound">
+                      <span>Records not found in table</span>
+                      <img src={svg.notFound} />
+                    </div>
+                  )}
                 </tbody>
                 <tbody
                   class="table-m-body"
                   hidden={Static.activeTabM == "active" ? false : true}
                 >
-                  {Static.records.map((item) => {
-                    // console.log("=e46996=", item.projectId.status);
-
-                    return (
-                      <tr class="table-m-item">
-                        <td class="small-logo">
-                          <img
-                            src={
-                              item.projectId.icon
-                                ? `/assets/upload/${item.projectId.icon}`
-                                : images[`research/logo-duma}`]
-                            }
-                          />
-                        </td>
-                        <td>{item.projectId.name}</td>
-                        <td>{item.projectId.tabs}</td>
-                        <td>{item.status}</td>
-                        <td>{item.projectId.category}</td>
-                        <td>
-                          {item.projectId.seedRound
-                            ? `${item.projectId.seedRound}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          {item.projectId.have
-                            ? `${item.projectId.have}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          {item.projectId.target
-                            ? `${item.projectId.target}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          <img
-                            class="blockchain"
-                            src={
-                              item?.blockchains?.icon
-                                ? `/assets/upload/${item.blockchains.icon}`
-                                : svg.binance
-                            }
-                          />
-                        </td>
-                        <td>
-                          <button class="btn btn-green">MORE INFO</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {Static.records.length ? (
+                    Static.records.map((item) => {
+                      // console.log("=e46996=", item.projectId.status);
+                      // console.log("past", item);
+                      return (
+                        <tr class="table-m-item">
+                          <td class="small-logo">
+                            <img
+                              src={
+                                item.projectId.icon
+                                  ? `/assets/upload/${item.projectId.icon}`
+                                  : images[`research/logo-duma}`]
+                              }
+                            />
+                          </td>
+                          <td>{item.projectId.name}</td>
+                          <td>{item.projectId.tabs}</td>
+                          <td>{item.projectId.status}</td>
+                          <td>{item.projectId.category}</td>
+                          <td>
+                            {item.projectId.seedRound
+                              ? `${item.projectId.seedRound}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.priceToken
+                              ? `${item.priceToken}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.tokens
+                              ? `${item.tokens}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            <img
+                              class="blockchain"
+                              src={
+                                item.projectId.blockchains?.icon
+                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                  : svg.binance
+                              }
+                            />
+                          </td>
+                          <td>
+                            <button class="btn btn-green">MORE INFO</button>
+                          </td>
+                          <td>
+                            <button class="btn btn-green">RESEARCH</button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <div class="notFound">
+                      <span>Records not found in table</span>
+                      <img src={svg.notFound} />
+                    </div>
+                  )}
                 </tbody>
                 <tbody
                   class="table-m-body"
                   hidden={Static.activeTabM == "upcoming" ? false : true}
                 >
-                  {Static.records.map((item) => {
-                    // console.log("=e46996=", item.projectId.status);
-
-                    return (
-                      <tr class="table-m-item">
-                        <td class="small-logo">
-                          <img
-                            src={
-                              item.projectId.icon
-                                ? `/assets/upload/${item.projectId.icon}`
-                                : images[`research/logo-duma}`]
-                            }
-                          />
-                        </td>
-                        <td>{item.projectId.name}</td>
-                        <td>{item.projectId.tabs}</td>
-                        <td>{item.status}</td>
-                        <td>{item.projectId.category}</td>
-                        <td>
-                          {item.projectId.seedRound
-                            ? `${item.projectId.seedRound}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          {item.projectId.have
-                            ? `${item.projectId.have}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          {item.projectId.target
-                            ? `${item.projectId.target}$`
-                            : "—"}
-                        </td>
-                        <td>
-                          <img
-                            class="blockchain"
-                            src={
-                              item?.blockchains?.icon
-                                ? `/assets/upload/${item.blockchains.icon}`
-                                : svg.binance
-                            }
-                          />
-                        </td>
-                        <td>
-                          <button class="btn btn-green">MORE INFO</button>
-                        </td>
-                        <td>
-                          <button class="btn btn-green">RESEARCH</button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {Static.records.length ? (
+                    Static.records.map((item) => {
+                      // console.log("=e46996=", item.projectId.status);
+                      // console.log("past", item);
+                      return (
+                        <tr class="table-m-item">
+                          <td class="small-logo">
+                            <img
+                              src={
+                                item.projectId.icon
+                                  ? `/assets/upload/${item.projectId.icon}`
+                                  : images[`research/logo-duma}`]
+                              }
+                            />
+                          </td>
+                          <td>{item.projectId.name}</td>
+                          <td>{item.projectId.tabs}</td>
+                          <td>{item.projectId.status}</td>
+                          <td>{item.projectId.category}</td>
+                          <td>
+                            {item.projectId.seedRound
+                              ? `${item.projectId.seedRound}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.priceToken
+                              ? `${item.priceToken}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            {item.tokens
+                              ? `${item.tokens}$`
+                              : "—"}
+                          </td>
+                          <td>
+                            <img
+                              class="blockchain"
+                              src={
+                                item.projectId.blockchains?.icon
+                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                  : svg.binance
+                              }
+                            />
+                          </td>
+                          <td>
+                            <button class="btn btn-green">MORE INFO</button>
+                          </td>
+                          <td>
+                            <button class="btn btn-green">RESEARCH</button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <div class="notFound">
+                      <span>Records not found in table</span>
+                      <img src={svg.notFound} />
+                    </div>
+                  )}
                 </tbody>
                 <tbody
                   class="table-m-body"
@@ -969,7 +991,7 @@ const start = function (data, ID) {
                           </td>
                           <td>{item.projectId.name}</td>
                           <td>{item.projectId.tabs}</td>
-                          <td>{item.status}</td>
+                          <td>{item.projectId.status}</td>
                           <td>{item.projectId.category}</td>
                           <td>
                             {item.projectId.seedRound
@@ -977,21 +999,21 @@ const start = function (data, ID) {
                               : "—"}
                           </td>
                           <td>
-                            {item.projectId.have
-                              ? `${item.projectId.have}$`
+                            {item.priceToken
+                              ? `${item.priceToken}$`
                               : "—"}
                           </td>
                           <td>
-                            {item.projectId.target
-                              ? `${item.projectId.target}$`
+                            {item.tokens
+                              ? `${item.tokens}$`
                               : "—"}
                           </td>
                           <td>
                             <img
                               class="blockchain"
                               src={
-                                item?.blockchains?.icon
-                                  ? `/assets/upload/${item.blockchains.icon}`
+                                item.projectId.blockchains?.icon
+                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
                                   : svg.binance
                               }
                             />
