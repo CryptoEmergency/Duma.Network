@@ -161,14 +161,14 @@ const start = function (data, ID) {
       Static.records = await fn.socket.get({
         method: "MarketUser",
         params: {
-          filter: { moderation: true },
+          filter: { moderation: true, author: '6461b5b1179f315ed7fc65ce' },
           limit: 20,
           populate: {
             path: "projectId",
           },
         },
       });
-
+      console.log('=records=', Static.records)
       Static.slides = await fn.socket.get({
         // method: "Marketplace",
         // method: "Research",
@@ -623,10 +623,15 @@ const start = function (data, ID) {
                           <p class="text-more">{item.projectId.description}</p>
                           <div class="card-text">
                             <span class="ttu">
-                              {item.projectId.tabs}/ seed round is open
+                              {item.projectId.round}/ seed round is open
                             </span>
-                            {item.projectId.have}$
                           </div>
+                          {/* <div class="card-text">
+                            <span class="ttu">
+                            {`${item.projectId.have}$ / ${item.projectId.amount}$`}
+                            </span>
+                          </div> */}
+                          
                         </div>
                       </div>
                     );
@@ -752,11 +757,10 @@ const start = function (data, ID) {
                     <th></th>
                     <th>Project</th>
                     <th>Round</th>
-                    <th>Type</th>
                     <th>Category</th>
                     <th>Price</th>
+                    <th>Tokens</th>
                     <th>Collect</th>
-                    <th>Total</th>
                     <th>BC</th>
                     <th></th>
                     <th></th>
@@ -769,8 +773,6 @@ const start = function (data, ID) {
                 >
                   {Static.records.length ? (
                     Static.records.map((item) => {
-                      // console.log("=e46996=", item.projectId.status);
-                      // console.log("past", item);
                       return (
                         <tr class="table-m-item">
                           <td class="small-logo">
@@ -783,23 +785,18 @@ const start = function (data, ID) {
                             />
                           </td>
                           <td>{item.projectId.name}</td>
-                          <td>{item.projectId.tabs}</td>
-                          <td>{item.projectId.status}</td>
+                          <td>{item.projectId.round}</td>
                           <td>{item.projectId.category}</td>
-                          <td>
-                            {item.projectId.seedRound
-                              ? `${item.projectId.seedRound}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.priceToken
+                          <td>{item.priceToken
                               ? `${item.priceToken}$`
-                              : "—"}
-                          </td>
+                              : "—"}</td>
                           <td>
                             {item.tokens
-                              ? `${item.tokens}$`
+                              ? `${item.tokens}`
                               : "—"}
+                          </td>
+                          <td>
+                            {`${item.projectId.have}$ / ${item.projectId.amount}$`}
                           </td>
                           <td>
                             <img
@@ -848,8 +845,6 @@ const start = function (data, ID) {
                 >
                   {Static.records.length ? (
                     Static.records.map((item) => {
-                      // console.log("=e46996=", item.projectId.status);
-                      // console.log("past", item);
                       return (
                         <tr class="table-m-item">
                           <td class="small-logo">
@@ -862,8 +857,8 @@ const start = function (data, ID) {
                             />
                           </td>
                           <td>{item.projectId.name}</td>
-                          <td>{item.projectId.tabs}</td>
-                          <td>{item.projectId.status}</td>
+                          <td><span>{item.projectId.round}</span></td>
+                          {/* <td>{item.projectId.status}</td> */}
                           <td>{item.projectId.category}</td>
                           <td>
                             {item.projectId.seedRound
@@ -912,8 +907,6 @@ const start = function (data, ID) {
                 >
                   {Static.records.length ? (
                     Static.records.map((item) => {
-                      // console.log("=e46996=", item.projectId.status);
-                      // console.log("past", item);
                       return (
                         <tr class="table-m-item">
                           <td class="small-logo">
@@ -976,8 +969,6 @@ const start = function (data, ID) {
                 >
                   {Static.records.length ? (
                     Static.records.map((item) => {
-                      // console.log("=e46996=", item.projectId.status);
-                      // console.log("past", item);
                       return (
                         <tr class="table-m-item">
                           <td class="small-logo">

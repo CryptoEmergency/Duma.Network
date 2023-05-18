@@ -845,7 +845,7 @@
 
 .bookmarks-item {
   display: grid;
-  // grid-template-columns: repeat(8, 1fr);
+  position: relative;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 50px;
   grid-gap: 10px;
@@ -853,9 +853,14 @@
   align-items: center;
   border-radius: 10px;
   padding: 5px 8px;
+  height: 60px;
 
   &_token {
     grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
+  }
+
+  &_invested {
+    grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr;
   }
 
   &:nth-child(2n) {
@@ -1026,18 +1031,19 @@
   }
 }
 
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 15px;
-}
-
 .form-item textarea {
   resize: none;
 }
 
 .personal-input {
   width: 100%;
+  background: var(--back-primary);
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .social-wrap {

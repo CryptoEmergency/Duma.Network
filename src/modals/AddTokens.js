@@ -24,6 +24,7 @@ const forExport = function (data, ID) {
     fnLoad: async () => {
       Static.sumToken;
       Static.priceToken;
+      Static.amount;
     },
     fn: () => {
       console.log('=07d45a=',data.projectId)
@@ -83,6 +84,31 @@ const forExport = function (data, ID) {
                     />
                   </div>
                 </div>
+                <div class="grid-2 mt-15">
+                  <div class="input-notation">
+                    <div class="input-prefix">
+                        <label for="amount">Amount of fees</label>
+                    </div>
+                    <input
+                      id="amount"
+                      class="input"
+                      placeholder="Enter the fee amount..."
+                      Element={($el) => {
+                        Static.investInput = $el;
+                      }}
+                      onkeydown={sendEnter}
+                      onchange={function(){
+                        Static.amount = this.value;
+                      }}
+                    />
+                    <div class="input-suffix">$</div>
+                  </div>
+                  <div class="input-notation">
+                    <div class="input-prefix">
+                      Initial fee amount 0$
+                    </div>
+                  </div>
+                </div>
               </main>
               <footer class="footer-modal">
                 <button
@@ -97,6 +123,7 @@ const forExport = function (data, ID) {
                         projectId: data.projectId,
                         tokens:  Static.sumToken,
                         price: Static.priceToken,
+                        amount: Static.amount,
                       },
                     });
                     fn.modals.close(ID);

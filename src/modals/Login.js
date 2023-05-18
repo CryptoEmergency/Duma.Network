@@ -11,11 +11,9 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
 const sendEnter = function(e){
-
   if(e.keyCode == '13'){
     Data.MStatic.btnSubmit.click();
   }
-
 }
 
 const showError = function (text) {

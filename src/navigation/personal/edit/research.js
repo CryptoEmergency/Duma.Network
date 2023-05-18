@@ -403,7 +403,7 @@ const start = function (data, ID) {
                             );
                           }}
                         >
-                          {Static.item.tabs ? Static.item.tabs : "Choose rond"}
+                          {Static.item.tabs ? Static.item.tabs : "Choose round"}
                         </button>
                         <ul
                           class="dropdown__list"

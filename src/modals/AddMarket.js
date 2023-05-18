@@ -18,14 +18,8 @@ const forExport = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      Static.tokens = await fn.socket.get({ 
-        method: "Tokens", 
-        idUser: Variable.myInfo._id,
-        params: { populate: { path: "projectId",  } }, 
-      });
       Static.sumToken;
       Static.priceToken;
-      console.log('=modal marketplace=',Static.tokens)
     },
     fn: () => {
       return (

@@ -32,26 +32,33 @@ const start = function (data, ID) {
           filter: { idUser: Variable.myInfo._id } 
         },
       });
-      console.log('=6003d9=', Static.tokens)
       Static.market = await fn.socket.get({
         method: "MarketUser", 
         params: {
           populate: {
-            path: "projectId",
+            path: "projectId author",
           },
-          filter: { owner: Variable.myInfo._id } 
+          filter: { author: Variable.myInfo._id } 
         }
       })
-      Static.myMarket = [];
-      Static.market.forEach((item, index)=>{
-        console.log('=92b665=',item)
+      console.log('=9e5e3f=', Static.market)
+
+      Static.marketAll = await fn.socket.get({
+        method: "MarketUser", 
+        params: {
+          populate: {
+            path: "projectId author",
+          },
+        }
+      })
+      Static.myMarketOwner = [];
+      Static.marketAll.forEach((item)=>{
         if(item.projectId.owner == Variable.myInfo._id){
-          Static.myMarket.push(item)
+          Static.myMarketOwner.push(item)
+
         }
       })
-      // console.log('=table tokens=',Static.tokens);
-      console.log('=table marketUsers=', Static.market);
-      console.log('=my market=', Static.myMarket)
+      console.log('=my market owner=', Static.myMarketOwner);
     },
     fn: () => {
       if (!Variable.auth) {
@@ -69,12 +76,12 @@ const start = function (data, ID) {
               <section class="bookmarks main">
                 <h2 class="general-title mt-25">Invested projects</h2>
                 
-                <div class="bookmarks-inner market-inner mt-25">
+                <div class={["bookmarks-inner", "mt-25", Static.tokens.length ? null : "list-notFound"]}>
                   
                   {Static.tokens.length != 0 ?
                       Static.tokens.map((item) => {
                         return (
-                          <div class="bookmarks-item bookmarks-item_token">
+                          <div class="bookmarks-item bookmarks-item_invested">
                             <div class="user-card">
                               <img
                                 class="bookmarks-icon"
@@ -86,29 +93,34 @@ const start = function (data, ID) {
                               />
                               <span>{item.projectId?.name}</span>
                             </div>
-                            <div class="round">{item.projectId?.tabs}</div>
+                            <div class="round">{item.projectId?.round}</div>
                             <div class="round">{item.tokens}</div>
-                            <div class="price">{item.projectId?.seedRound}$</div>
+                            {/* <div class="price"></div> */}
                             <div class="price">
-                              {item.projectId?.have}$/{item.projectId?.target}$
+                              {item.projectId?.have}$/{item.projectId?.amount}$
                             </div>
 
-                            <button
-                              class="btn btn-transparent"
-                              onclick={()=>{
-                                if(Variable.myInfo.status == "User"){
-                                  fn.modals.Status({});
-                                }else{
-                                  fn.modals.AddMarket({
-                                    project: item.projectId.name,
-                                    sumTokens: item.tokens,
-                                    projectId: item.projectId._id
-                                  });
-                                }
-                              }}   
-                            >
-                              send marketplace
-                            </button>
+                            {item.tokens == 0 ?
+                              null : 
+                              <button
+                                class="btn btn-transparent"
+                                onclick={()=>{
+                                  if(Variable.myInfo.status == "User"){
+                                    fn.modals.Status({});
+                                  }else{
+                                    fn.modals.AddMarket({
+                                      project: item.projectId.name,
+                                      sumTokens: item.tokens,
+                                      projectId: item.projectId._id
+                                    });
+                                  }
+                                }}   
+                              >
+                                send marketplace
+                              </button>
+                            }
+
+                            
                           </div>
                         );
                       }) : 
@@ -121,39 +133,86 @@ const start = function (data, ID) {
               </section>
               <section class="market main"> 
                 <h2 class="general-title mt-25">Listed projects for sale in the marketplace</h2>
-                <div class="bookmarks-inner market-inner mt-25">
+                <div class="bookmarks-inner mt-25">
                   
-                  {Static.myMarket.length != 0 ?
-                      Static.myMarket.map((item) => {
-                        return (
-                          <div class="bookmarks-item bookmarks-item_token">
-                            <div class="user-card">
-                              <img
-                                class="bookmarks-icon"
-                                src={
-                                  item.projectId?.icon
-                                    ? `/assets/upload/${item.projectId.icon}`
-                                    : images["personal/logoProject"]
-                                }
-                              />
-                              <span>{item.projectId?.name}</span>
-                            </div>
-                            <div class="round">{item.projectId?.tabs}</div>
-                            <div class="round">{item.tokens}</div>
-                            <div class="price">{item.priceToken}$</div>
-                            <div class="price">
-                              {item.projectId?.have}$/{item.projectId?.target}$
-                            </div>
-
-                            <div>Sum:{item.tokens * item.priceToken}$</div>
+                  {
+                    Static.myMarketOwner.map((item) => {
+                      return (
+                        <div class="bookmarks-item bookmarks-item_token">
+                          {
+                            item.projectId.owner ? 
+                            <img
+                              class="icon-status"
+                              src={svg.owner}
+                            /> : null
+                          }
+                          
+                          <div class="user-card">
+                            <img
+                              class="bookmarks-icon"
+                              src={
+                                item.projectId?.icon
+                                  ? `/assets/upload/${item.projectId.icon}`
+                                  : images["personal/logoProject"]
+                              }
+                            />
+                            <span>{item.projectId?.name}</span>
                           </div>
-                        );
-                      }) : 
-                      <div class="notFound">
-                        <span>Records not found in table</span>
-                        <img src={svg.notFound} />
-                      </div>
+                          <div class="round">{item.projectId?.round}</div>
+                          <div class="round">{item.tokens}</div>
+                          <div class="price">{item.priceToken}$</div>
+                          <div class="price">
+                            {item.projectId?.have}$/{item.projectId?.amount}$
+                          </div>
+
+                          <div>Sum:{item.tokens * item.priceToken}$</div>
+                        </div>
+                      );
+                    }) 
                   }
+
+                  
+                </div>
+                <div class="bookmarks-inner mt-25">
+                {Static.market.length != 0 ?
+                  Static.market.map((item) => {
+                    return (
+                      <div class="bookmarks-item bookmarks-item_token">
+                        {
+                          item.projectId.owner == Variable.myInfo._id ? 
+                          <img
+                            class="icon-status"
+                            src={svg.owner}
+                          /> : null
+                        }
+                        
+                        <div class="user-card">
+                          <img
+                            class="bookmarks-icon"
+                            src={
+                              item.projectId?.icon
+                                ? `/assets/upload/${item.projectId.icon}`
+                                : images["personal/logoProject"]
+                            }
+                          />
+                          <span>{item.projectId?.name}</span>
+                        </div>
+                        <div class="round">{item.projectId?.round}</div>
+                        <div class="round">{item.tokens}</div>
+                        <div class="price">{item.priceToken}$</div>
+                        <div class="price">
+                          {item.projectId?.have}$/{item.projectId?.amount}$
+                        </div>
+
+                        <div>Sum:{item.tokens * item.priceToken}$</div>
+                      </div>
+                    );
+                  }) : 
+                  <div class="notFound">
+                    <span>Records not found in table</span>
+                    <img src={svg.notFound} />
+                  </div>
+                }
                 </div>
               </section>
               </div>

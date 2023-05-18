@@ -243,7 +243,7 @@ const start = function (data, ID) {
                     style="display:none;"
                     class="error-text"
                   ></div>
-                  <div class="grid-2">
+                  <div class="grid-3">
                     <div class="wrap-logo">
                       <div class="picture">
                         <input
@@ -335,6 +335,110 @@ const start = function (data, ID) {
                             ? Static.item?.name
                             : "Name research"}
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid-2">
+                    <div class="form-div">
+                      <label>Round:</label>
+                      <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.selectList.rounds.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          {Static.item.round ? Static.item.round : "Choose round"}
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.selectList.rounds = $el;
+                          }}
+                        >
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "seed";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            seed
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "pre-seed";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            pre-seed
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "strategic";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            strategic
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "public";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            public
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "private";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            private
+                          </li>
+                        </ul>
                       </div>
                     </div>
                     <div class="form-div">

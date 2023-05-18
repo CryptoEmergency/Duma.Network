@@ -123,22 +123,25 @@ const start = function (data, ID) {
                             <div class="scheme-card_desc text">
                               <div class="title-research_list mb-15">
                                 <span>{item.name ? item.name : "New record"}</span>
-                                <div class="edit-wrap mr-20">
+                                <div class="edit-wrap mr-35">
                                   {
                                     item.owner == Variable.myInfo._id ?
-                                    <img src={svg.owner} /> : null
+                                    <img class="icon mr-15" src={svg.owner} /> : null
                                   }
                                   {item.moderation ? 
-                                    <img src={svg.publish} /> : null
+                                    <img class="icon" src={svg.publish} /> : null
                                   }
-                                  <img src={
-                                    item.status == "Accepted" ? svg['iconsGreen/doneSend'] 
-                                    : item.status == "Submitted for moderation" ? svg.process 
-                                    : item.status == "Draft" ? svg.draft 
-                                    : item.status == "Refused" ? svg.denied 
-                                    : item.status == "Modify" ? svg.edit : null
+                                  <img 
+                                    class="icon"
+                                    src={
+                                      item.status == "Accepted" ? svg['iconsGreen/doneSend'] 
+                                      : item.status == "Submitted for moderation" ? svg.process 
+                                      : item.status == "Draft" ? svg.draft 
+                                      : item.status == "Refused" ? svg.denied 
+                                      : item.status == "Modify" ? svg.edit : null
+                                    }
+                                  />
                                     
-                                  }/>
                                 </div>
                               </div>
     
