@@ -170,7 +170,7 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds author" } },
         });
-        console.log('=486295=',Static.item)
+        // console.log('=486295=',Static.item)
 
 
         if (Static.item && !Static.item.gallery) {
@@ -710,18 +710,29 @@ const start = function (data, ID) {
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.problem = this.innerText.trim();
-                        updateValue({
-                          key: "problem",
-                          value: Static.item.problem,
-                        });
-                      }}
-                    >
-                      {Static.item.problem}
+                    <div class="scheme-card_desc">
+                      <div
+                        class="personal-input text"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.problem = this.innerText.trim();
+                          updateValue({
+                            key: "problem",
+                            value: Static.item.problem,
+                          });
+                        }}
+                      >
+                        {Static.item.problem}
+                      </div>
+                      <p class="text">Enter the link confirming the information: 
+                        <a 
+                          class="link-modal text-green"
+                          target="_blank"
+                          href={Static.item?.projectId.linkList?.problem}
+                        >
+                          {Static.item?.projectId.linkList?.problem}
+                        </a> 
+                      </p>
                     </div>
                   </div>
 

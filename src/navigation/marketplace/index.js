@@ -626,12 +626,6 @@ const start = function (data, ID) {
                               {item.projectId.round}/ seed round is open
                             </span>
                           </div>
-                          {/* <div class="card-text">
-                            <span class="ttu">
-                            {`${item.projectId.have}$ / ${item.projectId.amount}$`}
-                            </span>
-                          </div> */}
-                          
                         </div>
                       </div>
                     );

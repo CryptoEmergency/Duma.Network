@@ -4,10 +4,8 @@ import {
   load,
   Data,
   Variable,
-  setStorage,
   initReload,
 } from "@betarost/cemserver/cem.js";
-
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
@@ -126,7 +124,7 @@ const updateValue = async function ({ key, value }) {
 
 const updateRecords = async function (update) {
   let response = await fn.socket.set({
-    method: "Projects",
+    method: "Research",
     action: "findOneAndUpdate",
     _id: Data.Static.item._id,
     params: { update },
@@ -136,10 +134,21 @@ const updateRecords = async function (update) {
   }
 };
 
+const countTotalRank = function () {
+  let total = 0;
+  for (let key in Data.Static.item.rankList) {
+    total += Data.Static.item.rankList[key];
+  }
+  updateValue({
+    key: "rank",
+    value: total,
+  });
+  // return total;
+};
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.nameProject = "";
+
   Static.fondList = [];
   Static.forms = {};
   Static.forms.socials = {
@@ -156,7 +165,6 @@ const start = function (data, ID) {
     linkedin: {},
     site: {},
   };
-
   load({
     ID,
     fnLoad: async () => {
@@ -166,13 +174,11 @@ const start = function (data, ID) {
       }
       if (Variable.dataUrl.params) {
         Static.item = await fn.socket.get({
-          method: "Projects",
+          method: "ResearchAnalyst",
           _id: Variable.dataUrl.params,
-          params: { populate: { path: "fonds author" } },
+          params: { populate: { path: "projectId author" } },
         });
-        // console.log('=486295=',Static.item)
-
-
+        console.log('=55a4b6=',Static.item)
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -211,28 +217,29 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return <div></div>;
       }
+      if (!Static.item || !Static.item._id) {
+        return <div>Not found</div>;
+      }
       return (
         <div class="wrapper">
           <div class="personal-inner">
             <Elements.BlockMenu />
             <div class="personal-main">
-              <div class="circle-effect circle-effect1"></div>
-              <div class="circle-effect circle-effect2"></div>
               <Elements.BlockPersonal />
               <div class="personal-content">
                 <Elements.Bredcrumbs
                   items={[
                     {
-                      title: "Projects list",
-                      link: "/personal/moderator/list/projects/",
+                      title: "Research lists",
+                      link: "/personal/moderator/list/research/",
                     },
                     {
-                      title: "New project",
+                      title: Static.item.name ? Static.item.name : "New record",
                     },
                   ]}
                 />
-                <div class="inner-add mb-15">
-                  <h2 class="general-title mt-0">Project verification</h2>
+                <section class="inner-add mb-15">
+                  <h2 class="general-title mt-0">Edit Research</h2>
                   <div class="user-card mb-15 research-user">
                     <div class="user-picture mr-15">
                       <img src={Static.item.author?.icon ? 
@@ -246,15 +253,8 @@ const start = function (data, ID) {
                       <div class="user-name">{Static.item.author?.firstName}</div>
                     </div>
                   </div>
-                </div>
-                <section class="personal-form">
-                  <div
-                    Element={($el) => {
-                      Static.elError = $el;
-                    }}
-                    style="display:none;"
-                    class="error-text"
-                  ></div>
+                </section>
+                <div class="personal-form">
                   <div class="grid-2">
                     <div class="wrap-logo">
                       <div class="picture">
@@ -262,7 +262,7 @@ const start = function (data, ID) {
                           type="file"
                           hidden
                           Element={($el) => {
-                            Static.addIcon = $el;
+                            Static.elAddIcon = $el;
                           }}
                           onchange={async function (e) {
                             e.stopPropagation();
@@ -323,7 +323,7 @@ const start = function (data, ID) {
                           width="50"
                           height="50"
                           onclick={() => {
-                            Static.addIcon.click();
+                            Static.elAddIcon.click();
                           }}
                         ></img>
                       </div>
@@ -331,10 +331,6 @@ const start = function (data, ID) {
                         <div
                           class="form-input personal-input"
                           contenteditable="plaintext-only"
-                          onchange = {function(){
-                            Static.nameProject = this.value;
-                            console.log('=16fd02=',Static.nameProject)
-                          }}
                           oninput={function () {
                             Static.item.name = this.innerText.trim();
                             updateValue({
@@ -347,6 +343,205 @@ const start = function (data, ID) {
                             ? Static.item?.name
                             : "Name research"}
                         </div>
+                      </div>
+                    </div>
+
+                    <div class="form-div">
+                      <label>Total rank:</label>
+                      <div class="form-input personal-input">
+                        {Static.item.rank.toFixed(2)} (Auto calculate)
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid-3">
+                    <div class="form-div">
+                      <label>Round:</label>
+                      <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.selectList.tabs.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          {Static.item.tabs}
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.selectList.tabs = $el;
+                          }}
+                        >
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.tabs = "seed";
+                              updateValue({
+                                key: "tabs",
+                                value: Static.item.tabs,
+                              });
+                              Static.selectList.tabs.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            seed
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.tabs = "pre-seed";
+                              updateValue({
+                                key: "tabs",
+                                value: Static.item.tabs,
+                              });
+                              Static.selectList.tabs.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            pre-seed
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.tabs = "strategic";
+                              updateValue({
+                                key: "tabs",
+                                value: Static.item.tabs,
+                              });
+                              Static.selectList.tabs.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            strategic
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.tabs = "public";
+                              updateValue({
+                                key: "tabs",
+                                value: Static.item.tabs,
+                              });
+                              Static.selectList.tabs.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            public
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.tabs = "private";
+                              updateValue({
+                                key: "tabs",
+                                value: Static.item.tabs,
+                              });
+                              Static.selectList.tabs.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            private
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="form-div">
+                      <label>Status:</label>
+                      <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.selectList.status.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          {Static.item?.status
+                            ? Static.item.status
+                            : "Select status"}
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.selectList.status = $el;
+                          }}
+                        >
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.status = "Research";
+                              updateValue({
+                                key: "status",
+                                value: Static.item.status,
+                              });
+                              Static.selectList.status.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Research
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.status = "Active";
+                              updateValue({
+                                key: "status",
+                                value: Static.item.status,
+                              });
+                              Static.selectList.status.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Active
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.status = "Upcoming";
+                              updateValue({
+                                key: "status",
+                                value: Static.item.status,
+                              });
+                              Static.selectList.status.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Upcoming
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.status = "Past";
+                              updateValue({
+                                key: "status",
+                                value: Static.item.status,
+                              });
+                              Static.selectList.status.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            Past
+                          </li>
+                        </ul>
                       </div>
                     </div>
                     <div class="form-div">
@@ -411,6 +606,67 @@ const start = function (data, ID) {
                       {Static.item.description}
                     </div>
                   </div>
+
+                  <div class="grid-3">
+                    <div class="form-div">
+                      <label>Price per token:</label>
+                      <div
+                        class="form-input personal-input"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.seedRound = Number(this.innerText.trim());
+                          if (
+                            Static.item.seedRound ||
+                            Static.item.seedRound >= 0
+                          ) {
+                            updateValue({
+                              key: "seedRound",
+                              value: Static.item.seedRound,
+                            });
+                          }
+                        }}
+                      >
+                        {Static.item.seedRound}
+                      </div>
+                    </div>
+                    <div class="form-div">
+                      <label>Invest:</label>
+                      <div
+                        class="form-input personal-input"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.have = Number(this.innerText.trim());
+                          if (Static.item.have || Static.item.have >= 0) {
+                            updateValue({
+                              key: "have",
+                              value: Static.item.have,
+                            });
+                          }
+                        }}
+                      >
+                        {Static.item.have}
+                      </div>
+                    </div>
+                    <div class="form-div">
+                      <label>Target invest:</label>
+                      <div
+                        class="form-input personal-input"
+                        contenteditable="plaintext-only"
+                        oninput={function () {
+                          Static.item.target = Number(this.innerText.trim());
+                          if (Static.item.target || Static.item.target >= 0) {
+                            updateValue({
+                              key: "target",
+                              value: Static.item.target,
+                            });
+                          }
+                        }}
+                      >
+                        {Static.item.target}
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="" style="display:flex;">
                     {Object.keys(Static.forms.socials).map((item) => {
                       return (
@@ -464,6 +720,55 @@ const start = function (data, ID) {
                       });
                     }}
                   ></div>
+
+                  <div class="grid-2">
+                    <div class="form-div">
+                      <label>Start date:</label>
+                      <div class="form-input personal-input">
+                        <input
+                          type="date"
+                          max="9999-12-31T23:59"
+                          value={
+                            !Static.item.startDate
+                              ? fn.moment().format("YYYY-MM-DD")
+                              : fn
+                                  .moment(Static.item.startDate)
+                                  .format("YYYY-MM-DD")
+                          }
+                          oninput={function (e) {
+                            Static.item.startDate = this.value;
+                            updateValue({
+                              key: "startDate",
+                              value: Static.item.startDate,
+                            });
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div class="form-div">
+                      <label>End date:</label>
+                      <div class="form-input personal-input">
+                        <input
+                          type="date"
+                          max="9999-12-31T23:59"
+                          value={
+                            !Static.item.endDate
+                              ? fn.moment().format("YYYY-MM-DD")
+                              : fn
+                                  .moment(Static.item.endDate)
+                                  .format("YYYY-MM-DD")
+                          }
+                          oninput={function (e) {
+                            Static.item.endDate = this.value;
+                            updateValue({
+                              key: "endDate",
+                              value: Static.item.endDate,
+                            });
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
                   <div class="grid-2">
                     <button
                       class="btn btn-green"
@@ -477,7 +782,7 @@ const start = function (data, ID) {
                               blockchains: Static.item.blockchains,
                             });
                             let tmp = await fn.socket.get({
-                              method: "Projects",
+                              method: "Research",
                               _id: Variable.dataUrl.params,
                               params: { populate: { path: "blockchains" } },
                             });
@@ -494,7 +799,7 @@ const start = function (data, ID) {
                       Choose blockchain
                     </button>
                     <div class="fondlist-wrap">
-                      {Object.keys(Static.item?.blockchains).length ? (
+                      {Object.keys(Static.item.blockchains).length ? (
                         <div class="fondlist-item">
                           <img
                             class="icon-delete"
@@ -547,11 +852,13 @@ const start = function (data, ID) {
                           fn.uploadFile({
                             file: item,
                             onload: async function () {
+                              // console.log('=81bde2=', "onload")
                               if (!this.response) {
                                 alert("Have some Error. Try again...");
                                 return;
                               }
                               let response = JSON.parse(this.response);
+                              // console.log('=35f155=', response)
                               if (response.error || !response.name) {
                                 alert(
                                   "Have some Error. Try again... " +
@@ -564,6 +871,7 @@ const start = function (data, ID) {
                                 key: "gallery",
                                 value: Static.item.gallery,
                               });
+                              // let tmp = await fn.socket.set({ method: "Research", action: "findOneAndUpdate", _id: Static.item._id, params: { update: { gallery: Static.item.gallery } } })
                               initReload();
                             },
                             onprogress: async function (e) {
@@ -617,30 +925,61 @@ const start = function (data, ID) {
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Problem</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        // type="number"
+                        type="text"
+                        // step="any"
+                        pattern="\d+(\.\d{2})?"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.problem
+                            ? Static.item.rankList.problem
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.problem = this.innerText.trim();
+                          // let value = this.value.replace (/\D/);
+                          // let value = this.value.!(/^[А-Яа-яA-Za-z ]$/.test(e.key))
+                          // this.value = this.value.replace(/[^\d\.,]/g, "");
+                          // this.value = this.value.replace(/,/g, ".");
+                          // if(this.value.match(/\./g).length > 1) {
+                          //     this.value = this.value.substr(0, this.value.lastIndexOf("."));
+                          // }
+                          let value = this.value;
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.problem = Number(
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "problem",
-                            value: Static.item.problem,
+                            key: "rankList.problem",
+                            value: Static.item.rankList.problem,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.problem}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.problem}
-                        >
-                          {Static.item?.linkList?.problem}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.problem}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.problem = this.innerText.trim();
+                        updateValue({
+                          key: "problem",
+                          value: Static.item.problem,
+                        });
+                      }}
+                    >
+                      {Static.item.problem}
                     </div>
                   </div>
 
@@ -648,29 +987,18 @@ const start = function (data, ID) {
                     <div class="scheme-sidebar_item text">
                       <span>Product</span>
                     </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.product = this.innerText.trim();
-                          updateValue({
-                            key: "product",
-                            value: Static.item.product,
-                          });
-                        }}
-                      >
-                        {Static.item.product}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.product}
-                        >
-                          {Static.item?.linkList?.product}
-                        </a> 
-                      </p>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.product = this.innerText.trim();
+                        updateValue({
+                          key: "product",
+                          value: Static.item.product,
+                        });
+                      }}
+                    >
+                      {Static.item.product}
                     </div>
                   </div>
 
@@ -678,65 +1006,76 @@ const start = function (data, ID) {
                     <div class="scheme-sidebar_item text">
                       <span>Solution</span>
                     </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.solution = this.innerText.trim();
-                          updateValue({
-                            key: "solution",
-                            value: Static.item.solution,
-                          });
-                        }}
-                      >
-                        {Static.item.solution}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.solution}
-                        >
-                          {Static.item?.linkList?.solution}
-                        </a> 
-                      </p>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.solution = this.innerText.trim();
+                        updateValue({
+                          key: "solution",
+                          value: Static.item.solution,
+                        });
+                      }}
+                    >
+                      {Static.item.solution}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Investors</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="scheme-card_desc personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.investors
+                            ? Static.item.rankList.investors
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.investors = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 100) {
+                            this.value = 100;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.investors = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "investors",
-                            value: Static.item.investors,
+                            key: "rankList.investors",
+                            value: Static.item.rankList.investors,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.investors}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.investors}
-                        >
-                          {Static.item?.linkList?.investors}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.investors}
+                      </input>
+                      <span class="text-green">Max. 100</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.investors = this.innerText.trim();
+                        updateValue({
+                          key: "investors",
+                          value: Static.item.investors,
+                        });
+                      }}
+                    >
+                      {Static.item.investors}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>Choose funds</span>
+                      <span>{Static.item.tabs} Round</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -747,13 +1086,14 @@ const start = function (data, ID) {
                             title: "Fund list",
                             listsFonds: Static.item.fonds,
                             callback: async (filterFonds) => {
+                              console.log("=666583=", filterFonds);
                               Static.item.fonds = filterFonds;
                               if (!filterFonds.length) {
                                 return;
                               }
                               await updateRecords({ fonds: Static.item.fonds });
                               let tmp = await fn.socket.get({
-                                method: "Projects",
+                                method: "Research",
                                 _id: Variable.dataUrl.params,
                                 params: { populate: { path: "fonds" } },
                               });
@@ -801,21 +1141,45 @@ const start = function (data, ID) {
                           );
                         })}
                       </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.fonds}
-                        >
-                          {Static.item?.linkList?.fonds}
-                        </a> 
-                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Tokenomics</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.tokenomics
+                            ? Static.item.rankList.tokenomics
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.tokenomics = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.tokenomics",
+                            value: Static.item.rankList.tokenomics,
+                          });
+                          countTotalRank();
+                        }}
+                      >
+                        {Static.item.rankList.tokenomics}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -917,21 +1281,45 @@ const start = function (data, ID) {
                           {Static.item.tokenomics?.text}
                         </div>
                       </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.tokenomics}
-                        >
-                          {Static.item?.linkList?.tokenomics}
-                        </a> 
-                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Utility and Value</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.utility
+                            ? Static.item.rankList.utility
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.utility = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.utility",
+                            value: Static.item.rankList.utility,
+                          });
+                          countTotalRank();
+                        }}
+                      >
+                        {Static.item.rankList.utility}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -983,21 +1371,45 @@ const start = function (data, ID) {
                           {Static.item.utility?.accural}
                         </div>
                       </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.utility}
-                        >
-                          {Static.item?.linkList?.utility}
-                        </a> 
-                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Team</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.team
+                            ? Static.item.rankList.team
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.team = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.team",
+                            value: Static.item.rankList.team,
+                          });
+                          countTotalRank();
+                        }}
+                      >
+                        {Static.item.rankList.team}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1173,21 +1585,45 @@ const start = function (data, ID) {
                           }
                         )}
                       </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.team}
-                        >
-                          {Static.item?.linkList?.team}
-                        </a> 
-                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Roadmap</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.roadmap
+                            ? Static.item.rankList.roadmap
+                            : "0"
+                        }
+                        oninput={function () {
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.roadmap = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.roadmap",
+                            value: Static.item.rankList.roadmap,
+                          });
+                          countTotalRank();
+                        }}
+                      >
+                        {Static.item.rankList.roadmap}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
 
                     <div class="scheme-card_desc">
@@ -1296,259 +1732,459 @@ const start = function (data, ID) {
                           </div>
                         </div>
                       </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.roadmap}
-                        >
-                          {Static.item?.linkList?.roadmap}
-                        </a> 
-                      </p>
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Documentation</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.documentation
+                            ? Static.item.rankList.documentation
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.documentation = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.documentation = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "documentation",
-                            value: Static.item.documentation,
+                            key: "rankList.documentation",
+                            value: Static.item.rankList.documentation,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.documentation}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.documentation}
-                        >
-                          {Static.item?.linkList?.documentation}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.documentation}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.documentation = this.innerText.trim();
+                        updateValue({
+                          key: "documentation",
+                          value: Static.item.documentation,
+                        });
+                      }}
+                    >
+                      {Static.item.documentation}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Social</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.social
+                            ? Static.item.rankList.social
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.social = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.social = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "social",
-                            value: Static.item.social,
+                            key: "rankList.social",
+                            value: Static.item.rankList.social,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.social}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.social}
-                        >
-                          {Static.item?.linkList?.social}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.social}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.social = this.innerText.trim();
+                        updateValue({
+                          key: "social",
+                          value: Static.item.social,
+                        });
+                      }}
+                    >
+                      {Static.item.social}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Launchpad</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.launchpad
+                            ? Static.item.rankList.launchpad
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.launchpad = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.launchpad = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "launchpad",
-                            value: Static.item.launchpad,
+                            key: "rankList.launchpad",
+                            value: Static.item.rankList.launchpad,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.launchpad}
-                      </div>
-                      <p class="text">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.launchpad}
-                        >
-                          {Static.item?.linkList?.launchpad}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.launchpad}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.launchpad = this.innerText.trim();
+                        updateValue({
+                          key: "launchpad",
+                          value: Static.item.launchpad,
+                        });
+                      }}
+                    >
+                      {Static.item.launchpad}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>CEX/DEX</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.cexDex
+                            ? Static.item.rankList.cexDex
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.cexDex = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.cexDex = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "cexDex",
-                            value: Static.item.cexDex,
+                            key: "rankList.cexDex",
+                            value: Static.item.rankList.cexDex,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.cexDex}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.cexDex}
-                        >
-                          {Static.item?.linkList?.cexDex}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.cexDex}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.cexDex = this.innerText.trim();
+                        updateValue({
+                          key: "cexDex",
+                          value: Static.item.cexDex,
+                        });
+                      }}
+                    >
+                      {Static.item.cexDex}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Listing on aggregator</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.aggregator
+                            ? Static.item.rankList.aggregator
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.aggregator = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.aggregator = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "aggregator",
-                            value: Static.item.aggregator,
+                            key: "rankList.aggregator",
+                            value: Static.item.rankList.aggregator,
                           });
                         }}
                       >
-                        {Static.item.aggregator}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.aggregator}
-                        >
-                          {Static.item?.linkList?.aggregator}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.aggregator}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.aggregator = this.innerText.trim();
+                        updateValue({
+                          key: "aggregator",
+                          value: Static.item.aggregator,
+                        });
+                      }}
+                    >
+                      {Static.item.aggregator}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Competitors</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.competitors
+                            ? Static.item.rankList.competitors
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.competitors = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.competitors = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "competitors",
-                            value: Static.item.competitors,
+                            key: "rankList.competitors",
+                            value: Static.item.rankList.competitors,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.competitors}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.competitors}
-                        >
-                          {Static.item?.linkList?.competitors}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.competitors}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
-                    
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.competitors = this.innerText.trim();
+                        updateValue({
+                          key: "competitors",
+                          value: Static.item.competitors,
+                        });
+                      }}
+                    >
+                      {Static.item.competitors}
+                    </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Media</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.mediaText
+                            ? Static.item.rankList.mediaText
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.mediaText = this.innerText.trim();
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.mediaText = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
                           updateValue({
-                            key: "mediaText",
-                            value: Static.item.mediaText,
+                            key: "rankList.mediaText",
+                            value: Static.item.rankList.mediaText,
                           });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.mediaText}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.mediaText}
-                        >
-                          {Static.item?.linkList?.mediaText}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.mediaText}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.mediaText = this.innerText.trim();
+                        updateValue({
+                          key: "mediaText",
+                          value: Static.item.mediaText,
+                        });
+                      }}
+                    >
+                      {Static.item.mediaText}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>Audit</span>
-                    </div>
-                    <div class="scheme-card_desc">
-                      <div
-                        class="personal-input text"
-                        contenteditable="plaintext-only"
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.audit
+                            ? Static.item.rankList.audit
+                            : "0"
+                        }
                         oninput={function () {
-                          Static.item.audit = this.innerText.trim();
-                          updateValue({ key: "audit", value: Static.item.audit });
+                          let value = this.value.replace (/\D/, '');
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.audit = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.audit",
+                            value: Static.item.rankList.audit,
+                          });
+                          countTotalRank();
                         }}
                       >
-                        {Static.item.audit}
-                      </div>
-                      <p class="text mt-15">Enter the link confirming the information: 
-                        <a 
-                          class="link-modal text-green"
-                          target="_blank"
-                          href={Static.item?.linkList?.audit}
-                        >
-                          {Static.item?.linkList?.audit}
-                        </a> 
-                      </p>
+                        {Static.item.rankList.audit}
+                      </input>
+                      <span class="text-green">Max. 10</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.audit = this.innerText.trim();
+                        updateValue({ key: "audit", value: Static.item.audit });
+                      }}
+                    >
+                      {Static.item.audit}
                     </div>
                   </div>
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
                       <span>TOTAL</span>
+                      <input
+                        class="admin-input text-green"
+                        type="text"
+                        pattern="^[0-9]*[.,][0-9]+$"
+                        maxlength="3"
+                        placeholder="0"
+                        value={
+                          Static.item.rankList.totalText
+                            ? Static.item.rankList.totalText
+                            : "0"
+                        }
+                        oninput={function () {
+                          // let value = this.value.replace (/\D/, '');
+                          let value = this.value;
+                          if (value < 0) {
+                            this.value = 0;
+                          } else if (value > 10) {
+                            this.value = 10;
+                          } else {
+                            this.value = value;
+                          }
+                          Static.item.rankList.totalText = Number(
+                            // this.innerText.trim()
+                            this.value.trim()
+                          );
+                          updateValue({
+                            key: "rankList.totalText",
+                            value: Static.item.rankList.totalText,
+                          });
+                          countTotalRank()
+                        }}
+                      >
+                        {Static.item.rankList.totalText}
+                      </input>
+                      <span class="text-green">Max. 10</span>
                     </div>
                     <div
                       class="scheme-card_desc personal-input text"
@@ -1564,99 +2200,7 @@ const start = function (data, ID) {
                       {Static.item.totalText}
                     </div>
                   </div>
-
-                  
-                  <div class="scheme-card_desc">
-                    <span class="text">Comment from the moderator</span>
-                    <div
-                      class="personal-input text mt-15"
-                      style="max-width: 100%;"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.commentModerator = this.innerText.trim();
-                        updateValue({
-                          key: "commentModerator",
-                          value: Static.item.commentModerator,
-                        });
-                      }}
-                    >
-                      {Static.item.commentModerator}
-                    </div>
-                  </div>
-                    
-                
-
-                  <center class="el-bottom mt-70">
-                    <div class="card-btns">
-                      <button 
-                        class={["btn", "btn-green", "mb-15" ]}
-                        onclick={async function(){
-      
-                          await fn.socket.set({
-                            method: "Projects",
-                            action: "findOneAndUpdate",
-                            params: {
-                              update: { status: "Accepted" },
-                              filter: {
-                                _id: Static.item._id,
-                              }
-                            },
-                          });
-                          await fn.socket.send({
-                            method: "BankToken",
-                            params: {
-                              projectId: Static.item._id, // id проекта в табл проджект
-                              author: Static.item.author
-                            },
-                          });
-
-      
-                          fn.modals.Success({
-                            title: "The project is accepted"
-                          });
-                          fn.siteLink(
-                            `/personal/moderator/list/projects/`
-                          );
-                          initReload();
-                        }}  
-                      >
-                        Accepted
-                      </button>
-                      <button 
-                        class="btn btn-bordo"
-                        onclick={async function(){
-      
-                          fn.modals.Sure({
-                            title: "Reject the project without the possibility of revision?",
-                            idProject: Static.item._id
-                          });
-
-                          // await fn.socket.set({
-                          //   method: "Projects",
-                          //   action: "findOneAndUpdate",
-                          //   params: {
-                          //     update: { status: "Refused" },
-                          //     filter: {
-                          //       _id: Static.item._id,
-                          //     }
-                          //   },
-                          // });
-      
-                          // fn.modals.Success({
-                          //   title: "The project was rejected"
-                          // });
-                          // fn.siteLink(
-                          //   `/personal/admin/list/projects/`
-                          // );
-                          initReload();
-                        }}  
-                      >
-                        Refused
-                      </button>
-                    </div>
-                    
-                  </center>
-                </section>
+                </div>
               </div>
             </div>
           </div>

@@ -164,8 +164,6 @@ const start = function (data, ID) {
                                     ]}
                                     style="position: relative;top: 3px; right: 0;"
                                     onclick={function(){
-                                      console.log('=cb8aa4=',Static[`moreList${index}`])
-                                      // Static[`moreList${index}`].hidden = false;
                                       this.classList.toggle('active');
                                       initReload();
                                     }}
@@ -295,7 +293,7 @@ const start = function (data, ID) {
                               </div>
                               
                               <p class="text-list mt-10">{item.description}</p>
-                              <div class="details">
+                              <div class="details mt-15">
                                 <p>Project from <span class="text-green ttu bold">{item.author.firstName}</span></p>
                                 <p class="project-rang ml-10">{item.author.status}</p>
                               </div>

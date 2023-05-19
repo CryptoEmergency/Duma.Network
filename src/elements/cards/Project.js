@@ -25,7 +25,6 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
   return (
     <div class="cards">
       {itemsProjects.map((item, index) => {
-        console.log("=item id=", item._id);
         return (
           <div class={["card-item", `card-item_${index}`]}>
             {item.blur ? (

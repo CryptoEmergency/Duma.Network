@@ -74,14 +74,14 @@ const start = function (data, ID) {
                   >
                     Edit statuses for user
                   </button>
-                  <button
+                  {/* <button
                     class="btn btn-green"
                     onclick={async() => {
                       fn.siteLink(`/personal/admin/list/projects/`);
                     }}
                   >
                     List projects
-                  </button>
+                  </button> */}
                   
                 </div>
               </div>

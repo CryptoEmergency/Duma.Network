@@ -71,6 +71,11 @@ const start = function (data, ID) {
                           <div class="title-research_list mb-15">
                             <span>{item.projectId.name ? item.projectId.name : "New record"}</span>
                             
+                            <div class="details">
+                              <span>Research status: </span>
+                              <span class="text-green ttu bold ml-15">{item?.status}</span>
+                            </div>
+
                             <div class="edit-wrap">
                               <img
                                 class="edit-wrap_img"

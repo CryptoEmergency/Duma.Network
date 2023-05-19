@@ -345,50 +345,7 @@ const start = function (data, ID) {
                         </div>
                       </div>
                     </div>
-                    <div class="form-div">
-                      <label>Category:</label>
-                      <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.selectList.category.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          {Static.item.projectId?.category
-                            ? Static.item.projectId.category
-                            : "Select category"}
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.selectList.category = $el;
-                          }}
-                        >
-                          {categoryList.map((item, index) => {
-                            return (
-                              <li
-                                class="dropdown__list-item"
-                                onclick={() => {
-                                  Static.item.category = item.title;
-                                  updateValue({
-                                    key: "category",
-                                    value: Static.item.category,
-                                  });
-                                  Static.selectList.category.classList.remove(
-                                    "dropdown__list--visible"
-                                  );
-                                  initReload();
-                                }}
-                              >
-                                {item.title}
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    </div>
+                    
                   </div>
 
                   <div class="grid-3">
@@ -494,7 +451,8 @@ const start = function (data, ID) {
                         </ul>
                       </div>
                     </div>
-                    <div class="form-div">
+                    {/* <div></div> */}
+                    {/* <div class="form-div">
                       <label>Status:</label>
                       <div class="dropdown">
                         <button
@@ -579,6 +537,50 @@ const start = function (data, ID) {
                           >
                             Past
                           </li>
+                        </ul>
+                      </div>
+                    </div> */}
+                    <div class="form-div">
+                      <label>Category:</label>
+                      <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.selectList.category.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          {Static.item.projectId?.category
+                            ? Static.item.projectId.category
+                            : "Select category"}
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.selectList.category = $el;
+                          }}
+                        >
+                          {categoryList.map((item, index) => {
+                            return (
+                              <li
+                                class="dropdown__list-item"
+                                onclick={() => {
+                                  Static.item.category = item.title;
+                                  updateValue({
+                                    key: "category",
+                                    value: Static.item.category,
+                                  });
+                                  Static.selectList.category.classList.remove(
+                                    "dropdown__list--visible"
+                                  );
+                                  initReload();
+                                }}
+                              >
+                                {item.title}
+                              </li>
+                            );
+                          })}
                         </ul>
                       </div>
                     </div>
@@ -2292,6 +2294,7 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
+                      <span class="text">About competitors:</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
@@ -2320,6 +2323,22 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.mediaText = Static.item.projectId.mediaText
+                        updateValue({
+                          key: "mediaText",
+                          value: Static.item.mediaText,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Media</span>
                       <input
@@ -2360,20 +2379,21 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
+                      <span class="text">About media:</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.mediaText = this.innerText.trim();
+                          Static.item.mediaText = this.innerText.trim();
                           updateValue({
                             key: "mediaText",
-                            value: Static.item.projectId.mediaText,
+                            value: Static.item.mediaText,
                           });
                         }}
                       >
-                        {Static.item.projectId.mediaText}
+                        {Static.item.mediaText}
                       </div>
-                      <p class="text">Enter the link confirming the information: 
+                      <p class="text mt-15">Enter the link confirming the information: 
                         <a 
                           class="link-modal text-green"
                           target="_blank"
@@ -2389,6 +2409,22 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.audit = Static.item.projectId.audit
+                        updateValue({
+                          key: "audit",
+                          value: Static.item.audit,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Audit</span>
                       <input
@@ -2429,18 +2465,19 @@ const start = function (data, ID) {
                     </div>
 
                     <div class="scheme-card_desc">
+                      <span class="text">About audit:</span>
                       <div
                         class="personal-input text"
                         contenteditable="plaintext-only"
                         oninput={function () {
-                          Static.item.projectId.audit = this.innerText.trim();
+                          Static.item.audit = this.innerText.trim();
                           updateValue({ 
                             key: "audit", 
-                            value: Static.item.projectId.audit 
+                            value: Static.item.audit 
                           });
                         }}
                       >
-                        {Static.item.projectId.audit}
+                        {Static.item.audit}
                       </div>
                       <p class="text">Enter the link confirming the information: 
                         <a 
@@ -2528,6 +2565,7 @@ const start = function (data, ID) {
                           title: "Your project has been submitted for moderation"
                         });
                         this.textContent = "Submitted for moderation";
+                        fn.siteLink('/personal/researches/')
                         initReload();
                       }}  
                     >

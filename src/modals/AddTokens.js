@@ -96,7 +96,7 @@ const forExport = function (data, ID) {
                       Element={($el) => {
                         Static.investInput = $el;
                       }}
-                      onkeydown={sendEnter}
+                   
                       onchange={function(){
                         Static.amount = this.value;
                       }}

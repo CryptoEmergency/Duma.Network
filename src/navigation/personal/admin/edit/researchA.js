@@ -197,7 +197,7 @@ const start = function (data, ID) {
             <div class="personal-main">
               <Elements.BlockPersonal />
               <div class="personal-content">
-                <h2 class="general-title mt-0">Moderation research</h2>
+                <h2 class="general-title mt-0 mb-15">Moderation research</h2>
                 <div class="personal-form">
                   <div class="user-card mb-15">
                     <div class="user-picture mr-15">
@@ -260,7 +260,7 @@ const start = function (data, ID) {
                       <label>Round:</label>
                       <div class="form-div">
                         <div class="form-input personal-input">
-                          {Static.item?.tabs}
+                          {Static.item.projectId?.round}
                         </div>
                       </div>
                     </div>
@@ -285,26 +285,6 @@ const start = function (data, ID) {
                     <label>Description:</label>
                     <div class="form-input personal-input">
                       {Static.item.projectId.description}
-                    </div>
-                  </div>
-                  <div class="grid-3">
-                    <div class="form-div">
-                      <label>Price per token:</label>
-                      <div class="form-input personal-input">
-                        {Static.item.seedRound}
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Invest:</label>
-                      <div class="form-input personal-input">
-                        {Static.item.have}
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Target invest:</label>
-                      <div class="form-input personal-input">
-                        {Static.item.target}
-                      </div>
                     </div>
                   </div>
                   {/* <div class="" style="display:flex;">

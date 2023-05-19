@@ -128,7 +128,7 @@ const start = function (data, ID) {
                                   }}
                                 >
                                   <img class="more-list-item_icon mr-5" src={svg.edit} />
-                                  <span>Change project</span>
+                                  <span>Change research</span>
                                 </li>
                               </ul>
                             </div>
@@ -144,11 +144,11 @@ const start = function (data, ID) {
                             <div class="scheme-card_desc text">
                               <div class="title-research_list mb-15">
                                 <span>{item.projectId.name ? item.projectId.name : "New record"}</span>
-                                <div class="edit-wrap mr-20">
+                                <div class="edit-wrap mr-35">
                                   {item?.publish ? 
-                                    <img src={svg.publish} /> : null
+                                    <img class="icon mr-15" src={svg.publish} /> : null
                                   }
-                                  <img src={
+                                  <img class="icon" src={
                                     item.status == "Accepted" ? svg['iconsGreen/doneSend'] 
                                     : item.status == "Submitted for moderation" ? svg.process 
                                     : item.status == "Draft" ? svg.draft 
