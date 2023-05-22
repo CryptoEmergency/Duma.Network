@@ -70,24 +70,43 @@ const start = function (data, ID) {
                             change password
                           </button>
 
-                          {/* <div class="block-change mt-15">
+                          <div class="block-change mt-15">
                             <input
-                              placeholder="Введите старый пароль" 
+                              type="password"
                               class="input-password"
-                              oninput={function(){
-                                if(this.value.trim() === Static.user.password){
-                                  console.log('=2c59d9=',"пароль совпадает")
-                                }else{
-                                  console.log('=4f2d68=',"пароль не совпадает")
-                                }
+                              placeholder="Введите старый пароль" 
+                              onchange={function () {
+                                Static.passOld = this.value;
                               }}
                             ></input>
                             <input 
-                              placeholder="Введите новый пароль" 
+                              type="password"
                               class="input-password"
+                              placeholder="Введите новый пароль" 
+                              onchange={function () {
+                                Static.passNew = this.value;
+                              }}
                             ></input>
-                            <button class="btn btn-standart">Apply</button>
-                          </div> */}
+                            <button 
+                              class="btn btn-standart"
+                              onclick={async()=>{
+                                await fn.socket.send({
+                                  method: "ChangePassword",
+                                  params: {
+                                    email: Variable.myInfo.email,
+                                    passOld: Static.passOld.trim(),
+                                    passNew: Static.passNew.trim(),
+                                  },
+                                });
+                                fn.modals.Success({
+                                  title: "You have successfully changed your password"
+                                })
+                                initReload();
+                              }}
+                            >
+                              Apply
+                            </button>
+                          </div>
 
                         </div>
                         <div class="dailyReward">

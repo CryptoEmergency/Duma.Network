@@ -170,9 +170,6 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds author" } },
         });
-        // console.log('=486295=',Static.item)
-
-
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -227,7 +224,7 @@ const start = function (data, ID) {
                       link: "/personal/moderator/list/projects/",
                     },
                     {
-                      title: "New project",
+                      title: Static.item?.name ? Static.item?.name : "Project",
                     },
                   ]}
                 />
@@ -248,13 +245,6 @@ const start = function (data, ID) {
                   </div>
                 </div>
                 <section class="personal-form">
-                  <div
-                    Element={($el) => {
-                      Static.elError = $el;
-                    }}
-                    style="display:none;"
-                    class="error-text"
-                  ></div>
                   <div class="grid-2">
                     <div class="wrap-logo">
                       <div class="picture">
@@ -328,24 +318,10 @@ const start = function (data, ID) {
                         ></img>
                       </div>
                       <div class="form-div">
-                        <div
-                          class="form-input personal-input"
-                          contenteditable="plaintext-only"
-                          onchange = {function(){
-                            Static.nameProject = this.value;
-                            console.log('=16fd02=',Static.nameProject)
-                          }}
-                          oninput={function () {
-                            Static.item.name = this.innerText.trim();
-                            updateValue({
-                              key: "name",
-                              value: Static.item.name,
-                            });
-                          }}
-                        >
+                        <div class="form-input personal-input">
                           {Static.item?.name
                             ? Static.item?.name
-                            : "Name research"}
+                            : "Name project"}
                         </div>
                       </div>
                     </div>
@@ -1564,8 +1540,6 @@ const start = function (data, ID) {
                       {Static.item.totalText}
                     </div>
                   </div>
-
-                  
                   <div class="scheme-card_desc">
                     <span class="text">Comment from the moderator</span>
                     <div

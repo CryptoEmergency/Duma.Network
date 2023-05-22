@@ -90,37 +90,6 @@ const start = function (data, ID) {
                               <ul class="more-list">
                                 <li 
                                   class="more-list-item"
-                                  onclick={async()=>{
-                                    if(Variable.myInfo.status == "Partner"){
-                                      await fn.socket.set({
-                                        method: "Projects",
-                                        action: "findOneAndUpdate",
-                                        params: {
-                                          update: { publish: !item.publish },
-                                          filter: {
-                                            _id: item._id
-                                          }
-                                        }
-                                      })
-                                      fn.modals.Success({
-                                        title: "Your project has been published successfully"
-                                      })
-                                    }else{
-                                      fn.modals.Status({});
-                                    }
-                                    initReload();
-                                    
-                                  }}
-                                >
-                                  <img class="more-list-item_icon mr-5" src={svg.publish} />
-                                  {
-                                    item.publish ? 
-                                   <span>Unpublished</span> : <span>Publish</span> 
-                                  }
-                                   
-                                </li>
-                                <li 
-                                  class="more-list-item"
                                   onclick={async () => {
                                     fn.siteLink(
                                       `/personal/edit/research/${item._id}`
@@ -145,7 +114,7 @@ const start = function (data, ID) {
                               <div class="title-research_list mb-15">
                                 <span>{item.projectId.name ? item.projectId.name : "New record"}</span>
                                 <div class="edit-wrap mr-35">
-                                  {item?.publish ? 
+                                  {item?.moderation ? 
                                     <img class="icon mr-15" src={svg.publish} /> : null
                                   }
                                   <img class="icon" src={

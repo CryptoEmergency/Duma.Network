@@ -178,7 +178,14 @@ const start = function (data, ID) {
         Static.item = await fn.socket.get({
           method: "ResearchAnalyst",
           _id: Variable.dataUrl.params,
-          params: { populate: { path: "projectId" } },
+          params: { 
+            populate: { 
+              path: "projectId fonds",
+              // populate : {
+              //   path: "fonds"
+              // } 
+            } 
+          },
         });
         console.log('=18356f=', Static.item)
 
@@ -232,17 +239,16 @@ const start = function (data, ID) {
                 <Elements.Bredcrumbs
                   items={[
                     {
-                      title: "Projects list",
+                      title: "Researches list",
                       link: "/personal/researches/",
                     },
                     {
-                      title: "New research",
+                      title: `Research ${Static.item.projectId?.name}`,
                     },
                   ]}
                 />
                 <div class="main mb-25  inner-add">
                   <h2 class="general-title mt-0">Fill out the research on the project</h2>
-                
                 </div>
                 <section class="personal-form">
                   <div
@@ -325,27 +331,13 @@ const start = function (data, ID) {
                         ></img>
                       </div>
                       <div class="form-div">
-                        <div
-                          class="form-input personal-input"
-                          contenteditable="plaintext-only"
-                          onchange = {function(){
-                            Static.nameProject = this.value;
-                          }}
-                          oninput={function () {
-                            Static.item.projectId.name = this.innerText.trim();
-                            updateValue({
-                              key: "name",
-                              value: Static.item.projectId.name,
-                            });
-                          }}
-                        >
+                        <div class="form-input personal-input">
                           {Static.item.projectId?.name
                             ? Static.item.projectId?.name
                             : "Name research"}
                         </div>
                       </div>
                     </div>
-                    
                   </div>
 
                   <div class="grid-3">
@@ -355,28 +347,28 @@ const start = function (data, ID) {
                         <button
                           class="dropdown__button"
                           onclick={() => {
-                            Static.selectList.tabs.classList.toggle(
+                            Static.selectList.rounds.classList.toggle(
                               "dropdown__list--visible"
                             );
                           }}
                         >
-                          {Static.item.tabs ? Static.item.tabs : "Choose round"}
+                          {Static.item.round ? Static.item.round : "Choose round"}
                         </button>
                         <ul
                           class="dropdown__list"
                           Element={($el) => {
-                            Static.selectList.tabs = $el;
+                            Static.selectList.rounds = $el;
                           }}
                         >
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "seed";
+                              Static.item.round = "seed";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -387,12 +379,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "pre-seed";
+                              Static.item.round = "pre-seed";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -403,12 +395,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "strategic";
+                              Static.item.round = "strategic";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -419,12 +411,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "public";
+                              Static.item.round = "public";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -435,12 +427,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "private";
+                              Static.item.round = "private";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -587,28 +579,46 @@ const start = function (data, ID) {
                     <div class="form-div">
                       <label>Total rank:</label>
                       <div class="form-input personal-input">
-                        {Static.item.rank} (Auto calculate)
+                        {Static.item.rank.toFixed(2)} (Auto calculate)
                         {/* {Static.item.rankList.totalText} (Auto calculate) */}
                       </div>
                     </div>
                   </div>
 
 
-                  <div class="form-item">
+                  <div class="form-item" style="position: relative;">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer; top: 0;"
+                      onclick={()=>{
+                        Static.item.description = Static.item.projectId.description
+                        updateValue({
+                          key: "description",
+                          value: Static.item.description,
+                        });
+                        initReload();
+                      }}></img>
                     <label>Description:</label>
                     <div
                       style="min-height:100px;"
                       class="form-input personal-input"
-                      contenteditable="plaintext-only"
+                      contenteditable={
+                        Static.item.status == "Draft" ? true 
+                        : Static.item.status == "Modify" ? true : false
+                      }
                       oninput={function () {
-                        Static.item.projectId.description = this.innerText.trim();
+                        Static.item.description = this.innerText.trim();
                         updateValue({
                           key: "description",
-                          value: Static.item.projectId.description,
+                          value: Static.item.description,
                         });
                       }}
                     >
-                      {Static.item.projectId.description}
+                      {Static.item.description}
                     </div>
                   </div>
                   <div class="" style="display:flex;">
@@ -665,7 +675,7 @@ const start = function (data, ID) {
                     }}
                   ></div>
                   <div class="grid-2">
-                    <button
+                    {/* <button
                       class="btn btn-green"
                       onclick={() => {
                         fn.modals.BlockchainList({
@@ -692,32 +702,21 @@ const start = function (data, ID) {
                       }}
                     >
                       Choose blockchain
-                    </button>
+                    </button> */}
                     <div class="fondlist-wrap">
-                      {Object.keys(Static.item?.blockchains).length ? (
+                      {Object.keys(Static.item.projectId?.blockchains).length ? (
                         <div class="fondlist-item">
-                          <img
-                            class="icon-delete"
-                            src={svg["delete_icon"]}
-                            onclick={() => {
-                              Static.item.blockchains = {};
-                              updateRecords({
-                                blockchains: Static.item.blockchains,
-                              });
-                              initReload();
-                            }}
-                          ></img>
                           <div class="fondlist-item_img">
                             <img
                               src={
-                                Static.item.blockchains.icon
-                                  ? `/assets/upload/${Static.item.blockchains.icon}`
+                                Static.item.projectId.blockchains.icon
+                                  ? `/assets/upload/${Static.item.projectId.blockchains.icon}`
                                   : images["research/logo-empty"]
                               }
                             />
                           </div>
                           <span class="fondlist-item_desc">
-                            {Static.item.blockchains.name}
+                            {Static.item.projectId.blockchains.name}
                           </span>
                         </div>
                       ) : null}
@@ -789,7 +788,7 @@ const start = function (data, ID) {
                         });
                       }}
                     />
-                    {Static.item.gallery.map((item, index) => {
+                    {Static.item.projectId.gallery.map((item, index) => {
                       return (
                         <div class="news-form_gallery">
                           <div class="news-form_gallery-image">
@@ -798,16 +797,6 @@ const start = function (data, ID) {
                               width="200"
                               height="100"
                             ></img>
-                            <div
-                              class="news-form_gallery-delete"
-                              onClick={() => {
-                                Static.item.gallery.splice(index, 1);
-                                updateRecords({ gallery: Static.item.gallery });
-                                initReload();
-                              }}
-                            >
-                              <img src={svg["delete_icon"]} />
-                            </div>
                           </div>
                         </div>
                       );
@@ -873,7 +862,10 @@ const start = function (data, ID) {
                       <span class="text">Specify the problem of the project:</span>
                       <div
                         class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.problem = this.innerText.trim();
                           updateValue({
@@ -921,7 +913,10 @@ const start = function (data, ID) {
                       <span class="text">Describe your product:</span>
                       <div
                         class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.product = this.innerText.trim();
                           updateValue({
@@ -969,7 +964,10 @@ const start = function (data, ID) {
                       <span class="text">Describe the solution to the problem:</span>
                       <div
                         class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.solution = this.innerText.trim();
                           updateValue({
@@ -1052,7 +1050,10 @@ const start = function (data, ID) {
                       <span class="text">About investors</span>
                       <div
                         class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.investors = this.innerText.trim();
                           updateValue({
@@ -1077,13 +1078,59 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.fonds = Static.item.projectId.fonds
+                        updateValue({
+                          key: "fonds",
+                          value: Static.item.fonds,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Choose funds</span>
                     </div>
 
                     <div class="scheme-card_desc">
-                      <div class="fondlist-wrap">
-                        {(Static.item.projectId.fonds || []).map((item, index) => {
+                      <div
+                        class={["add", "mb-15"]}
+                        onclick={() => {
+                          fn.modals.FondList({
+                            title: "Fund list",
+                            listsFonds: Static.item.fonds,
+                            callback: async (filterFonds) => {
+                              console.log("=666583=", filterFonds);
+                              Static.item.fonds = filterFonds;
+                              if (!filterFonds.length) {
+                                return;
+                              }
+                              await updateRecords({ fonds: Static.item.fonds });
+                              let tmp = await fn.socket.get({
+                                method: "ResearchAnalyst",
+                                _id: Variable.dataUrl.params,
+                                params: { populate: { path: "fonds" } },
+                              });
+                              if (tmp.fonds) {
+                                Static.item.fonds = tmp.fonds;
+                              }
+
+                              initReload();
+                              return;
+                            },
+                          });
+                        }}
+                      >
+                        +
+                      </div>
+                      <div class="fondlist-wrap mt-15">
+                        {(Static.item.fonds || []).map((item, index) => {
                           return (
                             <div class="fondlist-item">
                               <img
@@ -1126,7 +1173,27 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
-                    
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.tokenomics.text = Static.item.projectId.tokenomics.text;
+                        updateValue({
+                          key: "tokenomics.text",
+                          value: Static.item.tokenomics.text,
+                        });
+                        Static.item.tokenomics.image = Static.item.projectId.tokenomics.image;
+                        updateValue({
+                          key: "tokenomics.image",
+                          value: Static.item.tokenomics.image,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Tokenomics</span>
                       <input
@@ -1250,25 +1317,12 @@ const start = function (data, ID) {
                         </div>
                       </div>
                       <div class="scheme-card_roadmap-desc">
-                        <img 
-                          class="user-icon" 
-                          src={svg.duplicate} 
-                          width='20' 
-                          height='20'
-                          title="Duplicate content from a project"
-                          style="cursor: pointer;"
-                          onclick={()=>{
-                            Static.item.tokenomics.text = Static.item.projectId.tokenomics.text
-                            updateValue({
-                              key: "tokenomics.text",
-                              value: Static.item.tokenomics.text,
-                            });
-                            initReload();
-                          }}
-                        />
                         <div
                           class="scheme-card_desc personal-input text mb-15"
-                          contenteditable="plaintext-only"
+                          contenteditable={
+                            Static.item.status == "Draft" ? true 
+                            : Static.item.status == "Modify" ? true : false
+                          }
                           oninput={function () {
                             Static.item.tokenomics.text = this.innerText.trim();
                             updateValue({
@@ -1294,6 +1348,24 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        Static.item.utility.token = Static.item.projectId.utility.token;
+                        Static.item.utility.capture = Static.item.projectId.utility.capture;
+                        Static.item.utility.accural = Static.item.projectId.utility.accural;
+                        updateValue({
+                          key: "utility",
+                          value: Static.item.utility,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>Utility and Value</span>
                       <input
@@ -1332,53 +1404,62 @@ const start = function (data, ID) {
                       <span class="text-green">Max. 10</span>
                     </div>
 
-                    <div class="scheme-card_desc">
+                    <div class="scheme-card_desc mt-25">
                       <div class="scheme-row">
                         <div>Token Utility</div>
                         <div
                           class="text personal-input"
-                          contenteditable="plaintext-only"
+                          contenteditable={
+                            Static.item.status == "Draft" ? true 
+                            : Static.item.status == "Modify" ? true : false
+                          }
                           oninput={function () {
-                            Static.item.projectId.utility.token = this.innerText.trim();
+                            Static.item.utility.token = this.innerText.trim();
                             updateValue({
                               key: "utility",
-                              value: Static.item.projectId.utility,
+                              value: Static.item.utility,
                             });
                           }}
                         >
-                          {Static.item.projectId.utility?.token}
+                          {Static.item.utility?.token}
                         </div>
                       </div>
                       <div class="scheme-row">
                         <div>Value capture</div>
                         <div
                           class="text personal-input"
-                          contenteditable="plaintext-only"
+                          contenteditable={
+                            Static.item.status == "Draft" ? true 
+                            : Static.item.status == "Modify" ? true : false
+                          }
                           oninput={function () {
-                            Static.item.projectId.utility.capture = this.innerText.trim();
+                            Static.item.utility.capture = this.innerText.trim();
                             updateValue({
                               key: "utility",
-                              value: Static.item.projectId.utility,
+                              value: Static.item.utility,
                             });
                           }}
                         >
-                          {Static.item.projectId.utility?.capture}
+                          {Static.item.utility?.capture}
                         </div>
                       </div>
                       <div class="scheme-row">
                         <div>Value accural</div>
                         <div
                           class="text personal-input"
-                          contenteditable="plaintext-only"
+                          contenteditable={
+                            Static.item.status == "Draft" ? true 
+                            : Static.item.status == "Modify" ? true : false
+                          }
                           oninput={function () {
-                            Static.item.projectId.utility.accural = this.innerText.trim();
+                            Static.item.utility.accural = this.innerText.trim();
                             updateValue({
                               key: "utility",
-                              value: Static.item.projectId.utility,
+                              value: Static.item.utility,
                             });
                           }}
                         >
-                          {Static.item.projectId.utility?.accural}
+                          {Static.item.utility?.accural}
                         </div>
                       </div>
                       <p class="text">Enter the link confirming the information: 
@@ -1402,10 +1483,15 @@ const start = function (data, ID) {
                       title="Duplicate content from a project"
                       style="cursor: pointer;"
                       onclick={()=>{
-                        Static.item.team.text = Static.item.projectId.team.text
+                        Static.item.team.text = Static.item.projectId.team.text;
                         updateValue({
                           key: "team.text",
                           value: Static.item.team.text,
+                        });
+                        Static.item.team.records = Static.item.projectId.team.records;
+                        updateValue({
+                          key: "team.records",
+                          value: Static.item.team.records,
                         });
                         initReload();
                       }}
@@ -1453,7 +1539,10 @@ const start = function (data, ID) {
                       <span class="text">About the team:</span>
                       <div
                         class="personal-input text mb-15"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.team.text = this.innerText.trim();
                           updateValue({
@@ -1593,7 +1682,10 @@ const start = function (data, ID) {
                                 <span class="text">Full name:</span>
                                 <div
                                   class="personal-input text mb-15"
-                                  contenteditable="plaintext-only"
+                                  contenteditable={
+                                    Static.item.status == "Draft" ? true 
+                                    : Static.item.status == "Modify" ? true : false
+                                  }
                                   oninput={function () {
                                     Static.item.team.records[index].fio =
                                       this.innerText.trim();
@@ -1608,7 +1700,10 @@ const start = function (data, ID) {
                                 <span class="text">Link to a person:</span>
                                 <div
                                   class="personal-input text"
-                                  contenteditable="plaintext-only"
+                                  contenteditable={
+                                    Static.item.status == "Draft" ? true 
+                                    : Static.item.status == "Modify" ? true : false
+                                  }
                                   oninput={function () {
                                     Static.item.team.records[index].link =
                                       this.innerText.trim();
@@ -1754,8 +1849,8 @@ const start = function (data, ID) {
                               <img
                                 class="roadmap-img"
                                 src={
-                                  Static.item.roadmap.image
-                                    ? `/assets/upload/${Static.item.roadmap.image}`
+                                  Static.item.projectId.roadmap.image
+                                    ? `/assets/upload/${Static.item.projectId.roadmap.image}`
                                     : images["research/logo-empty"]
                                 }
                               />
@@ -1776,9 +1871,13 @@ const start = function (data, ID) {
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-desc">
+                          <span class="text">About roadmap:</span>
                           <div
                             class="scheme-card_desc personal-input text mb-15"
-                            contenteditable="plaintext-only"
+                            contenteditable={
+                              Static.item.status == "Draft" ? true 
+                              : Static.item.status == "Modify" ? true : false
+                            }
                             oninput={function () {
                               Static.item.roadmap.text = this.innerText.trim();
                               updateValue({
@@ -1789,9 +1888,13 @@ const start = function (data, ID) {
                           >
                             {Static.item.roadmap?.text}
                           </div>
+                          <span class="text">Roadmap link:</span>
                           <div
                             class="scheme-card_desc personal-input text"
-                            contenteditable="plaintext-only"
+                            contenteditable={
+                              Static.item.status == "Draft" ? true 
+                              : Static.item.status == "Modify" ? true : false
+                            }
                             oninput={function () {
                               Static.item.roadmap.link = this.innerText.trim();
                               updateValue({
@@ -1875,7 +1978,10 @@ const start = function (data, ID) {
                       <span class="text">Describe your documentation: </span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.documentation = this.innerText.trim();
                           updateValue({
@@ -1959,7 +2065,10 @@ const start = function (data, ID) {
                       <span class="text">Information about social:</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.social = this.innerText.trim();
                           updateValue({
@@ -2044,7 +2153,10 @@ const start = function (data, ID) {
                       <span class="text">Describe the launcher:</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.launchpad = this.innerText.trim();
                           updateValue({
@@ -2129,7 +2241,10 @@ const start = function (data, ID) {
                       <span class="text">CEX/DEX</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.cexDex = this.innerText.trim();
                           updateValue({
@@ -2213,7 +2328,10 @@ const start = function (data, ID) {
                       <span class="text">Listing on aggregator:</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.aggregator = this.innerText.trim();
                           updateValue({
@@ -2297,7 +2415,10 @@ const start = function (data, ID) {
                       <span class="text">About competitors:</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.competitors = this.innerText.trim();
                           updateValue({
@@ -2382,7 +2503,10 @@ const start = function (data, ID) {
                       <span class="text">About media:</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.mediaText = this.innerText.trim();
                           updateValue({
@@ -2468,7 +2592,10 @@ const start = function (data, ID) {
                       <span class="text">About audit:</span>
                       <div
                         class="personal-input text"
-                        contenteditable="plaintext-only"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
                         oninput={function () {
                           Static.item.audit = this.innerText.trim();
                           updateValue({ 
@@ -2479,7 +2606,7 @@ const start = function (data, ID) {
                       >
                         {Static.item.audit}
                       </div>
-                      <p class="text">Enter the link confirming the information: 
+                      <p class="text mt-15">Enter the link confirming the information: 
                         <a 
                           class="link-modal text-green"
                           target="_blank"
@@ -2489,11 +2616,26 @@ const start = function (data, ID) {
                         </a> 
                       </p>
                     </div>
-
-                    
                   </div>
 
                   <div class="scheme-card">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer;"
+                      onclick={()=>{
+                        console.log('=a0278c=','click')
+                        Static.item.totalText = Static.item.projectId.totalText
+                        updateValue({
+                          key: "totalText",
+                          value: Static.item.totalText,
+                        });
+                        initReload();
+                      }}
+                    />
                     <div class="scheme-sidebar_item text">
                       <span>TOTAL</span>
                       <input
@@ -2532,40 +2674,61 @@ const start = function (data, ID) {
                       </input>
                       <span class="text-green">Max. 10</span>
                     </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.totalText = this.innerText.trim();
-                        updateValue({
-                          key: "totalText",
-                          value: Static.item.totalText,
-                        });
-                      }}
-                    >
-                      {Static.item.totalText}
+                    <div class="scheme-card_desc">
+                      <span class="text">About total project:</span>
+                      <div
+                        class="personal-input text"
+                        contenteditable={
+                          Static.item.status == "Draft" ? true 
+                          : Static.item.status == "Modify" ? true : false
+                        }
+                        oninput={function () {
+                          Static.item.totalText = this.innerText.trim();
+                          updateValue({
+                            key: "totalText",
+                            value: Static.item.totalText,
+                          });
+                        }}
+                      >
+                        {Static.item.totalText}
+                      </div>
                     </div>
                   </div>
 
                   <center class="el-bottom mt-70">
                     <button 
-                      class={["btn", "btn-green", "mb-15" ]}
+                      disabled={
+                        Static.item.status == "Submitted for moderation"
+                        || Static.item.status == "Accepted"}
+                      class={["btn", "btn-green", "mb-15",
+                      (Static.item.status  == "Submitted for moderation") || (Static.item.status  == "Accepted") ? "btn-disabled" : null ]}
                       onclick={async function(){
-                        let insert = {
-                          projectId: Static.item.projectId._id,
-                        };
-                        await fn.socket.set({
+                        // let insert = {
+                        //   projectId: Static.item.projectId._id,
+                        // };
+                        // await fn.socket.set({
                           
+                        //   method: "ResearchAnalyst",
+                        //   action: "insert",
+                        //   params: { insert },
+                        // });
+
+                        await fn.socket.set({
                           method: "ResearchAnalyst",
-                          action: "insert",
-                          params: { insert },
+                          action: "findOneAndUpdate",
+                          params: {
+                            update: { status: "Submitted for moderation" },
+                            filter: {
+                              _id: Static.item._id,
+                              author: Variable.myInfo._id,
+                            }
+                          },
                         });
-    
+                        fn.siteLink('/personal/researches/')
                         fn.modals.Success({
-                          title: "Your project has been submitted for moderation"
+                          title: "Your research has been submitted for moderation"
                         });
                         this.textContent = "Submitted for moderation";
-                        fn.siteLink('/personal/researches/')
                         initReload();
                       }}  
                     >

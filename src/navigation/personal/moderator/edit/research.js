@@ -124,7 +124,7 @@ const updateValue = async function ({ key, value }) {
 
 const updateRecords = async function (update) {
   let response = await fn.socket.set({
-    method: "Research",
+    method: "ResearchAnalyst",
     action: "findOneAndUpdate",
     _id: Data.Static.item._id,
     params: { update },
@@ -143,7 +143,6 @@ const countTotalRank = function () {
     key: "rank",
     value: total,
   });
-  // return total;
 };
 
 const start = function (data, ID) {
@@ -176,37 +175,37 @@ const start = function (data, ID) {
         Static.item = await fn.socket.get({
           method: "ResearchAnalyst",
           _id: Variable.dataUrl.params,
-          params: { populate: { path: "projectId author" } },
+          params: { 
+            populate: { 
+              path: "author projectId fonds",
+              //  populate: {
+              //   path: "fonds"
+              //  }
+            } 
+          },
         });
         console.log('=55a4b6=',Static.item)
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
-
         if (!Static.item.socials) {
           Static.item.socials = [];
         }
-
         if (!Static.item.utility) {
           Static.item.utility = {};
         }
-
         if (!Static.item.roadmap) {
           Static.item.roadmap = {};
         }
-
         if (!Static.item.tokenomics) {
           Static.item.tokenomics = {};
         }
-
         if (!Static.item.blockchains) {
           Static.item.blockchains = {};
         }
-
         for (let item of Static.item.socials) {
           Static.forms.socials[item.name] = item;
         }
-
         if (!Static.item.team) {
           Static.item.team = {};
         }
@@ -234,12 +233,12 @@ const start = function (data, ID) {
                       link: "/personal/moderator/list/research/",
                     },
                     {
-                      title: Static.item.name ? Static.item.name : "New record",
+                      title: Static.item.projectId?.name ? Static.item.projectId?.name : "Research",
                     },
                   ]}
                 />
                 <section class="inner-add mb-15">
-                  <h2 class="general-title mt-0">Edit Research</h2>
+                  <h2 class="general-title mt-0">Research verification</h2>
                   <div class="user-card mb-15 research-user">
                     <div class="user-picture mr-15">
                       <img src={Static.item.author?.icon ? 
@@ -316,8 +315,8 @@ const start = function (data, ID) {
                         />
                         <img
                           src={
-                            Static.item.icon
-                              ? `/assets/upload/${Static.item.icon}`
+                            Static.item.projectId.icon
+                              ? `/assets/upload/${Static.item.projectId.icon}`
                               : images["research/logo-empty"]
                           }
                           width="50"
@@ -328,30 +327,13 @@ const start = function (data, ID) {
                         ></img>
                       </div>
                       <div class="form-div">
-                        <div
-                          class="form-input personal-input"
-                          contenteditable="plaintext-only"
-                          oninput={function () {
-                            Static.item.name = this.innerText.trim();
-                            updateValue({
-                              key: "name",
-                              value: Static.item.name,
-                            });
-                          }}
-                        >
-                          {Static.item?.name
-                            ? Static.item?.name
+                        <div class="form-input personal-input">
+                          {Static.item.projectId?.name
+                            ? Static.item.projectId?.name
                             : "Name research"}
                         </div>
                       </div>
-                    </div>
-
-                    <div class="form-div">
-                      <label>Total rank:</label>
-                      <div class="form-input personal-input">
-                        {Static.item.rank.toFixed(2)} (Auto calculate)
-                      </div>
-                    </div>
+                    </div>                    
                   </div>
                   <div class="grid-3">
                     <div class="form-div">
@@ -360,28 +342,28 @@ const start = function (data, ID) {
                         <button
                           class="dropdown__button"
                           onclick={() => {
-                            Static.selectList.tabs.classList.toggle(
+                            Static.selectList.rounds.classList.toggle(
                               "dropdown__list--visible"
                             );
                           }}
                         >
-                          {Static.item.tabs}
+                          {Static.item?.round ? Static.item?.round : "Select round"}
                         </button>
                         <ul
                           class="dropdown__list"
                           Element={($el) => {
-                            Static.selectList.tabs = $el;
+                            Static.selectList.rounds = $el;
                           }}
                         >
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "seed";
+                              Static.item.round = "seed";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -392,12 +374,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "pre-seed";
+                              Static.item.round = "pre-seed";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -408,12 +390,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "strategic";
+                              Static.item.round = "strategic";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -424,12 +406,12 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "public";
+                              Static.item.round = "public";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
@@ -440,106 +422,18 @@ const start = function (data, ID) {
                           <li
                             class="dropdown__list-item"
                             onclick={() => {
-                              Static.item.tabs = "private";
+                              Static.item.round = "private";
                               updateValue({
-                                key: "tabs",
-                                value: Static.item.tabs,
+                                key: "round",
+                                value: Static.item.round,
                               });
-                              Static.selectList.tabs.classList.remove(
+                              Static.selectList.rounds.classList.remove(
                                 "dropdown__list--visible"
                               );
                               initReload();
                             }}
                           >
                             private
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Status:</label>
-                      <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.selectList.status.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          {Static.item?.status
-                            ? Static.item.status
-                            : "Select status"}
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.selectList.status = $el;
-                          }}
-                        >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Research";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Research
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Active";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Active
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Upcoming";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Upcoming
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Past";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Past
                           </li>
                         </ul>
                       </div>
@@ -588,6 +482,12 @@ const start = function (data, ID) {
                         </ul>
                       </div>
                     </div>
+                    <div class="form-div">
+                      <label>Total rank:</label>
+                      <div class="form-input personal-input">
+                        {Static.item.rank.toFixed(2)} (Auto calculate)
+                      </div>
+                    </div>
                   </div>
                   <div class="form-item">
                     <label>Description:</label>
@@ -604,66 +504,6 @@ const start = function (data, ID) {
                       }}
                     >
                       {Static.item.description}
-                    </div>
-                  </div>
-
-                  <div class="grid-3">
-                    <div class="form-div">
-                      <label>Price per token:</label>
-                      <div
-                        class="form-input personal-input"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.seedRound = Number(this.innerText.trim());
-                          if (
-                            Static.item.seedRound ||
-                            Static.item.seedRound >= 0
-                          ) {
-                            updateValue({
-                              key: "seedRound",
-                              value: Static.item.seedRound,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.seedRound}
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Invest:</label>
-                      <div
-                        class="form-input personal-input"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.have = Number(this.innerText.trim());
-                          if (Static.item.have || Static.item.have >= 0) {
-                            updateValue({
-                              key: "have",
-                              value: Static.item.have,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.have}
-                      </div>
-                    </div>
-                    <div class="form-div">
-                      <label>Target invest:</label>
-                      <div
-                        class="form-input personal-input"
-                        contenteditable="plaintext-only"
-                        oninput={function () {
-                          Static.item.target = Number(this.innerText.trim());
-                          if (Static.item.target || Static.item.target >= 0) {
-                            updateValue({
-                              key: "target",
-                              value: Static.item.target,
-                            });
-                          }
-                        }}
-                      >
-                        {Static.item.target}
-                      </div>
                     </div>
                   </div>
 
@@ -770,59 +610,20 @@ const start = function (data, ID) {
                     </div>
                   </div>
                   <div class="grid-2">
-                    <button
-                      class="btn btn-green"
-                      onclick={() => {
-                        fn.modals.BlockchainList({
-                          title: "Blockchain list",
-                          listsBlockchains: Static.item.blockchains,
-                          callback: async (filterBlockchains) => {
-                            Static.item.blockchains = filterBlockchains;
-                            await updateRecords({
-                              blockchains: Static.item.blockchains,
-                            });
-                            let tmp = await fn.socket.get({
-                              method: "Research",
-                              _id: Variable.dataUrl.params,
-                              params: { populate: { path: "blockchains" } },
-                            });
-                            if (tmp.blockchains) {
-                              Static.item.blockchains = tmp.blockchains;
-                            }
-
-                            initReload();
-                            return;
-                          },
-                        });
-                      }}
-                    >
-                      Choose blockchain
-                    </button>
                     <div class="fondlist-wrap">
-                      {Object.keys(Static.item.blockchains).length ? (
+                      {Object.keys(Static.item.projectId.blockchains).length ? (
                         <div class="fondlist-item">
-                          <img
-                            class="icon-delete"
-                            src={svg["delete_icon"]}
-                            onclick={() => {
-                              Static.item.blockchains = {};
-                              updateRecords({
-                                blockchains: Static.item.blockchains,
-                              });
-                              initReload();
-                            }}
-                          ></img>
                           <div class="fondlist-item_img">
                             <img
                               src={
-                                Static.item.blockchains.icon
-                                  ? `/assets/upload/${Static.item.blockchains.icon}`
+                                Static.item.projectId.blockchains.icon
+                                  ? `/assets/upload/${Static.item.projectId.blockchains.icon}`
                                   : images["research/logo-empty"]
                               }
                             />
                           </div>
                           <span class="fondlist-item_desc">
-                            {Static.item.blockchains.name}
+                            {Static.item.projectId.blockchains.name}
                           </span>
                         </div>
                       ) : null}
@@ -871,7 +672,6 @@ const start = function (data, ID) {
                                 key: "gallery",
                                 value: Static.item.gallery,
                               });
-                              // let tmp = await fn.socket.set({ method: "Research", action: "findOneAndUpdate", _id: Static.item._id, params: { update: { gallery: Static.item.gallery } } })
                               initReload();
                             },
                             onprogress: async function (e) {
@@ -897,7 +697,7 @@ const start = function (data, ID) {
                         });
                       }}
                     />
-                    {Static.item.gallery.map((item, index) => {
+                    {Static.item.projectId.gallery.map((item, index) => {
                       return (
                         <div class="news-form_gallery">
                           <div class="news-form_gallery-image">
@@ -906,16 +706,6 @@ const start = function (data, ID) {
                               width="200"
                               height="100"
                             ></img>
-                            <div
-                              class="news-form_gallery-delete"
-                              onClick={() => {
-                                Static.item.gallery.splice(index, 1);
-                                updateRecords({ gallery: Static.item.gallery });
-                                initReload();
-                              }}
-                            >
-                              <img src={svg["delete_icon"]} />
-                            </div>
                           </div>
                         </div>
                       );
@@ -1075,11 +865,11 @@ const start = function (data, ID) {
 
                   <div class="scheme-card">
                     <div class="scheme-sidebar_item text">
-                      <span>{Static.item.tabs} Round</span>
+                      <span>{Static.item.round} Round</span>
                     </div>
 
                     <div class="scheme-card_desc">
-                      <div
+                      {/* <div
                         class={["add", "mb-15"]}
                         onclick={() => {
                           fn.modals.FondList({
@@ -1108,13 +898,13 @@ const start = function (data, ID) {
                         }}
                       >
                         +
-                      </div>
+                      </div> */}
 
                       <div class="fondlist-wrap">
                         {(Static.item.fonds || []).map((item, index) => {
                           return (
                             <div class="fondlist-item">
-                              <img
+                              {/* <img
                                 class="icon-delete"
                                 src={svg["delete_icon"]}
                                 onclick={() => {
@@ -1124,7 +914,7 @@ const start = function (data, ID) {
                                   });
                                   initReload();
                                 }}
-                              ></img>
+                              ></img> */}
                               <div class="fondlist-item_img">
                                 <img
                                   src={
@@ -1184,7 +974,7 @@ const start = function (data, ID) {
 
                     <div class="scheme-card_desc">
                       <div class="scheme-card_roadmap-img mb-15">
-                        <div
+                        {/* <div
                           class={[
                             "add",
                             "mb-15",
@@ -1195,9 +985,9 @@ const start = function (data, ID) {
                           }}
                         >
                           +
-                        </div>
+                        </div> */}
                         <div class="picture">
-                          <input
+                          {/* <input
                             type="file"
                             hidden
                             Element={($el) => {
@@ -1233,7 +1023,7 @@ const start = function (data, ID) {
                                 return;
                               });
                             }}
-                          />
+                          /> */}
                           <div class="news-form_gallery-image">
                             <img
                               class="roadmap-img"
@@ -1243,7 +1033,7 @@ const start = function (data, ID) {
                                   : images["research/logo-empty"]
                               }
                             />
-                            <div
+                            {/* <div
                               class={["news-form_gallery-delete"]}
                               onclick={() => {
                                 Static.item.tokenomics.image = "";
@@ -1262,7 +1052,7 @@ const start = function (data, ID) {
                                 }
                                 src={svg["delete_icon"]}
                               />
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>
@@ -1427,7 +1217,7 @@ const start = function (data, ID) {
                         {Static.item.team?.text}
                       </div>
                       {/* поля для заполнения текста ^ */}
-                      <div
+                      {/* <div
                         class={["add", "mb-15"]}
                         onclick={() => {
                           if (!Static.item.team?.records) {
@@ -1438,10 +1228,10 @@ const start = function (data, ID) {
                         }}
                       >
                         +
-                      </div>
+                      </div> */}
                       {/* add + нового члена команды ^ */}
 
-                      <input
+                      {/* <input
                         type="file"
                         hidden
                         Element={($el) => {
@@ -1476,13 +1266,13 @@ const start = function (data, ID) {
                             return;
                           });
                         }}
-                      />
+                      /> */}
                       <div class="scheme-team">
                         {(Static.item.team?.records || []).map(
                           (item, index) => {
                             return (
                               <div class="scheme-team_item">
-                                <img
+                                {/* <img
                                   onclick={() => {
                                     Static.item.team.records.splice(index, 1);
                                     updateRecords({
@@ -1492,7 +1282,7 @@ const start = function (data, ID) {
                                   }}
                                   class="icon-delete"
                                   src={svg["delete_icon"]}
-                                />
+                                /> */}
                                 <div
                                   class="scheme-team_item-img"
                                   onclick={() => {
@@ -1500,7 +1290,7 @@ const start = function (data, ID) {
                                     Static[`teamMedia${index}`].click();
                                   }}
                                 >
-                                  <input
+                                  {/* <input
                                     type="file"
                                     hidden
                                     Element={($el) => {
@@ -1543,7 +1333,7 @@ const start = function (data, ID) {
                                         return;
                                       });
                                     }}
-                                  />
+                                  /> */}
                                   <img
                                     src={
                                       item.image
@@ -1629,7 +1419,7 @@ const start = function (data, ID) {
                     <div class="scheme-card_desc">
                       <div class="scheme-card_roadmap">
                         <div class="scheme-card_roadmap-img">
-                          <div
+                          {/* <div
                             class={[
                               "add",
                               "mb-15",
@@ -1640,9 +1430,9 @@ const start = function (data, ID) {
                             }}
                           >
                             +
-                          </div>
+                          </div> */}
                           <div class="picture">
-                            <input
+                            {/* <input
                               type="file"
                               hidden
                               Element={($el) => {
@@ -1677,7 +1467,7 @@ const start = function (data, ID) {
                                   return;
                                 });
                               }}
-                            />
+                            /> */}
                             <div class="news-form_gallery-image">
                               <img
                                 class="roadmap-img"
@@ -1687,7 +1477,7 @@ const start = function (data, ID) {
                                     : images["research/logo-empty"]
                                 }
                               />
-                              <div
+                              {/* <div
                                 class="news-form_gallery-delete"
                                 onclick={() => {
                                   Static.item.roadmap.image = "";
@@ -1699,7 +1489,7 @@ const start = function (data, ID) {
                                 }}
                               >
                                 <img src={svg["delete_icon"]} />
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </div>
@@ -2200,6 +1990,109 @@ const start = function (data, ID) {
                       {Static.item.totalText}
                     </div>
                   </div>
+
+                  <div class="scheme-card">
+                    <div class="scheme-sidebar_item text">
+                      <span>TOTAL</span>
+                    </div>
+                    <div
+                      class="scheme-card_desc personal-input text"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.totalText = this.innerText.trim();
+                        updateValue({
+                          key: "totalText",
+                          value: Static.item.totalText,
+                        });
+                      }}
+                    >
+                      {Static.item.totalText}
+                    </div>
+                  </div>
+                  <div class="scheme-card_desc">
+                    <span class="text">Comment from the moderator</span>
+                    <div
+                      class="personal-input text mt-15"
+                      style="max-width: 100%;"
+                      contenteditable="plaintext-only"
+                      oninput={function () {
+                        Static.item.commentModerator = this.innerText.trim();
+                        updateValue({
+                          key: "commentModerator",
+                          value: Static.item.commentModerator,
+                        });
+                      }}
+                    >
+                      {Static.item.commentModerator}
+                    </div>
+                  </div>
+                    
+                
+
+                  <center class="el-bottom mt-70">
+                    <div class="card-btns">
+                      <button 
+                        class={["btn", "btn-green", "mb-15" ]}
+                        onclick={async function(){
+      
+                          await fn.socket.set({
+                            method: "ResearchAnalyst",
+                            action: "findOneAndUpdate",
+                            params: {
+                              update: { status: "Accepted" },
+                              filter: {
+                                _id: Static.item._id,
+                              }
+                            },
+                          });
+
+
+      
+                          fn.modals.Success({
+                            title: "The research is accepted"
+                          });
+                          fn.siteLink(
+                            `/personal/moderator/list/research/`
+                          );
+                          initReload();
+                        }}  
+                      >
+                        Accepted
+                      </button>
+                      <button 
+                        class="btn btn-bordo"
+                        onclick={async function(){
+      
+                          fn.modals.Sure({
+                            title: "Reject the project without the possibility of revision?",
+                            idProject: Static.item._id
+                          });
+
+                          // await fn.socket.set({
+                          //   method: "Projects",
+                          //   action: "findOneAndUpdate",
+                          //   params: {
+                          //     update: { status: "Refused" },
+                          //     filter: {
+                          //       _id: Static.item._id,
+                          //     }
+                          //   },
+                          // });
+      
+                          // fn.modals.Success({
+                          //   title: "The project was rejected"
+                          // });
+                          // fn.siteLink(
+                          //   `/personal/admin/list/projects/`
+                          // );
+                          initReload();
+                        }}  
+                      >
+                        Refused
+                      </button>
+                    </div>
+                    
+                  </center>
                 </div>
               </div>
             </div>

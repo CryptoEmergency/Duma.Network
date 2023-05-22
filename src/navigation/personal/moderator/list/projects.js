@@ -73,34 +73,8 @@ const start = function (data, ID) {
                     },
                   ]}
                 />
-                <div class="mb-25 inner-add">
-                  <h2 class="general-title mt-0">Projects list</h2>
 
-                  <div
-                    class="add"
-                    onclick={async () => {
-                      let insert = {
-                        name: "New name",
-                        status: "Draft",
-                      };
-                      let response = await fn.socket.set({
-                        method: "Projects",
-                        action: "insert",
-                        params: { insert },
-                      });
-                      if (!response || !response._id) {
-                        alert("error");
-                        return;
-                      }
-                      fn.siteLink(
-                        `/personal/admin/edit/research/${response._id}`
-                      );
-                    }}
-                  >
-                    +
-                  </div>
-                </div>
-
+                <h2 class="general-title mt-0 mb-15">Projects list</h2>
 
                 <div class="accordeon">
                   <div class="accordeon-item">

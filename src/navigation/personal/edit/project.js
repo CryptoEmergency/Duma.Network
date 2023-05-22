@@ -248,8 +248,6 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { populate: { path: "fonds" } },
         });
-        console.log('=5b914d=',Static.item);
-        console.log('=20c2db=',Static.item.commentModerator)
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
@@ -322,7 +320,7 @@ const start = function (data, ID) {
                       link: "/personal/projects/",
                     },
                     {
-                      title: "New project",
+                      title: Static.item?.name ? Static.item.name : "Project",
                     },
                   ]}
                 />
@@ -1626,6 +1624,7 @@ const start = function (data, ID) {
                           </div>
                         </div>
                         <div class="scheme-card_roadmap-desc">
+                          <span class="text mt-15">About roadmap: </span>
                           <div
                             class="scheme-card_desc personal-input text mb-15"
                             contenteditable={
@@ -1642,6 +1641,7 @@ const start = function (data, ID) {
                           >
                             {Static.item.roadmap?.text}
                           </div>
+                          <span class="text mt-15">Roadmap link: </span>
                           <div
                             class="scheme-card_desc personal-input text"
                             contenteditable={
@@ -1686,7 +1686,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1728,7 +1728,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1770,7 +1770,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1812,7 +1812,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1854,7 +1854,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1896,7 +1896,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1938,7 +1938,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -1980,7 +1980,7 @@ const start = function (data, ID) {
                     </div>
                     <div class="scheme-card_desc">
                       <div
-                        class="personal-input text"
+                        class="personal-input text mb-15"
                         contenteditable={
                           Static.item.status == "Draft" ? true 
                           : Static.item.status == "Modify" ? true : false
@@ -2014,9 +2014,12 @@ const start = function (data, ID) {
                   </div>
                   <center class="el-bottom mt-70">
                     <button 
-                      disabled={Static.item.status == "Submitted for moderation"}
+                      disabled={
+                        Static.item.status == "Submitted for moderation"
+                        || Static.item.status == "Accepted"
+                      }
                       class={["btn", "btn-green", "mb-15",
-                      Static.item.status == "Submitted for moderation" ? "btn-disabled" : null ]}
+                      (Static.item.status  == "Submitted for moderation") || (Static.item.status  == "Accepted") ? "btn-disabled" : null ]}
                       onclick={async function(){
                         this.disabled = true;
                         
@@ -2042,7 +2045,7 @@ const start = function (data, ID) {
                           this.disabled = false;
                           return;
                         }
-
+                        fn.siteLink('/personal/projects/');
                         fn.modals.Success({
                           title: "Your project has been submitted for moderation"
                         });
