@@ -18,7 +18,12 @@ const forExport = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      Static.items = await fn.socket.get({ method: "Projects" });
+      Static.items = await fn.socket.get({ 
+        method: "Projects",
+        params: {
+          filter: { status: "Accepted" }
+        } 
+      });
       Static.showProjects = Static.items;
     },
     fn: () => {
@@ -90,6 +95,7 @@ const forExport = function (data, ID) {
                             Static.chooseProject = item;
                           }
                           console.log("=64bd17=", Static.chooseProject._id);
+                          console.log('=0c569b=', Static.chooseProject.tokenomics.image);
 
                           initReload("modals");
                         }}
@@ -114,18 +120,16 @@ const forExport = function (data, ID) {
                   class="btn btn-white"
                   onclick={async() => {
                     let insert = {
-                      projectId: Static.chooseProject._id
+                      projectId: Static.chooseProject._id,
+                      gallery: Static.chooseProject.gallery,
                     };
                     let response = await fn.socket.set({
                       method: "ResearchAnalyst",
                       action: "insert",
                       params: { insert }
                     });
-                    // if (Static.callback) {
-                    //   Static.callback(Static.chooseProject);
-                    // }
-                    initReload()
                     fn.modals.close(ID);
+                    initReload("modals")
                   }}
                 >
                   Confirm

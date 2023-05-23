@@ -109,8 +109,21 @@ const start = function (data, ID) {
 
       Static.research = await fn.socket.get({
         method: "ResearchAnalyst",
-        params: { populate: { path: "projectId author" }, limit: 3, },
+        params: { 
+          populate: { 
+            path: "author projectId fonds" 
+          }, 
+          limit: 3, 
+        },
       })
+
+      Static.myResearch = [];
+      Static.research.forEach((item)=>{
+        if(item.projectId._id == Static.item.projectId._id){
+          Static.myResearch.push(item);
+        }
+      });
+      console.log('=472b33=', Static.myResearch)
 
       Static.activeImg = Static.item.projectId.gallery[0];
       Static.imgPosition = 0;
@@ -167,7 +180,7 @@ const start = function (data, ID) {
                   items={Static.item.projectId.gallery}
                 ></Elements.Gallery>
                 <div class="project-rang" style="position: relative;">
-                  <span>{Static.item.rank ? Static.item.rank : 0} points</span>
+                  <span>{Static.item.rank ? Static.item.rank.toFixed(2) : 0} points</span>
                   <span class="rang">
                     {
                       Static.item.rank < 50 ? "low rank" : 
@@ -270,7 +283,7 @@ const start = function (data, ID) {
                                     {/* <div class="user-status">{item.author.status}</div> */}
                                 </div>
                                 <div class="project-rang ml-15">
-                                  <span>{item.rank} points</span>
+                                  <span>{item.rank.toFixed(2)} points</span>
                                   <span class="rang">
                                     {
                                       item.rank < 50 ? "low rank" : 
@@ -531,12 +544,12 @@ const start = function (data, ID) {
                       </span>
                     </div>
                     <div class="scheme-card_desc text">
-                      {fn.editText(Static.item.projectId.team.text, {
+                      {fn.editText(Static.item.team.text, {
                         paragraph: true,
                         html: true,
                       })}
                       <div class="scheme-team mt-15">
-                        {Static.item.projectId.team.records.map((item) => {
+                        {Static.item.team.records.map((item) => {
                           return (
                             <div>
                               <a
@@ -551,7 +564,7 @@ const start = function (data, ID) {
                                       : null
                                   }
                                 />
-                                <span>{item.fio}</span>
+                                <span class="mt-15">{item.fio}</span>
                               </a>
                             </div>
                           );
@@ -787,7 +800,7 @@ const start = function (data, ID) {
                     </button>
                     <div class="project-rang-vertical">
                       <span>
-                        {Static.item.rank ? Static.item.rank : 0} points
+                        {Static.item.rank ? Static.item.rank.toFixed(2) : 0} points
                       </span>
                       <span class="rang">
                         {

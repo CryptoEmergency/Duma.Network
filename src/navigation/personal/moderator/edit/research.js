@@ -177,10 +177,7 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { 
             populate: { 
-              path: "author projectId fonds",
-              //  populate: {
-              //   path: "fonds"
-              //  }
+              path: "author fonds projectId",
             } 
           },
         });
@@ -257,62 +254,6 @@ const start = function (data, ID) {
                   <div class="grid-2">
                     <div class="wrap-logo">
                       <div class="picture">
-                        <input
-                          type="file"
-                          hidden
-                          Element={($el) => {
-                            Static.elAddIcon = $el;
-                          }}
-                          onchange={async function (e) {
-                            e.stopPropagation();
-                            Array.from(this.files).forEach((item) => {
-                              fn.uploadFile({
-                                file: item,
-                                onload: async function () {
-                                  // console.log('=81bde2=', "onload")
-                                  if (!this.response) {
-                                    alert("Have some Error. Try again...");
-                                    return;
-                                  }
-                                  let response = JSON.parse(this.response);
-                                  // console.log('=35f155=', response)
-                                  if (response.error || !response.name) {
-                                    alert(
-                                      "Have some Error. Try again... " +
-                                        response.error
-                                    );
-                                    return;
-                                  }
-                                  Static.item.icon = response.name;
-                                  updateValue({
-                                    key: "icon",
-                                    value: Static.item.icon,
-                                  });
-                                  initReload();
-                                },
-                                onprogress: async function (e) {
-                                  let contentLength;
-                                  if (e.lengthComputable) {
-                                    contentLength = e.total;
-                                  } else {
-                                    contentLength = parseInt(
-                                      e.target.getResponseHeader(
-                                        "x-decompressed-content-length"
-                                      ),
-                                      10
-                                    );
-                                  }
-                                  console.log(
-                                    "onprogress",
-                                    e.loaded,
-                                    contentLength
-                                  );
-                                },
-                              });
-                              return;
-                            });
-                          }}
-                        />
                         <img
                           src={
                             Static.item.projectId.icon
@@ -321,9 +262,6 @@ const start = function (data, ID) {
                           }
                           width="50"
                           height="50"
-                          onclick={() => {
-                            Static.elAddIcon.click();
-                          }}
                         ></img>
                       </div>
                       <div class="form-div">
@@ -631,73 +569,9 @@ const start = function (data, ID) {
                   </div>
                   <div class="inner-add">
                     <h4>Upload gallery</h4>
-                    <div
-                      class="add"
-                      onclick={() => {
-                        Static.elAddMedia.click();
-                      }}
-                    >
-                      +
-                    </div>
                   </div>
                   <div class="form-item pictures">
-                    <input
-                      type="file"
-                      hidden
-                      Element={($el) => {
-                        Static.elAddMedia = $el;
-                      }}
-                      onchange={async function (e) {
-                        e.stopPropagation();
-                        Array.from(this.files).forEach((item) => {
-                          fn.uploadFile({
-                            file: item,
-                            onload: async function () {
-                              // console.log('=81bde2=', "onload")
-                              if (!this.response) {
-                                alert("Have some Error. Try again...");
-                                return;
-                              }
-                              let response = JSON.parse(this.response);
-                              // console.log('=35f155=', response)
-                              if (response.error || !response.name) {
-                                alert(
-                                  "Have some Error. Try again... " +
-                                    response.error
-                                );
-                                return;
-                              }
-                              Static.item.gallery.push(response.name);
-                              updateValue({
-                                key: "gallery",
-                                value: Static.item.gallery,
-                              });
-                              initReload();
-                            },
-                            onprogress: async function (e) {
-                              let contentLength;
-                              if (e.lengthComputable) {
-                                contentLength = e.total;
-                              } else {
-                                contentLength = parseInt(
-                                  e.target.getResponseHeader(
-                                    "x-decompressed-content-length"
-                                  ),
-                                  10
-                                );
-                              }
-                              console.log(
-                                "onprogress",
-                                e.loaded,
-                                contentLength
-                              );
-                            },
-                          });
-                          return;
-                        });
-                      }}
-                    />
-                    {Static.item.projectId.gallery.map((item, index) => {
+                    {Static.item.gallery.map((item, index) => {
                       return (
                         <div class="news-form_gallery">
                           <div class="news-form_gallery-image">
@@ -1991,24 +1865,6 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>TOTAL</span>
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.totalText = this.innerText.trim();
-                        updateValue({
-                          key: "totalText",
-                          value: Static.item.totalText,
-                        });
-                      }}
-                    >
-                      {Static.item.totalText}
-                    </div>
-                  </div>
                   <div class="scheme-card_desc">
                     <span class="text">Comment from the moderator</span>
                     <div
@@ -2026,9 +1882,7 @@ const start = function (data, ID) {
                       {Static.item.commentModerator}
                     </div>
                   </div>
-                    
-                
-
+                  
                   <center class="el-bottom mt-70">
                     <div class="card-btns">
                       <button 
@@ -2046,8 +1900,6 @@ const start = function (data, ID) {
                             },
                           });
 
-
-      
                           fn.modals.Success({
                             title: "The research is accepted"
                           });
@@ -2063,28 +1915,11 @@ const start = function (data, ID) {
                         class="btn btn-bordo"
                         onclick={async function(){
       
-                          fn.modals.Sure({
+                          fn.modals.SureModerator({
                             title: "Reject the project without the possibility of revision?",
-                            idProject: Static.item._id
+                            idProject: Static.item._id,
+                            type: "research"
                           });
-
-                          // await fn.socket.set({
-                          //   method: "Projects",
-                          //   action: "findOneAndUpdate",
-                          //   params: {
-                          //     update: { status: "Refused" },
-                          //     filter: {
-                          //       _id: Static.item._id,
-                          //     }
-                          //   },
-                          // });
-      
-                          // fn.modals.Success({
-                          //   title: "The project was rejected"
-                          // });
-                          // fn.siteLink(
-                          //   `/personal/admin/list/projects/`
-                          // );
                           initReload();
                         }}  
                       >

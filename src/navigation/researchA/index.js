@@ -23,10 +23,9 @@ const start = function (data, ID) {
 
       Static.projects = await fn.socket.get({
         method: "ResearchAnalyst",
-        // params: { filter: { moderation: true } },
         params: { filter: { moderation: true,  } },
       });
-      // console.log("=92f11b=", tmp);
+
 
 
 

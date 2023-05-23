@@ -301,8 +301,15 @@
   color: var(--text-main);
   position: relative;
 
+  .icon-delete {
+    width: 20px;
+    height: 20px;
+  }
+
   img {
     border-radius: 50%;
+    width: 150px;
+    height: 150px;
   }
 
   // span {
@@ -315,6 +322,7 @@
 
     img {
       width: 100px;
+      height: 100px;
       border-radius: 50%;
     }
   }

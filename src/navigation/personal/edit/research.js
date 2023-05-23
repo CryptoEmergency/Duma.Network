@@ -166,7 +166,7 @@ const start = function (data, ID) {
     linkedin: {},
     site: {},
   };
-
+  
   load({
     ID,
     fnLoad: async () => {
@@ -180,10 +180,10 @@ const start = function (data, ID) {
           _id: Variable.dataUrl.params,
           params: { 
             populate: { 
-              path: "projectId fonds",
-              // populate : {
-              //   path: "fonds"
-              // } 
+              path: "fonds projectId", 
+              populate:{
+                path: "author"
+              }
             } 
           },
         });
@@ -192,31 +192,24 @@ const start = function (data, ID) {
         if (Static.item && !Static.item.gallery) {
           Static.item.gallery = [];
         }
-
         if (!Static.item.socials) {
           Static.item.socials = [];
         }
-
         if (!Static.item.utility) {
           Static.item.utility = {};
         }
-
         if (!Static.item.roadmap) {
           Static.item.roadmap = {};
         }
-
         if (!Static.item.tokenomics) {
           Static.item.tokenomics = {};
         }
-
         if (!Static.item.blockchains) {
           Static.item.blockchains = {};
         }
-
         for (let item of Static.item.socials) {
           Static.forms.socials[item.name] = item;
         }
-
         if (!Static.item.team) {
           Static.item.team = {};
         }
@@ -247,7 +240,7 @@ const start = function (data, ID) {
                     },
                   ]}
                 />
-                <div class="main mb-25  inner-add">
+                <div class="main mb-25 inner-add">
                   <h2 class="general-title mt-0">Fill out the research on the project</h2>
                 </div>
                 <section class="personal-form">
@@ -261,81 +254,35 @@ const start = function (data, ID) {
                   <div class="grid-2">
                     <div class="wrap-logo">
                       <div class="picture">
-                        <input
-                          type="file"
-                          hidden
-                          Element={($el) => {
-                            Static.addIcon = $el;
-                          }}
-                          onchange={async function (e) {
-                            e.stopPropagation();
-                            Array.from(this.files).forEach((item) => {
-                              fn.uploadFile({
-                                file: item,
-                                onload: async function () {
-                                  // console.log('=81bde2=', "onload")
-                                  if (!this.response) {
-                                    alert("Have some Error. Try again...");
-                                    return;
-                                  }
-                                  let response = JSON.parse(this.response);
-                                  // console.log('=35f155=', response)
-                                  if (response.error || !response.name) {
-                                    alert(
-                                      "Have some Error. Try again... " +
-                                        response.error
-                                    );
-                                    return;
-                                  }
-                                  Static.item.icon = response.name;
-                                  updateValue({
-                                    key: "icon",
-                                    value: Static.item.icon,
-                                  });
-                                  initReload();
-                                },
-                                onprogress: async function (e) {
-                                  let contentLength;
-                                  if (e.lengthComputable) {
-                                    contentLength = e.total;
-                                  } else {
-                                    contentLength = parseInt(
-                                      e.target.getResponseHeader(
-                                        "x-decompressed-content-length"
-                                      ),
-                                      10
-                                    );
-                                  }
-                                  console.log(
-                                    "onprogress",
-                                    e.loaded,
-                                    contentLength
-                                  );
-                                },
-                              });
-                              return;
-                            });
-                          }}
-                        />
                         <img
                           src={
                             Static.item.projectId.icon
-                              ? `/assets/upload/${Static.item.projectId.icon}`
-                              : images["research/logo-empty"]
+                            ? `/assets/upload/${Static.item.projectId.icon}`
+                            : images["research/logo-empty"]
                           }
                           width="50"
                           height="50"
-                          onclick={() => {
-                            Static.addIcon.click();
-                          }}
                         ></img>
                       </div>
                       <div class="form-div">
                         <div class="form-input personal-input">
                           {Static.item.projectId?.name
                             ? Static.item.projectId?.name
-                            : "Name research"}
+                            : "Name project"}
                         </div>
+                      </div>
+                    </div>
+                    <div class="user-card mb-15 research-user">
+                      <div class="user-picture mr-15">
+                        <img src={Static.item.projectId.author?.icon ? 
+                          `/assets/upload/${Static.item.projectId.author?.icon}` : svg.user} />
+                        <div class="user-status">
+                          {Static.item.projectId.author?.status}
+                        </div>
+                      </div>
+                      <div class="user-info">
+                        <span class="text-green">Author project</span>
+                        <div class="user-name">{Static.item.projectId.author?.firstName}</div>
                       </div>
                     </div>
                   </div>
@@ -543,8 +490,8 @@ const start = function (data, ID) {
                             );
                           }}
                         >
-                          {Static.item.projectId?.category
-                            ? Static.item.projectId.category
+                          {Static.item?.category
+                            ? Static.item.category
                             : "Select category"}
                         </button>
                         <ul
@@ -621,7 +568,22 @@ const start = function (data, ID) {
                       {Static.item.description}
                     </div>
                   </div>
-                  <div class="" style="display:flex;">
+                  <div class="" style="display:flex; position: relative;">
+                    <img 
+                      class="user-icon" 
+                      src={svg.duplicate} 
+                      width='20' 
+                      height='20'
+                      title="Duplicate content from a project"
+                      style="cursor: pointer; top: 0;"
+                      onclick={()=>{
+                        Static.item.socials = Static.item.projectId.socials
+                        updateValue({
+                          key: "socials",
+                          value: Static.item.socials,
+                        });
+                        initReload();
+                      }}></img>
                     {Object.keys(Static.forms.socials).map((item) => {
                       return (
                         <div
@@ -638,8 +600,8 @@ const start = function (data, ID) {
                             e.preventDefault();
                             Static.channelNewSocial = item;
                             Static.viewForm = true;
-                            Static.elSocialInput.innerText =
-                              Static.forms.socials[item].link;
+                            Static.elSocialInput.innerText = Static.forms.socials[item].link;
+                            // Static.elSocialInput.innerText = "Enter social network link";
                             initReload();
                           }}
                         >
@@ -788,7 +750,7 @@ const start = function (data, ID) {
                         });
                       }}
                     />
-                    {Static.item.projectId.gallery.map((item, index) => {
+                    {Static.item.gallery.map((item, index) => {
                       return (
                         <div class="news-form_gallery">
                           <div class="news-form_gallery-image">
@@ -797,6 +759,16 @@ const start = function (data, ID) {
                               width="200"
                               height="100"
                             ></img>
+                            <div
+                              class="news-form_gallery-delete"
+                              onClick={() => {
+                                Static.item.gallery.splice(index, 1);
+                                updateRecords({ gallery: Static.item.gallery });
+                                initReload();
+                              }}
+                            >
+                              <img src={svg["delete_icon"]} />
+                            </div>
                           </div>
                         </div>
                       );
@@ -1288,8 +1260,8 @@ const start = function (data, ID) {
                             <img
                               class="roadmap-img"
                               src={
-                                Static.item.projectId.tokenomics.image
-                                  ? `/assets/upload/${Static.item.projectId.tokenomics.image}`
+                                Static.item.tokenomics.image
+                                  ? `/assets/upload/${Static.item.tokenomics.image}`
                                   : images["research/logo-empty"]
                               }
                             />
@@ -1741,16 +1713,21 @@ const start = function (data, ID) {
                       title="Duplicate content from a project"
                       style="cursor: pointer;"
                       onclick={()=>{
-                        Static.item.roadmap.text = Static.item.projectId.roadmap.text
+                        Static.item.roadmap.text = Static.item.projectId.roadmap.text;
+                        Static.item.roadmap.link = Static.item.projectId.roadmap.link;
+                        Static.item.roadmap.image = Static.item.projectId.image;
                         updateValue({
-                          key: "roadmap.text",
-                          value: Static.item.roadmap.text,
+                          key: "roadmap",
+                          value: Static.item.roadmap,
                         });
-                        Static.item.roadmap.link = Static.item.projectId.roadmap.link
-                        updateValue({
-                          key: "roadmap.link",
-                          value: Static.item.roadmap.link,
-                        });
+                        // updateValue({
+                        //   key: "roadmap.link",
+                        //   value: Static.item.roadmap.link,
+                        // });
+                        // updateValue({
+                        //   key: "roadmap.image",
+                        //   value: Static.item.roadmap.image,
+                        // });
                         initReload();
                       }}
                     />
@@ -1849,8 +1826,8 @@ const start = function (data, ID) {
                               <img
                                 class="roadmap-img"
                                 src={
-                                  Static.item.projectId.roadmap.image
-                                    ? `/assets/upload/${Static.item.projectId.roadmap.image}`
+                                  Static.item.roadmap.image
+                                    ? `/assets/upload/${Static.item.roadmap.image}`
                                     : images["research/logo-empty"]
                                 }
                               />
@@ -1949,6 +1926,10 @@ const start = function (data, ID) {
                             ? Static.item.rankList.documentation
                             : "0"
                         }
+                        // readonly={
+                        //   Static.item.status == "Draft" ? true 
+                        //   : Static.item.status == "Modify" ? true : false
+                        // }
                         oninput={function () {
                           // let value = this.value.replace (/\D/, '');
                           let value = this.value;
@@ -2167,7 +2148,7 @@ const start = function (data, ID) {
                       >
                         {Static.item.launchpad}
                       </div>
-                      <p class="text">Enter the link confirming the information: 
+                      <p class="text mt-15">Enter the link confirming the information: 
                         <a 
                           class="link-modal text-green"
                           target="_blank"
@@ -2255,7 +2236,7 @@ const start = function (data, ID) {
                       >
                         {Static.item.cexDex}
                       </div>
-                      <p class="text">Enter the link confirming the information: 
+                      <p class="text mt-15">Enter the link confirming the information: 
                         <a 
                           class="link-modal text-green"
                           target="_blank"
@@ -2265,8 +2246,6 @@ const start = function (data, ID) {
                         </a> 
                       </p>
                     </div>
-
-                    
                   </div>
 
                   <div class="scheme-card">
@@ -2310,7 +2289,6 @@ const start = function (data, ID) {
                             this.value = value;
                           }
                           Static.item.rankList.aggregator = Number(
-                            // this.innerText.trim()
                             this.value.trim()
                           );
                           updateValue({
@@ -2342,7 +2320,7 @@ const start = function (data, ID) {
                       >
                         {Static.item?.aggregator}
                       </div>
-                      <p class="text">Enter the link confirming the information: 
+                      <p class="text mt-15">Enter the link confirming the information: 
                         <a 
                           class="link-modal text-green"
                           target="_blank"
@@ -2351,8 +2329,7 @@ const start = function (data, ID) {
                           {Static.item?.projectId.linkList?.aggregator}
                         </a> 
                       </p>
-                    </div>
-                    
+                    </div>   
                   </div>
 
                   <div class="scheme-card">
@@ -2429,7 +2406,7 @@ const start = function (data, ID) {
                       >
                         {Static.item.competitors}
                       </div>
-                      <p class="text">Enter the link confirming the information: 
+                      <p class="text mt-15">Enter the link confirming the information: 
                         <a 
                           class="link-modal text-green"
                           target="_blank"
@@ -2438,9 +2415,7 @@ const start = function (data, ID) {
                           {Static.item?.projectId.linkList?.competitors}
                         </a> 
                       </p>
-                    </div>
-
-                    
+                    </div>    
                   </div>
 
                   <div class="scheme-card">
@@ -2527,9 +2502,6 @@ const start = function (data, ID) {
                         </a> 
                       </p>
                     </div>
-
-
-                    
                   </div>
 
                   <div class="scheme-card">
@@ -2619,7 +2591,7 @@ const start = function (data, ID) {
                   </div>
 
                   <div class="scheme-card">
-                    <img 
+                    {/* <img 
                       class="user-icon" 
                       src={svg.duplicate} 
                       width='20' 
@@ -2635,7 +2607,7 @@ const start = function (data, ID) {
                         });
                         initReload();
                       }}
-                    />
+                    /> */}
                     <div class="scheme-sidebar_item text">
                       <span>TOTAL</span>
                       <input
@@ -2728,7 +2700,7 @@ const start = function (data, ID) {
                         fn.modals.Success({
                           title: "Your research has been submitted for moderation"
                         });
-                        this.textContent = "Submitted for moderation";
+                        this.innerText = "Submitted for moderation";
                         initReload();
                       }}  
                     >

@@ -1522,24 +1522,6 @@ const start = function (data, ID) {
                     </div>
                   </div>
 
-                  <div class="scheme-card">
-                    <div class="scheme-sidebar_item text">
-                      <span>TOTAL</span>
-                    </div>
-                    <div
-                      class="scheme-card_desc personal-input text"
-                      contenteditable="plaintext-only"
-                      oninput={function () {
-                        Static.item.totalText = this.innerText.trim();
-                        updateValue({
-                          key: "totalText",
-                          value: Static.item.totalText,
-                        });
-                      }}
-                    >
-                      {Static.item.totalText}
-                    </div>
-                  </div>
                   <div class="scheme-card_desc">
                     <span class="text">Comment from the moderator</span>
                     <div
@@ -1558,8 +1540,6 @@ const start = function (data, ID) {
                     </div>
                   </div>
                     
-                
-
                   <center class="el-bottom mt-70">
                     <div class="card-btns">
                       <button 
@@ -1600,28 +1580,12 @@ const start = function (data, ID) {
                         class="btn btn-bordo"
                         onclick={async function(){
       
-                          fn.modals.Sure({
+                          fn.modals.SureModerator({
                             title: "Reject the project without the possibility of revision?",
-                            idProject: Static.item._id
+                            idProject: Static.item._id,
+                            type: "project"
                           });
 
-                          // await fn.socket.set({
-                          //   method: "Projects",
-                          //   action: "findOneAndUpdate",
-                          //   params: {
-                          //     update: { status: "Refused" },
-                          //     filter: {
-                          //       _id: Static.item._id,
-                          //     }
-                          //   },
-                          // });
-      
-                          // fn.modals.Success({
-                          //   title: "The project was rejected"
-                          // });
-                          // fn.siteLink(
-                          //   `/personal/admin/list/projects/`
-                          // );
                           initReload();
                         }}  
                       >

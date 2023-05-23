@@ -95,7 +95,7 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                 <div class="desc">
                   <p class="desc-text">{item.description}</p>
                 </div>
-                <div class="socials">
+                <div class="socials mt-10">
                   {(item.socials || []).map((element) => {
                     if (element.link && element.link.length > 0) {
                       return (

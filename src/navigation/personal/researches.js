@@ -121,8 +121,8 @@ const start = function (data, ID) {
                                     item.status == "Accepted" ? svg['iconsGreen/doneSend'] 
                                     : item.status == "Submitted for moderation" ? svg.process 
                                     : item.status == "Draft" ? svg.draft 
-                                    : item.status == "Refused" ? svg.denied : null
-                                    
+                                    : item.status == "Refused" ? svg.denied 
+                                    : item.status == "Modify" ? svg.edit : null
                                   }/>
                                 </div>
                               </div>

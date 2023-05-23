@@ -32,35 +32,34 @@ const forExport = function (data, ID) {
                   X
                 </button>
               </header>
-              {
-                data.sum ? 
-                <footer class="footer-modal grid-2">
-                  <button
-                    class="btn btn-green"
-                    onclick={async() => {
-                      fn.modals.close(ID);
-                      if(data.sum < Variable.myInfo.balance){
-                        await fn.socket.send({
-                          method: "Subscribe",
-                          params: {
-                            type: "subscribe",
-                            idStatus: data.idStatus,
-                          },
-                        });
-                        fn.modals.Success({
-                          title: "You have been assigned investor status"
-                        })
-                      }else{
-                        fn.modals.Transaction({
-                          title: "Deposit",
-                          text: "Replenishment amount",
-                          type: "deposit",
-                        });
-                      }
-                      initReload()
-                    }}
-                  >
-                    Yes, I'm sure
+                <footer class="footer-modal">
+                  <div class="grid-2">
+                    <button
+                      class="btn btn-green"
+                      onclick={async() => {
+                        fn.modals.close(ID);
+                        if(data.sum < Variable.myInfo.balance){
+                          await fn.socket.send({
+                            method: "Subscribe",
+                            params: {
+                              type: "subscribe",
+                              idStatus: data.idStatus,
+                            },
+                          });
+                          fn.modals.Success({
+                            title: "You have been assigned investor status"
+                          })
+                        }else{
+                          fn.modals.Transaction({
+                            title: "Deposit",
+                            text: "Replenishment amount",
+                            type: "deposit",
+                          });
+                        }
+                        initReload()
+                      }}
+                    >
+                      Yes, I'm sure
                     </button>
                     <button
                       class="btn btn-bordo"
@@ -70,64 +69,9 @@ const forExport = function (data, ID) {
                     >
                       no, not sure
                     </button> 
-                </footer> : 
-                <footer class="footer-modal grid-2">
-                  <button
-                    class="btn btn-green"
-                    onclick={async() => {
-                      fn.modals.close(ID);
-                      
-                      await fn.socket.set({
-                        method: "Projects",
-                        action: "findOneAndUpdate",
-                        params: {
-                          update: { status: "Modify" },
-                          filter: {
-                            _id: data.idProject,
-                          }
-                        },
-                      });
-
-                      fn.modals.Success({
-                        title: "The project has been successfully submitted for revision"
-                      });
-                      fn.siteLink(
-                        `/personal/moderator/list/projects/`
-                      );
-
-                      initReload()
-                    }}
-                  >
-                  Modify
-                  </button>
-                  <button
-                    class="btn btn-bordo"
-                    onclick={async() => {
-                      fn.modals.close(ID);
-                      await fn.socket.set({
-                        method: "Projects",
-                        action: "findOneAndUpdate",
-                        params: {
-                          update: { status: "Refused" },
-                          filter: {
-                            _id: data.idProject,
-                          }
-                        },
-                      });
-
-                      fn.modals.Success({
-                        title: "The project was rejected without the possibility of revision"
-                      });
-                      fn.siteLink(
-                        `/personal/moderator/list/projects/`
-                      );
-                    }}
-                  >
-                    Refused
-                  </button> 
-              </footer>
-              }
-              
+                  </div>
+                  
+                </footer> 
             </div>
           </div>
         </div>

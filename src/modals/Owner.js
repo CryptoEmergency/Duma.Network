@@ -18,7 +18,12 @@ const forExport = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      Static.items = await fn.socket.get({ method: "Projects" });
+      Static.items = await fn.socket.get({ 
+        method: "Projects",
+        params: {
+          filter: { moderation: true }
+        } 
+      });
       Static.showProjects = Static.items;
       Static.users = await fn.socket.get({ method: "Users" });
       Static.showUsers = Static.users;

@@ -42,14 +42,14 @@ const start = function (data, ID) {
                   <h2 class="general-title mt-25">Admin Action</h2>
                 </section>
                 <div class="grid-3">
-                  <button
+                  {/* <button
                     class="btn btn-green"
                     onclick={() => {
                       fn.siteLink("/personal/admin/list/research/");
                     }}
                   >
                     Research Lists
-                  </button>
+                  </button> */}
                   <button
                     class="btn btn-green"
                     onclick={() => {
