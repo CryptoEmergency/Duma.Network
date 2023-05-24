@@ -230,19 +230,6 @@ const start = function (data, ID) {
                 />
                 <div class="inner-add mb-15">
                   <h2 class="general-title mt-0">Project verification</h2>
-                  <div class="user-card mb-15 research-user">
-                    <div class="user-picture mr-15">
-                      <img src={Static.item.author?.icon ? 
-                        `/assets/upload/${Static.item.author?.icon}` : svg.user} />
-                      <div class="user-status">
-                        {Static.item.author?.status}
-                      </div>
-                    </div>
-                    <div class="user-info">
-                      <span class="text-green">Author</span>
-                      <div class="user-name">{Static.item.author?.firstName}</div>
-                    </div>
-                  </div>
                 </div>
                 <section class="personal-form">
                   <div class="grid-2">
@@ -323,6 +310,123 @@ const start = function (data, ID) {
                             ? Static.item?.name
                             : "Name project"}
                         </div>
+                      </div>
+                    </div>
+                    <div class="user-card mb-15 research-user">
+                      <div class="user-picture mr-15">
+                        <img src={Static.item.author?.icon ? 
+                          `/assets/upload/${Static.item.author?.icon}` : svg.user} />
+                        <div class="user-status">
+                          {Static.item.author?.status}
+                        </div>
+                      </div>
+                      <div class="user-info">
+                        <span class="text-green">Author</span>
+                        <div class="user-name">{Static.item.author?.firstName}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid-2">
+                    <div class="form-div">
+                      <label>Round:</label>
+                      <div class="dropdown">
+                        <button
+                          class="dropdown__button"
+                          onclick={() => {
+                            Static.selectList.rounds.classList.toggle(
+                              "dropdown__list--visible"
+                            );
+                          }}
+                        >
+                          {Static.item.round ? Static.item.round : "Choose round"}
+                        </button>
+                        <ul
+                          class="dropdown__list"
+                          Element={($el) => {
+                            Static.selectList.rounds = $el;
+                          }}
+                        >
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "seed";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            seed
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "pre-seed";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            pre-seed
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "strategic";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            strategic
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "public";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            public
+                          </li>
+                          <li
+                            class="dropdown__list-item"
+                            onclick={() => {
+                              Static.item.round = "private";
+                              updateValue({
+                                key: "round",
+                                value: Static.item.round,
+                              });
+                              Static.selectList.rounds.classList.remove(
+                                "dropdown__list--visible"
+                              );
+                              initReload();
+                            }}
+                          >
+                            private
+                          </li>
+                        </ul>
                       </div>
                     </div>
                     <div class="form-div">

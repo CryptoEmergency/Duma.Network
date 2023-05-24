@@ -140,7 +140,7 @@ const mainHeader = async function () {
                       }}
                     >
                       <a
-                        href="/research"
+                        href="/researchA"
                         class="header-list_item"
                         onclick={(e) => {
                           fn.siteLink(e);

@@ -13,6 +13,12 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
+// const findSection = function(researches){
+//   let section = "";
+
+// }
+
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   load({
@@ -22,11 +28,19 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
-      Static.tmp = await fn.socket.get({
+      Static.projects = await fn.socket.get({
         method: "Bookmarks",
-        params: { populate: { path: "projectId" } },
+        params: {
+          filter: {
+            author: Variable.myInfo._id,
+            avtive: true
+          }, 
+          populate: { path: "projectId" } },
       });
-      console.log("=65766d=", Static.tmp);
+      console.log("=65766d=", Static.projects);
+
+      // Static.researches = 
+
     },
     fn: () => {
       if (!Variable.auth) {
@@ -44,47 +58,45 @@ const start = function (data, ID) {
               <section class="bookmarks main">
                 <h2 class="general-title mt-25">Bookmarks</h2>
                 
-                <div class={["bookmarks-inner", "mt-25", Static.tmp.length ? null : "list-notFound"]}>
-                  
-                  {Static.tmp.length ?
-                      Static.tmp.map((item) => {
-                        return (
-                          <div class="bookmarks-item">
-                            <div class="user-card">
-                              <img
-                                class="bookmarks-icon"
-                                src={
-                                  item.projectId?.icon
-                                    ? `/assets/upload/${item.projectId.icon}`
-                                    : images["personal/logoProject"]
-                                }
-                              />
-                              <span>{item.projectId?.name}</span>
-                            </div>
-                            <div class="round">{item.projectId?.tabs}</div>
-                            <div class="price">{item.projectId?.seedRound}$</div>
-                            <div class="price">
-                              {item.projectId?.have}$/{item.projectId?.target}$
-                            </div>
-                            {/* <div>date tge</div> */}
-                            {/* <div class="text-underline">lead investor</div> */}
-                            <div>{item.projectId?.category}</div>
-                            <button
-                              class="btn btn-transparent"
-                              onclick={(e)=>{
-                                fn.siteLink("/research/show/" + item.projectId._id);
-                              }}   
-                            >
-                              more
-                            </button>
+                <div class={["bookmarks-inner", "mt-25", Static.projects.length ? null : "list-notFound"]}>
+                  {
+                    Static.projects.length ? 
+                    Static.projects.map((item)=>{
+                      return(
+                        <div class="bookmarks-item">
+                          <div class="user-card">
+                            <img
+                              class="bookmarks-icon"
+                              src={
+                                item.projectId?.icon
+                                  ? `/assets/upload/${item.projectId.icon}`
+                                  : images["personal/logoProject"]
+                              }
+                            />
+                            <span>{item.projectId?.name}</span>
                           </div>
-                        );
-                      }) : 
+                          <div class="round">{item.projectId?.round}</div>
+                          <div class="price">{item.projectId?.category}</div>
+                          <div class="price">
+                            {item.projectId?.have}$/{item.projectId?.amount}$
+                          </div>
+                          <div>PROJECT</div>
+                          <button
+                            class="btn btn-transparent"
+                            onclick={(e)=>{
+                              fn.siteLink("/projects/show/" + item.projectId._id);
+                            }}   
+                          >
+                            more
+                          </button>
+                        </div>
+                      )
+                    }) : 
                       <div class="notFound">
                         <span>Records not found in table</span>
                         <img src={svg.notFound} />
                       </div>
-                  }
+                  }          
                 </div>
               </section>
             </div>

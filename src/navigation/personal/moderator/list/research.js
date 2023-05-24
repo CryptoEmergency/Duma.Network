@@ -282,12 +282,12 @@ const start = function (data, ID) {
                                   <span class="text-green ml-15 ttu bold">{item.author.firstName}</span>
                                 </div>
                                 <p class="project-rang ml-15">
-                                  {item.rank.toFixed(2)} points
+                                  {item?.rank.toFixed(2)} points
                                   <span class="rang">
-                                  {
-                                      item.rank < 50 ? "low rank" : 
-                                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
-                                      (item.rank >= 100) ? "high rank" : null
+                                    {
+                                      item?.rank < 50 ? "low rank" : 
+                                      (item?.rank >= 50 && item?.rank < 100) ? " medium rank" :
+                                      (item?.rank >= 100) ? "high rank" : null
                                     }
                                   </span>
                                 </p>

@@ -31,7 +31,6 @@ const start = function (data, ID) {
           populate: { path: "projectId",  }
         }, 
       });
-      console.log('=981423=',Static.records);
     },
     fn: () => {
       if (!Variable.auth) {

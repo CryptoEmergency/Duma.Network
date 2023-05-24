@@ -13,8 +13,8 @@ import images from "@assets/images/index.js";
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.chooseProject;
-  Static.chooseUser;
+  Static.chooseProject = {};
+  Static.chooseUser = {};
   load({
     ID,
     fnLoad: async () => {
@@ -56,7 +56,7 @@ const forExport = function (data, ID) {
                       }}
                       type="text"
                       class="filter-fondlist_input form-input"
-                      placeholder="Сhoose a blockchain"
+                      placeholder="Сhoose a project"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
                         Static.showBlockchains = Static.items.filter((item) => {
@@ -82,20 +82,25 @@ const forExport = function (data, ID) {
                     </span>
                   </form>
                 </div>
-                <div class="fondList-wrap">
-                  <div class={["fondlist-item"]}>
-                    <div class="fondlist-item_img">
-                      <img
-                        src={
-                          Static.chooseProject?.icon
-                            ? `/assets/upload/${Static.chooseProject.icon}`
-                            : images["research/logo-empty"]
-                        }
-                      />
+                {
+                  Object.keys(Static.chooseProject).length ? 
+                  <div class="fondList-wrap grid-2">
+                    <span class="text">Selected projects</span>
+                    <div class={["fondlist-item"]}>
+                      <div class="fondlist-item_img">
+                        <img
+                          src={
+                            Static.chooseProject?.icon
+                              ? `/assets/upload/${Static.chooseProject.icon}`
+                              : images["research/logo-empty"]
+                          }
+                        />
+                      </div>
+                      <span class="fondlist-item_desc">{Static.chooseProject?.name}</span>
                     </div>
-                    <span class="fondlist-item_desc">{Static.chooseProject?.name}</span>
-                  </div>
-                </div>
+                  </div> : null
+                }
+                
                 <div class="fondlist-wrap">
                   {Static.showProjects.map((item) => {
                     return (
@@ -140,7 +145,7 @@ const forExport = function (data, ID) {
                       }}
                       type="text"
                       class="filter-fondlist_input form-input"
-                      placeholder="Сhoose a blockchain"
+                      placeholder="Сhoose a user"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
                         Static.showUsers = Static.users.filter((item) => {
@@ -166,20 +171,30 @@ const forExport = function (data, ID) {
                     </span>
                   </form>
                 </div>
-                <div class="fondList-wrap">
-                  <div class={["fondlist-item"]}>
-                    <div class="fondlist-item_img">
-                      <img
-                        src={
-                          Static.chooseUser?.icon
-                            ? `/assets/upload/${Static.chooseUser.icon}`
-                            : images["research/logo-empty"]
-                        }
-                      />
+                {
+                  Object.keys(Static.chooseUser).length ? 
+                  <div class="fondList-wrap grid-2">
+                    <span class="text">
+                      Selected user:
+                    </span>
+                    <div class={["fondlist-item",]} >
+                      <div class="fondlist-item_img">
+                        <img
+                          style="border-radius: 50%;"
+                          width="35"
+                          height="35"
+                          src={
+                            Static.chooseUser?.icon
+                              ? `/assets/upload/${Static.chooseUser.icon}`
+                              : svg.user
+                          }
+                        />
+                      </div>
+                      <span class="fondlist-item_desc">{Static.chooseUser?.firstName}</span>
                     </div>
-                    <span class="fondlist-item_desc">{Static.chooseUser?.firstName}</span>
-                  </div>
-                </div>
+                  </div> : null
+                }
+                
                 <div class="fondlist-wrap">
                   {Static.showUsers.map((item) => {
                     return (
@@ -196,13 +211,14 @@ const forExport = function (data, ID) {
                           } else {
                             Static.chooseUser = item;
                           }
-                          console.log("=64bd17=", Static.chooseUser._id);
-
                           initReload("modals");
                         }}
                       >
                         <div class="fondlist-item_img">
                           <img
+                            style="border-radius: 50%;"
+                            width="35"
+                            height="35"
                             src={
                               item.icon
                                 ? `/assets/upload/${item.icon}`

@@ -110,10 +110,12 @@ const start = function (data, ID) {
       Static.research = await fn.socket.get({
         method: "ResearchAnalyst",
         params: { 
+          filter: { moderation: true },
           populate: { 
             path: "author projectId fonds" 
           }, 
           limit: 3, 
+
         },
       })
 
@@ -135,7 +137,6 @@ const start = function (data, ID) {
       Static.totalInvest;
     },
     fn: () => {
-      // console.log("=71c0ea=", Static.item);
       if (!Static.item || !Static.item._id) {
         return <div>Not found</div>;
       }
@@ -261,47 +262,79 @@ const start = function (data, ID) {
 
                     <div class="list-news">
                       {
-                        Static.research.map((item)=>{
+                        Static.myResearch.map((item)=>{
                           return(
-                            <div>
-                            {
-                              Static.item._id == item._id ? 
-                              null:
-                              <div 
-                                class="new" 
-                                style="display:flex; cursor: pointer; position: relative;"
-                                onclick={()=>{
-                                  if(Variable.myInfo.status === "User"){
-                                    fn.modals.Status({});
-                                  }
-                                  fn.siteLink("/researchA/show/" + item._id);
-                                }}
-                              >
-                                <span>Research by</span>
-                                <div class="user-picture ml-15">
-                                    <span class="text-green">{item.author.firstName}</span>
-                                    {/* <div class="user-status">{item.author.status}</div> */}
-                                </div>
-                                <div class="project-rang ml-15">
-                                  <span>{item.rank.toFixed(2)} points</span>
-                                  <span class="rang">
-                                    {
-                                      item.rank < 50 ? "low rank" : 
-                                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
-                                      (item.rank >= 100) ? "high rank" : null
-                                    }
-                                  </span>
-                                </div>
-                                {
-                                  Variable.myInfo.status === "User" ?
-                                  <img class="icon-status" src={svg.lock} /> :
-                                  <img class="icon-status" src={svg.public} />
+                            // <div>
+                            // {
+                            //   Static.item._id == item._id ? 
+                            //   null:
+                            //   <div 
+                            //     class="new" 
+                            //     style="display:flex; cursor: pointer; position: relative;"
+                            //     onclick={()=>{
+                            //       if(Variable.myInfo.status === "User"){
+                            //         fn.modals.Status({});
+                            //       }
+                            //       fn.siteLink("/researchA/show/" + item._id);
+                            //     }}
+                            //   >
+                            //     <span>Research by</span>
+                            //     <div class="user-picture ml-15">
+                            //         <span class="text-green">{item.author.firstName}</span>
+                            //         {/* <div class="user-status">{item.author.status}</div> */}
+                            //     </div>
+                            //     <div class="project-rang ml-15">
+                            //       <span>{item.rank.toFixed(2)} points</span>
+                            //       <span class="rang">
+                            //         {
+                            //           item.rank < 50 ? "low rank" : 
+                            //           (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                            //           (item.rank >= 100) ? "high rank" : null
+                            //         }
+                            //       </span>
+                            //     </div>
+                            //     {
+                            //       Variable.myInfo.status === "User" ?
+                            //       <img class="icon-status" src={svg.lock} /> :
+                            //       <img class="icon-status" src={svg.public} />
 
-                                }
-                              </div>
+                            //     }
+                            //   </div>
                               
 
-                            }
+                            // }
+                            // </div>
+                            <div 
+                              class="new" 
+                              style="display:flex; cursor: pointer; position: relative;"
+                              onclick={()=>{
+                                if(Variable.myInfo.status === "User"){
+                                  fn.modals.Status({});
+                                }
+                                fn.siteLink("/researchA/show/" + item._id);
+                              }}
+                            >
+                              <span>Research by</span>
+                              <div class="user-picture ml-15">
+                                  <span class="text-green">{item.author.firstName}</span>
+                                  {/* <div class="user-status">{item.author.status}</div> */}
+                              </div>
+                              <div class="project-rang ml-15">
+                                <span>{item.rank.toFixed(2)} points</span>
+                                <span class="rang">
+                                  {
+                                    item.rank < 50 ? "low rank" : 
+                                    (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                                    (item.rank >= 100) ? "high rank" : null
+                                  }
+                                </span>
+                              </div>
+                              {
+                                Variable.myInfo.status === "User" ?
+                                <img class="icon-status" src={svg.lock} /> :
+                                <img class="icon-status" src={svg.public} />
+
+                              }
                             </div>
 
                           )

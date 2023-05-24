@@ -168,7 +168,6 @@ const start = function (data, ID) {
           },
         },
       });
-      console.log('=records=', Static.records)
       Static.slides = await fn.socket.get({
         // method: "Marketplace",
         // method: "Research",
@@ -608,11 +607,6 @@ const start = function (data, ID) {
                                     }
                                   />
                                 </div>
-                                {item.projectId.status ? (
-                                  <div class="status ml-15">
-                                    {item.projectId.status}
-                                  </div>
-                                ) : null}
                               </div>
                               <div class="ecosystem mt-10">
                                 {item.projectId.category}
@@ -669,7 +663,7 @@ const start = function (data, ID) {
                   <img class="icon mr-10" src={svg.filter} />
                   Filter
                 </button>
-                <Elements.Tabs
+                {/* <Elements.Tabs
                   class="tabs-m"
                   varName={"activeTabM"}
                   items={[
@@ -742,7 +736,7 @@ const start = function (data, ID) {
                     },
                   ]}
                   Static={Static}
-                />
+                /> */}
               </div>
 
               <table class="table-m">
@@ -763,7 +757,7 @@ const start = function (data, ID) {
 
                 <tbody
                   class="table-m-body"
-                  hidden={Static.activeTabM == "all" ? false : true}
+                  // hidden={Static.activeTabM == "all" ? false : true}
                 >
                   {Static.records.length ? (
                     Static.records.map((item) => {
@@ -833,192 +827,7 @@ const start = function (data, ID) {
                     </div>
                   )}
                 </tbody>
-                <tbody
-                  class="table-m-body"
-                  hidden={Static.activeTabM == "active" ? false : true}
-                >
-                  {Static.records.length ? (
-                    Static.records.map((item) => {
-                      return (
-                        <tr class="table-m-item">
-                          <td class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </td>
-                          <td>{item.projectId.name}</td>
-                          <td><span>{item.projectId.round}</span></td>
-                          {/* <td>{item.projectId.status}</td> */}
-                          <td>{item.projectId.category}</td>
-                          <td>
-                            {item.projectId.seedRound
-                              ? `${item.projectId.seedRound}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.priceToken
-                              ? `${item.priceToken}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.tokens
-                              ? `${item.tokens}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            <img
-                              class="blockchain"
-                              src={
-                                item.projectId.blockchains?.icon
-                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
-                                  : svg.binance
-                              }
-                            />
-                          </td>
-                          <td>
-                            <button class="btn btn-green">MORE INFO</button>
-                          </td>
-                          <td>
-                            <button class="btn btn-green">RESEARCH</button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <div class="notFound">
-                      <span>Records not found in table</span>
-                      <img src={svg.notFound} />
-                    </div>
-                  )}
-                </tbody>
-                <tbody
-                  class="table-m-body"
-                  hidden={Static.activeTabM == "upcoming" ? false : true}
-                >
-                  {Static.records.length ? (
-                    Static.records.map((item) => {
-                      return (
-                        <tr class="table-m-item">
-                          <td class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </td>
-                          <td>{item.projectId.name}</td>
-                          <td>{item.projectId.tabs}</td>
-                          <td>{item.projectId.status}</td>
-                          <td>{item.projectId.category}</td>
-                          <td>
-                            {item.projectId.seedRound
-                              ? `${item.projectId.seedRound}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.priceToken
-                              ? `${item.priceToken}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.tokens
-                              ? `${item.tokens}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            <img
-                              class="blockchain"
-                              src={
-                                item.projectId.blockchains?.icon
-                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
-                                  : svg.binance
-                              }
-                            />
-                          </td>
-                          <td>
-                            <button class="btn btn-green">MORE INFO</button>
-                          </td>
-                          <td>
-                            <button class="btn btn-green">RESEARCH</button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <div class="notFound">
-                      <span>Records not found in table</span>
-                      <img src={svg.notFound} />
-                    </div>
-                  )}
-                </tbody>
-                <tbody
-                  class="table-m-body"
-                  hidden={Static.activeTabM == "past" ? false : true}
-                >
-                  {Static.records.length ? (
-                    Static.records.map((item) => {
-                      return (
-                        <tr class="table-m-item">
-                          <td class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </td>
-                          <td>{item.projectId.name}</td>
-                          <td>{item.projectId.tabs}</td>
-                          <td>{item.projectId.status}</td>
-                          <td>{item.projectId.category}</td>
-                          <td>
-                            {item.projectId.seedRound
-                              ? `${item.projectId.seedRound}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.priceToken
-                              ? `${item.priceToken}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            {item.tokens
-                              ? `${item.tokens}$`
-                              : "—"}
-                          </td>
-                          <td>
-                            <img
-                              class="blockchain"
-                              src={
-                                item.projectId.blockchains?.icon
-                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
-                                  : svg.binance
-                              }
-                            />
-                          </td>
-                          <td>
-                            <button class="btn btn-green">MORE INFO</button>
-                          </td>
-                          <td>
-                            <button class="btn btn-green">RESEARCH</button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <div class="notFound">
-                      <span>Records not found in table</span>
-                      <img src={svg.notFound} />
-                    </div>
-                  )}
-                </tbody>
+
 
                 <div class="btn-block">
                   <button class="btn btn-green">VIEW ALL PROJECTS</button>

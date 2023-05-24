@@ -26,18 +26,18 @@ const forExport = function ({ className }) {
             fn.siteLink(e);
             // let tmp = await fn.socket.get({ method: "Users" });
             // console.log("=c7f06a=", tmp);
-            // let tmp2 = await fn.socket.set({
-            //   method: "History",
-            //   // _id: "640b50260485741932a21a72",
-            //   action: "insert",
-            //   params: {
-            //     insert: {
-            //       sum: 1000,
-            //       idUser: Variable.myInfo._id,
-            //       type: "withdraw",
-            //     },
-            //   },
-            // });
+            let tmp2 = await fn.socket.set({
+              method: "History",
+              // _id: "640b50260485741932a21a72",
+              action: "insert",
+              params: {
+                insert: {
+                  sum: 1000,
+                  idUser: Variable.myInfo._id,
+                  type: "withdraw",
+                },
+              },
+            });
             // console.log("=58001c=", tmp2);
             // let tmp = await fn.socket.get({
             //   method: "Fonds",

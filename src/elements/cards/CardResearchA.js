@@ -10,21 +10,25 @@ import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 
-const countResearches = function(id, array){
-  let sum = 0;
-  let total = array.reduce(function(count, item, index){
+const traded = function(id, marketplace){
+  let priceToken;
+  marketplace.reduce(function(count, item, index){
     if(item.projectId === id){
-      sum++;
+      console.log('=50b02f=', item.priceToken)
+      priceToken = item.priceToken;
     }
-    return sum;
-  }, 0);
-  return total;
-} 
+  }, 0)
+  return priceToken;
+}
 
-const forExport = function ({ Static, className, itemsProjects = [], itemsResearches = [] }) {
+const forExport = function ({ Static, className, items = [], marketplace = [] }) {
+
+  // console.log('=marketplace=', marketplace)
+  // let [Static] = fn.GetParams({ data, ID });
   return (
     <div class="cards">
-      {itemsProjects.map((item, index) => {
+      {items.map((item, index) => {
+        // console.log('=a254fa=', item.blur)
         return (
           <div class={["card-item", `card-item_${index}`]}>
             {item.blur ? (
@@ -46,13 +50,13 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                 <div class="company">
                   <img
                     src={
-                      item.icon
-                        ? `/assets/upload/${item.icon}`
+                      item.projectId.icon
+                        ? `/assets/upload/${item.projectId.icon}`
                         : images[`research/logo-duma}`]
                     }
                   />
                   <div class="company-title">
-                    <span>{item.name}</span>
+                    <span>{item.projectId?.name}</span>
                   </div>
                   <div
                     class="info-bell"
@@ -63,7 +67,7 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                         params: {
                           update: { active: !item.bookmarks },
                           filter: {
-                            projectId: item._id,
+                            projectId: item.projectId._id,
                             author: Variable.myInfo._id,
                           },
                         },
@@ -74,15 +78,15 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                         params: {
                           update: { bookmarks: !item.bookmarks },
                           filter: {
-                            _id: item._id,
+                            _id: item.projectId._id,
                           },
                         },
                       });
-                      item.bookmarks = !item.bookmarks;
+                      item.projectId.bookmarks = !item.projectId.bookmarks;
                       initReload();
                     }}
                   >
-                    {item.bookmarks ? (
+                    {item.projectId.bookmarks ? (
                       <img src={svg.bellGreen} class="bell" />
                     ) : (
                       <img src={svg.bellWhite} class="bell" />
@@ -94,18 +98,26 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                     <img
                       class="blockchain"
                       src={
-                        item?.blockchains?.icon
-                          ? `/assets/upload/${item.blockchains.icon}`
+                        item?.projectId?.blockchains?.icon
+                          ? `/assets/upload/${item.projectId.blockchains.icon}`
                           : svg.binance
                       }
                     />
                   </div>
                   <div class="ecosystem">{item.category}</div>
+                  <div class="circle">{item.rank.toFixed(0) ? item.rank.toFixed(0) : 0}</div>
+                  <div class="rang">
+                    {
+                      item.rank < 50 ? "low rank" : 
+                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                      (item.rank >= 100) ? "high rank" : null
+                    }
+                  </div>
                 </div>
                 <div class="desc">
                   <p class="desc-text">{item.description}</p>
                 </div>
-                <div class="socials mt-10">
+                <div class="socials mY-15">
                   {(item.socials || []).map((element) => {
                     if (element.link && element.link.length > 0) {
                       return (
@@ -128,23 +140,49 @@ const forExport = function ({ Static, className, itemsProjects = [], itemsResear
                     }
                   })}
                 </div>
+                <div class="card-text flex-middleY mb-10">
+                  
+                  
+                  <span class="ttu line-green">{item.round} ROUND</span>
+                  { item.projectId.tokenPlatform ? 
 
-                <div class="card-text mt-15">
-                  <span class="ttu line-green">
-                    Researches: 
-                  </span> 
-                  {countResearches(item._id, itemsResearches)}
+                  <span class="flex-middleY mr-10">
+                    <img class="icon mr-10" src={svg["personal/icons/marketplace"]}></img> 
+                    {traded(item.projectId._id , marketplace)}$
+                  </span> : null
+                  }
                 </div>
+                <div class="progressBlock">
+                  <div
+                    style={
+                      !item.projectId.have || !item.projectId.amount
+                        ? `width: calc(0%)`
+                        : item.projectId.have >= item.projectId.amount
+                        ? `width: calc(100%)`
+                        : `width: calc(100% * ${item.projectId.have / item.projectId.amount})`
+                    }
+                    class="progressBlock-column"
+                  ></div>
+                </div>
+
+                <span class="summ">
+                  {item.projectId.have || item.projectId.amount
+                    ? `${item.projectId.have}$/${item.projectId.amount}$`
+                    : null}
+                </span>
 
                 <button
                   class="btn btn-green"
                   onclick={() => {
-                    
-                      fn.siteLink("/projects/show/" + item._id);
-                    
+                    if (!item.blur) {
+                      fn.siteLink("/researchA/show/" + item._id);
+                    }
                   }}
                 >
-                  about project
+                  {/* {!item.partners
+                    ? "RESEARCH ABOUT THE Project"
+                    : "Become a partners"} */}
+                    research about the project
                 </button>
               </div>
             </div>

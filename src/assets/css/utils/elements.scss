@@ -2,6 +2,10 @@
   width: 25px;
 }
 
+.hidden {
+  display: none;
+}
+
 // текстовые модификаторы
 .text-more {
   -webkit-line-clamp: 3;
@@ -76,6 +80,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.flex-middleY {
+  display: flex;
+  align-items: center;
 }
 
 // флексбоксы

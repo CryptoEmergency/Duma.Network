@@ -121,7 +121,7 @@ const start = function (data, ID) {
           Static.myResearch.push(item);
         }
       });
-
+      console.log('=8fde3d=', Static.myResearch)
       Static.activeImg = Static.item.gallery[0];
       Static.imgPosition = 0;
       Static.currentSlide = 0;
@@ -259,10 +259,17 @@ const start = function (data, ID) {
                               class="new" 
                               style="display:flex; cursor: pointer; position: relative;"
                               onclick={()=>{
-                                if(Variable.myInfo.status === "User"){
-                                  fn.modals.Status({});
+                                if(item.author._id == '645dea921d0831d67662684b'){
+                                  fn.siteLink("/researchA/show/" + item._id);
+                                  return
                                 }
-                                fn.siteLink("/researchA/show/" + item._id);
+                                if(Variable.myInfo.status == "User"){
+                                  fn.modals.Status({});
+                                  return
+                                }else{
+                                  fn.siteLink("/researchA/show/" + item._id);
+                                }
+
                               }}
                             >
                               <span>Research by</span>
@@ -281,11 +288,16 @@ const start = function (data, ID) {
                                 </span>
                                </div>
                                {
+                                (item.author._id == '645dea921d0831d67662684b') ? 
+                                <img class="icon-status" src={svg.public} /> :
+                                <img class="icon-status" src={svg.lock} />
+                               }
+                               {/* {
                                 Variable.myInfo.status === "User" ?
                                 <img class="icon-status" src={svg.lock} /> :
                                 <img class="icon-status" src={svg.public} />
 
-                               }
+                               } */}
                             </div>
 
                           )

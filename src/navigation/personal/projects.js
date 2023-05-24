@@ -26,7 +26,6 @@ const start = function (data, ID) {
         method: "Projects",
         params: { filter: { author: Variable.myInfo._id } },
       });
-      console.log('=981423=',Static.records)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -62,6 +61,14 @@ const start = function (data, ID) {
                         method: "Projects",
                         action: "insert",
                         params: { insert },
+                      });
+                      await fn.socket.send({
+                        method: "SendTelegram",
+                        params: {
+                          type: "project",
+                          // tokens:  Static.sumToken,
+                          // price: Static.priceToken,
+                        },
                       });
                       if (!response || !response._id) {
                         alert("error");
