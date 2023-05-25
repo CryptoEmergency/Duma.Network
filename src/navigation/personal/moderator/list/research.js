@@ -26,7 +26,6 @@ const start = function (data, ID) {
         method: "ResearchAnalyst",
         params: { filter: {}, populate: { path: "projectId author" } },
       });
-      console.log('=98a7b1=',Static.records);
       Static.accepted = [];
       Static.moderation = [];
       Static.refused = [];
@@ -85,7 +84,7 @@ const start = function (data, ID) {
                       }}
                     >
                       <h5 class="accordeon-header_title">
-                        Accepted projects
+                        Accepted researches
                         {Static.accepted.length ? (
                           <span>{Static.accepted.length}</span>
                         ) : <span>0</span>}
@@ -109,28 +108,6 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.projectId.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "ResearchAnalyst",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",
@@ -199,7 +176,7 @@ const start = function (data, ID) {
                       }}
                     >
                       <h5 class="accordeon-header_title">
-                        Moderation projects
+                        Moderation researches
                         {Static.moderation.length ? (
                           <span>{Static.moderation.length}</span>
                         ) : <span>0</span>}
@@ -223,28 +200,6 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.projectId.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "ResearchAnalyst",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",
@@ -307,7 +262,7 @@ const start = function (data, ID) {
                       }}
                     >
                       <h5 class="accordeon-header_title">
-                        Modify projects
+                        Modify researches
                         {Static.modify.length ? (
                           <span>{Static.modify.length}</span>
                         ) : <span>0</span>}
@@ -331,28 +286,6 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.projectId.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "ResearchAnalyst",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",
@@ -415,7 +348,7 @@ const start = function (data, ID) {
                       }}
                     >
                       <h5 class="accordeon-header_title">
-                        Refused projects
+                        Refused researches
                         {Static.refused.length ? (
                           <span>{Static.refused.length}</span>
                         ) : <span>0</span>}
@@ -439,28 +372,6 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.projectId.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "ResearchAnalyst",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",

@@ -115,6 +115,7 @@ const start = function (data, ID) {
                                       id={`switch-moderation${index}`}
                                       type="checkbox"
                                       checked={item.moderation}
+
                                       onchange={async () => {
                                         item.moderation = !item.moderation;
                                         await fn.socket.set({
@@ -125,6 +126,50 @@ const start = function (data, ID) {
                                             update: { moderation: item.moderation },
                                           },
                                         });
+                                        {
+                                          item.moderation ? 
+                                          // await fn.socket.send({
+                                          //   method: "SendTelegram",
+                                          //   params: {
+                                          //     type: "mProjectPublish",
+                                          //     idProject: Static.item._id,
+                                          //     author: Static.item.author._id
+                                          //   },
+                                          // }) :
+                                          "true" : 
+                                          // await fn.socket.send({
+                                          //   method: "SendTelegram",
+                                          //   params: {
+                                          //     type: "mProjectUnpublish",
+                                          //     idProject: Static.item._id,
+                                          //     author: Static.item.author._id
+                                          //   },
+                                          // });
+                                          "false"
+                                        }
+                                        
+                                        initReload();
+                                      }}
+                                      onclick={async()=>{
+                                        if(item.moderation){
+                                          await fn.socket.send({
+                                            method: "SendTelegram",
+                                            params: {
+                                              type: "mProjectUnpublish",
+                                              idProject: item._id,
+                                              author: item.author._id
+                                            },
+                                          })
+                                        }else{
+                                          await fn.socket.send({
+                                            method: "SendTelegram",
+                                            params: {
+                                              type: "mProjectPublish",
+                                              idProject: item._id,
+                                              author: item.author._id
+                                            },
+                                          });
+                                        }
                                         initReload();
                                       }}
                                     ></input>
@@ -212,36 +257,12 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "Projects",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",
                                     ]}
                                     style="position: relative;top: 3px; right: 0;"
                                     onclick={function(){
-                                      console.log('=cb8aa4=',Static[`moreList${index}`])
-                                      // Static[`moreList${index}`].hidden = false;
                                       this.classList.toggle('active');
                                       initReload();
                                     }}
@@ -310,36 +331,12 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "Projects",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",
                                     ]}
                                     style="position: relative;top: 3px; right: 0;"
                                     onclick={function(){
-                                      console.log('=cb8aa4=',Static[`moreList${index}`])
-                                      // Static[`moreList${index}`].hidden = false;
                                       this.classList.toggle('active');
                                       initReload();
                                     }}
@@ -408,36 +405,12 @@ const start = function (data, ID) {
                               <div class="title-research_list">
                                 <span>{item.name}</span>
                                 <div class="edit-wrap" style="display: flex; align-items: center;">
-                                  <div class="switcher mt-0 ">
-                                    <input
-                                      id={`switch-moderation${index}`}
-                                      type="checkbox"
-                                      checked={item.moderation}
-                                      onchange={async () => {
-                                        item.moderation = !item.moderation;
-                                        await fn.socket.set({
-                                          method: "Projects",
-                                          action: "findOneAndUpdate",
-                                          _id: item._id,
-                                          params: {
-                                            update: { moderation: item.moderation },
-                                          },
-                                        });
-                                        initReload();
-                                      }}
-                                    ></input>
-                                    <label
-                                      for={`switch-moderation${index}`}
-                                    ></label>
-                                  </div>
                                   <div
                                     class={[
                                       "question-container ml-15",
                                     ]}
                                     style="position: relative;top: 3px; right: 0;"
                                     onclick={function(){
-                                      console.log('=cb8aa4=',Static[`moreList${index}`])
-                                      // Static[`moreList${index}`].hidden = false;
                                       this.classList.toggle('active');
                                       initReload();
                                     }}

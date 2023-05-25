@@ -82,8 +82,6 @@ const start = function (data, ID) {
                                   "question-container ml-15",
                                 ]}
                                 onclick={function(){
-                                  console.log('=cb8aa4=',Static[`moreList${index}`])
-                                  // Static[`moreList${index}`].hidden = false;
                                   this.classList.toggle('active');
                                   initReload();
                                 }}

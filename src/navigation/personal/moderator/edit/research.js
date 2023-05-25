@@ -1893,13 +1893,23 @@ const start = function (data, ID) {
                             method: "ResearchAnalyst",
                             action: "findOneAndUpdate",
                             params: {
-                              update: { status: "Accepted" },
+                              update: { 
+                                status: "Accepted",
+                                moderation: true 
+                              },
                               filter: {
                                 _id: Static.item._id,
                               }
                             },
                           });
-
+                          await fn.socket.send({
+                            method: "SendTelegram",
+                            params: {
+                              type: "mResearchAccepted",
+                              idProject: Static.item.projectId._id,
+                              author: Static.item.author._id
+                            },
+                          });
                           fn.modals.Success({
                             title: "The research is accepted"
                           });
@@ -1914,11 +1924,12 @@ const start = function (data, ID) {
                       <button 
                         class="btn btn-bordo"
                         onclick={async function(){
-      
                           fn.modals.SureModerator({
                             title: "Reject the project without the possibility of revision?",
                             idProject: Static.item._id,
-                            type: "research"
+                            projectId: Static.item.projectId._id,
+                            type: "research",
+                            author: Static.item.author._id,
                           });
                           initReload();
                         }}  

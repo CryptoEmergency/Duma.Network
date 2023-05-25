@@ -390,95 +390,6 @@ const start = function (data, ID) {
                         </ul>
                       </div>
                     </div>
-                    {/* <div></div> */}
-                    {/* <div class="form-div">
-                      <label>Status:</label>
-                      <div class="dropdown">
-                        <button
-                          class="dropdown__button"
-                          onclick={() => {
-                            Static.selectList.status.classList.toggle(
-                              "dropdown__list--visible"
-                            );
-                          }}
-                        >
-                          {Static.item?.status
-                            ? Static.item.status
-                            : "Select status"}
-                        </button>
-                        <ul
-                          class="dropdown__list"
-                          Element={($el) => {
-                            Static.selectList.status = $el;
-                          }}
-                        >
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Research";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Research
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Active";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Active
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Upcoming";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Upcoming
-                          </li>
-                          <li
-                            class="dropdown__list-item"
-                            onclick={() => {
-                              Static.item.status = "Past";
-                              updateValue({
-                                key: "status",
-                                value: Static.item.status,
-                              });
-                              Static.selectList.status.classList.remove(
-                                "dropdown__list--visible"
-                              );
-                              initReload();
-                            }}
-                          >
-                            Past
-                          </li>
-                        </ul>
-                      </div>
-                    </div> */}
                     <div class="form-div">
                       <label>Category:</label>
                       <div class="dropdown">
@@ -2675,16 +2586,6 @@ const start = function (data, ID) {
                       class={["btn", "btn-green", "mb-15",
                       (Static.item.status  == "Submitted for moderation") || (Static.item.status  == "Accepted") ? "btn-disabled" : null ]}
                       onclick={async function(){
-                        // let insert = {
-                        //   projectId: Static.item.projectId._id,
-                        // };
-                        // await fn.socket.set({
-                          
-                        //   method: "ResearchAnalyst",
-                        //   action: "insert",
-                        //   params: { insert },
-                        // });
-
                         await fn.socket.set({
                           method: "ResearchAnalyst",
                           action: "findOneAndUpdate",
@@ -2694,6 +2595,13 @@ const start = function (data, ID) {
                               _id: Static.item._id,
                               author: Variable.myInfo._id,
                             }
+                          },
+                        });
+                        await fn.socket.send({
+                          method: "SendTelegram",
+                          params: {
+                            type: "research",
+                            idProject: Static.item.projectId._id,
                           },
                         });
                         fn.siteLink('/personal/researches/')

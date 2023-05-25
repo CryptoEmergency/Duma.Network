@@ -27,7 +27,6 @@ const forExport = function (data, ID) {
       Static.amount;
     },
     fn: () => {
-      console.log('=07d45a=',data.projectId)
       return (
         <div class="wrap">
           <div class="wrap-body">

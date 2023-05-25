@@ -10,6 +10,12 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
+const sendEnter = function(e){
+  if(e.keyCode == '13'){
+    Data.MStatic.btnSubmit.click();
+  }
+}
+
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   Static.valueMoney;
@@ -38,6 +44,9 @@ const forExport = function (data, ID) {
                     {data.text}:
                   </label>
                   <input
+                    Element={($el)=>{
+                      Static.fieldSum = $el;
+                    }}
                     id="summ"
                     type="text"
                     class="form-input personal-input"
@@ -48,65 +57,25 @@ const forExport = function (data, ID) {
                       if (data.type === "withdraw") {
                         Static.valueMoney = -Static.valueMoney;
                       }
+                      console.log('=b33c84=', Static.fieldSum.value.length ? "true": "false");
                     }}
                   ></input>
                 </div>
-
-                {/* <div class="form-group mt-15">
-                  <div class="dropdown">
-                    <button
-                      class="dropdown__button"
-                      onclick={() => {
-                        Static.dropList.classList.toggle(
-                          "dropdown__list--visible"
-                        );
-                      }}
-                    >
-                      Lorem Ipsum
-                    </button>
-                    <ul
-                      class="dropdown__list"
-                      Element={($el) => {
-                        Static.dropList = $el;
-                      }}
-                    >
-                      <li class="dropdown__list-item" data-value="travel">
-                        Lorem Ipsum 1
-                      </li>
-                      <li class="dropdown__list-item" data-value="lessons">
-                        Lorem Ipsum 2
-                      </li>
-                      <li class="dropdown__list-item" data-value="photo">
-                        Lorem Ipsum 3
-                      </li>
-                      <li class="dropdown__list-item" data-value="sport">
-                        Lorem Ipsum 4
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="switcher mt-15">
-                  <input id="switch-1" type="checkbox"></input>
-                  <label for="switch-1"></label>
-                </div> */}
               </main>
               <footer
                 class={["footer-modal"]}
               >
-                {/* <button
-                  class="btn btn-white"
-                  onclick={() => {
-                    fn.modals.close(ID);
-                    initReload();
-                  }}
-                >
-                  Confirm
-                </button> */}
-                
                 <button
-                  class="btn btn-standart ml-15"
+                  class={[
+                    "btn", 
+                    "btn-standart", 
+                    "ml-15",
+                    // Static.valueMoney ? null : "btn-disabled"
+                  ]}
                   onclick={async function () {
+                    if(!Static.fieldSum?.value){
+                      return
+                    }
                     await fn.socket.send({
                       method: "Deposit",
                       params: {
@@ -122,7 +91,7 @@ const forExport = function (data, ID) {
                     initReload("modals");
                   }}
                 >
-                  Deposit
+                  {data.title}
                 </button>
               
               </footer>

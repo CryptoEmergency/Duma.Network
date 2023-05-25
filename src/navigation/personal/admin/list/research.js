@@ -30,7 +30,6 @@ const start = function (data, ID) {
         method: "ResearchAnalyst",
         params: { filter: {}, populate: { path: "projectId author" } },
       });
-      console.log('=98a7b1=',Static.tmp)
     },
     fn: () => {
       if (!Variable.auth || !Variable.myInfo.role) {

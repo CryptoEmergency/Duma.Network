@@ -247,7 +247,14 @@ const forExport = function (data, ID) {
                         }
                       },
                     });
-
+                    await fn.socket.send({
+                      method: "SendTelegram",
+                      params: {
+                        type: "owner",
+                        idProject: Static.chooseProject._id,
+                        author: Static.chooseUser._id
+                      },
+                    });
                     initReload()
                     fn.modals.close(ID);
                   }}

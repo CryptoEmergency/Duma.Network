@@ -62,14 +62,6 @@ const start = function (data, ID) {
                         action: "insert",
                         params: { insert },
                       });
-                      await fn.socket.send({
-                        method: "SendTelegram",
-                        params: {
-                          type: "project",
-                          // tokens:  Static.sumToken,
-                          // price: Static.priceToken,
-                        },
-                      });
                       if (!response || !response._id) {
                         alert("error");
                         return;
@@ -95,8 +87,6 @@ const start = function (data, ID) {
                                 "question-container ml-15",
                               ]}
                               onclick={function(){
-                                console.log('=cb8aa4=',Static[`moreList${index}`])
-                                // Static[`moreList${index}`].hidden = false;
                                 this.classList.toggle('active');
                                 initReload();
                               }}

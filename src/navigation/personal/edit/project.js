@@ -2045,6 +2045,13 @@ const start = function (data, ID) {
                           this.disabled = false;
                           return;
                         }
+                        await fn.socket.send({
+                          method: "SendTelegram",
+                          params: {
+                            type: "project",
+                            idProject: Static.item._id,
+                          },
+                        });
                         fn.siteLink('/personal/projects/');
                         fn.modals.Success({
                           title: "Your project has been submitted for moderation"

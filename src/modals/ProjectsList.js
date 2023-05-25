@@ -52,7 +52,7 @@ const forExport = function (data, ID) {
                       }}
                       type="text"
                       class="filter-fondlist_input form-input"
-                      placeholder="Сhoose a blockchain"
+                      placeholder="Сhoose a project for research"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
                         Static.showBlockchains = Static.items.filter((item) => {
@@ -94,9 +94,6 @@ const forExport = function (data, ID) {
                           } else {
                             Static.chooseProject = item;
                           }
-                          console.log("=64bd17=", Static.chooseProject._id);
-                          console.log('=0c569b=', Static.chooseProject.tokenomics.image);
-
                           initReload("modals");
                         }}
                       >

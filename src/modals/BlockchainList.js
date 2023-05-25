@@ -191,9 +191,6 @@ const forExport = function (data, ID) {
                           } else {
                             Static.blockchains_list = item;
                           }
-                          // Static.blockchains_list == item;
-                          console.log("=64bd17=", Static.blockchains_list);
-
                           initReload("modals");
                         }}
                       >

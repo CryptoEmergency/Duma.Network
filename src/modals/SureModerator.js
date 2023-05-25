@@ -15,7 +15,7 @@ const forExport = function (data, ID) {
   load({
     ID,
     fn: () => {
-      console.log('=e18a85=',data.type)
+      console.log('=e18a85=', data.projectId)
       return (
         <div class="wrap">
           <div class="wrap-body">
@@ -51,7 +51,14 @@ const forExport = function (data, ID) {
                             }
                           },
                         });
-
+                        await fn.socket.send({
+                          method: "SendTelegram",
+                          params: {
+                            type: "mProjectModify",
+                            idProject: data.idProject,
+                            author: data.author
+                          },
+                        });
                         fn.modals.Success({
                           title: "The project has been successfully submitted for revision"
                         });
@@ -78,7 +85,14 @@ const forExport = function (data, ID) {
                             }
                           },
                         });
-
+                        await fn.socket.send({
+                          method: "SendTelegram",
+                          params: {
+                            type: "mProjectRefused",
+                            idProject: data.idProject,
+                            author: data.author
+                          },
+                        });
                         fn.modals.Success({
                           title: "The project was rejected without the possibility of revision"
                         });
@@ -108,7 +122,14 @@ const forExport = function (data, ID) {
                             }
                           },
                         });
-
+                        await fn.socket.send({
+                          method: "SendTelegram",
+                          params: {
+                            type: "mResearchModify",
+                            idProject: data.projectId,
+                            author: data.author
+                          },
+                        });
                         fn.modals.Success({
                           title: "The research has been successfully submitted for revision"
                         });
@@ -135,7 +156,14 @@ const forExport = function (data, ID) {
                             }
                           },
                         });
-
+                        await fn.socket.send({
+                          method: "SendTelegram",
+                          params: {
+                            type: "mResearchRefused",
+                            idProject: data.projectId,
+                            author: data.author
+                          },
+                        });
                         fn.modals.Success({
                           title: "The research was rejected without the possibility of revision"
                         });

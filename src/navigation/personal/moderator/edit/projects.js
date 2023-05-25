@@ -1663,7 +1663,7 @@ const start = function (data, ID) {
                           await fn.socket.send({
                             method: "BankToken",
                             params: {
-                              projectId: Static.item._id, // id проекта в табл проджект
+                              projectId: Static.item._id, 
                               author: Static.item.author
                             },
                           });
@@ -1687,7 +1687,8 @@ const start = function (data, ID) {
                           fn.modals.SureModerator({
                             title: "Reject the project without the possibility of revision?",
                             idProject: Static.item._id,
-                            type: "project"
+                            type: "project",
+                            author: Static.item.author._id
                           });
 
                           initReload();

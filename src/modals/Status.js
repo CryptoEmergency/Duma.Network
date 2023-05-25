@@ -23,7 +23,6 @@ const forExport = function (data, ID) {
     fnLoad: async () => {
       Static.statuses = await fn.socket.get({
         method: "Statuses",
-        // _id: Variable.dataUrl.params,
       });
       Static.selectedStatus = Static.statuses[0].title;
       Static.selectedSum = Static.statuses[0].price;

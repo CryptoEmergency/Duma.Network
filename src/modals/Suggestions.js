@@ -12,7 +12,8 @@ import svg from "@assets/svg/index.js";
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.themaTitle = "Subject of the letter"
+  Static.themaTitle = "Subject of the letter",
+  Static.text = "",
   load({
     ID,
     fn: () => {
@@ -21,7 +22,6 @@ const forExport = function (data, ID) {
           <div class="wrap-body">
             <div class="wrap-content bug">
               <header class="header-modal">
-                {/* <h2 class="general-title mt-0">Your suggestions</h2> */}
                 <h2 class="general-title mt-0">{data.title}</h2>
                 <button
                   class="button-close button-modal"
@@ -33,10 +33,6 @@ const forExport = function (data, ID) {
                 </button>
               </header>
               <main class="main-modal">
-                {/* <div class="form-input form-item mb-15">
-                  <div>Thema: </div>
-
-                </div> */}
                 <div class="thema-dropdown mb-15">
                   <span class="title-thema">Thema: </span>
                   <div class="accordeon-item">
@@ -83,6 +79,9 @@ const forExport = function (data, ID) {
                     id="text"
                     class="personal-input form-input"
                     placeholder="Enter text..."
+                    oninput={function(){
+                      Static.text = this.value;
+                    }}
                   ></textarea>
                   <div class="attach mt-15">
                     <input
@@ -122,7 +121,14 @@ const forExport = function (data, ID) {
               </main>
               <footer class="footer-modal">
                 <button 
-                  onclick={()=>{
+                  onclick={async()=>{
+                    await fn.socket.send({
+                      method: "MessageSite",
+                      params: {
+                        thema: Static.themaTitle,
+                        text: Static.text
+                      },
+                    });
                     Static.themaTitle = "Subject of the letter"
                     fn.modals.close(ID);
                   }}
