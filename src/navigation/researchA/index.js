@@ -167,6 +167,13 @@ const start = function (data, ID) {
       });
       console.log("=92f11b=", tmp);
 
+      Static.researches = [];
+      tmp.forEach((item, index)=>{
+        if(item.projectId.moderation){
+          Static.researches.push(item)
+        }
+      });
+
       Static.marketplace = await fn.socket.get({
         method: "MarketUser",
         params: {
@@ -176,11 +183,10 @@ const start = function (data, ID) {
           }
         }
       })
-      console.log('=b3cc1b=', Static.marketplace);
 
 
-      if (tmp && tmp[0]) {
-        Static.projects = tmp;
+      if (Static.researches && Static.researches[0]) {
+        Static.projects = Static.researches;
       } else {
         Static.projects = [cardsRecords[4], cardsRecords[5]];
       }

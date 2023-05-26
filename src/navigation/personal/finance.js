@@ -36,7 +36,6 @@ const start = function (data, ID) {
           Static.projectsOwner.push(item);
         }
       });
-      console.log('=list projects owner=', Static.projectsOwner)
     },
     fn: () => {
       if (!Variable.auth || !Variable.myInfo._id == '6461b5b1179f315ed7fc65ce') {
@@ -57,6 +56,19 @@ const start = function (data, ID) {
                   <h2 class="general-title mt-25">Appointment of the project owner</h2>
                 </section>
                 <div class="grid-3">
+                  {/* {
+                    Static.items === Static.projectsOwner ? 
+                    <button
+                      class="btn btn-green"
+                      onclick={() => {
+                        fn.modals.Owner({
+                          title: "Choose the owner for project",
+                        });
+                      }}
+                    >
+                      Choose the owner
+                    </button> : null
+                  } */}
                   <button
                     class="btn btn-green"
                     onclick={() => {

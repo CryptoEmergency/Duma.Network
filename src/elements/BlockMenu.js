@@ -48,7 +48,9 @@ const forExport = function ({ Static, onclick, className, }) {
   if (getStorage("sidebarShow")) {
     Data.Static.sidebarShow = getStorage("sidebarShow");
   }
-  
+  // if(isMobile()){
+  //   Data.Static.sidebarShow = false;
+  // }
   return (
     <aside 
       class={["sidebar", 

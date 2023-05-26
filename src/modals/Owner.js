@@ -21,15 +21,19 @@ const forExport = function (data, ID) {
       Static.items = await fn.socket.get({ 
         method: "Projects",
         params: {
-          filter: { moderation: true }
+          filter: { moderation: true },
+          populate: { path: "author" },
+          find: { owner: { "$eq": null } }
         } 
       });
+
+      console.log('=bf9dc6=',Static.items )
+
       Static.showProjects = Static.items;
       Static.users = await fn.socket.get({ method: "Users" });
       Static.showUsers = Static.users;
     },
     fn: () => {
-      // console.log('=7d6f7d=', Static.chooseProject === {});
       return (
         <div class="wrap">
           <div class="wrap-body">
@@ -59,7 +63,7 @@ const forExport = function (data, ID) {
                       placeholder="Сhoose a project"
                       oninput={function () {
                         let searchText = this.value.toLowerCase();
-                        Static.showBlockchains = Static.items.filter((item) => {
+                        Static.showProjects = Static.items.filter((item) => {
                           if (item.name.toLowerCase().includes(searchText)) {
                             return true;
                           }
@@ -117,7 +121,6 @@ const forExport = function (data, ID) {
                           } else {
                             Static.chooseProject = item;
                           }
-                          console.log("=64bd17=", Static.chooseProject._id);
 
                           initReload("modals");
                         }}
@@ -211,6 +214,8 @@ const forExport = function (data, ID) {
                           } else {
                             Static.chooseUser = item;
                           }
+                          console.log('=owner=', Static.chooseUser.firstName)
+
                           initReload("modals");
                         }}
                       >
@@ -236,7 +241,7 @@ const forExport = function (data, ID) {
                 <button
                   class="btn btn-white"
                   onclick={async() => {
-
+                   
                     let response = await fn.socket.set({
                       method: "Projects",
                       action: "findOneAndUpdate",
@@ -252,7 +257,8 @@ const forExport = function (data, ID) {
                       params: {
                         type: "owner",
                         idProject: Static.chooseProject._id,
-                        author: Static.chooseUser._id
+                        owner: Static.chooseUser._id,
+                        author: Static.chooseProject.author._id
                       },
                     });
                     initReload()

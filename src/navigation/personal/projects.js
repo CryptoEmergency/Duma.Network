@@ -106,6 +106,21 @@ const start = function (data, ID) {
                                   <img class="more-list-item_icon mr-5" src={svg.edit} />
                                   <span>Change project</span>
                                 </li>
+                                {/* {
+                                  item.status == "Draft" ? "plaintext-only" 
+                                  : item.status == "Modify" ? "plaintext-only" : false
+                                }
+                                <li 
+                                  class="more-list-item"
+                                  onclick={async () => {
+                                    fn.siteLink(
+                                      `/personal/edit/project/${item._id}`
+                                    );
+                                  }}
+                                >
+                                  <img class="more-list-item_icon mr-5" src={svg.edit} />
+                                  <span>Submit for moderation</span>
+                                </li> */}
                               </ul>
                             </div>
                             <div class="scheme-img text">

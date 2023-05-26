@@ -264,54 +264,19 @@ const start = function (data, ID) {
                       {
                         Static.myResearch.map((item)=>{
                           return(
-                            // <div>
-                            // {
-                            //   Static.item._id == item._id ? 
-                            //   null:
-                            //   <div 
-                            //     class="new" 
-                            //     style="display:flex; cursor: pointer; position: relative;"
-                            //     onclick={()=>{
-                            //       if(Variable.myInfo.status === "User"){
-                            //         fn.modals.Status({});
-                            //       }
-                            //       fn.siteLink("/researchA/show/" + item._id);
-                            //     }}
-                            //   >
-                            //     <span>Research by</span>
-                            //     <div class="user-picture ml-15">
-                            //         <span class="text-green">{item.author.firstName}</span>
-                            //         {/* <div class="user-status">{item.author.status}</div> */}
-                            //     </div>
-                            //     <div class="project-rang ml-15">
-                            //       <span>{item.rank.toFixed(2)} points</span>
-                            //       <span class="rang">
-                            //         {
-                            //           item.rank < 50 ? "low rank" : 
-                            //           (item.rank >= 50 && item.rank < 100) ? " medium rank" :
-                            //           (item.rank >= 100) ? "high rank" : null
-                            //         }
-                            //       </span>
-                            //     </div>
-                            //     {
-                            //       Variable.myInfo.status === "User" ?
-                            //       <img class="icon-status" src={svg.lock} /> :
-                            //       <img class="icon-status" src={svg.public} />
-
-                            //     }
-                            //   </div>
-                              
-
-                            // }
-                            // </div>
                             <div 
                               class="new" 
                               style="display:flex; cursor: pointer; position: relative;"
                               onclick={()=>{
+                                if(item.author._id == '645dea921d0831d67662684b'){
+                                  fn.siteLink("/researchA/show/" + item._id);
+                                  return
+                                }
                                 if(Variable.myInfo.status === "User"){
                                   fn.modals.Status({});
+                                }else{
+                                  fn.siteLink("/researchA/show/" + item._id);
                                 }
-                                fn.siteLink("/researchA/show/" + item._id);
                               }}
                             >
                               <span>Research by</span>
@@ -330,9 +295,9 @@ const start = function (data, ID) {
                                 </span>
                               </div>
                               {
-                                Variable.myInfo.status === "User" ?
-                                <img class="icon-status" src={svg.lock} /> :
-                                <img class="icon-status" src={svg.public} />
+                                (item.author._id == '645dea921d0831d67662684b') ?
+                                <img class="icon-status" src={svg.public} /> :
+                                <img class="icon-status" src={svg.lock} />
 
                               }
                             </div>

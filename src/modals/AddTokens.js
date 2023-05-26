@@ -19,13 +19,14 @@ const sendEnter = function(e){
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  Static.sumToken;
+  Static.priceToken;
+  Static.amount;
   load({
     ID,
-    fnLoad: async () => {
-      Static.sumToken;
-      Static.priceToken;
-      Static.amount;
-    },
+    // fnLoad: async () => {
+      
+    // },
     fn: () => {
       return (
         <div class="wrap">
@@ -79,14 +80,19 @@ const forExport = function (data, ID) {
                       onkeydown={sendEnter}
                       onchange={function () {
                         Static.priceToken = this.value;
+                        console.log('=32f95f=', Static.priceToken * Static.sumToken)
+                        Static.amount = Static.priceToken * Static.sumToken;
+                      }}
+                      oninput={()=>{
+                        Static.amount = Static.priceToken * Static.sumToken;
                       }}
                     />
                   </div>
                 </div>
-                <div class="grid-2 mt-15">
+                {/* <div class="grid-2 mt-15">
                   <div class="input-notation">
                     <div class="input-prefix">
-                        <label for="amount">Amount of fees</label>
+                        <label for="amount">Amount of fees {Static.amount}$</label>
                     </div>
                     <input
                       id="amount"
@@ -100,14 +106,14 @@ const forExport = function (data, ID) {
                         Static.amount = this.value;
                       }}
                     />
-                    <div class="input-suffix">$</div>
+                    <div class="input-suffix"></div>
                   </div>
                   <div class="input-notation">
                     <div class="input-prefix">
                       Initial fee amount 0$
                     </div>
                   </div>
-                </div>
+                </div> */}
               </main>
               <footer class="footer-modal">
                 <button
@@ -122,7 +128,7 @@ const forExport = function (data, ID) {
                         projectId: data.projectId,
                         tokens:  Static.sumToken,
                         price: Static.priceToken,
-                        amount: Static.amount,
+                        // amount: Static.amount,
                       },
                     });
                     fn.modals.close(ID);

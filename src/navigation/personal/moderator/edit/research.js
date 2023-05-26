@@ -1907,6 +1907,7 @@ const start = function (data, ID) {
                             params: {
                               type: "mResearchAccepted",
                               idProject: Static.item.projectId._id,
+                              idResearch: Static.item._id,
                               author: Static.item.author._id
                             },
                           });
@@ -1926,7 +1927,7 @@ const start = function (data, ID) {
                         onclick={async function(){
                           fn.modals.SureModerator({
                             title: "Reject the project without the possibility of revision?",
-                            idProject: Static.item._id,
+                            idResearch: Static.item._id,
                             projectId: Static.item.projectId._id,
                             type: "research",
                             author: Static.item.author._id,

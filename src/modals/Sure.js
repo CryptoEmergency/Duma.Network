@@ -15,7 +15,6 @@ const forExport = function (data, ID) {
   load({
     ID,
     fn: () => {
-      console.log('=e18a85=',data.sum)
       return (
         <div class="wrap">
           <div class="wrap-body">
@@ -37,8 +36,7 @@ const forExport = function (data, ID) {
                     <button
                       class="btn btn-green"
                       onclick={async() => {
-                        fn.modals.close(ID);
-                        if(data.sum < Variable.myInfo.balance){
+                        if(Variable.myInfo.balance >= data.sum){
                           await fn.socket.send({
                             method: "Subscribe",
                             params: {
@@ -46,10 +44,12 @@ const forExport = function (data, ID) {
                               idStatus: data.idStatus,
                             },
                           });
+                          fn.modals.close(ID);
                           fn.modals.Success({
                             title: "You have been assigned investor status"
                           })
                         }else{
+                          fn.modals.close(ID);
                           fn.modals.Transaction({
                             title: "Deposit",
                             text: "Replenishment amount",

@@ -100,14 +100,14 @@ const forExport = function (data, ID) {
                         Static.input = $el;
                       }}
                     ></input>
-                    <button
+                    {/* <button
                       class="btn btn-white"
                       onclick={() => {
                         Static.input.click();
                       }}
                     >
                       Attach
-                    </button>
+                    </button> 
                     <span
                       class="ml-15"
                       Element={($el) => {
@@ -115,7 +115,7 @@ const forExport = function (data, ID) {
                       }}
                     >
                       up to 5 screenshots
-                    </span>
+                    </span>*/}
                   </div>
                 </div>
               </main>
@@ -130,6 +130,9 @@ const forExport = function (data, ID) {
                       },
                     });
                     Static.themaTitle = "Subject of the letter"
+                    fn.modals.Success({
+                      title: "You have been assigned investor status"
+                    })
                     fn.modals.close(ID);
                   }}
                   class="btn btn-white">

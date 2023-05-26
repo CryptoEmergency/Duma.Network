@@ -415,8 +415,8 @@ const start = function (data, ID) {
                         <div
                           class="form-input personal-input"
                           contenteditable={
-                            Static.item.status == "Draft" ? true 
-                            : Static.item.status == "Modify" ? true : false
+                            Static.item.status == "Draft" ? "plaintext-only" 
+                            : Static.item.status == "Modify" ? "plaintext-only" : false
                           }
                           onchange = {function(){
                             Static.nameProject = this.value;
@@ -592,8 +592,8 @@ const start = function (data, ID) {
                       style="min-height:100px;"
                       class="form-input personal-input"
                       contenteditable={
-                        Static.item.status == "Draft" ? true 
-                        : Static.item.status == "Modify" ? true : false
+                        Static.item.status == "Draft" ? "plaintext-only" 
+                        : Static.item.status == "Modify" ? "plaintext-only" : false
                       }
                       oninput={function () {
                         Static.item.description = this.innerText.trim();
@@ -639,8 +639,8 @@ const start = function (data, ID) {
                     hidden={!Static.viewForm}
                     class="form-input personal-input"
                     contenteditable={
-                      Static.item.status == "Draft" ? true 
-                      : Static.item.status == "Modify" ? true : false
+                      Static.item.status == "Draft" ? "plaintext-only" 
+                      : Static.item.status == "Modify" ? "plaintext-only" : false
                     }
                     Element={(el) => {
                       Static.elSocialInput = el;
@@ -858,8 +858,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.problem = this.innerText.trim();
@@ -875,8 +875,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.problem = this.innerText.trim();
@@ -900,8 +900,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.product = this.innerText.trim();
@@ -917,8 +917,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.product = this.innerText.trim();
@@ -942,8 +942,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.solution = this.innerText.trim();
@@ -959,8 +959,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.solution = this.innerText.trim();
@@ -984,8 +984,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.investors = this.innerText.trim();
@@ -1001,8 +1001,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.investors = this.innerText.trim();
@@ -1105,8 +1105,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.fonds = this.innerText.trim();
@@ -1213,8 +1213,8 @@ const start = function (data, ID) {
                         <div
                           class="scheme-card_desc personal-input text mb-15"
                           contenteditable={
-                            Static.item.status == "Draft" ? true 
-                            : Static.item.status == "Modify" ? true : false
+                            Static.item.status == "Draft" ? "plaintext-only" 
+                            : Static.item.status == "Modify" ? "plaintext-only" : false
                           }
                           oninput={function () {
                             Static.item.tokenomics.text = this.innerText.trim();
@@ -1232,8 +1232,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.tokenomics = this.innerText.trim();
@@ -1259,8 +1259,8 @@ const start = function (data, ID) {
                         <div
                           class="text personal-input"
                           contenteditable={
-                            Static.item.status == "Draft" ? true 
-                            : Static.item.status == "Modify" ? true : false
+                            Static.item.status == "Draft" ? "plaintext-only" 
+                            : Static.item.status == "Modify" ? "plaintext-only" : false
                           }
                           oninput={function () {
                             Static.item.utility.token = this.innerText.trim();
@@ -1278,8 +1278,8 @@ const start = function (data, ID) {
                         <div
                           class="text personal-input"
                           contenteditable={
-                            Static.item.status == "Draft" ? true 
-                            : Static.item.status == "Modify" ? true : false
+                            Static.item.status == "Draft" ? "plaintext-only" 
+                            : Static.item.status == "Modify" ? "plaintext-only" : false
                           }
                           oninput={function () {
                             Static.item.utility.capture = this.innerText.trim();
@@ -1297,8 +1297,8 @@ const start = function (data, ID) {
                         <div
                           class="text personal-input"
                           contenteditable={
-                            Static.item.status == "Draft" ? true 
-                            : Static.item.status == "Modify" ? true : false
+                            Static.item.status == "Draft" ? "plaintext-only" 
+                            : Static.item.status == "Modify" ? "plaintext-only" : false
                           }
                           oninput={function () {
                             Static.item.utility.accural = this.innerText.trim();
@@ -1315,8 +1315,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.utility = this.innerText.trim();
@@ -1341,8 +1341,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.team.text = this.innerText.trim();
@@ -1484,8 +1484,8 @@ const start = function (data, ID) {
                                 <div
                                   class="personal-input text mb-15"
                                   contenteditable={
-                                    Static.item.status == "Draft" ? true 
-                                    : Static.item.status == "Modify" ? true : false
+                                    Static.item.status == "Draft" ? "plaintext-only" 
+                                    : Static.item.status == "Modify" ? "plaintext-only" : false
                                   }
                                   oninput={function () {
                                     Static.item.team.records[index].fio =
@@ -1502,8 +1502,8 @@ const start = function (data, ID) {
                                 <div
                                   class="personal-input text"
                                   contenteditable={
-                                    Static.item.status == "Draft" ? true 
-                                    : Static.item.status == "Modify" ? true : false
+                                    Static.item.status == "Draft" ? "plaintext-only" 
+                                    : Static.item.status == "Modify" ? "plaintext-only" : false
                                   }
                                   oninput={function () {
                                     Static.item.team.records[index].link =
@@ -1525,8 +1525,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.team = this.innerText.trim();
@@ -1628,8 +1628,8 @@ const start = function (data, ID) {
                           <div
                             class="scheme-card_desc personal-input text mb-15"
                             contenteditable={
-                              Static.item.status == "Draft" ? true 
-                              : Static.item.status == "Modify" ? true : false
+                              Static.item.status == "Draft" ? "plaintext-only" 
+                              : Static.item.status == "Modify" ? "plaintext-only" : false
                             }
                             oninput={function () {
                               Static.item.roadmap.text = this.innerText.trim();
@@ -1645,8 +1645,8 @@ const start = function (data, ID) {
                           <div
                             class="scheme-card_desc personal-input text"
                             contenteditable={
-                              Static.item.status == "Draft" ? true 
-                              : Static.item.status == "Modify" ? true : false
+                              Static.item.status == "Draft" ? "plaintext-only" 
+                              : Static.item.status == "Modify" ? "plaintext-only" : false
                             }
                             oninput={function () {
                               Static.item.roadmap.link = this.innerText.trim();
@@ -1664,8 +1664,8 @@ const start = function (data, ID) {
                       <div
                         class="scheme-card_desc personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.roadmap = this.innerText.trim();
@@ -1688,8 +1688,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.documentation = this.innerText.trim();
@@ -1705,8 +1705,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.documentation = this.innerText.trim();
@@ -1730,8 +1730,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.social = this.innerText.trim();
@@ -1747,8 +1747,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.social = this.innerText.trim();
@@ -1772,8 +1772,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.launchpad = this.innerText.trim();
@@ -1789,8 +1789,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.launchpad = this.innerText.trim();
@@ -1814,8 +1814,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.cexDex = this.innerText.trim();
@@ -1831,8 +1831,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.cexDex = this.innerText.trim();
@@ -1856,8 +1856,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.aggregator = this.innerText.trim();
@@ -1873,8 +1873,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.aggregator = this.innerText.trim();
@@ -1898,8 +1898,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.competitors = this.innerText.trim();
@@ -1915,8 +1915,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.competitors = this.innerText.trim();
@@ -1940,8 +1940,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.mediaText = this.innerText.trim();
@@ -1957,8 +1957,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.mediaText = this.innerText.trim();
@@ -1982,8 +1982,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.audit = this.innerText.trim();
@@ -1996,8 +1996,8 @@ const start = function (data, ID) {
                       <div
                         class="personal-input text mb-15"
                         contenteditable={
-                          Static.item.status == "Draft" ? true 
-                          : Static.item.status == "Modify" ? true : false
+                          Static.item.status == "Draft" ? "plaintext-only" 
+                          : Static.item.status == "Modify" ? "plaintext-only" : false
                         }
                         oninput={function () {
                           Static.item.linkList.audit = this.innerText.trim();

@@ -118,7 +118,7 @@ const forExport = function (data, ID) {
                           params: {
                             update: { status: "Modify" },
                             filter: {
-                              _id: data.idProject,
+                              _id: data.idResearch,
                             }
                           },
                         });
@@ -127,6 +127,7 @@ const forExport = function (data, ID) {
                           params: {
                             type: "mResearchModify",
                             idProject: data.projectId,
+                            idResearch: data.idResearch,
                             author: data.author
                           },
                         });
@@ -152,7 +153,7 @@ const forExport = function (data, ID) {
                           params: {
                             update: { status: "Refused" },
                             filter: {
-                              _id: data.idProject,
+                              _id: data.idResearch,
                             }
                           },
                         });
@@ -161,6 +162,7 @@ const forExport = function (data, ID) {
                           params: {
                             type: "mResearchRefused",
                             idProject: data.projectId,
+                            idResearch: data.idResearch,
                             author: data.author
                           },
                         });

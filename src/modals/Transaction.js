@@ -22,6 +22,9 @@ const forExport = function (data, ID) {
 
   load({
     ID,
+    // fnLoad: async ()=>{
+    //   Static.fieldSum.focus();
+    // },
     fn: () => {
       return (
         <div class="wrap">
@@ -44,6 +47,7 @@ const forExport = function (data, ID) {
                     {data.text}:
                   </label>
                   <input
+                    onkeydown={sendEnter}
                     Element={($el)=>{
                       Static.fieldSum = $el;
                     }}
@@ -72,6 +76,9 @@ const forExport = function (data, ID) {
                     "ml-15",
                     // Static.valueMoney ? null : "btn-disabled"
                   ]}
+                  Element={($el)=>{
+                    Static.btnSubmit = $el;
+                  }}
                   onclick={async function () {
                     if(!Static.fieldSum?.value){
                       return

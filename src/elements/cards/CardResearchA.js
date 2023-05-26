@@ -24,6 +24,7 @@ const traded = function(id, marketplace){
 const forExport = function ({ Static, className, items = [], marketplace = [] }) {
 
   // console.log('=marketplace=', marketplace)
+
   // let [Static] = fn.GetParams({ data, ID });
   return (
     <div class="cards">
@@ -50,7 +51,7 @@ const forExport = function ({ Static, className, items = [], marketplace = [] })
                 <div class="company">
                   <img
                     src={
-                      item.projectId.icon
+                      item.projectId?.icon
                         ? `/assets/upload/${item.projectId.icon}`
                         : images[`research/logo-duma}`]
                     }
@@ -86,7 +87,7 @@ const forExport = function ({ Static, className, items = [], marketplace = [] })
                       initReload();
                     }}
                   >
-                    {item.projectId.bookmarks ? (
+                    {item.projectId?.bookmarks ? (
                       <img src={svg.bellGreen} class="bell" />
                     ) : (
                       <img src={svg.bellWhite} class="bell" />
@@ -144,7 +145,7 @@ const forExport = function ({ Static, className, items = [], marketplace = [] })
                   
                   
                   <span class="ttu line-green">{item.round} ROUND</span>
-                  { item.projectId.tokenPlatform ? 
+                  { item.projectId?.tokenPlatform ? 
 
                   <span class="flex-middleY mr-10">
                     <img class="icon mr-10" src={svg["personal/icons/marketplace"]}></img> 
@@ -155,18 +156,18 @@ const forExport = function ({ Static, className, items = [], marketplace = [] })
                 <div class="progressBlock">
                   <div
                     style={
-                      !item.projectId.have || !item.projectId.amount
+                      !item.projectId?.have || !item.projectId?.amount
                         ? `width: calc(0%)`
-                        : item.projectId.have >= item.projectId.amount
+                        : item.projectId?.have >= item.projectId?.amount
                         ? `width: calc(100%)`
-                        : `width: calc(100% * ${item.projectId.have / item.projectId.amount})`
+                        : `width: calc(100% * ${item.projectId?.have / item.projectId?.amount})`
                     }
                     class="progressBlock-column"
                   ></div>
                 </div>
 
                 <span class="summ">
-                  {item.projectId.have || item.projectId.amount
+                  {item.projectId?.have || item.projectId?.amount
                     ? `${item.projectId.have}$/${item.projectId.amount}$`
                     : null}
                 </span>
