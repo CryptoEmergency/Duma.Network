@@ -11,6 +11,14 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
+const showError = function (text) {
+  Data.MStatic.elError.style.display = "block";
+  Data.MStatic.elError.innerHTML = text;
+  setTimeout(() => {
+    Data.MStatic.elError.style.display = "none";
+  }, 5000);
+};
+
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
   load({
@@ -20,18 +28,25 @@ const start = function (data, ID) {
         Static.item = await fn.socket.get({
           method: "MarketUser",
           _id: Variable.dataUrl.params,
-          params: { populate: { path: "projectId author" } },
+          params: { 
+            populate: [{ 
+              path: "author"
+            },
+            { 
+              path: "projectId",
+              populate: {
+                path: "owner"
+              }  
+            }
+          ]
+          },
         });
       }
       console.log('=Item=',Static.item)
 
       Static.allMarket = await fn.socket.get({
         method: "MarketUser",
-        // _id: Variable.dataUrl.params,
-        // projectId._id: ,
-        // "projectId._id":  Static.item.projectId._id,
         params: { 
-          // filter: { "projectId._id":  Static.item.projectId._id},
           populate: { 
             path: "projectId author" 
           } 
@@ -43,16 +58,16 @@ const start = function (data, ID) {
           Static.itemsMarket.push(item);
         }
       });
-      console.log('=3256bd=', Static.itemsMarket)
       Static.activeImg = Static.item.projectId.gallery[0];
       Static.imgPosition = 0;
       Static.currentSlide = 0;
       Static.slideHidden = Static.item.projectId.gallery.length - 4;
       Static.slideHiddenMobile = Static.item.projectId.gallery.length - 1;
-      Static.invest;
-      Static.investCommission;
-      Static.totalInvest;
-      Static.countToken;
+      Static.invest = "";
+      Static.investCommission = "";
+      Static.totalInvest = "";
+      Static.countToken = "";
+      Static.acceptedInvest = Static.item.projectId.amount - Static.item.projectId.have;
     },
     fn: () => {
       // console.log("=0e0048=", Static.item);
@@ -110,20 +125,27 @@ const start = function (data, ID) {
                   </span>
                   <div class="user-card mb-15 research-user">
                     <div class="user-picture mr-15">
-                      <img src={Static.item.author?.icon ? 
-                        `/assets/upload/${Static.item.author?.icon}` : svg.user} />
+                      <img src={Static.item.projectId.owner?.icon ? 
+                        `/assets/upload/${Static.item.projectId.owner?.icon}` : svg.user} />
                       <div class="user-status">
-                        {Static.item.author?.status}
+                        {Static.item.projectId.owner?.status}
                       </div>
                     </div>
                     <div class="user-info">
-                      <span class="text-green">Author</span>
-                      <div class="user-name">{Static.item.author?.firstName}</div>
+                      <span class="text-green">Owner</span>
+                      <div class="user-name">{Static.item.projectId.owner?.firstName}</div>
                     </div>
                   </div>
                 </div>
                 <div>
                   <div class="about-project">
+                    <div
+                      Element={($el) => {
+                        Static.elError = $el;
+                      }}
+                      style="display:none;"
+                      class="error-text"
+                    ></div>
                     <div
                       class="info-bell"
                       onclick={async () => {
@@ -161,102 +183,127 @@ const start = function (data, ID) {
                       <span class="ttu line-green">Price per token</span>
                       {Static.item.priceToken}$
                     </div>
-
-                    <div class="card-btns mY-15">
-                      <div class="input-notation">
-                        <div class="input-prefix">
-                           <label for="quantity">Quantity</label>
+                    {
+                      Static.item.projectId.have === Static.item.projectId.amount ? 
+                      <div class="project-rang">
+                        <span class="ttu mr-10">{Static.item.projectId.round}</span> the round is over
+                      </div> : 
+                      <div>
+                        <div class="card-btns mY-15">
+                          <div class="input-notation">
+                            <div class="input-prefix">
+                              <label for="quantity">Quantity</label>
+                            </div>
+                            <input
+                              id="quantity"
+                              class="input"
+                              Element={($el) => {
+                                Static.investInput = $el;
+                              }}
+                              oninput={function () {
+                                
+                                let value = this.value.replace(/[^0-9]/g, "");
+                                if(value < 0 ){
+                                  this.value = 0;
+                                }else if(value > Static.acceptedInvest){
+                                  this.value = Static.acceptedInvest;
+                                }else{
+                                  this.value = value;
+                                }
+                                Static.invest = Number(this.value.trim());
+                                Static.investCommission = (Static.invest / 100) * 15;
+                                Static.totalInvest = Static.invest + Static.investCommission;
+                                Static.countToken = (Static.invest / Static.item.priceToken);
+                                initReload();
+                              }}
+                            >{Static.invest}</input>
+                            <div class="input-suffix">$</div>
+                          </div>
+                          <button class="btn btn-black" style="cursor:default;">
+                            {Static.totalInvest
+                              ? `${Static.totalInvest}$`
+                              : `with commission 15%`}
+                          </button>
                         </div>
-                        <input
-                          id="quantity"
-                          class="input"
-                          Element={($el) => {
-                            Static.investInput = $el;
-                          }}
-                          oninput={function () {
-                            this.value = this.value.replace(/[^0-9]/g, "");
-                            Static.invest = Number(this.value.trim());
-                            Static.investCommission = (Static.invest / 100) * 15;
-                            Static.totalInvest = Static.invest + Static.investCommission;
-                            Static.countToken = (Static.invest / Static.item.priceToken);
+                        <div class="card-text">
+                          <span class="ttu line-green">Get project tokens</span>
+                          {Static?.countToken ? Static?.countToken : 0}
+                        </div>
+                        <button
+                          class={[
+                            "btn",
+                            "btn-green",
+                            "mt-10",
+                            Static.totalInvest &&
+                            Static.totalInvest < Variable.myInfo.balance
+                              ? null
+                              : "btn-disabled",
+                          ]}
+                          onclick={async function () {
+                            this.disabled = true;
+                            if (!Variable.auth) {
+                              fn.modals.Login({});
+                              return;
+                            }
+                            if(Static.invest < 10){
+                              fn.modals.Moderator({
+                                text: "The allowed investment amount is $10"
+                              })
+                              return
+                            }
+                            if (
+                              Variable.myInfo.balance < Static.invest ||
+                              typeof(Static.invest) === "undefined"
+                            ) {
+                              fn.modals.Transaction({
+                                title: "Deposit",
+                                text: "Replenishment amount",
+                                type: "deposit",
+                              });
+                              return;
+                            }
+                            if (Static.totalInvest > Variable.myInfo.balance) {
+                              fn.modals.Transaction({
+                                title: "Deposit",
+                                text: "Replenishment amount",
+                                type: "deposit",
+                              });
+                              return;
+                            }
+                            let response = await fn.socket.send({
+                              method: "Invest",
+                              params: {
+                                projectId: Static.item.projectId._id,
+                                sum: Static.invest,
+                                id: Variable.dataUrl.params,
+                              },
+                            });
+                            
+                            if (response.error) {
+                              // showError(response.error[1]);
+                              showError(`Maximum amount of tokens ${Static.item.projectId.tokens}`)
+                              this.disabled = false;
+                              return;
+                            }
+
+                            Static.item.have += Static.invest;
+                            Static.investInput.value = "";
+                            Static.invest = "";
+                            Static.investCommission = "";
+                            Static.totalInvest = "";
+                            Static.countToken = "";
+                            fn.modals.Success({
+                              title: `You have successfully invested in the project ${Static.item.name}`
+                            })
                             initReload();
                           }}
-                        />
-                        <div class="input-suffix">$</div>
+                        >
+                          BECOME OUR PARTNER
+                        </button>
                       </div>
-                      <button class="btn btn-black" style="cursor:default;">
-                        {Static.totalInvest
-                          ? `${Static.totalInvest}$`
-                          : `with commission 15%`}
-                      </button>
-                    </div>
-                    <div class="card-text">
-                      <span class="ttu line-green">Get project tokens</span>
-                      {Static?.countToken ? Static?.countToken : 0}
-                    </div>
-                    <button
-                      class={[
-                        "btn",
-                        "btn-green",
-                        "mt-10",
-                        Static.totalInvest &&
-                        Static.totalInvest < Variable.myInfo.balance
-                          ? null
-                          : "btn-disabled",
-                      ]}
-                      onclick={async function () {
-                        if (!Variable.auth) {
-                          fn.modals.Login({});
-                          return;
-                        }
-                        if (
-                          Variable.myInfo.balance < Static.invest ||
-                          typeof(Static.invest) === "undefined"
-                        ) {
-                          fn.modals.Transaction({
-                            title: "Deposit",
-                            text: "Replenishment amount",
-                            type: "deposit",
-                          });
-                          return;
-                        }
-                        if (Static.totalInvest > Variable.myInfo.balance) {
-                          fn.modals.Transaction({
-                            title: "Deposit",
-                            text: "Replenishment amount",
-                            type: "deposit",
-                          });
-                          return;
-                        }
-                        await fn.socket.send({
-                          method: "Invest",
-                          params: {
-                            projectId: Static.item.projectId._id,
-                            sum: Static.invest,
-                            id: Variable.dataUrl.params,
-                          },
-                        });
-                        
-                        Static.item.have += Static.invest;
-                        Static.investInput.value = "";
-                        Static.invest = "";
-                        Static.investCommission = "";
-                        Static.totalInvest = "";
-                        Static.countToken = "";
-                        fn.modals.Success({
-                          title: `You have successfully invested in the project ${Static.item.name}`
-                        })
-                        initReload();
-                      }}
-                    >
-                      BECOME OUR PARTNER
-                    </button>
+                    }
                     
                     
-
-                   
-
-                 
                   </div>
                 </div>
               </section>
@@ -293,7 +340,6 @@ const start = function (data, ID) {
                                 class="btn btn-green"
                                 onclick={()=>{
                                   fn.modals.BuyTokens({
-                                    // title: 
                                     projectId: item.projectId._id,
                                     id: item._id
                                   })

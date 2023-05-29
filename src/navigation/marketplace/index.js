@@ -168,6 +168,7 @@ const start = function (data, ID) {
           },
         },
       });
+
       Static.slides = await fn.socket.get({
         // method: "Marketplace",
         // method: "Research",
@@ -827,6 +828,70 @@ const start = function (data, ID) {
                     </div>
                   )}
                 </tbody>
+                {/* <tbody>
+                  {
+                    Static.records.map((item) => {
+                      return (
+                        <tr class="table-m-item">
+                          <td class="small-logo">
+                            <img
+                              src={
+                                item.projectId?.icon
+                                  ? `/assets/upload/${item.projectId.icon}`
+                                  : images[`research/logo-duma}`]
+                              }
+                            />
+                          </td>
+                          <td>{item.projectId?.name}</td>
+                          <td>{item.projectId?.round}</td>
+                          <td>{item.projectId?.category}</td>
+                          <td>{item.priceToken
+                              ? `${item.priceToken}$`
+                              : "—"}</td>
+                          <td>
+                            {item.tokens
+                              ? `${item.tokens}`
+                              : "—"}
+                          </td>
+                          <td>
+                            {`${item.projectId.have}$ / ${item.projectId.amount}$`}
+                          </td>
+                          <td>
+                            <img
+                              class="blockchain"
+                              src={
+                                item.projectId.blockchains?.icon
+                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                  : svg.binance
+                              }
+                            />
+                          </td>
+                          <td>
+                            <button 
+                              onclick={()=>{
+                                fn.siteLink("/marketplace/show/" + item._id);
+                              }}
+                              class="btn btn-green">
+                                MORE INFO
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              onclick={()=>{
+                                if(Variable.myInfo.status === "User"){
+                                  fn.modals.Status({});
+                                }
+                                fn.siteLink("/researchA/show/" + item.projectId._id);
+                              }}
+                              class="btn btn-green">
+                              RESEARCH
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  }
+                </tbody> */}
 
 
                 <div class="btn-block">

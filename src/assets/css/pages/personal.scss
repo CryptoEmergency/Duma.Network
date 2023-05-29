@@ -859,10 +859,6 @@
     grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 1fr 1fr;
   }
 
-  &_invested {
-    grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr;
-  }
-
   &:nth-child(2n) {
     background: var(--back-blur);
   }
@@ -880,6 +876,10 @@
   .btn {
     width: 100%;
   }
+}
+
+.bookmarks-item_invested {
+  grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr;
 }
 
 .btn-transparent {

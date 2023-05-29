@@ -20,7 +20,7 @@ const forExport = function ({ className }) {
           href="https://duma-network.gitbook.io/duma.network-eng2/"
           class="btn btn-green"
         >
-          Dataroom
+          Whitepaper
         </a>
       </div>
       <div class="social info-social_item">

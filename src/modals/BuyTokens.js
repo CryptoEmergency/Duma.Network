@@ -29,7 +29,7 @@ const forExport = function (data, ID) {
       Static.investCommission;
       Static.totalInvest;
       Static.countToken;
-
+      Static.acceptedInvest = Static.item.tokens * Static.item.priceToken;
     },
     fn: () => {
       return (
@@ -49,16 +49,33 @@ const forExport = function (data, ID) {
               </header>
               <main class="main-modal">
                 <div class="about-project">
-
-                  <div class="card-text">
-                    <span class="ttu line-green">Available</span>
-                    {Variable.myInfo.balance.toFixed(2)}$
+                  <div
+                    Element={($el) => {
+                      Static.elError = $el;
+                    }}
+                    style="display:none;"
+                    class="error-text"
+                  ></div>
+                  <div class="grid-2">
+                    <div class="card-text">
+                      <span class="ttu line-green">Available</span>
+                      {Variable.myInfo.balance.toFixed(2)}$
+                    </div>
+                    <span class="rang">
+                      {Static.item.tokens} tokens
+                    </span>
                   </div>
-
-                  <div class="card-text">
-                    <span class="ttu line-green">Price per token</span>
-                    {Static.item.priceToken}$
+                  <div class="grid-2">
+                    <div class="card-text">
+                      <span class="ttu line-green">Price per token</span>
+                      {Static.item.priceToken}$
+                    </div>
+                    <span class="rang">
+                      {/* Maximum invest {(Static.acceptedInvest).toFixed(2)}$ */}
+                      Maximum invest {Static.acceptedInvest}$
+                    </span>
                   </div>
+                  
 
                   <div class="card-btns mY-15">
                     <div class="input-notation">
@@ -72,7 +89,15 @@ const forExport = function (data, ID) {
                           Static.investInput = $el;
                         }}
                         oninput={function () {
-                          this.value = this.value.replace(/[^0-9]/g, "");
+                          let value = this.value.replace(/[^0-9]/g, "");
+                          if(value < 0){
+                            this.value = 0;
+                          }else if(value > Static.acceptedInvest){
+                            this.value = Static.acceptedInvest;
+                          }else{
+                            this.value = value;
+                          }
+
                           Static.invest = Number(this.value.trim());
                           Static.investCommission = (Static.invest / 100) * 15;
                           Static.totalInvest = Static.invest + Static.investCommission;
@@ -107,9 +132,16 @@ const forExport = function (data, ID) {
                       : "btn-disabled",
                   ]}
                   onclick={async function () {
+                    this.disabled = true;
                     if (!Variable.auth) {
                       fn.modals.Login({});
                       return;
+                    }
+                    if(Static.invest < 10){
+                      fn.modals.Moderator({
+                        text: "The allowed investment amount is $10"
+                      })
+                      return
                     }
                     if (
                       Variable.myInfo.balance < Static.invest ||
@@ -130,16 +162,23 @@ const forExport = function (data, ID) {
                       });
                       return;
                     }
-                    await fn.socket.send({
+                    let response = await fn.socket.send({
                       method: "BuyToken",
                       params: {
                         projectId: Static.item.projectId._id,
                         sum: Static.invest,
-                        id: Variable.dataUrl.params,
+                        id: Static.item._id,
                         author: Static.item.author._id,
                       },
                     });
                     
+                    if (response.error) {
+                      showError(response.error[1]);
+                      // showError(`Maximum amount of tokens ${Static.item.projectId.tokens}`)
+                      this.disabled = false;
+                      return;
+                    }
+
                     Static.item.have += Static.invest;
                     Static.investInput.value = "";
                     Static.invest = "";

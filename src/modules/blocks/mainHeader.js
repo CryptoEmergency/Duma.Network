@@ -401,10 +401,10 @@ const mainHeader = async function () {
                         <li>
                           <a
                             target="_blank"
-                            href="https://duma-network.gitbook.io/duma.network-eng/"
+                            href="https://duma-network.gitbook.io/duma.network-eng2/"
                             class="menu-sublist_item"
                           >
-                            DataRoom
+                            Whitepaper
                           </a>
                         </li>
                         <li>

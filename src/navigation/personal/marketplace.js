@@ -76,6 +76,23 @@ const start = function (data, ID) {
               <section class="bookmarks main">
                 <h2 class="general-title mt-25">Invested projects</h2>
                 
+                <table class="table-pm">
+                  <thead class="table-pm-header">
+                    <tr class="bookmarks-item bookmarks-item_invested">
+                      {/* <th></th> */}
+                      <th>Project</th>
+                      <th>Round</th>
+                      <th>Tokens</th>
+                      <th>Collect</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-pm-body"></tbody>
+                </table>
+
+
+
+
                 <div class={["bookmarks-inner", "mt-25", Static.tokens.length ? null : "list-notFound"]}>
                   
                   {Static.tokens.length != 0 ?
