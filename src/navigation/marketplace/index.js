@@ -158,7 +158,7 @@ const start = function (data, ID) {
       if (Variable.dataUrl.params) {
         Static.activeTabM = Variable.dataUrl.params;
       }
-      Static.records = await fn.socket.get({
+      Static.recordsDuma = await fn.socket.get({
         method: "MarketUser",
         params: {
           filter: { moderation: true, author: '6461b5b1179f315ed7fc65ce' },
@@ -168,6 +168,20 @@ const start = function (data, ID) {
           },
         },
       });
+      Static.records = await fn.socket.get({
+        method: "MarketUser",
+        params: {
+          filter: { moderation: true,  },
+          populate: {
+            path: "projectId",
+          },
+        },
+      });
+
+      // Static.table = []
+      // Static.records.forEach((item, index)=>{
+
+      // })
 
       Static.slides = await fn.socket.get({
         // method: "Marketplace",
@@ -179,7 +193,6 @@ const start = function (data, ID) {
           populate: { path: "projectId" },
         },
       });
-      console.log('=slides=', Static.slides)
 
       Static.projects = await fn.socket.get({
         method: "Research",
@@ -485,7 +498,7 @@ const start = function (data, ID) {
                       <button
                         class="btn"
                         onclick={() => {
-                          makeFilters(Static.records);
+                          makeFilters(Static.recordsDuma);
                         }}
                       >
                         Apply
@@ -760,8 +773,8 @@ const start = function (data, ID) {
                   class="table-m-body"
                   // hidden={Static.activeTabM == "all" ? false : true}
                 >
-                  {Static.records.length ? (
-                    Static.records.map((item) => {
+                  {Static.recordsDuma.length ? (
+                    Static.recordsDuma.map((item) => {
                       return (
                         <tr class="table-m-item">
                           <td class="small-logo">

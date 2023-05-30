@@ -164,7 +164,7 @@ const start = function (data, ID) {
                                           await fn.socket.send({
                                             method: "SendTelegram",
                                             params: {
-                                              type: "mProjectPublish",
+                                              type: "mProjectPmublish",
                                               idProject: item._id,
                                               author: item.author._id
                                             },

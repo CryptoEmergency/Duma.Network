@@ -153,7 +153,7 @@ const mainHeader = async function () {
                       <ul class="menu-sublist">
                         <li
                           onclick={(e) => {
-                            fn.siteLink("/research/seed");
+                            fn.siteLink("/researchA/seed");
                             burgerMenu("hide");
                           }}
                         >
@@ -161,7 +161,7 @@ const mainHeader = async function () {
                         </li>
                         <li
                           onclick={(e) => {
-                            fn.siteLink("/research/private");
+                            fn.siteLink("/researchA/private");
                             burgerMenu("hide");
                           }}
                         >
@@ -169,7 +169,7 @@ const mainHeader = async function () {
                         </li>
                         <li
                           onclick={(e) => {
-                            fn.siteLink("/research/public");
+                            fn.siteLink("/researchA/public");
                             burgerMenu("hide");
                           }}
                         >
@@ -177,7 +177,7 @@ const mainHeader = async function () {
                         </li>
                         <li
                           onclick={(e) => {
-                            fn.siteLink("/research/pre-seed");
+                            fn.siteLink("/researchA/pre-seed");
                             burgerMenu("hide");
                           }}
                         >
@@ -185,7 +185,7 @@ const mainHeader = async function () {
                         </li>
                         <li
                           onclick={(e) => {
-                            fn.siteLink("/research/strategic");
+                            fn.siteLink("/researchA/strategic");
                             burgerMenu("hide");
                           }}
                         >

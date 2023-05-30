@@ -198,6 +198,19 @@ const forExport = function ({ Static, onclick, className, }) {
                   <span class="sidebar-title">My marketplace</span>
                 </a>
               </li>
+              <li class={["sidebar-item",
+                  Variable.dataUrl.category == "history" ? "sidebar-item_active" : null]}>
+                <a
+                  onclick={() => {
+                    fn.siteLink("/personal/history/");
+                  }}
+                >
+                  <span class="sidebar-icon">
+                    <img src={svg["personal/icons/history"]}/>
+                  </span>
+                  <span class="sidebar-title">History</span>
+                </a>
+              </li>
               
               {Variable.myInfo.role ? 
               <li class={["sidebar-item",

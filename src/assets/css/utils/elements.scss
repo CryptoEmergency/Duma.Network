@@ -307,3 +307,60 @@
   border-radius: 10px;
   background: var(--back-secondary);
 }
+
+.table-pm-header {
+  .bookmarks-item {
+    border-bottom: 1px solid var(--back-primary);
+  }
+}
+
+.table-pm-body {
+  &.bookmarks-inner {
+    overflow-x: visible;
+  }
+
+  .bookmarks-item {
+    .icon-status {
+      right: auto;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+    }
+
+    .question-container {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+// history
+.table-history {
+  background: var(--back-secondary);
+  width: 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.table-history_item {
+  display: grid;
+  position: relative;
+  grid-template-rows: 50px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 5px 8px;
+
+  // height: 60px;
+  &_transaction {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.table-history_item:nth-child(2n) {
+  background: var(--back-blur);
+}

@@ -43,18 +43,25 @@ const start = function (data, ID) {
         });
       }
       console.log('=Item=',Static.item)
-
+      console.log('=check id=', Variable.myInfo._id)
       Static.allMarket = await fn.socket.get({
         method: "MarketUser",
         params: { 
+          filter: { projectId: Static.item.projectId._id },
           populate: { 
             path: "projectId author" 
           } 
         },
       });
+      console.log('=6506e4=', Static.allMarket)
       Static.itemsMarket = [];
+      // Static.allMarket.forEach((item)=>{
+      //   if(item.projectId._id == Static.item.projectId._id){
+      //     Static.itemsMarket.push(item);
+      //   }
+      // });
       Static.allMarket.forEach((item)=>{
-        if(item.projectId._id == Static.item.projectId._id){
+        if(item.tokens != 0){
           Static.itemsMarket.push(item);
         }
       });
@@ -310,6 +317,7 @@ const start = function (data, ID) {
 
               <section class="scheme-cards mY-15">
                 {Static.itemsMarket.map((item, index)=>{
+                  console.log('=check id=', item)
                   return(
                     <div>
                       {item.author._id == '6461b5b1179f315ed7fc65ce' ?
@@ -335,18 +343,22 @@ const start = function (data, ID) {
                                 <span>Tokens: {item.tokens}</span>
                                 
                               </div>
-
-                              <button 
-                                class="btn btn-green"
-                                onclick={()=>{
-                                  fn.modals.BuyTokens({
-                                    projectId: item.projectId._id,
-                                    id: item._id
-                                  })
-                                }}
-                              >
-                                Buy tokens
-                              </button>
+                              {
+                                item.author._id == Variable.myInfo._id ? 
+                                null : 
+                                <button 
+                                  class="btn btn-green"
+                                  onclick={()=>{
+                                    fn.modals.BuyTokens({
+                                      projectId: item.projectId._id,
+                                      id: item._id
+                                    })
+                                  }}
+                                >
+                                  Buy tokens
+                                </button>
+                              }
+                              
 
                               <div class="user-card mb-15 research-user">
                                 <div class="user-picture mr-15">
@@ -362,11 +374,6 @@ const start = function (data, ID) {
                                 </div>
                               </div>
                             </div>
-                            
-                            
-                            
-
-                          
                           </div>
                         </div>
                       }

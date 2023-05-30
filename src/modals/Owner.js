@@ -261,6 +261,11 @@ const forExport = function (data, ID) {
                         author: Static.chooseProject.author._id
                       },
                     });
+                    // await fn.socket.set({
+                    //   method: "HistoryMarketplace",
+                    //   action: "insert",
+                    //   params: { insert: { type: "owner",  } },
+                    // });
                     initReload()
                     fn.modals.close(ID);
                   }}

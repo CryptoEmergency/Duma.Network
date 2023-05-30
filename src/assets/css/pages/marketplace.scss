@@ -248,6 +248,14 @@
       width: 100%;
     }
   }
+
+  &.tabs-h {
+    margin-top: 25px;
+
+    .tab-item {
+      width: 20%;
+    }
+  }
 }
 
 .table-m-content {

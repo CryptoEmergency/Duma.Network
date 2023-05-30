@@ -32,7 +32,16 @@ const start = function (data, ID) {
           }
         },
       });
-      console.log('=table tokens=',Static.tokens);
+      Static.historyTransaction = await fn.socket.get({
+        method: "HistoryTransaction",
+        // params: { 
+        //   populate: { path: "projectId" },
+        //   filter:  {
+        //     idUser: Variable.myInfo._id,
+        //   }
+        // },
+      });
+      console.log('=HistoryTransaction=', Static.historyTransaction)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -181,6 +190,57 @@ const start = function (data, ID) {
                                   class="btn btn-transparent">
                                     more
                                 </button>
+                              </div>
+                            );
+                          }) : 
+                          <div class="notFound">
+                            <span>Records not found in table</span>
+                            <img src={svg.notFound} />
+                          </div>
+                        }
+                      </div>
+
+                    </div>
+                    <div class="blocks-item history" style="height: 400px;">
+                      <span class="text-category text">History Transaction</span>
+                      <div class="bookmarks-inner mt-25">
+                  
+                        {Static.historyTransaction.length ?
+                          Static.historyTransaction.map((item) => {
+                            return (
+                              <div class="bookmarks-item bookmarks-item_token">
+                                {/* <div class="user-card">
+                                  <img
+                                    class="bookmarks-icon"
+                                    src={
+                                      item.projectId?.icon
+                                        ? `/assets/upload/${item.projectId.icon}`
+                                        : images["personal/logoProject"]
+                                    }
+                                  />
+                                  <span>{item.projectId?.name}</span>
+                                </div>
+                                <div class="round">{item.projectId?.tabs}</div>
+                                <div class="price">{item.tokens}</div>
+                                <div class="price">{item.projectId.seedRound}$</div>
+                                <div>{item.projectId?.have}$/{item.projectId?.target}$</div>
+                                <button
+                                  onclick={(e)=>{
+                                    fn.siteLink("/research/show/" + item.projectId._id);
+                                  }}   
+                                  class="btn btn-transparent">
+                                    more
+                                </button> */}
+                                <span 
+                                  class={["ttu", "bold", 
+                                  item.type == "deposit" ? "text-green" : "text-red"
+                                ]}
+                                >
+                                  {item.type}
+                                </span>
+                                <span>{item.date}</span>
+                                <span>{item.sum}$</span>
+                                
                               </div>
                             );
                           }) : 
