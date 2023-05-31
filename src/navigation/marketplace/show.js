@@ -42,8 +42,6 @@ const start = function (data, ID) {
           },
         });
       }
-      console.log('=Item=',Static.item)
-      console.log('=check id=', Variable.myInfo._id)
       Static.allMarket = await fn.socket.get({
         method: "MarketUser",
         params: { 
@@ -317,7 +315,6 @@ const start = function (data, ID) {
 
               <section class="scheme-cards mY-15">
                 {Static.itemsMarket.map((item, index)=>{
-                  console.log('=check id=', item)
                   return(
                     <div>
                       {item.author._id == '6461b5b1179f315ed7fc65ce' ?

@@ -119,6 +119,8 @@ const forExport = function (data, ID) {
                     let insert = {
                       projectId: Static.chooseProject._id,
                       gallery: Static.chooseProject.gallery,
+                      round: Static.chooseProject.round, 
+                      category: Static.chooseProject.category
                     };
                     let response = await fn.socket.set({
                       method: "ResearchAnalyst",

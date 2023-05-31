@@ -94,7 +94,7 @@ const forExport = function ({ Static, onclick, className, }) {
                   <span class="sidebar-title">Dashboard</span>
                 </a>
               </li>
-              <li class={["sidebar-item",
+              {/* <li class={["sidebar-item",
                   Variable.dataUrl.category == "wallet" ? "sidebar-item_active" : null]}>
                 <a
                   onclick={() => {
@@ -106,8 +106,8 @@ const forExport = function ({ Static, onclick, className, }) {
                   </span>
                   <span class="sidebar-title">Wallet</span>
                 </a>
-              </li>
-              <li class={["sidebar-item",
+              </li> */}
+              {/* <li class={["sidebar-item",
                   Variable.dataUrl.category == "portfolio" ? "sidebar-item_active" : null]}>
                 <a
                   onclick={() => {
@@ -119,7 +119,7 @@ const forExport = function ({ Static, onclick, className, }) {
                   </span>
                   <span class="sidebar-title">Portfolio</span>
                 </a>
-              </li>
+              </li> */}
               <li class={["sidebar-item",
                   Variable.dataUrl.category == "referral" ? "sidebar-item_active" : null]}>
                 <a
@@ -198,19 +198,36 @@ const forExport = function ({ Static, onclick, className, }) {
                   <span class="sidebar-title">My marketplace</span>
                 </a>
               </li>
-              <li class={["sidebar-item",
-                  Variable.dataUrl.category == "history" ? "sidebar-item_active" : null]}>
-                <a
-                  onclick={() => {
-                    fn.siteLink("/personal/history/");
-                  }}
-                >
-                  <span class="sidebar-icon">
-                    <img src={svg["personal/icons/history"]}/>
-                  </span>
-                  <span class="sidebar-title">History</span>
-                </a>
-              </li>
+              {
+                Variable.myInfo._id == '6461b65d179f315ed7fc663e' ? 
+                <li class={["sidebar-item",
+                    Variable.dataUrl.category == "historyBank" ? "sidebar-item_active" : null]}>
+                  <a
+                    onclick={() => {
+                      fn.siteLink("/personal/historyBank/");
+                    }}
+                  >
+                    <span class="sidebar-icon">
+                      <img src={svg["personal/icons/history"]}/>
+                    </span>
+                    <span class="sidebar-title">History bank</span>
+                  </a>
+                </li> : 
+                <li class={["sidebar-item",
+                    Variable.dataUrl.category == "history" ? "sidebar-item_active" : null]}>
+                  <a
+                    onclick={() => {
+                      fn.siteLink("/personal/history/");
+                    }}
+                  >
+                    <span class="sidebar-icon">
+                      <img src={svg["personal/icons/history"]}/>
+                    </span>
+                    <span class="sidebar-title">History</span>
+                  </a>
+                </li>
+              }
+              
               
               {Variable.myInfo.role ? 
               <li class={["sidebar-item",

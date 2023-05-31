@@ -19,7 +19,6 @@ const forExport = function (data, ID) {
         <div class="wrap">
           <div class="wrap-body">
             <div class="wrap-content" id="settingsPage">
-              
               <header class="header-modal">
                 <h2 class="general-title mt-0">{data.title}</h2>
                 <button
@@ -46,7 +45,7 @@ const forExport = function (data, ID) {
                           });
                           fn.modals.close(ID);
                           fn.modals.Success({
-                            title: "You have been assigned investor status"
+                            title: `You have been assigned ${data.type} status`
                           })
                         }else{
                           fn.modals.close(ID);

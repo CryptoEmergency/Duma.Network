@@ -56,12 +56,22 @@ const start = function (data, ID) {
         params: { filter: { _id: Variable.myInfo._id } },
       });  
       Static.myRef = await fn.socket.get({
-        method: "Users",
+        method: "HistoryReferral",
         params: {
           filter: { ref: Variable.myInfo._id },
-          limit: 5,
+          populate: { path: "idUser" },
+          // limit: 5,
         },
       });
+      Static.myRefInvest = [];
+      Static.myRef.forEach((item)=>{
+        if(item.refSum != 0){
+          Static.myRefInvest.push(item);
+        }
+      })
+      console.log('=ref invest=',Static.myRefInvest)
+      console.log('=ref=',Static.myRef)
+
       Static.invests = await fn.socket.get({
         method: "Investing",
         // params: {
@@ -71,26 +81,6 @@ const start = function (data, ID) {
       });
 
 
-      // Static.infoRef = [];
-      // Static.refId = [];
-      // Static.refInvest = [];
-      // Static.myRef=[];
-      // Static.tmp.forEach((item)=>{
-      //   if(item.idUser?.ref == Variable.myInfo._id && item.type == "investing"){
-      //     Static.infoRef.push(item);
-      //   }
-      // });
-
-      // for(let i = 0; i < Static.infoRef.length; i++){
-      //   let item = Static.infoRef[i];
-      //   console.log('=ae622d=',item)
-      //   if(!Static.refInvest.includes(item.idUser._id)){
-      //     Static.refInvest.push(item);
-      //     // Static.refId.push()
-      //   }
-      // }
-      // console.log('=10281a=',Static.refInvest , Static.infoRef)
-      console.log('=1f7193=',Static.invests)
     },
     fn: () => {
       if (!Variable.auth) {
@@ -227,8 +217,8 @@ const start = function (data, ID) {
                           </div>
                           <div class="ref-general">
                             <span class="num_big">
-                              {/* {Static.refInvest.length} */}
-                              0
+                              {Static.myRefInvest.length}
+                              
                             </span>
                             <span class="text">Confirmed</span>
                           </div>
@@ -243,36 +233,32 @@ const start = function (data, ID) {
                           </svg>
                         </div>
                       </div>
-                      <div class="block-table">
-                        <div class="block-table_row subtitle">
-                          <span>№</span>
-                          <span>%</span>
-                          <span>E-mail</span>
-                          <span>Projects</span>
-                          <span>Average amount</span>
-                          <span>Total sum</span>
-                          <span>Referral</span>
-                        </div>
-                        {
-                          Static.myRef.map((item, index)=>{
-                            return(
-                              <div class="block-table_row">
-                                <span>{index + 1}</span>
-                                <span>15%</span>
-                                <span>
-                                  {item.email}
-                                </span>
-                                {/* <span>{countTotalProjects(item, Static.infoRef)}</span> */}
-                                <span>0</span>
-                                <span>344$</span>
-                                {/* <span>{countTotalSum(item, Static.infoRef)}$</span> */}
-                                <span>0</span>
-                                <span>1234</span>
-                              </div>
-                            )
-                          })
-                        }
-                      </div>
+                      { 
+                        Static.myRefInvest.length ? 
+                        <div class="block-table">
+                          <div class="block-table_row subtitle">
+                            <span>№</span>
+                            <span>E-mail</span>
+                            <span>Invest total</span>
+                            <span>Referral</span>
+                          </div>
+                          {
+                            Static.myRefInvest.map((item, index)=>{
+                              return(
+                                <div class="block-table_row">
+                                  <span>{index + 1}</span>
+                                  <span>
+                                    {item.idUser.email}
+                                  </span>
+                                  <span>{item?.invest}</span>
+                                  <span>{item?.refSum.toFixed(2)}$</span>
+                                </div>
+                              )
+                            })
+                          }
+                        </div> : null
+                      }
+                      
                     </div>
                     <div class="blocks-item platform">
                       <div class="blur">

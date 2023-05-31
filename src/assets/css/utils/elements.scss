@@ -337,11 +337,22 @@
 }
 
 // history
+.table {
+  overflow: hidden;
+  position: relative;
+}
+
 .table-history {
   background: var(--back-secondary);
   width: 100%;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
+  // display: inline-block;
+  vertical-align: top;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 .table-history_item {
@@ -357,7 +368,29 @@
 
   // height: 60px;
   &_transaction {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 0.25fr 1fr 1fr 1fr;
+  }
+
+  &_subscribe {
+    grid-template-columns: 0.25fr 1fr 1fr 1fr 0.5fr 0.5fr;
+    justify-items: flex-start;
+  }
+
+  &_invest {
+    grid-template-columns: 0.25fr 1fr 1fr 1fr 0.5fr 0.5fr 0.5fr 0.25fr 0.25fr;
+
+    .list-news {
+      .ref {
+        padding: 5px;
+        border-radius: 3px;
+        background: var(--green);
+        font-size: 10px;
+      }
+    }
+  }
+
+  &_invest-user {
+    grid-template-columns: 0.25fr 0.5fr 1fr 0.5fr 0.5fr 1fr;
   }
 }
 

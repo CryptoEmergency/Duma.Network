@@ -169,6 +169,7 @@ const forExport = function (data, ID) {
                         sum: Static.invest,
                         id: Static.item._id,
                         author: Static.item.author._id,
+                        priceToken: Static.item.priceToken
                       },
                     });
                     
