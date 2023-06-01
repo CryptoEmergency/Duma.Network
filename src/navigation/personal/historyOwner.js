@@ -16,8 +16,8 @@ import Elements from "@src/elements/export.js";
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
-  Static.activeTab = "transaction";
-  Static.history = [];
+  Static.activeTab = "stay owner";
+  Static.historyProjects = [];
   load({
     ID,
     fnLoad: async () => {
@@ -25,12 +25,14 @@ const start = function (data, ID) {
         fn.siteLink("/");
         return;
       }
-      Static.history = await fn.socket.get({
-        method: "HistoryTransaction",
+      Static.historyProjects = await fn.socket.get({
+        method: "HistoryOwner",
         params: { 
           filter:  {
             idUser: Variable.myInfo._id,
-          }
+            type: "owner"
+          },
+          populate: { path: "projectId" }
         },
       });
     },
@@ -46,20 +48,40 @@ const start = function (data, ID) {
             <Elements.BlockMenu />
             <div class="personal-main">
               <Elements.BlockPersonal />
+              <h2 class="general-title mY-25">My projects</h2>
               <Elements.Tabs
                 class="tabs-h"
                 varName={"activeTab"}
                 items={[
                   {
-                    title: "Transaction",
-                    name: "transaction",
+                    title: "Stay owner",
+                    name: "stay owner",
                     onclick: async ()=>{
-                      Static.history = await fn.socket.get({
-                        method: "HistoryTransaction",
+                      Static.historyProjects = await fn.socket.get({
+                        method: "HistoryOwner",
                         params: { 
                           filter:  {
                             idUser: Variable.myInfo._id,
-                          }
+                            type: "owner"
+                          },
+                          populate: { path: "projectId" }
+                        },
+                      });
+                      initReload();
+                    }
+                  },
+                  {
+                    title: "Get tokens",
+                    name: "get tokens",
+                    onclick: async ()=>{
+                      Static.historyProjects = await fn.socket.get({
+                        method: "HistoryOwner",
+                        params: { 
+                          filter:  {
+                            idUser: Variable.myInfo._id,
+                            type: "get tokens"
+                          },
+                          populate: { path: "projectId" }
                         },
                       });
                       initReload();
@@ -69,28 +91,25 @@ const start = function (data, ID) {
                     title: "Investing",
                     name: "investing",
                     onclick: async ()=>{
-                      Static.history = await fn.socket.get({
-                        method: "HistoryMarketplace",
+                      Static.historyProjects = await fn.socket.get({
+                        method: "HistoryOwner",
                         params: { 
                           filter:  {
                             idUser: Variable.myInfo._id,
                             type: "investing"
                           },
-                          populate: {
-                            path: "projectId"
-                          }
+                          populate: { path: "projectId" }
                         },
                       });
-                      console.log('=0660e5=', Static.history)
                       initReload();
                     }
                   },
                   {
                     title: "Sale",
-                    name: "sale tokens",
+                    name: "sale",
                     onclick: async ()=>{
-                      Static.history = await fn.socket.get({
-                        method: "HistoryMarketplace",
+                      Static.historyProjects = await fn.socket.get({
+                        method: "HistoryOwner",
                         params: { 
                           filter:  {
                             idUser: Variable.myInfo._id,
@@ -103,15 +122,15 @@ const start = function (data, ID) {
                     }
                   },
                   {
-                    title: "Withdraw",
-                    name: "withdraw tokens",
+                    title: "Buy",
+                    name: "buy",
                     onclick: async ()=>{
-                      Static.history = await fn.socket.get({
-                        method: "HistoryMarketplace",
+                      Static.historyProjects = await fn.socket.get({
+                        method: "HistoryOwner",
                         params: { 
                           filter:  {
                             idUser: Variable.myInfo._id,
-                            type: "withdraw tokens"
+                            type: "buy tokens"
                           },
                           populate: { path: "projectId" }
                         },
@@ -120,15 +139,15 @@ const start = function (data, ID) {
                     }
                   },
                   {
-                    title: "Buy",
-                    name: "buy tokens",
+                    title: "Withdraw",
+                    name: "withdraw",
                     onclick: async ()=>{
-                      Static.history = await fn.socket.get({
-                        method: "HistoryMarketplace",
+                      Static.historyProjects = await fn.socket.get({
+                        method: "HistoryOwner",
                         params: { 
                           filter:  {
                             idUser: Variable.myInfo._id,
-                            type: "buy tokens"
+                            type: "withdraw tokens"
                           },
                           populate: { path: "projectId" }
                         },
@@ -141,19 +160,19 @@ const start = function (data, ID) {
                 
                 <table 
                   class="table-history"
-                  hidden = {Static.activeTab == "transaction" ? false : true}
+                  hidden = {Static.activeTab == "stay owner" ? false : true}
                 >
                   <thead class="table-pm-header">
                     <tr class="table-history_item table-history_item_transaction">
                       <th>№</th>
                       <th>Operation</th>
                       <th>Date</th>
-                      <th>Sum</th>
+                      <th>Project</th>
                     </tr>
                   </thead>
                   <tbody class="table-history-body">
                     {
-                      Static.history.map((item, index)=>{
+                      Static.historyProjects.map((item, index)=>{
                         return(
                           <div class="table-history_item table-history_item_transaction">
                             <span>{index + 1}</span>
@@ -167,7 +186,43 @@ const start = function (data, ID) {
                             </span>
                             {/* <span>{item.date}</span> */}
                             <span>{fn.getDateFormat(item.date, "time")}</span>
-                            <span>{item?.sum ? `${Math.abs(item?.sum)}$` : "—"}</span>
+                            <span>{item.projectId?.name}</span>
+                          </div>
+                        )
+                      })
+                    }
+                  </tbody>
+                </table>
+                <table 
+                  class="table-history"
+                  hidden = {Static.activeTab == "get tokens" ? false : true}
+                >
+                  <thead class="table-pm-header">
+                    <tr class="table-history_item table-history_item_invest-user">
+                      <th>№</th>
+                      <th>Operation</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Tokens</th>
+                      <th>Project</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-history-body table-pm-body bookmarks-inner">
+                    {
+                      Static.historyProjects.map((item, index)=>{
+                        return(
+                          <div class="table-history_item table-history_item_invest-user">
+                            <span>{index + 1}</span>
+                            <span 
+                              class={["ttu"]}
+                            >
+                              {item.type}
+                            </span>
+                            {/* <span>{item.date}</span> */}
+                            <span>{fn.getDateFormat(item.date, "time")}</span>
+                            <span>{item?.tokens * item?.priceToken}$</span>
+                            <span>{item?.tokens}</span>
+                            <span>{item.projectId?.name}</span>
                           </div>
                         )
                       })
@@ -183,53 +238,14 @@ const start = function (data, ID) {
                       <th>№</th>
                       <th>Operation</th>
                       <th>Date</th>
-                      <th>Sum</th>
+                      <th>Amount</th>
                       <th>Tokens</th>
                       <th>Project</th>
                     </tr>
                   </thead>
                   <tbody class="table-history-body table-pm-body bookmarks-inner">
                     {
-                      Static.history.map((item, index)=>{
-                        return(
-                          <div class="table-history_item table-history_item_invest-user">
-                            <span>{index + 1}</span>
-                            <span 
-                              class={["ttu", 
-                              item.type == "withdraw" ? "text-red" 
-                              : item.type == "deposit" ? "text-green" : null
-                              ]}
-                            >
-                              {item.type}
-                            </span>
-                            {/* <span>{item.date}</span> */}
-                            <span>{fn.getDateFormat(item.date, "time")}</span>
-                            <span>{item?.sum ? `${Math.abs(item?.sum)}$` : "—"}</span>
-                            <span>{item?.tokens}</span>
-                            <span>{item.projectId?.name}</span>
-                          </div>
-                        )
-                      })
-                    }
-                  </tbody>
-                </table>
-                <table 
-                  class="table-history"
-                  hidden = {Static.activeTab == "sale tokens" ? false : true}
-                >
-                  <thead class="table-pm-header">
-                    <tr class="table-history_item table-history_item_invest-user">
-                      <th>№</th>
-                      <th>Operation</th>
-                      <th>Date</th>
-                      <th>Sum</th>
-                      <th>Tokens</th>
-                      <th>Project</th>
-                    </tr>
-                  </thead>
-                  <tbody class="table-history-body">
-                    {
-                      Static.history.map((item, index)=>{
+                      Static.historyProjects.map((item, index)=>{
                         return(
                           <div class="table-history_item table-history_item_invest-user">
                             <span>{index + 1}</span>
@@ -240,7 +256,7 @@ const start = function (data, ID) {
                             </span>
                             {/* <span>{item.date}</span> */}
                             <span>{fn.getDateFormat(item.date, "time")}</span>
-                            <span>{item?.sum ? `${Math.abs(item?.sum)}$` : "—"}</span>
+                            <span>{item?.tokens * item?.priceToken}$</span>
                             <span>{item?.tokens}</span>
                             <span>{item.projectId?.name}</span>
                           </div>
@@ -251,35 +267,32 @@ const start = function (data, ID) {
                 </table>
                 <table 
                   class="table-history"
-                  hidden = {Static.activeTab == "withdraw tokens" ? false : true}
+                  hidden = {Static.activeTab == "sale" ? false : true}
                 >
                   <thead class="table-pm-header">
                     <tr class="table-history_item table-history_item_invest-user">
                       <th>№</th>
                       <th>Operation</th>
                       <th>Date</th>
-                      <th>Sum</th>
+                      <th>Amount</th>
                       <th>Tokens</th>
                       <th>Project</th>
                     </tr>
                   </thead>
-                  <tbody class="table-history-body">
+                  <tbody class="table-history-body table-pm-body bookmarks-inner">
                     {
-                      Static.history.map((item, index)=>{
+                      Static.historyProjects.map((item, index)=>{
                         return(
                           <div class="table-history_item table-history_item_invest-user">
                             <span>{index + 1}</span>
                             <span 
-                              class={["ttu", 
-                              item.type == "withdraw" ? "text-red" 
-                              : item.type == "deposit" ? "text-green" : null
-                              ]}
+                              class={["ttu"]}
                             >
                               {item.type}
                             </span>
                             {/* <span>{item.date}</span> */}
                             <span>{fn.getDateFormat(item.date, "time")}</span>
-                            <span>{item?.sum ? `${Math.abs(item?.sum)}$` : "—"}</span>
+                            <span>{item?.tokens * item?.priceToken}$</span>
                             <span>{item?.tokens}</span>
                             <span>{item.projectId?.name}</span>
                           </div>
@@ -290,34 +303,32 @@ const start = function (data, ID) {
                 </table>
                 <table 
                   class="table-history"
-                  hidden = {Static.activeTab == "buy tokens" ? false : true}
+                  hidden = {Static.activeTab == "buy" ? false : true}
                 >
                   <thead class="table-pm-header">
                     <tr class="table-history_item table-history_item_invest-user">
                       <th>№</th>
                       <th>Operation</th>
                       <th>Date</th>
-                      <th>Sum</th>
+                      <th>Amount</th>
                       <th>Tokens</th>
                       <th>Project</th>
                     </tr>
                   </thead>
-                  <tbody class="table-history-body">
+                  <tbody class="table-history-body table-pm-body bookmarks-inner">
                     {
-                      Static.history.map((item, index)=>{
+                      Static.historyProjects.map((item, index)=>{
                         return(
                           <div class="table-history_item table-history_item_invest-user">
                             <span>{index + 1}</span>
                             <span 
-                              class={["ttu", 
-                              item.type == "withdraw" ? "text-red" 
-                              : item.type == "deposit" ? "text-green" : null
-                              ]}
+                              class={["ttu"]}
                             >
                               {item.type}
                             </span>
+                            {/* <span>{item.date}</span> */}
                             <span>{fn.getDateFormat(item.date, "time")}</span>
-                            <span>{item?.sum ? `${Math.abs(item?.sum)}$` : "—"}</span>
+                            <span>{item?.tokens * item?.priceToken}$</span>
                             <span>{item?.tokens}</span>
                             <span>{item.projectId?.name}</span>
                           </div>
@@ -326,7 +337,42 @@ const start = function (data, ID) {
                     }
                   </tbody>
                 </table>
-
+                <table 
+                  class="table-history"
+                  hidden = {Static.activeTab == "withdraw" ? false : true}
+                >
+                  <thead class="table-pm-header">
+                    <tr class="table-history_item table-history_item_invest-user">
+                      <th>№</th>
+                      <th>Operation</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Tokens</th>
+                      <th>Project</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-history-body table-pm-body bookmarks-inner">
+                    {
+                      Static.historyProjects.map((item, index)=>{
+                        return(
+                          <div class="table-history_item table-history_item_invest-user">
+                            <span>{index + 1}</span>
+                            <span 
+                              class={["ttu"]}
+                            >
+                              {item.type}
+                            </span>
+                            {/* <span>{item.date}</span> */}
+                            <span>{fn.getDateFormat(item.date, "time")}</span>
+                            <span>{item?.tokens * item?.priceToken}$</span>
+                            <span>{item?.tokens}</span>
+                            <span>{item.projectId?.name}</span>
+                          </div>
+                        )
+                      })
+                    }
+                  </tbody>
+                </table>
               </Elements.Tabs>
             </div>
           </div>

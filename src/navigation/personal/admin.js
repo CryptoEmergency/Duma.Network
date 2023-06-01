@@ -41,15 +41,7 @@ const start = function (data, ID) {
                 <section class="main mb-25  ">
                   <h2 class="general-title mt-25">Admin Action</h2>
                 </section>
-                <div class="grid-3">
-                  {/* <button
-                    class="btn btn-green"
-                    onclick={() => {
-                      fn.siteLink("/personal/admin/list/research/");
-                    }}
-                  >
-                    Research Lists
-                  </button> */}
+                <div class="grid-3">                 
                   <button
                     class="btn btn-green"
                     onclick={() => {

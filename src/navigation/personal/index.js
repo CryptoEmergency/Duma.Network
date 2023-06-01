@@ -29,7 +29,7 @@ const start = function (data, ID) {
         _id: Variable.myInfo._id,
       });
       Static.projects = await fn.socket.get({
-        method: "Research",
+        method: "ResearchAnalyst",
         params: {
           filter: { moderation: true },
           limit: 3,

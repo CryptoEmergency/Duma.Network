@@ -53,7 +53,7 @@ const start = function (data, ID) {
           params: { populate: { path: "projectId" } },
         });
         Static.researchList = await fn.socket.get({
-          method: "Research",
+          method: "ResearchAnalyst",
           params: { filter: { moderation: true } },
         });
       }

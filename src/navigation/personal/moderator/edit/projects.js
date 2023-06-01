@@ -160,7 +160,7 @@ const start = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      if (!Variable.auth || !Variable.myInfo._id == '6454ef0ef4baaaecaff06672') {
+      if (!Variable.auth || Variable.myInfo._id != '6454ef0ef4baaaecaff06672') {
         fn.siteLink("/");
         return;
       }
@@ -204,7 +204,7 @@ const start = function (data, ID) {
       }
     },
     fn: () => {
-      if (!Variable.auth || !Variable.myInfo._id == '6454ef0ef4baaaecaff06672') {
+      if (!Variable.auth || Variable.myInfo._id != '6454ef0ef4baaaecaff06672') {
         fn.siteLink("/");
         return <div></div>;
       }

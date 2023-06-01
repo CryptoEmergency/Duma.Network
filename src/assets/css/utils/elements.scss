@@ -315,9 +315,9 @@
 }
 
 .table-pm-body {
-  &.bookmarks-inner {
-    overflow-x: visible;
-  }
+  // &.bookmarks-inner {
+  //   overflow-x: visible;
+  // }
 
   .bookmarks-item {
     .icon-status {
@@ -353,6 +353,10 @@
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+}
+
+.table-history-body {
+  max-height: 500px;
 }
 
 .table-history_item {

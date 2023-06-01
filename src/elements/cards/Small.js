@@ -25,7 +25,7 @@ const forExport = function ({ Static, className, items = [] }) {
                 : images[`research/duma}`]
             }
             onclick={() => {
-              fn.siteLink("/research/show/" + item._id);
+              fn.siteLink("/researchA/show/" + item._id);
             }}
           >
             <div class="mCard-item_blur">

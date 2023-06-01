@@ -195,7 +195,7 @@ const start = function (data, ID) {
       });
 
       Static.projects = await fn.socket.get({
-        method: "Research",
+        method: "ResearchAnalyst",
         params: { filter: { moderation: true }, limit: 5 },
       });
       Static.blockchain_list = await fn.socket.get({
@@ -511,8 +511,8 @@ const start = function (data, ID) {
                   </div>
                 </div>
               </div>
-
-              <div class="slider-mCards">
+              
+              <div class="slider-mCards" style={Static.slides.length == 0 ? "height: auto" : "height:310px"}>
                 {/* <span class="counter-slider">{Static.slides.length}</span> */}
                 <div
                   class="line"

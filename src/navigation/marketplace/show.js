@@ -178,7 +178,8 @@ const start = function (data, ID) {
                     <div class="grid-2">
                       <div class="card-text">
                         <span class="ttu line-green">Available</span>
-                        {Variable.myInfo.balance.toFixed(2)}$
+                        {/* {Variable.myInfo.balance.toFixed(2)}$ */}
+                        {Variable.myInfo.balance}$
                       </div>
                       <span class="rang">{Static.item.tokens} tokens</span>
                     </div>

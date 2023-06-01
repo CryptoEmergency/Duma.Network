@@ -185,7 +185,7 @@ const start = function (data, ID) {
                                 {/* <div>{item.projectId?.category}</div> */}
                                 <button
                                   onclick={(e)=>{
-                                    fn.siteLink("/research/show/" + item.projectId._id);
+                                    fn.siteLink("/researchA/show/" + item.projectId._id);
                                   }}   
                                   class="btn btn-transparent">
                                     more
@@ -226,7 +226,7 @@ const start = function (data, ID) {
                                 <div>{item.projectId?.have}$/{item.projectId?.target}$</div>
                                 <button
                                   onclick={(e)=>{
-                                    fn.siteLink("/research/show/" + item.projectId._id);
+                                    fn.siteLink("/researchA/show/" + item.projectId._id);
                                   }}   
                                   class="btn btn-transparent">
                                     more

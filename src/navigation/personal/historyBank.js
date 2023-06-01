@@ -24,7 +24,7 @@ const start = function (data, ID) {
   load({
     ID,
     fnLoad: async () => {
-      if (!Variable.auth || !Variable.myInfo._id == "6461b65d179f315ed7fc663e") {
+      if (!Variable.auth || Variable.myInfo._id != "6461b65d179f315ed7fc663e") {
         fn.siteLink("/");
         return;
       }
@@ -39,7 +39,7 @@ const start = function (data, ID) {
     },
 
     fn: () => {
-      if (!Variable.auth || !Variable.myInfo._id == "6461b65d179f315ed7fc663e") {
+      if (!Variable.auth || Variable.myInfo._id != "6461b65d179f315ed7fc663e") {
         fn.siteLink("/");
         return <div></div>;
       }

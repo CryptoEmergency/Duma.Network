@@ -11,27 +11,24 @@ import {
 import { fn } from "@src/functions/export.js";
 import svg from "@assets/svg/index.js";
 
-const sendEnter = function(e){
-  if(e.keyCode == '13'){
-    Data.MStatic.btnSubmit.click();
-  }
-}
 
 const forExport = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });
+  Static.sumToken;
+  Static.priceToken;
+  Static.amount;
   load({
     ID,
-    fnLoad: async () => {
-      Static.sumToken;
-      Static.priceToken;
-    },
+    // fnLoad: async () => {
+      
+    // },
     fn: () => {
       return (
         <div class="wrap">
           <div class="wrap-body">
             <div class="wrap-content">
               <header class="header-modal">
-                <h2 class="general-title mt-0">Publish on the marketplace page</h2>
+                <h2 class="general-title mt-0">Accrual of tokens and publication of the project on the marketplace</h2>
                 <button
                   class="button-close button-modal"
                   onclick={() => {
@@ -45,10 +42,10 @@ const forExport = function (data, ID) {
                 <div class="grid-3">
                   <div class="form-item">
                     <span class="form-label">
-                      Choose a project :
+                      Selected project :
                     </span>
                     <div class="form-input">
-                      {data.project}
+                      {data.projectName}
                     </div>
                   </div>
                   <div class="form-item">
@@ -59,8 +56,7 @@ const forExport = function (data, ID) {
                       class="form-input"
                       type="text"
                       id="tokens"
-                      onkeydown={sendEnter}
-                      placeholder={`${data.sumTokens} tokens`}
+                      placeholder="Enter the amount of tokens..."
                       onchange={function () {
                         Static.sumToken = this.value;
                       }}
@@ -74,37 +70,22 @@ const forExport = function (data, ID) {
                       class="form-input"
                       type="text"
                       id="priceToken"
-                      placeholder="10$"
-                      onkeydown={sendEnter}
+                      placeholder="Enter the price for one token"
                       onchange={function () {
                         Static.priceToken = this.value;
+                        console.log('=32f95f=', Static.priceToken * Static.sumToken)
+                        Static.amount = Static.priceToken * Static.sumToken;
+                      }}
+                      oninput={()=>{
+                        Static.amount = Static.priceToken * Static.sumToken;
                       }}
                     />
                   </div>
                 </div>
+
               </main>
               <footer class="footer-modal">
-                <button
-                  class="btn btn-modal"
-                  Element={($el)=>{
-                    Static.btnSubmit = $el;
-                  }}
-                  onclick={async()=>{
-                    await fn.socket.send({
-                      method: "MarketUser",
-                      params: {
-                        projectId: data.projectId,
-                        tokens:  Static.sumToken,
-                        price: Static.priceToken,
-                      },
-                    });
-                    fn.modals.close(ID);
-                    fn.modals.Success({
-                      title: "You have been assigned investor status"
-                    })
-                    initReload();
-                  }}
-                >
+                <button class="btn btn-modal">
                   public
                 </button>
               </footer>

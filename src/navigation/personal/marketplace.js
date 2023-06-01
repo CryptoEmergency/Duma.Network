@@ -41,7 +41,6 @@ const start = function (data, ID) {
           filter: { author: Variable.myInfo._id } 
         }
       })
-      console.log('=9e5e3f=', Static.market)
 
       Static.marketAll = await fn.socket.get({
         method: "MarketUser", 
@@ -51,6 +50,7 @@ const start = function (data, ID) {
           },
         }
       })
+      console.log('=871442=',Static.marketAll)
       Static.myMarketOwner = [];
       Static.marketAll.forEach((item)=>{
         if(item.projectId.owner == Variable.myInfo._id){
@@ -58,7 +58,6 @@ const start = function (data, ID) {
 
         }
       })
-      console.log('=my market owner=', Static.myMarketOwner);
     },
     fn: () => {
       if (!Variable.auth) {
@@ -87,7 +86,7 @@ const start = function (data, ID) {
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody class="table-pm-body bookmarks-inner">
+                  <tbody class="table-pm-body bookmarks-inner" style="overflow-x: visible;">
                     {Static.tokens.map((item)=>{
                       return(
                         <div class="bookmarks-item bookmarks-item_invested">
@@ -145,7 +144,7 @@ const start = function (data, ID) {
                   style="border-bottom-right-radius: 0;border-bottom-left-radius: 0;"
                 >
                   <thead class="table-pm-header">
-                    <tr class="bookmarks-item bookmarks-item_token">
+                    <tr class="bookmarks-item bookmarks-item_token" >
                       {/* <th></th> */}
                       <th>Project</th>
                       <th>Round</th>
@@ -155,7 +154,7 @@ const start = function (data, ID) {
                       <th>Sum market</th>
                     </tr>
                   </thead>
-                  <tbody class="table-pm-body bookmarks-inner">
+                  <tbody class="table-pm-body bookmarks-inner" style="overflow-x: visible;">
                     {
                       Static.myMarketOwner.map((item)=>{
                         return(
@@ -187,6 +186,29 @@ const start = function (data, ID) {
                                 >
                                   <img class="more-list-item_icon mr-5" src={svg.edit} />
                                   <span>Withdraw</span>
+                                </li>
+                                <li 
+                                  class="more-list-item"
+                                  onclick={async () => {
+                                    fn.modals.WithdrawMarket({
+                                      projectName: item.projectId.name,
+                                      sumTokens: item.tokens,
+                                      projectId: item.projectId._id,
+                                      priceToken: item.priceToken
+                                    });
+                                  }}
+                                >
+                                  <img class="more-list-item_icon mr-5" src={svg.edit} />
+                                  <li
+                                    class="more-list-item"
+                                    onclick={async () => {
+                                      // fn.modals.OrderHistory({
+                                        
+                                      // });
+                                    }}
+                                  >
+                                    History
+                                  </li>
                                 </li>
                               </ul>
                             </div>
@@ -229,7 +251,7 @@ const start = function (data, ID) {
                   class="table-pm"
                   style="border-top-right-radius: 0;border-top-left-radius: 0;"
                 >
-                  <tbody class="table-pm-body bookmarks-inner">
+                  <tbody class="table-pm-body bookmarks-inner" style="overflow-x: visible;">
                     {
                       Static.market.map((item)=>{
                         return(

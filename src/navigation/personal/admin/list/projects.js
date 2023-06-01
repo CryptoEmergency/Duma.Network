@@ -68,7 +68,7 @@ const start = function (data, ID) {
                         return;
                       }
                       fn.siteLink(
-                        `/personal/admin/edit/research/${response._id}`
+                        `/personal/admin/edit/researchA/${response._id}`
                       );
                     }}
                   >

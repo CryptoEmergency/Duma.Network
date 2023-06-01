@@ -252,6 +252,18 @@ const forExport = function (data, ID) {
                         }
                       },
                     });
+                    await fn.socket.set({
+                      method: "HistoryOwner",
+                      action: "insert",
+                      params: {
+                        insert: { 
+                          idUser: Static.chooseUser._id,
+                          projectId: Static.chooseProject._id,
+                          type: "owner"
+                        },
+                      },
+                    });
+
                     await fn.socket.send({
                       method: "SendTelegram",
                       params: {

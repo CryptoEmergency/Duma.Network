@@ -446,20 +446,20 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-green"
                         onclick={() => {
-                          fn.modals.Transaction({
-                            title: "Deposit",
-                            text: "Replenishment amount",
-                            type: "deposit",
-                          });
-                          // if (Variable.myInfo.role) {
-                          //   fn.modals.Transaction({
-                          //     title: "Deposit",
-                          //     text: "Replenishment amount",
-                          //     type: "deposit",
-                          //   });
-                          // } else {
-                          //   fn.modals.Soon({});
-                          // }
+                          // fn.modals.Transaction({
+                          //   title: "Deposit",
+                          //   text: "Replenishment amount",
+                          //   type: "deposit",
+                          // });
+                          if (Variable.myInfo.role) {
+                            fn.modals.Transaction({
+                              title: "Deposit",
+                              text: "Replenishment amount",
+                              type: "deposit",
+                            });
+                          } else {
+                            fn.modals.Soon({});
+                          }
                         }}
                       >
                         <span>DEPOSIT</span>
@@ -468,20 +468,20 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-bordo"
                         onclick={() => {
-                          fn.modals.Transaction({
-                            title: "Withdraw",
-                            text: "Withdrawal amount",
-                            type: "withdraw",
-                          });
-                          // if (Variable.myInfo.role) {
-                          //   fn.modals.Transaction({
-                          //     title: "Withdraw",
-                          //     text: "Withdrawal amount",
-                          //     type: "withdraw",
-                          //   });
-                          // } else {
-                          //   fn.modals.Soon({});
-                          // }
+                          // fn.modals.Transaction({
+                          //   title: "Withdraw",
+                          //   text: "Withdrawal amount",
+                          //   type: "withdraw",
+                          // });
+                          if (Variable.myInfo.role) {
+                            fn.modals.Transaction({
+                              title: "Withdraw",
+                              text: "Withdrawal amount",
+                              type: "withdraw",
+                            });
+                          } else {
+                            fn.modals.Soon({});
+                          }
                         }}
                       >
                         <span>WITHDRAW</span>

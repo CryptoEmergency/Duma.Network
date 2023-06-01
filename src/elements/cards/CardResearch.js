@@ -146,7 +146,7 @@ const forExport = function ({ Static, className, items = [] }) {
                   class="btn btn-green"
                   onclick={() => {
                     if (!item.blur) {
-                      fn.siteLink("/research/show/" + item._id);
+                      fn.siteLink("/researchA/show/" + item._id);
                     }
                   }}
                 >

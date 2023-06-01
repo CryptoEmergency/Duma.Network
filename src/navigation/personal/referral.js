@@ -69,17 +69,6 @@ const start = function (data, ID) {
           Static.myRefInvest.push(item);
         }
       })
-      console.log('=ref invest=',Static.myRefInvest)
-      console.log('=ref=',Static.myRef)
-
-      Static.invests = await fn.socket.get({
-        method: "Investing",
-        // params: {
-        //   populate: { path: "author" },
-        // },
-        // filter: {  }
-      });
-
 
     },
     fn: () => {

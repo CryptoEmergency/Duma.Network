@@ -25,7 +25,7 @@ const updateValue = async function ({ key, value }) {
 
 const updateRecords = async function (update) {
   let response = await fn.socket.set({
-    method: "Marketplace",
+    method: "duma_marketuser",
     action: "findOneAndUpdate",
     _id: Data.Static.item._id,
     params: { update },
@@ -48,7 +48,7 @@ const start = function (data, ID) {
       }
       if (Variable.dataUrl.params) {
         Static.item = await fn.socket.get({
-          method: "Marketplace",
+          method: "duma_marketuser",
           _id: Variable.dataUrl.params,
           params: { populate: { path: "projectId" } },
         });
