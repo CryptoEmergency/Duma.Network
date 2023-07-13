@@ -45,7 +45,27 @@
   flex-direction: column;
 
   .new {
+
     // display: flex;
+    &.item-research {
+      display: flex;
+      cursor: pointer;
+      position: relative;
+      align-items: center;
+
+      @media(max-width: 767px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .project-rang {
+          margin-left: 0 !important;
+        }
+      }
+
+      // @media(max-width: 464px) {
+
+      // }
+    }
 
     // grid-template-columns: repeat(2, 1fr);
     .text-green {

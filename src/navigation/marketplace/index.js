@@ -178,14 +178,8 @@ const start = function (data, ID) {
         },
       });
 
-      // Static.table = []
-      // Static.records.forEach((item, index)=>{
-
-      // })
-
       Static.slides = await fn.socket.get({
-        // method: "Marketplace",
-        // method: "Research",
+
         method: "MarketUser",
         params: {
           filter: { moderation: true, preferred: true },
@@ -202,6 +196,18 @@ const start = function (data, ID) {
         method: "Blockchains",
       });
       Static.slideHidden = Static.slides.length - 3;
+
+      Static.researchDuma = await fn.socket.get({
+        method: "ResearchAnalyst",
+        params: { 
+          filter: { 
+            moderation: true,
+            author: '645dea921d0831d67662684b',
+          }, 
+          populate:{ path: "projectId" },
+          limit: 5 
+        },
+      });
 
       setInterval(() => {
         if (Static.slideHidden == 0) {
@@ -752,165 +758,107 @@ const start = function (data, ID) {
                   Static={Static}
                 /> */}
               </div>
+              <div class="table-m_wrap">
+                <table class="table-m">
+                  <thead class="table-m-header">
+                    <tr class="table-m-item">
+                      <th></th>
+                      <th>Project</th>
+                      <th>Round</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Tokens</th>
+                      <th>Collect</th>
+                      <th>BC</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
 
-              <table class="table-m">
-                <thead class="table-m-header">
-                  <tr class="table-m-item">
-                    <th></th>
-                    <th>Project</th>
-                    <th>Round</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Tokens</th>
-                    <th>Collect</th>
-                    <th>BC</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                </thead>
-
-                <tbody
-                  class="table-m-body"
-                  // hidden={Static.activeTabM == "all" ? false : true}
-                >
-                  {Static.recordsDuma.length ? (
-                    Static.recordsDuma.map((item) => {
-                      return (
-                        <tr class="table-m-item">
-                          <td class="small-logo">
-                            <img
-                              src={
-                                item.projectId.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </td>
-                          <td>{item.projectId.name}</td>
-                          <td>{item.projectId.round}</td>
-                          <td>{item.projectId.category}</td>
-                          <td>{item.priceToken
-                              ? `${item.priceToken}$`
-                              : "—"}</td>
-                          <td>
-                            {item.tokens
-                              ? `${item.tokens}`
-                              : "—"}
-                          </td>
-                          <td>
-                            {`${item.projectId.have}$ / ${item.projectId.amount}$`}
-                          </td>
-                          <td>
-                            <img
-                              class="blockchain"
-                              src={
-                                item.projectId.blockchains?.icon
-                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
-                                  : svg.binance
-                              }
-                            />
-                          </td>
-                          <td>
-                            <button 
-                              onclick={()=>{
-                                fn.siteLink("/marketplace/show/" + item._id);
-                              }}
-                              class="btn btn-green">
-                                MORE INFO
-                            </button>
-                          </td>
-                          <td>
-                            <button
-                              onclick={()=>{
-                                if(Variable.myInfo.status === "User"){
-                                  fn.modals.Status({});
+                  <tbody
+                    class="table-m-body"
+                    // hidden={Static.activeTabM == "all" ? false : true}
+                  >
+                    {Static.recordsDuma.length ? (
+                      Static.recordsDuma.map((item) => {
+                        return (
+                          <tr class="table-m-item">
+                            <td class="small-logo">
+                              <img
+                                src={
+                                  item.projectId.icon
+                                    ? `/assets/upload/${item.projectId.icon}`
+                                    : images[`research/logo-duma}`]
                                 }
-                                fn.siteLink("/researchA/show/" + item.projectId._id);
-                              }}
-                              class="btn btn-green">
-                              RESEARCH
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <div class="notFound">
-                      <span>Records not found in table</span>
-                      <img src={svg.notFound} />
-                    </div>
-                  )}
-                </tbody>
-                {/* <tbody>
-                  {
-                    Static.records.map((item) => {
-                      return (
-                        <tr class="table-m-item">
-                          <td class="small-logo">
-                            <img
-                              src={
-                                item.projectId?.icon
-                                  ? `/assets/upload/${item.projectId.icon}`
-                                  : images[`research/logo-duma}`]
-                              }
-                            />
-                          </td>
-                          <td>{item.projectId?.name}</td>
-                          <td>{item.projectId?.round}</td>
-                          <td>{item.projectId?.category}</td>
-                          <td>{item.priceToken
-                              ? `${item.priceToken}$`
-                              : "—"}</td>
-                          <td>
-                            {item.tokens
-                              ? `${item.tokens}`
-                              : "—"}
-                          </td>
-                          <td>
-                            {`${item.projectId.have}$ / ${item.projectId.amount}$`}
-                          </td>
-                          <td>
-                            <img
-                              class="blockchain"
-                              src={
-                                item.projectId.blockchains?.icon
-                                  ? `/assets/upload/${item.projectId.blockchains.icon}`
-                                  : svg.binance
-                              }
-                            />
-                          </td>
-                          <td>
-                            <button 
-                              onclick={()=>{
-                                fn.siteLink("/marketplace/show/" + item._id);
-                              }}
-                              class="btn btn-green">
-                                MORE INFO
-                            </button>
-                          </td>
-                          <td>
-                            <button
-                              onclick={()=>{
-                                if(Variable.myInfo.status === "User"){
-                                  fn.modals.Status({});
+                              />
+                            </td>
+                            <td>{item.projectId.name}</td>
+                            <td>{item.projectId.round}</td>
+                            <td>{item.projectId.category}</td>
+                            <td>{item.priceToken
+                                ? `${item.priceToken}$`
+                                : "—"}</td>
+                            <td>
+                              {item.tokens
+                                ? `${item.tokens}`
+                                : "—"}
+                            </td>
+                            <td>
+                              {`${item.projectId.have}$ / ${item.projectId.amount}$`}
+                            </td>
+                            <td>
+                              <img
+                                class="blockchain"
+                                src={
+                                  item.projectId.blockchains?.icon
+                                    ? `/assets/upload/${item.projectId.blockchains.icon}`
+                                    : svg.binance
                                 }
-                                fn.siteLink("/researchA/show/" + item.projectId._id);
-                              }}
-                              class="btn btn-green">
-                              RESEARCH
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  }
-                </tbody> */}
+                              />
+                            </td>
+                            <td>
+                              <button 
+                                onclick={()=>{
+                                  fn.siteLink("/marketplace/show/" + item._id);
+                                }}
+                                class="btn btn-green">
+                                  MORE INFO
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                onclick={()=>{
+                                  if(Variable.myInfo.status === "User"){
+                                    fn.modals.Status({});
+                                  }
+                                  Static.researchDuma.forEach((el)=>{
+                                    if(el.projectId._id == el.projectId._id){
+                                      Static.linkResearch = el._id;
+                                    }
+                                  })
+                                  fn.siteLink("/researchA/show/" + Static.linkResearch);
+                                }}
+                                class="btn btn-green">
+                                RESEARCH
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <div class="notFound">
+                        <span>Records not found in table</span>
+                        <img src={svg.notFound} />
+                      </div>
+                    )}
+                  </tbody>
 
-
-                <div class="btn-block">
-                  <button class="btn btn-green">VIEW ALL PROJECTS</button>
-                </div>
-              </table>
+                  <div class="btn-block">
+                    <button class="btn btn-green">VIEW ALL PROJECTS</button>
+                  </div>
+                </table>
+              </div>
+              
 
               <h2 class="general-title mY-25">Almost done</h2>
 

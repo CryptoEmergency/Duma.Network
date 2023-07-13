@@ -60,13 +60,14 @@ const start = function (data, ID) {
                               <span class="text">Name Surname</span>
                             </div>
                           </div> */}
-                          <div class="userDate mt-10">
+                          <div class="userDate mt-15">
                             <span>{Variable.myInfo.email}</span>
-                            <span>pipe number</span>
+                            {/* <span>pipe number</span>
                             <span>security check</span>
-                            <span>KYC</span>
+                            <span>KYC</span> */}
                           </div>
-                          <button class="btn btn-white mt-10">
+
+                          {/* <button class="btn btn-white mt-10">
                             change password
                           </button>
 
@@ -106,7 +107,7 @@ const start = function (data, ID) {
                             >
                               Apply
                             </button>
-                          </div>
+                          </div> */}
 
                         </div>
                         <div class="dailyReward">
@@ -118,7 +119,14 @@ const start = function (data, ID) {
                             class="mb-20"
                             src={images["personal/profileDaily"]}
                           ></img>
-                          <button class="btn btn-green">Daily Reward</button>
+                          <button 
+                            class="btn btn-green"
+                            onclick={()=>{
+                              fn.modals.Soon({})
+                            }}
+                          >
+                            Daily Reward
+                          </button>
                         </div>
                         <div class="recentLogins">
                           <span>Recent logins</span>

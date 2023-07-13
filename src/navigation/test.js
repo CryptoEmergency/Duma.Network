@@ -88,7 +88,7 @@ const start = function (data, ID) {
               Running line
             </h2>
             <Elements.RunLine records={courses} count = {5} />
-
+            <Elements.Slider></Elements.Slider>
           </div>
         </div>
       );

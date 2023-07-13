@@ -96,14 +96,17 @@ const forExport = function ({ className }) {
       <div class="intro-inner">
         <div class="intro-desc">
           <h1 class="intro-title">DUMA.NETWORK</h1>
-          <p class="intro-info">
+          {/* <p class="intro-info">
             A tool for investors. Research, analytics, secure contribution with
             any amount, split SAFT and sell through the platform.
+          </p> */}
+          <p class="intro-info">
+          Fund projects step by step through escrow protocol, sell the asset at any time through NFT on the marketplace
           </p>
         </div>
         <div class="device">
           <a href="https://youtu.be/oNQOcFADbNo" target="_blank">
-            <img src={images["device"]}></img>
+            <img src={images["device1"]} class="device-screen"></img>
             <video
               autoplay={true}
               loop={true}
@@ -145,58 +148,52 @@ const forExport = function ({ className }) {
             <span class="six">EARN</span>
           </div>
         </h2>
-        <div class="grid-3 ecosystem-box">
+        <div class="ecosystem-box">
+          <div class="eco-item">
+            <h6 class="eco-title">escrow protocol</h6>
+            <div class="eco-item_desc">
+              <p class="general-text eco-text">
+              Escrow smart contracts allow you to place investor's funds on multi-sig wallets when investing and fund a startup step-by-step on pre-agreed terms. 
+              </p>
+              <p class="general-text eco-text">
+              With the investor's ability to exit the deal or sell the asset on the secondary market.
+              </p>
+              <p class="general-text eco-text">
+              SAFT can be partitioned into NFTs with metadata indicating the end holder of the NFT, and tokens can be further distributed on the protocol.
+              </p>
+            </div>
+          </div>
+          <div class="eco-item">
+            <h6 class="eco-title">SAFT nft MARKETPLACE</h6>
+            <div class="eco-item_mobile">
+              <div class="eco-item_desc">
+                <p class="general-text eco-text pY-20 ">
+                Primary funding for startups and an instant secondary market for any venture capital asset in the vesting. 
+                </p>
+                <p class="general-text eco-text">
+                P2P transactions between venture capital funds, private investors and the community via NFT with metadata about investment and token distribution
+                </p>
+              </div>
+              <img src={images.mobile} class="eco-mobile"></img>
+            </div>
+            
+          </div>
           <div class="eco-item">
             <h6 class="eco-title">RESEARCH HUB</h6>
             <div class="eco-item_desc">
               <p class="general-text eco-text">
-                We perform startup screening and research from our analysts and
-                create a rating evaluation so that users don't waste time
-                searching for this information on other resources.
+              Learn all information and research about the project from AI, platform experts, and third-party analysts. 
               </p>
               <p class="general-text eco-text">
-                The analytical section contains an alternative evaluation of
-                startups from third-party experts using the SAAS model.
-              </p>
-            </div>
-          </div>
-          <div class="eco-item">
-            <h6 class="eco-title">protocol</h6>
-            <div class="eco-item_desc">
-              <p class="general-text eco-text">
-                An Escrow smart contract is designed to secure an investor's
-                funds and allow for staged financing of a startup based on
-                pre-agreed conditions.
-              </p>
-              <p class="general-text eco-text">
-                The SAFT can be divided into NFTs with metadata indicating the
-                final beneficiary, and tokens can be further distributed through
-                a protocol.
-              </p>
-            </div>
-          </div>
-          <div class="eco-item">
-            <h6 class="eco-title">SAFT MARKETPLACE</h6>
-            <div class="eco-item_desc">
-              <p class="general-text eco-text">
-                P2P transactions between funds, investors and users.
-              </p>
-              <p class="general-text eco-text">
-                Buy SAFT assets from early venture investors who are selling
-                their vested assets.
-              </p>
-              <p class="general-text eco-text">
-                Invest in early rounds, sell SAFT and increase the token value
-                before TGE.
+              Choose the best project, save time searching for analys and making decisions.
               </p>
             </div>
           </div>
         </div>
-        <p class="ecosystem-text">
-          All information and opportunities for funds, investors, startups, and
-          communities on one platform.
-        </p>
-        <p class="ecosystem-text">No more need for third-party resources</p>
+        {/* <p class="ecosystem-text">
+          Big opportunities for VC, investors, startups, and communities on one platform.
+        </p> */}
+        <p class="ecosystem-text ecosystem-text_down">INVEST / SELL / EARN</p>
       </div>
     </section>
   );

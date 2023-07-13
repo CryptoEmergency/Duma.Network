@@ -37,10 +37,6 @@ const start = function (data, ID) {
           }, 
           populate: { path: "projectId" } },
       });
-      console.log("=65766d=", Static.projects);
-
-      // Static.researches = 
-
     },
     fn: () => {
       if (!Variable.auth) {

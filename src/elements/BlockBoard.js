@@ -35,7 +35,7 @@ const forExport = function ({
       }
 
        { news ? 
-        <div class="list-news pt-25">
+        <div class="list-news pt-35">
           {news.map((item)=>{
             return(
               <div class="new">

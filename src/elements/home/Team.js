@@ -22,23 +22,23 @@ const team = [
       "Senior analyst and partnership development specialist. Experienced trader and Business Analyst",
     link: "https://www.linkedin.com/in/tom-nosov/",
   },
-  {
-    name: "YAN",
-    lastName: "KRIVONOSOV",
-    img: images["team/yan"],
-    job: "cvo",
-    about:
-      "Founder of the Crypto Emergency development and social network laboratory, CEM blockchain, and decentralized wallet",
-    link: "https://www.linkedin.com/in/yan-krivonosov-328584219/",
-  },
-  {
-    name: "IGOR",
-    lastName: "ENSHIN",
-    img: images["team/igor"],
-    job: "CTO",
-    about:
-      "Senior with 20 years of programming experience. Creator of his own framework for website development and CTO in CEM",
-  },
+  // {
+  //   name: "YAN",
+  //   lastName: "KRIVONOSOV",
+  //   img: images["team/yan"],
+  //   job: "cvo",
+  //   about:
+  //     "Founder of the Crypto Emergency development and social network laboratory, CEM blockchain, and decentralized wallet",
+  //   link: "https://www.linkedin.com/in/yan-krivonosov-328584219/",
+  // },
+  // {
+  //   name: "IGOR",
+  //   lastName: "ENSHIN",
+  //   img: images["team/igor"],
+  //   job: "CTO",
+  //   about:
+  //     "Senior with 20 years of programming experience. Creator of his own framework for website development and CTO in CEM",
+  // },
 ];
 
 const forExport = function ({ className }) {

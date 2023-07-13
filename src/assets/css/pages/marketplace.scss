@@ -194,18 +194,19 @@
 // filter
 
 // table
+.table-m_wrap {
+  overflow: auto hidden;
+}
+
 .table-m {
   position: relative;
   margin-top: 60px;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   padding: 20px 20px 80px 20px;
   width: 100%;
   height: 530px;
   background: var(--back-secondary);
-  // background: linear-gradient(180deg, rgba(255, 255, 255, 0.47) 12.55%, rgba(255, 255, 255, 0.546875) 42.51%, rgba(255, 255, 255, 0.39) 78.66%);
-  // .btn{
-  //   margin: 0 auto;
-  // }
 }
 
 .table-m-sort {
@@ -309,5 +310,47 @@
 
   .btn {
     width: 300px;
+  }
+}
+
+@media(max-width: 464px) {
+  .back-market {
+    background-position: center -485px;
+  }
+
+  .slider-mCards {
+    margin: 0;
+  }
+
+  .filter-m {
+    .btn {
+      margin-right: 0 !important;
+    }
+  }
+
+  .table-m {
+    margin-top: 15px;
+    height: auto;
+    padding: 0 0 70px 0;
+  }
+
+  .table-m-item {
+    grid-template-columns: 60px 100px 100px 100px 50px 100px 150px 50px 100px 100px;
+
+    .btn {
+      width: 100%;
+      font-size: 12px;
+    }
+  }
+
+  .table-m::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+
+
+  .mCards-small {
+    padding-bottom: 25px;
   }
 }

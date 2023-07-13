@@ -165,7 +165,6 @@ const start = function (data, ID) {
           } 
         },
       });
-      console.log("=92f11b=", tmp);
 
       Static.researches = [];
       tmp.forEach((item, index)=>{
@@ -212,8 +211,49 @@ const start = function (data, ID) {
                 varName={"activeTab"}
                 items={[
                   {
+                    title: "Pre-seed",
+                    name: "pre-seed",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "ResearchAnalyst",
+                        params: {
+                          filter: { 
+                            moderation: true, 
+                            round: Static.activeTab,
+                            author: '645dea921d0831d67662684b',  
+                          },
+                          populate: {
+                            path: "projectId"
+                          }
+                        },
+                      });
+
+                      initReload();
+                    },
+                  },
+                  {
                     title: "Seed",
                     name: "seed",
+                    onclick: async () => {
+                      Static.projects = await fn.socket.get({
+                        method: "ResearchAnalyst",
+                        params: {
+                          filter: { 
+                            moderation: true, 
+                            round: Static.activeTab,
+                            author: '645dea921d0831d67662684b',  
+                          },
+                          populate: {
+                            path: "projectId"
+                          }
+                        },
+                      });
+                      initReload();
+                    },
+                  },
+                  {
+                    title: "Strategic",
+                    name: "strategic",
                     onclick: async () => {
                       Static.projects = await fn.socket.get({
                         method: "ResearchAnalyst",
@@ -271,47 +311,8 @@ const start = function (data, ID) {
                       initReload();
                     },
                   },
-                  {
-                    title: "Pre-seed",
-                    name: "pre-seed",
-                    onclick: async () => {
-                      Static.projects = await fn.socket.get({
-                        method: "ResearchAnalyst",
-                        params: {
-                          filter: { 
-                            moderation: true, 
-                            round: Static.activeTab,
-                            author: '645dea921d0831d67662684b',  
-                          },
-                          populate: {
-                            path: "projectId"
-                          }
-                        },
-                      });
-
-                      initReload();
-                    },
-                  },
-                  {
-                    title: "Strategic",
-                    name: "strategic",
-                    onclick: async () => {
-                      Static.projects = await fn.socket.get({
-                        method: "ResearchAnalyst",
-                        params: {
-                          filter: { 
-                            moderation: true, 
-                            round: Static.activeTab,
-                            author: '645dea921d0831d67662684b',  
-                          },
-                          populate: {
-                            path: "projectId"
-                          }
-                        },
-                      });
-                      initReload();
-                    },
-                  },
+                 
+                  
                 ]}
                 Static={Static}
               >

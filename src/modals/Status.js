@@ -45,51 +45,56 @@ const forExport = function (data, ID) {
                 </button>
               </header>
               <main class="main-modal">
-                  <div class="grid-3">
-                    {
-                      Static.statuses.map((item, index)=>{
-                        return(
-                          <div 
-                            class={["statuses-item", "statuses-item_hover", Static.selectedStatus == item.title ? "statuses-item_active" : null]}
-                            onclick={function(){
-                              if(Static.selectedStatus == item.title){
-                                this.classList.toggle('statuses-item_active');
-                              }else{
-                                Static.selectedStatus = item.title;
-                                Static.selectedSum = item.price;
-                                Static.statusId = item._id;
-                                console.log(Static.statusId);
-                              }
-                              initReload();
-                            }}  
-                          >
-                            <Elements.Question 
-                              textClue={item.question} 
-                              switcher={Static.activeQuestion} 
-                              key={`s$`}
-                            />
-                            <div class="status-img">
-                              <img src={item.icon ? `/assets/upload/${item.icon}` : null} />
-                            </div>
-                            <span class="status-text status-name">{item.title}</span>
-                            <span class="status-text status-price">{item.price}$</span>
+                <div class="grid-3">
+                  {
+                    Static.statuses.map((item, index) => {
+                      return (
+                        <div
+                          class={["statuses-item", "statuses-item_hover", Static.selectedStatus == item.title ? "statuses-item_active" : null]}
+                          onclick={function () {
+                            if (Static.selectedStatus == item.title) {
+                              this.classList.toggle('statuses-item_active');
+                            } else {
+                              Static.selectedStatus = item.title;
+                              Static.selectedSum = item.price;
+                              Static.statusId = item._id;
+                              console.log(Static.statusId);
+                            }
+                            initReload();
+                          }}
+                        >
+                          <Elements.Question
+                            textClue={item.question}
+                            switcher={Static.activeQuestion}
+                            key={`s$`}
+                          />
+                          <div class="status-img">
+                            <img src={item.icon ? `/assets/upload/${item.icon}` : null} />
                           </div>
-                        )
-                      })
-                    }
-                  </div>
+                          <span class="status-text status-name">{item.title}</span>
+                          <span class="status-text status-price">{item.price}$</span>
+                        </div>
+                      )
+                    })
+                  }
+                </div>
               </main>
               <footer class="footer-modal">
                 <button
                   class="btn btn-white"
                   onclick={() => {
                     fn.modals.close(ID);
+                    // if(Variable.myInfo.role){
                     fn.modals.Sure({
                       title: "Are you sure you want to pay for a subscription?",
                       type: Static.selectedStatus,
                       idStatus: Static.statusId,
                       sum: Static.selectedSum,
                     });
+                    // }else{
+                    //   fn.modals.Soon({});
+                    // }
+
                   }}
                 >
                   Buy a subscription

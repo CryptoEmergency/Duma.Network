@@ -83,18 +83,26 @@ const forExport = function (data, ID) {
                     if(!Static.fieldSum?.value){
                       return
                     }
-                    await fn.socket.send({
-                      method: "Deposit",
+                    let test = await fn.socket.send({
+                      method: "Transaction",
                       params: {
-                        _id: Variable.myInfo._id,
-                        balance: Static.valueMoney,
+                        sum: Static.valueMoney,
                         type: data.type,
                       },
                     });
+                    
+                    console.log('=9b967c=',test)
+
+                    // await fn.socket.send({
+                    //   method: "Deposit",
+                    //   params: {
+                    //     _id: Variable.myInfo._id,
+                    //     balance: Static.valueMoney,
+                    //     type: data.type,
+                    //   },
+                    // });
                     fn.modals.close(ID);
-                    fn.modals.Success({
-                      title: `You have successfully replenished the balance by ${Static.valueMoney}$`
-                    })
+                    fn.modals.AddBalance(test)
                     initReload("modals");
                   }}
                 >

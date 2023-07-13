@@ -102,10 +102,12 @@ const mainHeader = async function () {
                   class="menu-body"
                 >
                   <a
-                    target="_blank"
-                    href="https://t.me/magdanov_bot"
+                    // target="_blank"
+                    // href="https://t.me/magdanov_bot"
+                    href="/marketplace/show/647ad3aad13045a18dbc45e0"
                     class="btn btn-gradient mr-5"
                     onclick={(e) => {
+                      fn.siteLink(e);
                       burgerMenu("hide");
                     }}
                   >
@@ -446,20 +448,21 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-green"
                         onclick={() => {
-                          // fn.modals.Transaction({
-                          //   title: "Deposit",
-                          //   text: "Replenishment amount",
-                          //   type: "deposit",
-                          // });
-                          if (Variable.myInfo.role) {
-                            fn.modals.Transaction({
-                              title: "Deposit",
-                              text: "Replenishment amount",
-                              type: "deposit",
-                            });
-                          } else {
-                            fn.modals.Soon({});
-                          }
+                          fn.modals.Transaction({
+                            title: "Deposit",
+                            text: "Replenishment amount",
+                            type: "deposit",
+                          });
+                          // if (Variable.myInfo.role) {
+                          //   // fn.modals.AddBalance({})
+                          //   fn.modals.Transaction({
+                          //     title: "Deposit",
+                          //     text: "Replenishment amount",
+                          //     type: "deposit",
+                          //   });
+                          // } else {
+                          //   fn.modals.Soon({});
+                          // }
                         }}
                       >
                         <span>DEPOSIT</span>
@@ -468,20 +471,20 @@ const mainHeader = async function () {
                       <button
                         class="btn btn-bordo"
                         onclick={() => {
-                          // fn.modals.Transaction({
-                          //   title: "Withdraw",
-                          //   text: "Withdrawal amount",
-                          //   type: "withdraw",
-                          // });
-                          if (Variable.myInfo.role) {
-                            fn.modals.Transaction({
-                              title: "Withdraw",
-                              text: "Withdrawal amount",
-                              type: "withdraw",
-                            });
-                          } else {
-                            fn.modals.Soon({});
-                          }
+                          fn.modals.Transaction({
+                            title: "Withdraw",
+                            text: "Withdrawal amount",
+                            type: "withdraw",
+                          });
+                          // if (Variable.myInfo.role) {
+                          //   fn.modals.Transaction({
+                          //     title: "Withdraw",
+                          //     text: "Withdrawal amount",
+                          //     type: "withdraw",
+                          //   });
+                          // } else {
+                          //   fn.modals.Soon({});
+                          // }
                         }}
                       >
                         <span>WITHDRAW</span>
@@ -493,6 +496,7 @@ const mainHeader = async function () {
                       class="btn btn-user mr-10 ml-10 pX-20"
                       onclick={() => {
                         fn.siteLink("/personal/");
+                        burgerMenu("hide");
                       }}
                     >
                       <span>MY ACCOUNT</span>

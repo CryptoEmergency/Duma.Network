@@ -10,17 +10,17 @@ const forExport = function ({ className }) {
       <div class="info info-social_item">
         <a
           target="_blank"
-          href="https://linktr.ee/duma_network"
-          class="btn btn-green"
-        >
-          MORE INFO
-        </a>
-        <a
-          target="_blank"
           href="https://duma-network.gitbook.io/duma.network-eng2/"
           class="btn btn-green"
         >
-          Whitepaper
+          MORE ABOUT PROJECT
+        </a>
+        <a
+          target="_blank"
+          href="https://linktr.ee/duma_network"
+          class="btn btn-green"
+        >
+          All RELEVANT  LNKS
         </a>
       </div>
       <div class="social info-social_item">
@@ -50,6 +50,7 @@ const forExport = function ({ className }) {
           </a>
         </div>
       </div>
+      {/* <img class="backDown" src={svg.backDown1}></img> */}
     </section>
   );
 };

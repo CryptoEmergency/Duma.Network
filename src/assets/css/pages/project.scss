@@ -14,7 +14,7 @@
     'image about';
 
   .company-title {
-    font-size: 36px;
+    font-size: 30px;
     line-height: 32px;
     word-wrap: break-word;
   }
@@ -407,14 +407,129 @@
 @media(max-width: 767px) {
   .card-project {
     grid-template-columns: 1fr;
+    grid-gap: 10px;
     grid-template-areas:
       'name'
       'image'
       'rang'
       'about';
+
+    .project-rang {
+      margin: 25px 0;
+      font-size: 14px;
+    }
+
+    .user-picture {
+      margin-right: 5px !important;
+    }
+  }
+
+  .project-rang_big {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    .rang {
+      padding-left: 0 !important;
+    }
+  }
+
+  .item-research {
+    .project-rang {
+      margin: 0;
+    }
+  }
+
+  .project-name .company img {
+    margin-right: 10px;
+  }
+
+  .card-project .company-title {
+    font-size: 24px;
   }
 
   .project-scheme {
     grid-template-columns: 1fr;
+    padding-top: 35px;
+    padding-bottom: 20px;
+  }
+
+  .scheme-sidebar {
+    display: none;
+  }
+
+  .gallery {
+    width: 100%;
+
+    .gallery-main_img {
+      width: 100%;
+      border-radius: 20px;
+      height: auto;
+    }
+
+    .gallery-nav {
+      display: none;
+    }
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+
+    &.funds {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tokenomic img {
+    width: 100%;
+  }
+
+  .scheme-card {
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+
+  .el-bottom {
+    margin-top: 20px !important;
+  }
+}
+
+@media(max-width: 464px) {
+  .card-project .company-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .status,
+  .ecosystem {
+    font-size: 12px;
+  }
+
+  .about-project {
+    padding: 15px;
+
+    .info-bell {
+      top: 15px;
+      right: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+
+
+  }
+
+  .text {
+    font-size: 14px;
+  }
+
+  .scheme-row {
+    grid-template-columns: 1fr;
+  }
+
+  .el-bottom .btn {
+    width: 100%;
+    height: auto;
   }
 }

@@ -13,33 +13,6 @@ import svg from "@assets/svg/index.js";
 import images from "@assets/images/index.js";
 import Elements from "@src/elements/export.js";
 
-// const countTotalSum = function(item, infoRef){
-//   // console.log('=2c31cd=',infoRef)
-//   let total = 0;
-
-//   infoRef.forEach((el)=>{
-//     if(item._id == el.idUser._id){
-//       total += el.sum;
-//     }
-//   })
-//   // console.log('=b9b809=',countInvestRef)
-//   return total;
-// }
-
-// const countTotalProjects = function(item, infoRef){
-//   let totalProjects = 0;
-//   console.log('=9d6d13=',item)
-
-//   infoRef.forEach((el)=>{
-//     console.log('=486778=',el)
-//     if(item._id == el.idUser._id){
-//       total += el.sum;
-
-//     }
-//   })
-//   return totalProjects
-// }
-
 
 const start = function (data, ID) {
   let [Static] = fn.GetParams({ data, ID });

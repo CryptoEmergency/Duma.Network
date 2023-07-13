@@ -20,7 +20,6 @@ const forExport = function ({ className, children, count, records }) {
 
 
   //  = Data.Static.carouselList.style.width;
-  console.log('=af21c2=', Data.Static.x2)
   // records.map((item, index)=>{
   //   console.log('=0a094b=',records[index].name)
   //   Data.Static.items[index].item.push(item)
@@ -30,7 +29,6 @@ const forExport = function ({ className, children, count, records }) {
     <div 
       Element={($el)=>{
         Data.Static.carouselSlider = $el;
-        console.log('=2eb369=',Data.Static.carouselSlider)
       }}
       class="line-wrap"
     >
@@ -42,7 +40,6 @@ const forExport = function ({ className, children, count, records }) {
         }}  
         After={($el)=>{
           Data.Static.widthList = $el.offsetWidth;
-          console.log('=fd7525=',Data.Static.widthList)
         }}
       >
         {
@@ -70,7 +67,6 @@ const forExport = function ({ className, children, count, records }) {
         }}  
         After={($el)=>{
           Data.Static.widthList = $el.offsetWidth;
-          console.log('=fd7525=',Data.Static.widthList)
         }}
       >
         {

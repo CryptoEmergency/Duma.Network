@@ -51,6 +51,10 @@ $back in $backAdvance {
   z-index: 0;
 }
 
+.eco-mobile {
+  display: none;
+}
+
 // ======================================
 .c-main {
   margin-top: 72px;
@@ -66,9 +70,9 @@ $back in $backAdvance {
 
 .main-back {
   position: relative;
-  background-image: url(../svg/backMain.svg);
+  background-image: url(../svg/backMain2.svg);
   background-repeat: no-repeat;
-  background-position: center -485px;
+  background-position: -165px -590px;
   width: 100%;
 }
 
@@ -101,18 +105,23 @@ $back in $backAdvance {
 .device {
   position: relative;
 
+  .device-screen {
+    position: relative;
+    z-index: 5;
+  }
+
   .device-video {
     position: absolute;
     top: 5px;
     right: 10px;
-
+    z-index: 0;
   }
 }
 
 .title-wrap .intro-title {
   text-transform: uppercase;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 46px;
   letter-spacing: .05em;
   line-height: 140%;
   position: relative;
@@ -162,6 +171,9 @@ $back in $backAdvance {
 
 .ecosystem-box {
   padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
 }
 
 .eco-title {
@@ -195,8 +207,8 @@ $back in $backAdvance {
 }
 
 .ecosystem-text {
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 30px;
   line-height: 24px;
   padding-top: 15px;
   max-width: 610px;
@@ -240,6 +252,13 @@ $back in $backAdvance {
   z-index: 1;
 }
 
+.invest-item_mobile,
+.invest-btn {
+  display: none !important;
+}
+
+
+
 .invest-item:hover {
   scale: 1.1;
 }
@@ -254,6 +273,8 @@ $back in $backAdvance {
 .invest-item p {
   text-align: center;
 }
+
+
 
 // section investing
 
@@ -299,6 +320,7 @@ $back in $backAdvance {
 // section opportunities
 .opportunities {
   position: relative;
+  padding-bottom: 65px;
 
   .polygonSmall {
     bottom: -140px;
@@ -313,6 +335,19 @@ $back in $backAdvance {
     width: 157px;
     z-index: 0;
   }
+
+  .circle-effect {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 200px 125px #1e6978;
+  }
+
+  .circle-effect1 {
+    top: 25%;
+    left: 25%;
+    z-index: 0;
+  }
+
 }
 
 .opportunities .circle1 {
@@ -323,13 +358,7 @@ $back in $backAdvance {
 .advantages-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 25px;
-}
-
-.advance {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 18px;
+  gap: 25px;
 }
 
 .advance-item {
@@ -339,6 +368,7 @@ $back in $backAdvance {
   background-blend-mode: normal, overlay;
   box-shadow: 1.5104e-15px 5px 20px rgba(51, 51, 51, 0.1);
   transition: .5s ease;
+  z-index: 2;
 }
 
 .advance-item:hover {
@@ -533,6 +563,10 @@ $back in $backAdvance {
   padding: 65px;
   position: relative;
   z-index: 2;
+  // background-image: url(../svg/backDown1.svg);
+  // background-repeat: no-repeat;
+  // background-position: top top;
+  // width: 100%;
 
   .info {
     padding-right: 170px;
@@ -649,7 +683,332 @@ $back in $backAdvance {
   }
 }
 
-// error
+// products start
+.product {
+  margin: 35px 0;
+}
+
+.product-box {
+  border-radius: 18px;
+  background-blend-mode: overlay;
+  box-shadow: -2px -3px 35px 7px rgba(0, 0, 0, 0.25);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  padding: 15px 30px;
+  background-image: url(../images/products/texture.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+
+  .circle-effect {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 200px 125px #1e6978;
+  }
+
+  .circle-effect1 {
+    top: 20%;
+    left: 25%;
+  }
+
+  .circle-effect2 {
+    left: 20%;
+    bottom: 40%;
+  }
+
+  @media(max-width: 464px) {
+    grid-template-columns: 1fr;
+    background-image: none;
+    box-shadow: none;
+    padding: 0;
+    position: relative;
+    padding-top: 50px;
+    font-size: 30px;
+  }
+}
+
+
+
+.productM {
+  .product-box {
+    .polygonBig {
+      left: 8%;
+      bottom: 30%;
+      z-index: 0;
+    }
+
+    .polygonSmall {
+      z-index: 0;
+      right: 5%;
+      bottom: 30%;
+    }
+
+    .polygonMax {
+      z-index: 0;
+      right: 20%;
+      top: 20%;
+    }
+
+    @media(max-width: 464px) {
+      .polygonMax {
+        display: none;
+      }
+
+      .polygonBig {
+        width: 100px;
+        height: 100px;
+        left: auto;
+        right: 100px;
+        top: -100px;
+      }
+
+      .polygonSmall {
+        width: 50px;
+        height: 50px;
+        top: -150px;
+        right: 20px;
+      }
+    }
+  }
+}
+
+
+.product-info {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  font-family: 'Raleway';
+  max-width: 350px;
+  margin: 0 auto;
+  z-index: 5;
+
+  @media(max-width: 464px) {
+    border-radius: 18px;
+    background: rgba(67, 67, 67, 0.5);
+    box-shadow: 15px 15px 15px 0px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    font-size: 14px;
+    margin: 0;
+    max-width: 100%;
+
+    .btn {
+      margin-top: 20px !important;
+    }
+  }
+}
+
+
+.product-title {
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Conthrax';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 44px;
+
+  @media(max-width: 464px) {
+    font-size: 16px;
+    position: absolute;
+    top: 0px;
+    font-size: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+  }
+}
+
+.product-list {
+  list-style-type: decimal;
+  padding-left: 25px;
+}
+
+.productR-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  position: relative;
+
+  .polygonMax {
+    left: 0;
+    bottom: 2%;
+    z-index: 0;
+  }
+
+  .polygonBig {
+    left: 22%;
+    bottom: 22%;
+    z-index: 0;
+  }
+
+  .polygonSmall {
+    left: 40%;
+    bottom: 50%;
+    z-index: 0;
+  }
+
+  .circle-effect {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 200px 125px #1e6978;
+  }
+
+  .circle-effect2 {
+    right: 25%;
+    top: 30%;
+    z-index: 0;
+  }
+
+  @media(max-width: 464px) {
+    grid-template-columns: 1fr;
+    padding-top: 50px;
+
+    .productR-info {
+      order: 1;
+    }
+
+    .polygonMax {
+      display: none;
+    }
+
+    .polygonBig {
+      left: 100px;
+      bottom: auto;
+      top: -20px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .polygonSmall {
+      bottom: auto;
+      width: 50px;
+      height: 50px;
+      top: 30px;
+      left: 30px;
+    }
+  }
+
+}
+
+.product-img {
+  cursor: pointer;
+  transition: box-shadow 0.1s, transform 0.1s;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 500px;
+  width: 100%;
+  z-index: 5;
+  width: 750px;
+  height: 800px;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  @media(max-width: 464px) {
+    width: 100%;
+    height: auto;
+    transform: scale(1.4);
+    margin-bottom: 40px;
+    margin-top: 50px;
+  }
+}
+
+.productPA {
+  .product-box {
+    .polygonMax {
+      right: 5%;
+      top: 5%;
+      z-index: 0;
+    }
+
+    .polygonSmall {
+      z-index: 0;
+      right: 45%;
+      bottom: 50%;
+    }
+
+    @media(max-width: 464px) {
+      .polygonMax {
+        width: 100px;
+        height: 100px;
+        right: 20px;
+        top: 0;
+      }
+
+      .polygonSmall {
+        width: 50px;
+        height: 50px;
+        right: 50%;
+        top: -20px;
+        bottom: auto;
+        transform: translate(-50%, 0);
+      }
+    }
+
+  }
+}
+
+// works
+.works {
+  margin-bottom: 25px;
+  position: relative;
+
+  .general-title,
+  .works-img,
+  .btn {
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn {
+    min-width: 320px;
+  }
+
+  .works-img {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 80%;
+
+    img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+    }
+  }
+
+  .circle-effect {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 200px 125px #1e6978
+  }
+
+  .circle-effect1 {
+    left: 50%;
+    top: 25%;
+    z-index: 0;
+  }
+
+  @media(max-width: 464px) {
+    margin-bottom: 65px;
+
+    .btn {
+      display: none;
+    }
+
+    .general-title {
+      margin: 0 !important;
+    }
+
+    .works-img {
+      width: 100%;
+    }
+  }
+}
+
+// products end
 
 // media
 @media(max-width: 992px) {
@@ -879,9 +1238,55 @@ $back in $backAdvance {
 }
 
 @media(max-width: 464px) {
+  .main-back {
+    background-position: -745px -300px;
+  }
+
   .general-title {
     margin-top: 25px;
     font-size: 24px;
+  }
+
+  .intro-inner {
+    padding: 15px 0;
+  }
+
+  .intro-info {
+    font-size: 14px;
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .eco-title {
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 10px;
+  }
+
+  .eco-item_mobile {
+    display: flex;
+
+    img {
+      width: 120px;
+      height: auto;
+      margin-left: 40px;
+    }
+  }
+
+  .eco-mobile {
+    display: block;
+  }
+
+  .eco-item_desc {
+    justify-content: flex-start;
+    // gap: 20px;
+  }
+
+  .general-text {
+    font-size: 14px;
+  }
+
+  .ecosystem-text_down {
+    display: none;
   }
 
   .invest-inner,
@@ -895,50 +1300,97 @@ $back in $backAdvance {
 
   .ecosystem-title {
     font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .ecosystem-box {
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
 
   .invest-inner {
-    grid-template-columns: repeat(2, 1fr);
+    // grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    gap: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+    transition: all 0.4s linear;
+    justify-content: flex-start;
   }
 
   .invest-item {
     height: -webkit-fill-available;
     height: 175px;
+    position: relative;
+    width: 175px;
+    // width: 170px;
+    white-space: wrap;
+    padding: 15px 35px;
+
+    p {
+      width: 150px;
+    }
+  }
+
+  .invest-item_mobile {
+    display: flex !important;
+  }
+
+  .invest-btn {
+    display: flex !important;
+    position: relative;
+    z-index: 2;
   }
 
   // contract
   .contract {
-    flex-direction: column;
+    display: none;
 
     .btn {
-      margin-top: 15px;
-      max-width: 100%;
+      display: block;
     }
   }
 
-  .contract-desc {
-    span {
-      font-size: 14px;
-    }
-  }
+  // .contract {
+  //   flex-direction: column;
+
+  //   .btn {
+  //     margin-top: 15px;
+  //     max-width: 100%;
+  //   }
+  // }
+
+  // .contract-desc {
+  //   span {
+  //     font-size: 14px;
+  //   }
+  // }
 
   // contract
   // opportunities
   .advantages-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .opportunities .circle1,
-  .opportunities .circle2 {
-    box-shadow: 0 0 160px 100px #1E6978;
-  }
-
-  .advance {
-    grid-gap: 15px;
+    // grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 150px);
+    gap: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+    transition: all 0.4s linear;
   }
 
   .advance-item {
     padding: 15px;
+    min-width: 225px;
+    white-space: normal;
+    // text-align: center;
+    font-size: 14px;
   }
 
   .advance-item:hover {
@@ -1028,6 +1480,8 @@ $back in $backAdvance {
   }
 
   .opportunities {
+    padding-bottom: 30px;
+
     .polygonBig {
       top: -80px;
       right: -45px;
@@ -1071,6 +1525,20 @@ $back in $backAdvance {
   }
 
   // polygon element
+
+  // element duma products
+  .duma-title {
+    color: var(--green);
+    text-align: center;
+    font-size: 36px;
+    line-height: 40px;
+    text-transform: uppercase;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+  }
+
+  // element duma products
+
 }
 
 @media(max-width: 400px) {

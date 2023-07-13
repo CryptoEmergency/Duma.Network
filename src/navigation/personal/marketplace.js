@@ -50,7 +50,6 @@ const start = function (data, ID) {
           },
         }
       })
-      console.log('=871442=',Static.marketAll)
       Static.myMarketOwner = [];
       Static.marketAll.forEach((item)=>{
         if(item.projectId.owner == Variable.myInfo._id){

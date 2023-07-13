@@ -664,6 +664,36 @@
 .row-block {
   display: flex;
   justify-content: space-between;
+
+  &_balance {
+    max-width: 520px;
+    margin: 0 auto;
+
+    @media(max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+
+      > span {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &_qr {
+    justify-content: center;
+    margin-top: 20px;
+
+    img {
+      width: 200px;
+      border-radius: 10px;
+    }
+  }
+
+  &_timer {
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
 }
 
 .block-title {
@@ -953,12 +983,18 @@
       .nums {
         padding-bottom: 20px;
       }
+      img{
+        width: 100%;
+      }
     }
 
     .recentLogins {
       display: grid;
       grid-template-columns: 1fr;
       grid-gap: 15px;
+      @media (max-width: 464px){
+        display: none;
+      }
     }
 
     .recentLogins-inner {
@@ -1280,7 +1316,8 @@
     &.news,
     &.wallet,
     &.reward,
-    &.lock {
+    &.lock,
+    &.refferal {
       grid-row: auto;
       grid-column: auto;
     }

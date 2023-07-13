@@ -108,6 +108,9 @@ const categoryList = [
     title: "M2E",
   },
   {
+    title: "Protocol",
+  },
+  {
     title: "SocialFi",
   },
 ];

@@ -140,6 +140,8 @@ $indent in $indents {
   line-height: 44px;
   text-align: center;
   margin-top: 100px;
+  position: relative;
+  z-index: 2;
 }
 
 .general-text {
@@ -153,6 +155,7 @@ $indent in $indents {
 // style general
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {

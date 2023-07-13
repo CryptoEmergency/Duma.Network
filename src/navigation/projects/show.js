@@ -256,8 +256,7 @@ const start = function (data, ID) {
                         Static.myResearch.map((item)=>{
                           return(
                             <div 
-                              class="new" 
-                              style="display:flex; cursor: pointer; position: relative;"
+                              class="new item-research" 
                               onclick={()=>{
                                 if(item.author._id == '645dea921d0831d67662684b'){
                                   fn.siteLink("/researchA/show/" + item._id);
@@ -272,32 +271,32 @@ const start = function (data, ID) {
 
                               }}
                             >
-                              <span>Research by</span>
-                               <div class="user-picture ml-15">
-                                  <span class="text-green ttu bold">{item.author.firstName}</span>
-                                  {/* <div class="user-status">{item.author.status}</div> */}
-                               </div>
-                               <div class="project-rang ml-15">
-                                <span>{item.rank.toFixed(2)} points</span>
-                                <span class="rang">
-                                  {
-                                    item.rank < 50 ? "low rank" : 
-                                    (item.rank >= 50 && item.rank < 100) ? " medium rank" :
-                                    (item.rank >= 100) ? "high rank" : null
-                                  }
-                                </span>
-                               </div>
-                               {
-                                (item.author._id == '645dea921d0831d67662684b') ? 
-                                <img class="icon-status" src={svg.public} /> :
-                                <img class="icon-status" src={svg.lock} />
-                               }
-                               {/* {
-                                Variable.myInfo.status === "User" ?
-                                <img class="icon-status" src={svg.lock} /> :
-                                <img class="icon-status" src={svg.public} />
+                              <div style="display: flex;">
+                                <span>Research by</span>
+                                <div class="user-picture ml-15">
+                                    <span class="text-green ttu bold">{item.author.firstName}</span>
+                                </div>
+                              </div>
 
-                               } */}
+                              <div>
+                                <div class="project-rang ml-15">
+                                  <span>{item.rank.toFixed(2)} points</span>
+                                  <span class="rang">
+                                    {
+                                      item.rank < 50 ? "low rank" : 
+                                      (item.rank >= 50 && item.rank < 100) ? " medium rank" :
+                                      (item.rank >= 100) ? "high rank" : null
+                                    }
+                                  </span>
+                                </div>
+                                {
+                                  (item.author._id == '645dea921d0831d67662684b') ? 
+                                  <img class="icon-status" src={svg.public} /> :
+                                  <img class="icon-status" src={svg.lock} />
+                                }
+                              </div>
+                              
+                               
                             </div>
 
                           )
@@ -400,7 +399,7 @@ const start = function (data, ID) {
                       </span>
                       { 
                       Static.item?.fonds.length ? 
-                      <div class="grid-2 mt-15">
+                      <div class="grid-2 funds mt-15">
                         {Static.item.fonds.map((item) => {
                           return (
                             <div class="company">
@@ -550,42 +549,44 @@ const start = function (data, ID) {
                     </div> : null
                   }
                   
-                  {
-                    (Static.item.roadmap?.text && Static.item.roadmap?.image.length != 0 ) ?
+                  
                     <div class="scheme-card" id="roadmap">
                       <div class="scheme-sidebar_item text">
                         <span>Roadmap</span>
                       </div>
-                      <div class="scheme-card_desc text">
-                        {Static.item.roadmap?.image ? (
-                          <div class="scheme-card_roadmap">
-                            <div class="scheme-card_roadmap-img">
-                              <img
-                                src={
-                                  Static.item.roadmap?.image
-                                    ? `/assets/upload/${Static.item.roadmap.image}`
-                                    : null
-                                }
-                              />
+                      {
+                        (Static.item.roadmap?.text && Static.item.roadmap?.image) ? 
+                        <div class="scheme-card_desc text">
+                          {Static.item.roadmap?.image ? (
+                            <div class="scheme-card_roadmap">
+                              <div class="scheme-card_roadmap-img">
+                                <img
+                                  src={
+                                    Static.item.roadmap?.image
+                                      ? `/assets/upload/${Static.item.roadmap.image}`
+                                      : null
+                                  }
+                                />
+                              </div>
+                              <div class="scheme-card_roadmap-desc">
+                                {fn.editText(Static.item.roadmap?.text, {
+                                  paragraph: true,
+                                  html: true,
+                                })}
+                              </div>
                             </div>
+                          ) : (
                             <div class="scheme-card_roadmap-desc">
                               {fn.editText(Static.item.roadmap?.text, {
                                 paragraph: true,
                                 html: true,
                               })}
                             </div>
-                          </div>
-                        ) : (
-                          <div class="scheme-card_roadmap-desc">
-                            {fn.editText(Static.item.roadmap?.text, {
-                              paragraph: true,
-                              html: true,
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    </div> : null
-                  }
+                          )}
+                        </div> : <div>Not information</div>
+                      }
+                      
+                    </div> 
                   
                   {
                     Static.item?.documentation ? 

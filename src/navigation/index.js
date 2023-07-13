@@ -16,9 +16,10 @@ const start = function (data, ID) {
               <Elements.home.About />
               <Elements.home.Advantages />
               <Elements.home.Opportunities />
-              <Elements.home.Partners />
-              <Elements.home.Roadmap />
-              <Elements.home.Team />
+              <Elements.home.Marketplace />
+              <Elements.home.Research />
+              <Elements.home.PersonalAccount />
+              <Elements.home.Works />
               <Elements.home.Social />
             </div>
           </div>

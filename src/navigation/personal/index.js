@@ -131,11 +131,11 @@ const start = function (data, ID) {
                         class="btn btn-transparent"
                         onclick={() => {
                           fn.modals.Status({});
-                        //   if (Variable.myInfo.role) {
-                        //     
-                        //   } else {
-                        //     fn.modals.Soon({});
-                        //   }
+                          // if (Variable.myInfo.role) {
+                          //   fn.modals.Status({});
+                          // } else {
+                          //   fn.modals.Soon({});
+                          // }
                         }}
                       >
                         upgrade
